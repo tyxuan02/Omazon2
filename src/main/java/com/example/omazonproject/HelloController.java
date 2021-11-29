@@ -5,11 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -58,15 +59,12 @@ public class HelloController {
     // check password and confirm password
     private Label confirmPasswordLabel;
 
-    @FXML
-        // Sign-up button pressed at the sign-up page
-    void signUpButtonPressed(MouseEvent event) {
-
-        if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((passwordEntered_SignUp.getText() != "") && (confirmPassword_SignUp.getText() != ""))) {
-            registerUser();
-        } else {
-            confirmPasswordLabel.setText("Password does not match.");
-        }
+    // Email-validating method
+    public static boolean valEmail(String input) {
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPat = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPat.matcher(input);
+        return matcher.find();
     }
 /*
         // Validating the email address entered by the user
@@ -90,9 +88,18 @@ public class HelloController {
     }
     */
 
+    @FXML
+        // Sign-up button pressed at the sign-up page
+    void signUpButtonPressed(MouseEvent event) {
 
+        if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((passwordEntered_SignUp.getText() != "") && (confirmPassword_SignUp.getText() != ""))) {
+            registerUser();
+        } else {
+            confirmPasswordLabel.setText("Password does not match.");
+        }
+    }
 
-    void registerUser(){
+    void registerUser() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -100,13 +107,13 @@ public class HelloController {
         String email = emailEntered_SignUp.getText();
         String password = passwordEntered_SignUp.getText();
         String insertFields = "INSERT INTO user_account (username, email, password) VALUES ('";
-        String insertValues = username + "','" + email + "','" + password +"')";
+        String insertValues = username + "','" + email + "','" + password + "')";
         String insertToRegister = insertFields + insertValues;
 
         try {
             Statement statement = connectDB.createStatement();
 
-            if (!username_SignUp.getText().equals("") && !emailEntered_SignUp.getText().equals("") ) {
+            if (!username_SignUp.getText().equals("") && !emailEntered_SignUp.getText().equals("")) {
 
                 confirmPasswordLabel.setText("");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -116,8 +123,7 @@ public class HelloController {
                 alert.showAndWait();
                 statement.executeUpdate(insertToRegister);
 
-            }
-            else {
+            } else {
                 confirmPasswordLabel.setText("");
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle(null);
@@ -126,18 +132,17 @@ public class HelloController {
                 alert.showAndWait();
             }
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
         }
 
     }
 
-
     @FXML
         // Login button pressed
     void loginButtonPressed(MouseEvent event) {
-        if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()){
+        if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
             loginMessageLabel.setText("");
             validateLogin();
         } else {
@@ -154,27 +159,23 @@ public class HelloController {
             String email = emailEntered_Login.getText();
             String password = passwordEntered_Login.getText();
             ResultSet queryResult = statement.executeQuery("SELECT * FROM user_account WHERE email = '" + email + "' AND password ='" + password + "'");
-                if (queryResult.next()) {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Login Successful!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Welcome to Omazon");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Invalid credentials. Please re-enter a valid email address.");
-                    alert.showAndWait();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (queryResult.next()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Login Successful!");
+                alert.setHeaderText(null);
+                alert.setContentText("Welcome to Omazon");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid credentials. Please re-enter a valid email address.");
+                alert.showAndWait();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-
-
-
 
     @FXML
         // Sign-up button pressed at the login page
@@ -195,14 +196,6 @@ public class HelloController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    // Email-validating method
-    public static boolean valEmail(String input) {
-        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-        Pattern emailPat = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(input);
-        return matcher.find();
     }
 }
 
