@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -21,6 +19,9 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The HelloController class is responsible to control the events happening in the login and sign-up page
+ */
 public class HelloController {
 
     private Stage stage;
@@ -28,78 +29,143 @@ public class HelloController {
     private Parent root;
 
     @FXML
-    // email entered by user at the login page
+    // Email entered by user at the login page
     private TextField emailEntered_Login;
 
     @FXML
-    // password entered by user at the login page
+    // Password entered by user at the login page
     private PasswordField passwordEntered_Login;
 
     @FXML
-    // confirm password entered by user at the sign-up page
+    // Confirm password entered by user at the sign-up page
     private PasswordField confirmPassword_SignUp;
 
     @FXML
-    // email entered by user at the sign-up page
+    // Email entered by user at the sign-up page
     private TextField emailEntered_SignUp;
 
     @FXML
-    // password entered by user at the sign-up page
+    // Password entered by user at the sign-up page
     private PasswordField passwordEntered_SignUp;
 
     @FXML
-    // username entered by user at the sign-up page
+    // Username entered by user at the sign-up page
     private TextField username_SignUp;
 
     @FXML
-    // login message
+    // The "Please enter email and password" label
     private Label loginMessageLabel;
 
     @FXML
-    // check password and confirm password
-    private Label confirmPasswordLabel;
+    // The "Password does not match or is empty" label
+    private Label notMatchLabel;
 
-    // Email-validating method
+    @FXML
+    // Sign-up button pressed at the sign-up page
+    // This method will check all the information entered by the user while the user is signing up
+    public void signUpButtonPressed(MouseEvent event) {
+        // hide the "Password does not match or is empty" label
+        notMatchLabel.setVisible(false);
+
+        // Determine whether the username is empty,
+        if (!username_SignUp.getText().isBlank()) {
+            // If username entered is not empty,
+            // Validate the email address entered by the user
+            if (valEmail(emailEntered_SignUp.getText())) {
+                // If valid email address is entered,
+                // Determine whether the confirmation password is equal to password
+                if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((!passwordEntered_SignUp.getText().isBlank())) && ((!confirmPassword_SignUp.getText().isBlank()))) {
+                    // If password and confirmation password matches,
+                    // 1. Send verification email
+
+                    // 2. Check code entered
+
+                    // 3. Register the user when the code matches, otherwise, let the user re-enter the email or choose to re-send the email.
+                    // registerUser();
+
+                    // 4.Display login successful pop-up message
+                    Alert alert = new Alert(Alert.AlertType.NONE);
+                    alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
+                    alert.setTitle("Success");
+                    alert.setHeaderText("Your account has been created.");
+                    alert.setContentText("Thank you for signing up at Omazon :D");
+                    alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                    alert.showAndWait();
+
+                } else {
+                    // If password and confirmation password does not match or is empty,
+                    // Show the "password does not match or is empty" label
+                    notMatchLabel.setVisible(true);
+                }
+
+            } else {
+                // If invalid email address is entered,
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Invalid email address");
+                alert.setHeaderText("The email address entered either is invalid or empty.");
+                alert.setContentText("Please re-enter a valid email address.");
+                alert.showAndWait();
+            }
+        } else {
+            // If username entered is empty,
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Invalid username");
+            alert.setHeaderText("The username entered is empty.");
+            alert.setContentText("Please re-enter a valid username.");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    // Prompt sign-up button pressed in the login page
+    public void signUpPromptButtonPressed(MouseEvent event) throws IOException {
+        // Forward user to the sign-up page
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("RegisterPage.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    // Quit button in the sign-up page pressed
+    public void registrationPageQuitButtonPressed(MouseEvent event) throws IOException {
+        // Forward user to the login page
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    // Login button pressed in the login page
+    public void loginButtonPressed(MouseEvent event) {
+        // hide the "Please enter email and password" label
+        loginMessageLabel.setVisible(false);
+
+        if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
+            //validateLogin();
+        } else {
+            loginMessageLabel.setVisible(true);
+        }
+    }
+
+    /**
+     * This method was made to validate the email entered by user in the sign-up page
+     *
+     * @param input the email entered by the user
+     * @return a boolean value indicating the validity of the email
+     */
     public static boolean valEmail(String input) {
         String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
         Pattern emailPat = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPat.matcher(input);
         return matcher.find();
     }
-/*
-        // Validating the email address entered by the user
-        if (valEmail(emailEntered_SignUp.getText())) {
-            // if valid email address is entered
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
-            alert.setTitle("Success");
-            alert.setHeaderText("Your account has been created.");
-            alert.setContentText("Thank you for signing up at Omazon :D");
-            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-            alert.showAndWait();
-        } else {
-            // if invalid email address is entered
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Invalid email address");
-            alert.setHeaderText("The email address entered is invalid.");
-            alert.setContentText("Please re-enter a valid email address.");
-            alert.showAndWait();
-        }
-    }
-    */
 
-    @FXML
-        // Sign-up button pressed at the sign-up page
-    void signUpButtonPressed(MouseEvent event) {
-
-        if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((passwordEntered_SignUp.getText() != "") && (confirmPassword_SignUp.getText() != ""))) {
-            registerUser();
-        } else {
-            confirmPasswordLabel.setText("Password does not match.");
-        }
-    }
-
-    void registerUser() {
+    public void registerUser() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -112,45 +178,14 @@ public class HelloController {
 
         try {
             Statement statement = connectDB.createStatement();
-
-            if (!username_SignUp.getText().equals("") && !emailEntered_SignUp.getText().equals("")) {
-
-                confirmPasswordLabel.setText("");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Sign up successful.");
-                alert.setHeaderText(null);
-                alert.setContentText("Your account has been created.");
-                alert.showAndWait();
-                statement.executeUpdate(insertToRegister);
-
-            } else {
-                confirmPasswordLabel.setText("");
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle(null);
-                alert.setHeaderText(null);
-                alert.setContentText("Please enter data in correct format.");
-                alert.showAndWait();
-            }
-
+            statement.executeUpdate(insertToRegister);
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
         }
-
     }
 
-    @FXML
-        // Login button pressed
-    void loginButtonPressed(MouseEvent event) {
-        if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
-            loginMessageLabel.setText("");
-            validateLogin();
-        } else {
-            loginMessageLabel.setText("Please enter email and password");
-        }
-    }
-
-    void validateLogin() {
+    public void validateLogin() {
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
@@ -169,33 +204,12 @@ public class HelloController {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Invalid credentials. Please re-enter a valid email address.");
+                alert.setContentText("Invalid credentials. Please re-enter a valid credentials.");
                 alert.showAndWait();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-        // Sign-up button pressed at the login page
-    void signUpPromptButtonPressed(MouseEvent event) throws IOException {
-        // Forward user to the sign-up page
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("RegisterPage.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void registrationPageQuitButtonPressed(MouseEvent event) throws IOException {
-        // Forward user back to the login page
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 }
 
