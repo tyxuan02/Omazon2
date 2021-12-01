@@ -147,6 +147,7 @@ public class HelloController {
 
         if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
             //validateLogin();
+            // Forward user to the homepage
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
