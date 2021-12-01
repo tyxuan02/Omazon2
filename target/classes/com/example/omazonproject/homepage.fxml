@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #EFE7E7;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.omazonproject.HomepageController">
+    <children>
+        <AnchorPane layoutX="-1.0" layoutY="61.0" prefHeight="27.0" prefWidth="901.0"
+                    style="-fx-background-color: #463535AB;">
+            <children>
+                <Label layoutX="783.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
+                       textFill="#1a0000"/>
+                <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="745.0" layoutY="1.0">
+                    <image>
+                        <Image url="@../../../images/malaysia flag.jpg"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="61.0" prefWidth="901.0" style="-fx-background-color: B32E46;"
+                    AnchorPane.bottomAnchor="539.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <MenuButton layoutX="150.0" layoutY="18.0" mnemonicParsing="false" text="All"
+                            AnchorPane.topAnchor="18.0">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Action1"/>
+                        <MenuItem mnemonicParsing="false" text="Action 2"/>
+                    </items>
+                </MenuButton>
+                <Button layoutX="745.0" layoutY="19.0" mnemonicParsing="false" text="Cart"/>
+                <TextField layoutX="199.0" layoutY="18.0" prefHeight="27.0" prefWidth="510.0"
+                           promptText="Search Items"/>
+                <ImageView fitHeight="117.0" fitWidth="222.0" layoutX="-48.0" layoutY="-28.0">
+                    <image>
+                        <Image url="@../../../images/logoMarkOmazon.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="-1.0" layoutY="130.0" prefHeight="201.0" prefWidth="495.0"
+                    style="-fx-background-color: B32E46;">
+            <children>
+                <ImageView fitHeight="180.0" fitWidth="495.0" layoutY="11.0">
+                    <image>
+                        <Image url="@../../../images/mask.jpg"/>
+                    </image>
+                </ImageView>
+                <Button layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: #F89500;"
+                        text="FREE SHIPPING" textFill="#f9f7f7"/>
+                <Button layoutX="384.0" layoutY="164.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0"
+                        style="-fx-background-color: #000000;" text="SHOP NOW" textFill="WHITE"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="526.0" layoutY="131.0" prefHeight="92.0" prefWidth="360.0"
+                    style="-fx-background-color: B32E46;">
+            <children>
+                <ImageView fitHeight="97.0" fitWidth="360.0">
+                    <image>
+                        <Image url="@../../../images/daily necessities.jpg"/>
+                    </image>
+                </ImageView>
+                <Button layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #F89500;"
+                        text="FREE SHIPPING" textFill="#f9f7f7"/>
+                <Button layoutX="250.0" layoutY="63.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0"
+                        style="-fx-background-color: #000000;" text="SHOP NOW" textFill="WHITE"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="526.0" layoutY="240.0" prefHeight="90.0" prefWidth="362.0"
+                    style="-fx-background-color: B32E46;">
+            <children>
+                <ImageView fitHeight="89.0" fitWidth="240.0" layoutX="121.0" layoutY="2.0">
+                    <image>
+                        <Image url="@../../../images/watches.jpeg"/>
+                    </image>
+                </ImageView>
+                <Label prefHeight="92.0" prefWidth="124.0" style="-fx-background-color: #FFFFFF;" text=" FLASH SALE"
+                       textFill="#2d2c2c">
+                    <font>
+                        <Font size="21.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="62.0" layoutY="365.0" prefHeight="201.0" prefWidth="188.0"
+                    style="-fx-background-color: #FFFFFF;">
+            <children>
+                <ImageView fitHeight="117.0" fitWidth="188.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.41790508390099035" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="@../../../images/clothes.jpg"/>
+                    </image>
+                </ImageView>
+                <Label layoutY="117.0" prefHeight="17.0" prefWidth="188.0" text="   Women Clothes "/>
+                <Label layoutX="7.0" layoutY="169.0" text=" Rm15.00" textFill="#a71d1d"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="355.0" layoutY="365.0" prefHeight="201.0" prefWidth="188.0"
+                    style="-fx-background-color: #FFFFFF;">
+            <children>
+                <Label layoutY="117.0" text="   Men belt"/>
+                <ImageView fitHeight="117.0" fitWidth="188.0">
+                    <image>
+                        <Image url="@../../../images/belt.jpg"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="-1.0" layoutY="169.0" text="   Rm 10.00" textFill="#a53434"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="632.0" layoutY="365.0" prefHeight="201.0" prefWidth="188.0"
+                    style="-fx-background-color: #FFFFFF;">
+            <children>
+                <ImageView fitHeight="117.0" fitWidth="200.0" AnchorPane.rightAnchor="0.0">
+                    <image>
+                        <Image url="@../../../images/bottle.jpg"/>
+                    </image>
+                </ImageView>
+                <Label layoutY="117.0" text="   Glass bottle"/>
+                <Label layoutY="169.0" text="   Rm 25.00" textFill="#ae2b2b"/>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
