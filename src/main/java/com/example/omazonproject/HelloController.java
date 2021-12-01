@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The HelloController class is responsible to control the events happening in the login and sign-up page
+ * This class is responsible to control the events happening in the login and sign-up page
  */
 public class HelloController {
 
@@ -80,7 +80,7 @@ public class HelloController {
 
                     // 2. Check code entered
 
-                    // 3. Register the user when the code matches, otherwise, let the user re-enter the email or choose to re-send the email.
+                    // 3. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
                     // registerUser();
 
                     // 4.Display login successful pop-up message
@@ -141,12 +141,18 @@ public class HelloController {
 
     @FXML
     // Login button pressed in the login page
-    public void loginButtonPressed(MouseEvent event) {
+    public void loginButtonPressed(MouseEvent event) throws IOException {
         // hide the "Please enter email and password" label
         loginMessageLabel.setVisible(false);
 
         if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
             //validateLogin();
+            // Forward user to the homepage
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } else {
             loginMessageLabel.setVisible(true);
         }
