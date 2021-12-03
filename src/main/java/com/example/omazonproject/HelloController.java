@@ -133,8 +133,6 @@ public class HelloController {
             alert.setContentText("Please re-enter a valid username.");
             alert.showAndWait();
         }
-
-
     }
 
     @FXML
