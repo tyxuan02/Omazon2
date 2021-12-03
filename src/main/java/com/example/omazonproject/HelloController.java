@@ -63,7 +63,8 @@ public class HelloController {
     @FXML
     // Sign-up button pressed at the sign-up page
     // This method will check all the information entered by the user while the user is signing up
-    public void signUpButtonPressed(MouseEvent event) {
+    public void signUpButtonPressed(MouseEvent event) throws SQLException {
+
         // hide the "Password does not match or is empty" label
         notMatchLabel.setVisible(false);
 
@@ -77,22 +78,38 @@ public class HelloController {
                 if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((!passwordEntered_SignUp.getText().isBlank())) && ((!confirmPassword_SignUp.getText().isBlank()))) {
                     // If password and confirmation password matches,
                     // 1. Check whether the email entered is in use
+                    DatabaseConnection connectNow = new DatabaseConnection();
+                    Connection connectDB = connectNow.getConnection();
+                    Statement statement = connectDB.createStatement();
+                    String emailEntered = emailEntered_SignUp.getText();
+                    ResultSet emailResult = statement.executeQuery("SELECT email FROM user_account WHERE email= '" + emailEntered + "'");
+                    if (emailResult.next()) {
 
-                    // 2. Send verification email
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Invalid email address");
+                        alert.setHeaderText("The email address entered is used.");
+                        alert.setContentText("Please re-enter a valid email address.");
+                        alert.showAndWait();
 
-                    // 3. Check code entered
+                    } else {
 
-                    // 4. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
-                    registerUser();
+                        // 2. Send verification email
 
-                    // 5.Display login successful pop-up message
-                    Alert alert = new Alert(Alert.AlertType.NONE);
-                    alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
-                    alert.setTitle("Success");
-                    alert.setHeaderText("Your account has been created.");
-                    alert.setContentText("Thank you for signing up at Omazon :D");
-                    alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                    alert.showAndWait();
+                        // 3. Check code entered
+
+                        // 4. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
+                        registerUser();
+
+
+                        // 5.Display login successful pop-up message
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
+                        alert.setTitle("Success");
+                        alert.setHeaderText("Your account has been created.");
+                        alert.setContentText("Thank you for signing up at Omazon :D");
+                        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                        alert.showAndWait();
+                    }
 
                 } else {
                     // If password and confirmation password does not match or is empty,
@@ -116,6 +133,7 @@ public class HelloController {
             alert.setContentText("Please re-enter a valid username.");
             alert.showAndWait();
         }
+
 
     }
 
@@ -150,7 +168,7 @@ public class HelloController {
         if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
             //  if email and password entered is not empty,
             // Check the credentials entered by the user
-            if(validateLogin()){
+            if (validateLogin()) {
                 // if valid,
                 // Forward user to the homepage the credentials matches
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
@@ -202,6 +220,7 @@ public class HelloController {
 
     /**
      * Validate the credentials entered by the user with our database and log them into the server if it matches
+     *
      * @return a boolean value indicating the validity of the credentials entered
      */
     public boolean validateLogin() {

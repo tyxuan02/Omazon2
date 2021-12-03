@@ -9,7 +9,7 @@ public class DatabaseConnection {
 
     public Connection getConnection() {
         String databaseUser = "sql6455521";
-        String databasePassword = "ZTxuMRZIFe";
+            String databasePassword = "ZTxuMRZIFe";
         String url = "jdbc:mysql://sql6.freemysqlhosting.net/sql6455521";
 
         try {
