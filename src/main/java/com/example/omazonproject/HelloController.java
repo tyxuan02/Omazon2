@@ -76,14 +76,16 @@ public class HelloController {
                 // Determine whether the confirmation password is equal to password
                 if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((!passwordEntered_SignUp.getText().isBlank())) && ((!confirmPassword_SignUp.getText().isBlank()))) {
                     // If password and confirmation password matches,
-                    // 1. Send verification email
+                    // 1. Check whether the email entered is in use
 
-                    // 2. Check code entered
+                    // 2. Send verification email
 
-                    // 3. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
+                    // 3. Check code entered
+
+                    // 4. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
                     registerUser();
 
-                    // 4.Display login successful pop-up message
+                    // 5.Display login successful pop-up message
                     Alert alert = new Alert(Alert.AlertType.NONE);
                     alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
                     alert.setTitle("Success");
@@ -146,13 +148,17 @@ public class HelloController {
         loginMessageLabel.setVisible(false);
 
         if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
-            validateLogin();
-            // Forward user to the homepage
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            //  if email and password entered is not empty,
+            // Check the credentials entered by the user
+            if(validateLogin()){
+                // if valid,
+                // Forward user to the homepage the credentials matches
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         } else {
             loginMessageLabel.setVisible(true);
         }
@@ -171,6 +177,9 @@ public class HelloController {
         return matcher.find();
     }
 
+    /**
+     * Register users and store their credentials into our database.
+     */
     public void registerUser() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -191,7 +200,11 @@ public class HelloController {
         }
     }
 
-    public void validateLogin() {
+    /**
+     * Validate the credentials entered by the user with our database and log them into the server if it matches
+     * @return a boolean value indicating the validity of the credentials entered
+     */
+    public boolean validateLogin() {
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
@@ -200,22 +213,28 @@ public class HelloController {
             String email = emailEntered_Login.getText();
             String password = passwordEntered_Login.getText();
             ResultSet queryResult = statement.executeQuery("SELECT * FROM user_account WHERE email = '" + email + "' AND password ='" + password + "'");
+            // if the credentials entered is valid
             if (queryResult.next()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Login Successful!");
+                // display login successful pop-up message
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Login Successful");
                 alert.setHeaderText(null);
-                alert.setContentText("Welcome to Omazon");
+                alert.setContentText("Welcome to Omazon!");
                 alert.showAndWait();
+                return true;
             } else {
+                // display error pop-up message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
                 alert.setContentText("Invalid credentials. Please re-enter a valid credentials.");
                 alert.showAndWait();
+                return false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 }
 
