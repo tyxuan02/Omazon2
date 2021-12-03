@@ -81,7 +81,7 @@ public class HelloController {
                     // 2. Check code entered
 
                     // 3. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
-                    // registerUser();
+                    registerUser();
 
                     // 4.Display login successful pop-up message
                     Alert alert = new Alert(Alert.AlertType.NONE);
@@ -146,7 +146,7 @@ public class HelloController {
         loginMessageLabel.setVisible(false);
 
         if (!emailEntered_Login.getText().isBlank() && !passwordEntered_Login.getText().isBlank()) {
-            //validateLogin();
+            validateLogin();
             // Forward user to the homepage
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -194,6 +194,7 @@ public class HelloController {
     public void validateLogin() {
 
         try {
+            boolean status = true;
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
             Statement statement = connectDB.createStatement();
