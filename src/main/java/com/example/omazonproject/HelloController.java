@@ -194,7 +194,6 @@ public class HelloController {
     public void validateLogin() {
 
         try {
-            boolean status = true;
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
             Statement statement = connectDB.createStatement();
