@@ -10,12 +10,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -63,7 +65,7 @@ public class HelloController {
     @FXML
     // Sign-up button pressed at the sign-up page
     // This method will check all the information entered by the user while the user is signing up
-    public void signUpButtonPressed(MouseEvent event) throws SQLException {
+    public void signUpButtonPressed(MouseEvent event) throws SQLException, MessagingException {
 
         // hide the "Password does not match or is empty" label
         notMatchLabel.setVisible(false);
@@ -77,39 +79,59 @@ public class HelloController {
                 // Determine whether the confirmation password is equal to password
                 if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((!passwordEntered_SignUp.getText().isBlank())) && ((!confirmPassword_SignUp.getText().isBlank()))) {
                     // If password and confirmation password matches,
-                    // 1. Check whether the email entered is in use
+                    // Check whether the email entered is in use
                     DatabaseConnection connectNow = new DatabaseConnection();
                     Connection connectDB = connectNow.getConnection();
                     Statement statement = connectDB.createStatement();
                     String emailEntered = emailEntered_SignUp.getText();
                     ResultSet emailResult = statement.executeQuery("SELECT email FROM user_account WHERE email= '" + emailEntered + "'");
                     if (emailResult.next()) {
-
+                        // If the email entered is in use,
+                        // Display a warning pop-up message
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Invalid email address");
-                        alert.setHeaderText("The email address entered is used.");
+                        alert.setHeaderText("The email address entered is in use.");
                         alert.setContentText("Please re-enter a valid email address.");
                         alert.showAndWait();
 
                     } else {
+                        // If the email entered is not in use,
+                        // Send verification email
+                        VerificationEmail verificationEmail = new VerificationEmail();
+                        verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText());
 
-                        // 2. Send verification email
+                        // Create a dialog box and check the code entered
+                        TextInputDialog textInputDialog = new TextInputDialog();
+                        textInputDialog.setTitle("Verification email sent successfully");
+                        textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
+                        textInputDialog.setContentText("Verification code:");
 
-                        // 3. Check code entered
+                        Optional<String> code = textInputDialog.showAndWait();
+                        if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
+                            // If the code entered matches,
+                            // Register the user
+                            registerUser();
 
-                        // 4. Register the user when the verification code matches, otherwise, let the user re-enter the email or choose to re-send the email.
-                        registerUser();
+                            // Display sign-up successful pop-up message
+                            Alert alert = new Alert(Alert.AlertType.NONE);
+                            alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
+                            alert.setTitle("Success");
+                            alert.setHeaderText("Your account has been created.");
+                            alert.setContentText("Thank you for signing up at Omazon :D");
+                            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                            alert.showAndWait();
 
-
-                        // 5.Display login successful pop-up message
-                        Alert alert = new Alert(Alert.AlertType.NONE);
-                        alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
-                        alert.setTitle("Success");
-                        alert.setHeaderText("Your account has been created.");
-                        alert.setContentText("Thank you for signing up at Omazon :D");
-                        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                        alert.showAndWait();
+                        } else {
+                            // If the code entered does not match,
+                            // Display error pop-up message
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Error");
+                            alert.setHeaderText("The verification code entered does not match.");
+                            alert.setContentText("Please try again.");
+                            alert.showAndWait();
+                        }
                     }
+
 
                 } else {
                     // If password and confirmation password does not match or is empty,
