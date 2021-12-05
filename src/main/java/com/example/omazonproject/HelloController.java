@@ -161,7 +161,7 @@ public class HelloController {
     // Prompt sign-up button pressed in the login page
     public void signUpPromptButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the sign-up page
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("RegisterPage.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-register-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -191,7 +191,7 @@ public class HelloController {
             if (validateLogin()) {
                 // if valid,
                 // Forward user to the homepage the credentials matches
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
