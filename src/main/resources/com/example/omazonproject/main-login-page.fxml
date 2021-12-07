@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.omazonproject.HelloController">
+    <children>
+        <ImageView fitHeight="800.0" fitWidth="1280.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../../images/backgroundLoginRegister.jpg"/>
+            </image>
+        </ImageView>
+        <BorderPane layoutX="178.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" opacity="0.95" prefHeight="616.0" prefWidth="964.0"
+                    AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="158.0"
+                    AnchorPane.topAnchor="107.0">
+            <top>
+                <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="963.0"
+                      style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER"/>
+            </top>
+            <bottom>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="50.0" prefWidth="964.0" style="-fx-background-color: e2ece9;"
+                      BorderPane.alignment="CENTER"/>
+            </bottom>
+            <center>
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="471.0"
+                            style="-fx-background-color: #a8dadc;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Text fill="#1d3557" layoutX="189.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Login" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="212.2890625">
+                            <font>
+                                <Font name="System Bold" size="36.0"/>
+                            </font>
+                        </Text>
+                        <TextField fx:id="emailEntered_Login" layoutX="112.0" layoutY="147.0" maxHeight="-Infinity"
+                                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+                                   prefWidth="272.0" promptText="Enter email address" AnchorPane.leftAnchor="112.0"
+                                   AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="147.0"/>
+                        <PasswordField fx:id="passwordEntered_Login" layoutX="112.0" layoutY="209.0"
+                                       maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                       minWidth="-Infinity" prefHeight="40.0" prefWidth="272.0"
+                                       promptText="Enter password" AnchorPane.leftAnchor="112.0"
+                                       AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="209.0"/>
+                        <Button layoutX="112.0" layoutY="292.0" minHeight="-Infinity" minWidth="-Infinity"
+                                mnemonicParsing="false" onMouseClicked="#loginButtonPressed" prefHeight="40.0"
+                                prefWidth="272.0" style="-fx-background-color: #457b9d;" text="LOGIN"
+                                AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="112.0"
+                                AnchorPane.topAnchor="292.0"/>
+                        <Text fill="#1d3557" layoutX="181.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Create a new account" AnchorPane.leftAnchor="181.0"
+                              AnchorPane.rightAnchor="176.299609375"/>
+                        <Button layoutX="207.0" layoutY="452.0" mnemonicParsing="false"
+                                onMouseClicked="#signUpPromptButtonPressed" style="-fx-background-color: #457b9d;"
+                                text="Sign Up"/>
+                        <Label fx:id="loginMessageLabel" layoutX="113.0" layoutY="252.0" prefHeight="17.0"
+                               prefWidth="245.0" text="Please enter email and password" textFill="RED" visible="false"/>
+                    </children>
+                </AnchorPane>
+            </center>
+            <right>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="502.0" prefWidth="434.0" style="-fx-background-color: e2ece9;"
+                            BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="362.0" fitWidth="437.0" layoutX="-8.0" layoutY="-14.0"
+                                   nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/item1.png"/>
+                            </image>
+                        </ImageView>
+                        <Text fill="#45b0a0" layoutX="111.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Shop with Azon" textAlignment="CENTER" wrappingWidth="211.73675537109375">
+                            <font>
+                                <Font name="Century Schoolbook Italic" size="25.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="76.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Your life become easier" textAlignment="CENTER" wrappingWidth="289.33673095703125">
+                            <font>
+                                <Font name="Century Schoolbook Italic" size="25.0"/>
+                            </font>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="0.8787878995591943" startX="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color/>
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.14509804546833038" green="0.7882353067398071"
+                                                       blue="0.5529412031173706"/>
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </right>
+            <left>
+                <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="139.0"
+                      style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER"/>
+            </left>
+        </BorderPane>
+        <ImageView fitHeight="211.0" fitWidth="346.0" layoutX="-74.0" layoutY="-35.0" nodeOrientation="INHERIT"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/logoMarkOmazon.png"/>
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

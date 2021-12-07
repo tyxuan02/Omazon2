@@ -98,7 +98,7 @@ public class HelloController {
                         // If the email entered is not in use,
                         // Send verification email
                         VerificationEmail verificationEmail = new VerificationEmail();
-                        verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText());
+                        verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText(), "user");
 
                         // Create a dialog box and check the code entered
                         TextInputDialog textInputDialog = new TextInputDialog();
@@ -172,7 +172,7 @@ public class HelloController {
     // Quit button in the sign-up page pressed
     public void registrationPageQuitButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the login page
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

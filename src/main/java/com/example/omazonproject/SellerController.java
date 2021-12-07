@@ -80,7 +80,7 @@ public class SellerController {
                 // If valid email address is entered,
                 // Determine whether the confirmation password is equal to password
                 if (!shopAddress_SignUp.getText().isBlank()) {
-                    // If shop address entered is not empty
+                    // If shop address entered is not empty,
                     if (sellerPassword_SignUp.getText().equals(sellerConfirmPassword_SignUp.getText()) && ((!sellerPassword_SignUp.getText().isBlank())) && ((!sellerConfirmPassword_SignUp.getText().isBlank()))) {
                         // If password and confirmation password matches,
 
@@ -103,7 +103,7 @@ public class SellerController {
                             // If the email entered is not in use,
                             // Send verification email
                             VerificationEmail VerificationEmail = new VerificationEmail();
-                            VerificationEmail.sendVerificationEmail(sellerEmail_SignUp.getText());
+                            VerificationEmail.sendVerificationEmail(sellerEmail_SignUp.getText(), "seller");
 
                             // Create a dialog box and check the code entered
                             TextInputDialog textInputDialog = new TextInputDialog();
