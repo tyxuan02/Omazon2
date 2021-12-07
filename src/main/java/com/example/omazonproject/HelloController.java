@@ -93,6 +93,7 @@ public class HelloController {
                         alert.setHeaderText("The email address entered is in use.");
                         alert.setContentText("Please re-enter a valid email address.");
                         alert.showAndWait();
+                        connectDB.close();
 
                     } else {
                         // If the email entered is not in use,
@@ -232,6 +233,7 @@ public class HelloController {
         try {
             Statement statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
+            connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -260,6 +262,7 @@ public class HelloController {
                 alert.setHeaderText(null);
                 alert.setContentText("Welcome to Omazon!");
                 alert.showAndWait();
+                connectDB.close();
                 return true;
             } else {
                 // display error pop-up message

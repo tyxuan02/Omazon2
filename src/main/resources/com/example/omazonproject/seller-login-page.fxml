@@ -1,101 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.omazonproject.SellerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.example.omazonproject.SellerController">
     <children>
-        <ImageView fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0"
-                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../../images/backgroundLoginRegister.jpg"/>
+                <Image url="@../../../images/backgroundLoginRegister.jpg" />
             </image>
         </ImageView>
-        <BorderPane layoutX="176.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                    minWidth="-Infinity" opacity="0.95" prefHeight="616.0" prefWidth="964.0"
-                    AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="158.0"
-                    AnchorPane.topAnchor="107.0">
+        <BorderPane layoutX="176.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.95" prefHeight="616.0" prefWidth="964.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="107.0">
             <top>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                      prefHeight="66.0" prefWidth="964.0" style="-fx-background-color: e2ece9;"
-                      BorderPane.alignment="CENTER"/>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="964.0" style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER" />
             </top>
             <bottom>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                      prefHeight="50.0" prefWidth="964.0" style="-fx-background-color: e2ece9;"
-                      BorderPane.alignment="CENTER"/>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="964.0" style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER" />
             </bottom>
             <center>
-                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" opacity="0.98" prefHeight="499.0"
-                            prefWidth="448.0" style="-fx-background-color: #a8dadc;" BorderPane.alignment="CENTER">
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" opacity="0.98" prefHeight="499.0" prefWidth="448.0" style="-fx-background-color: #a8dadc;" BorderPane.alignment="CENTER">
                     <children>
-                        <Text fill="#1d3557" layoutX="123.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="Seller Login" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="126.4375">
+                        <Text fill="#1d3557" layoutX="123.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Login" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="126.4375">
                             <font>
-                                <Font name="System Bold" size="36.0"/>
+                                <Font name="System Bold" size="36.0" />
                             </font>
                         </Text>
-                        <Button layoutX="114.0" layoutY="316.0" minHeight="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onMouseClicked="#sellerSignUpButtonPressed" prefHeight="30.0"
-                                prefWidth="235.0" style="-fx-background-color: #457b9d;" text="LOGIN"
-                                AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="115.0"
-                                AnchorPane.topAnchor="316.0"/>
-                        <TextField fx:id="sellerEmail_SignUp" layoutX="113.0" layoutY="160.0" maxHeight="-Infinity"
-                                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
-                                   prefWidth="235.0" promptText="Enter email address" AnchorPane.leftAnchor="113.0"
-                                   AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="160.0"/>
-                        <PasswordField fx:id="sellerPassword_SignUp" layoutX="112.0" layoutY="230.0"
-                                       maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                       minWidth="-Infinity" prefHeight="40.0" prefWidth="235.0"
-                                       promptText="Enter password" AnchorPane.leftAnchor="112.0"
-                                       AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="230.0"/>
-                        <Label fx:id="sellerSignUpPageNotMatchLabel" layoutX="121.0" layoutY="376.0" prefHeight="18.0"
-                               prefWidth="218.0" text="Password does not match or is empty." textFill="RED"
-                               visible="false"/>
-                        <Label layoutX="151.0" layoutY="430.0" text="Create a new seller account" textFill="#1d3557"/>
-                        <Button layoutX="193.0" layoutY="459.0" mnemonicParsing="false"
-                                style="-fx-background-color: #457b9d;" text="Sign Up"/>
+                        <Button layoutX="114.0" layoutY="316.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sellerLoginButtonPressed" prefHeight="30.0" prefWidth="235.0" style="-fx-background-color: #457b9d;" text="LOGIN" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="316.0" />
+                        <TextField fx:id="sellerEmail_Login" layoutX="113.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="235.0" promptText="Enter email address" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="160.0" />
+                        <PasswordField fx:id="sellerPassword_Login" layoutX="112.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="235.0" promptText="Enter password" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="230.0" />
+                        <Label layoutX="151.0" layoutY="430.0" text="Create a new seller account" textFill="#1d3557" />
+                        <Button layoutX="193.0" layoutY="459.0" mnemonicParsing="false" onMouseClicked="#sellerSignUpPromptButtonPressed" style="-fx-background-color: #457b9d;" text="Sign Up" />
+                  <Label fx:id="sellerLoginMessageLabel" layoutX="115.0" layoutY="278.0" prefHeight="18.0" prefWidth="230.0" text="Please enter email address and password." textFill="RED" visible="false" />
                     </children>
                 </AnchorPane>
             </center>
             <right>
-                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="466.0"
-                            style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER">
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="466.0" style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER">
                     <children>
-                        <ImageView fitHeight="362.0" fitWidth="386.0" layoutX="40.0" layoutY="83.0" pickOnBounds="true"
-                                   preserveRatio="true">
+                        <ImageView fitHeight="362.0" fitWidth="386.0" layoutX="40.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/seller-banner.png"/>
+                                <Image url="@../../../images/seller-banner.png" />
                             </image>
                         </ImageView>
-                        <Text layoutX="23.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="The Best Seller Is The Golden Touch Of Mediocre Talent" textAlignment="CENTER"
-                              wrappingWidth="418.13677978515625">
+                        <Text layoutX="23.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Best Seller Is The Golden Touch Of Mediocre Talent" textAlignment="CENTER" wrappingWidth="418.13677978515625">
                             <font>
-                                <Font name="Century Schoolbook Italic" size="20.0"/>
+                                <Font name="Century Schoolbook Italic" size="20.0" />
                             </font>
                         </Text>
-                        <Text layoutX="217.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="-Cyril Connolly" textAlignment="CENTER" wrappingWidth="289.33673095703125">
+                        <Text layoutX="217.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Cyril Connolly" textAlignment="CENTER" wrappingWidth="289.33673095703125">
                             <font>
-                                <Font name="Century Schoolbook Italic" size="12.0"/>
+                                <Font name="Century Schoolbook Italic" size="12.0" />
                             </font>
                             <fill>
                                 <LinearGradient endX="1.0" endY="0.8787878995591943" startX="1.0">
                                     <stops>
                                         <Stop>
                                             <color>
-                                                <Color/>
+                                                <Color />
                                             </color>
                                         </Stop>
                                         <Stop offset="1.0">
                                             <color>
-                                                <Color/>
+                                                <Color />
                                             </color>
                                         </Stop>
                                     </stops>
@@ -106,14 +84,12 @@
                 </AnchorPane>
             </right>
             <left>
-                <Pane prefHeight="499.0" prefWidth="54.0" style="-fx-background-color: e2ece9;"
-                      BorderPane.alignment="CENTER"/>
+                <Pane prefHeight="499.0" prefWidth="54.0" style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER" />
             </left>
         </BorderPane>
-        <ImageView fitHeight="211.0" fitWidth="346.0" layoutX="-74.0" layoutY="-35.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView fitHeight="211.0" fitWidth="346.0" layoutX="-74.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../images/logoMarkOmazon.png"/>
+                <Image url="@../../../images/logoMarkOmazon.png" />
             </image>
         </ImageView>
     </children>
