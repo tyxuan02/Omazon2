@@ -21,6 +21,8 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+
 /**
  * This class is responsible to control the events happening in the seller centre
  */
@@ -45,11 +47,11 @@ public class SellerController {
 
     @FXML
     // Seller password entered by user at the seller sign-up page
-    private TextField sellerPassword_SignUp;
+    private PasswordField sellerPassword_SignUp;
 
     @FXML
     // Seller confirm password entered by user at the seller sing-up page
-    private TextField sellerConfirmPassword_SignUp;
+    private PasswordField sellerConfirmPassword_SignUp;
 
     @FXML
     // The "Password does not match or is empty" label
@@ -62,6 +64,10 @@ public class SellerController {
     @FXML
     // Seller password entered by user at the seller login page
     private TextField sellerPassword_Login;
+
+    @FXML
+    // The "Please enter email address and password." label
+    private Label sellerLoginMessageLabel;
 
     @FXML
     // Sign-up button pressed at the seller sign-up page
@@ -98,6 +104,7 @@ public class SellerController {
                             alert.setHeaderText("The email address entered is in use.");
                             alert.setContentText("Please re-enter a valid email address.");
                             alert.showAndWait();
+                            connectDB.close();
 
                         } else {
                             // If the email entered is not in use,
@@ -203,6 +210,7 @@ public class SellerController {
         try {
             Statement statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
+            connectDB.close();
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -232,7 +240,7 @@ public class SellerController {
         stage.show();
     }
 
-/*
+
     @FXML
     // Login button pressed in the seller login page
     public void sellerLoginButtonPressed(MouseEvent event) throws IOException {
@@ -255,7 +263,7 @@ public class SellerController {
             sellerLoginMessageLabel.setVisible(true);
         }
     }
-    */
+
 
 
     /**
@@ -278,8 +286,9 @@ public class SellerController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Login Successful");
                 alert.setHeaderText(null);
-                alert.setContentText("Welcome to seller home page!");
+                alert.setContentText("Welcome to seller centre!");
                 alert.showAndWait();
+                connectDB.close();
                 return true;
             } else {
                 // display error pop-up message
