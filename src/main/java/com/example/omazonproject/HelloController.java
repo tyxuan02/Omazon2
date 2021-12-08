@@ -305,11 +305,12 @@ public class HelloController {
             String email = emailEntered_Login.getText();
             String password = passwordEntered_Login.getText();
             queryResult = statement.executeQuery("SELECT * FROM user_account WHERE email = '" + email + "' AND password ='" + password + "'");
-            // if the credentials entered is valid
+            // if the query result is not empty
             if (queryResult.next()) {
                 String retrievedEmail = queryResult.getString("email");
                 String retrievedPassword = queryResult.getString("password");
                 if (retrievedEmail.equals(email) && retrievedPassword.equals(password)) {
+                    // if the credentials matches
                     // display login successful pop-up message
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Login Successful");
@@ -318,6 +319,7 @@ public class HelloController {
                     alert.showAndWait();
                     return true;
                 } else {
+                    // if the credentials does not match
                     // display error pop-up message
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Error");
@@ -327,6 +329,7 @@ public class HelloController {
                     return false;
                 }
             } else {
+                // if the query result is empty
                 // display error pop-up message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Error");
