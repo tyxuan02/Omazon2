@@ -110,7 +110,7 @@ public class SellerController {
                                 // If the email entered is not in use,
                                 // Send verification email
                                 VerificationEmail verificationEmail = new VerificationEmail();
-                                verificationEmail.sendVerificationEmail(sellerEmail_SignUp.getText(), "user");
+                                verificationEmail.sendVerificationEmail(sellerEmail_SignUp.getText(), "seller");
 
                                 // Create a dialog box and check the code entered
                                 TextInputDialog textInputDialog = new TextInputDialog();
