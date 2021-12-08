@@ -72,7 +72,7 @@ public class SellerController {
     @FXML
     // Sign-up button pressed at the seller sign-up page
     // This method will check all the information entered by the user while the user is signing up at the seller sign-up page
-    public void sellerSignUpButtonPressed(MouseEvent event) throws SQLException, MessagingException {
+    public void sellerSignUpButtonPressed(MouseEvent event) throws MessagingException {
 
         // hide the "Password does not match or is empty" label
         sellerSignUpPageNotMatchLabel.setVisible(false);
@@ -500,7 +500,7 @@ public class SellerController {
     }
 
     /**
-     * This class is responsible to control the events happening at the seller-add-product-page
+     * This part is responsible to control the events happening at the seller-add-product-page
      */
 
     @FXML
