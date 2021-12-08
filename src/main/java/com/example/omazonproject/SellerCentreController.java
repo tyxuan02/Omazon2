@@ -76,11 +76,12 @@ public class SellerCentreController {
     public void addProductButtonPressed(ActionEvent event) throws IOException {
         // Forward user to seller add product page
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-add-product-page.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Please add your product");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
 
