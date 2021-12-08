@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerCentreController">
     <top>
         <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: b4e7ce;" BorderPane.alignment="CENTER">
             <children>
@@ -25,7 +25,6 @@
                         <Image url="@../../../images/logoMarkOmazon.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#addProductPageQuitButtonPressed" text="X" />
             </children>
         </AnchorPane>
     </top>
