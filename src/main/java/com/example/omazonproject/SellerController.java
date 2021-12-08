@@ -1,5 +1,6 @@
 package com.example.omazonproject;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * This class is responsible to control the events happening in the seller centre
+ * This part is responsible to control the events happening at the seller-login-page and seller-register-page
  */
 
 public class SellerController {
@@ -68,11 +69,10 @@ public class SellerController {
     // The "Please enter email address and password." label
     private Label sellerLoginMessageLabel;
 
-
     @FXML
     // Sign-up button pressed at the seller sign-up page
     // This method will check all the information entered by the user while the user is signing up at the seller sign-up page
-    public void sellerSignUpButtonPressed(MouseEvent event) throws SQLException, MessagingException {
+    public void sellerSignUpButtonPressed(MouseEvent event) throws MessagingException {
 
         // hide the "Password does not match or is empty" label
         sellerSignUpPageNotMatchLabel.setVisible(false);
@@ -89,58 +89,87 @@ public class SellerController {
                     // If shop address entered is not empty,
                     if (sellerPassword_SignUp.getText().equals(sellerConfirmPassword_SignUp.getText()) && ((!sellerPassword_SignUp.getText().isBlank())) && ((!sellerConfirmPassword_SignUp.getText().isBlank()))) {
                         // If password and confirmation password matches,
-
                         // Check whether the email entered is in use
-                        DatabaseConnection connectNow = new DatabaseConnection();
-                        Connection connectDB = connectNow.getConnection();
-                        Statement statement = connectDB.createStatement();
-                        String sellerEmailEntered = sellerEmail_SignUp.getText();
-                        ResultSet emailResult = statement.executeQuery("SELECT email FROM seller_account WHERE email= '" + sellerEmailEntered + "'");
-                        if (emailResult.next()) {
-                            // If the email entered is in use,
-                            // Display a warning pop-up message
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setTitle("Invalid email address");
-                            alert.setHeaderText("The email address entered is in use.");
-                            alert.setContentText("Please re-enter a valid email address.");
-                            alert.showAndWait();
-                            connectDB.close();
+                        Connection connectDB = null;
+                        Statement statement = null;
+                        ResultSet sellerEmailResult = null;
 
-                        } else {
-                            // If the email entered is not in use,
-                            // Send verification email
-                            VerificationEmail VerificationEmail = new VerificationEmail();
-                            VerificationEmail.sendVerificationEmail(sellerEmail_SignUp.getText(), "seller");
-
-                            // Create a dialog box and check the code entered
-                            TextInputDialog textInputDialog = new TextInputDialog();
-                            textInputDialog.setTitle("Verification email sent successfully");
-                            textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
-                            textInputDialog.setContentText("Verification code:");
-
-                            Optional<String> code = textInputDialog.showAndWait();
-                            if (code.isPresent() && code.get().equals(Integer.toString(VerificationEmail.verificationCode))) {
-                                // If the code entered matches,
-                                // Register the seller
-                                registerSeller();
-
-                                // Display sign-up successful pop-up message
-                                Alert alert = new Alert(Alert.AlertType.NONE);
-                                alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
-                                alert.setTitle("Success");
-                                alert.setHeaderText("Your seller account has been created.");
-                                alert.setContentText("Thank you for signing up as a seller at Omazon :D");
-                                alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                        try {
+                            DatabaseConnection connectNow = new DatabaseConnection();
+                            connectDB = connectNow.getConnection();
+                            statement = connectDB.createStatement();
+                            String sellerEmailEntered = sellerEmail_SignUp.getText();
+                            sellerEmailResult = statement.executeQuery("SELECT email FROM seller_account WHERE email= '" + sellerEmailEntered + "'");
+                            if (sellerEmailResult.next()) {
+                                // If the email entered is in use,
+                                // Display a warning pop-up message
+                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                alert.setTitle("Invalid email address");
+                                alert.setHeaderText("The email address entered is in use.");
+                                alert.setContentText("Please re-enter a valid email address.");
                                 alert.showAndWait();
 
                             } else {
-                                // If the code entered does not match,
-                                // Display error pop-up message
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Error");
-                                alert.setHeaderText("The verification code entered does not match.");
-                                alert.setContentText("Please try again.");
-                                alert.showAndWait();
+                                // If the email entered is not in use,
+                                // Send verification email
+                                VerificationEmail verificationEmail = new VerificationEmail();
+                                verificationEmail.sendVerificationEmail(sellerEmail_SignUp.getText(), "user");
+
+                                // Create a dialog box and check the code entered
+                                TextInputDialog textInputDialog = new TextInputDialog();
+                                textInputDialog.setTitle("Verification email sent successfully");
+                                textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
+                                textInputDialog.setContentText("Verification code:");
+
+                                Optional<String> code = textInputDialog.showAndWait();
+                                if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
+                                    // If the code entered matches,
+                                    // Register the seller
+                                    registerSeller();
+
+                                    // Display sign-up successful pop-up message
+                                    Alert alert = new Alert(Alert.AlertType.NONE);
+                                    alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
+                                    alert.setTitle("Success");
+                                    alert.setHeaderText("Your seller account has been created.");
+                                    alert.setContentText("Thank you for signing up at Omazon :D");
+                                    alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                                    alert.showAndWait();
+
+                                } else {
+                                    // If the code entered does not match,
+                                    // Display error pop-up message
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Error");
+                                    alert.setHeaderText("The verification code entered does not match.");
+                                    alert.setContentText("Please try again.");
+                                    alert.showAndWait();
+                                }
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+
+                        } finally {
+                            if (sellerEmailResult != null) {
+                                try {
+                                    sellerEmailResult.close();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            if (statement != null) {
+                                try {
+                                    statement.close();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            if (connectDB != null) {
+                                try {
+                                    connectDB.close();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
 
@@ -192,28 +221,43 @@ public class SellerController {
         return matcher.find();
     }
 
-    /**
-     * Register sellers and store their credentials into our database.
-     */
-    public void registerSeller() {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
 
-        String sellerName = sellerName_Signup.getText();
-        String email = sellerEmail_SignUp.getText();
-        String address = shopAddress_SignUp.getText();
-        String password = sellerPassword_SignUp.getText();
-        String insertFields = "INSERT INTO seller_account (sellerName, email, address, password) VALUES ('";
-        String insertValues = sellerName + "','" + email + "','" + address + "','" + password + "')";
-        String insertToRegister = insertFields + insertValues;
+    // Register sellers and store their credentials into our database.
+    public void registerSeller() {
+        Connection connectDB = null;
+        Statement statement = null;
 
         try {
-            Statement statement = connectDB.createStatement();
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            String name = sellerName_Signup.getText();
+            String email = sellerEmail_SignUp.getText();
+            String password = sellerPassword_SignUp.getText();
+            String address = shopAddress_SignUp.getText();
+            String insertFields = "INSERT INTO seller_account (sellerName, email, address, password) VALUES ('";
+            String insertValues = name + "','" + email + "','" + address + "','" + password + "')";
+            String insertToRegister = insertFields + insertValues;
+            statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
-            connectDB.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
-            e.getCause();
+
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -240,11 +284,21 @@ public class SellerController {
         stage.show();
     }
 
+    @FXML
+        // Quit button pressed at seller login page
+    void sellerLoginPageQuitButtonPressed(MouseEvent event) throws IOException {
+        // Forward user to product page
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
-    // Login button pressed at the seller login page
+    // Login button pressed at seller login page
     public void sellerLoginButtonPressed(MouseEvent event) throws IOException {
-        // hide the "Please enter email and password" label
+        // Hide the "Please enter email and password" label
         sellerLoginMessageLabel.setVisible(false);
 
         if (!sellerEmail_Login.getText().isBlank() && !sellerPassword_Login.getText().isBlank()) {
@@ -264,32 +318,46 @@ public class SellerController {
         }
     }
 
-
-    /**
-     * Validate the credentials entered by the user(seller) with our database and log them into seller page if it matches
-     *
-     * @return a boolean value indicating the validity of the credentials entered
-     */
+    //Validate the credentials entered by the user(seller) with our database and log them into seller page if it matches
+    //@return a boolean value indicating the validity of the credentials entered
     public boolean sellerValidateLogin() {
+
+        Connection connectDB = null;
+        Statement statement = null;
+        ResultSet queryResult = null;
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
-            Connection connectDB = connectNow.getConnection();
-            Statement statement = connectDB.createStatement();
+            connectDB = connectNow.getConnection();
+            statement = connectDB.createStatement();
             String sellerEmail = sellerEmail_Login.getText();
             String sellerPassword = sellerPassword_Login.getText();
-            ResultSet queryResult = statement.executeQuery("SELECT * FROM seller_account WHERE email = '" + sellerEmail + "' AND password ='" + sellerPassword + "'");
-            // if the credentials entered is valid
+            queryResult = statement.executeQuery("SELECT * FROM seller_account WHERE email = '" + sellerEmail + "' AND password ='" + sellerPassword + "'");
+            // if the query result is not empty
             if (queryResult.next()) {
-                // display login successful pop-up message
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Login Successful");
-                alert.setHeaderText(null);
-                alert.setContentText("Welcome to seller centre!");
-                alert.showAndWait();
-                connectDB.close();
-                return true;
+                String retrievedSellerEmail = queryResult.getString("email");
+                String retrievedSellerPassword = queryResult.getString("password");
+                if (retrievedSellerEmail.equals(sellerEmail) && retrievedSellerPassword.equals(sellerPassword)) {
+                    // if the credentials matches
+                    // display login successful pop-up message
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Login Successful");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Welcome to Omazon!");
+                    alert.showAndWait();
+                    return true;
+                } else {
+                    // if the credentials does not match
+                    // display error pop-up message
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Invalid credentials. Please re-enter a valid credentials.");
+                    alert.showAndWait();
+                    return false;
+                }
             } else {
+                // if the query result is empty
                 // display error pop-up message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Error");
@@ -298,10 +366,150 @@ public class SellerController {
                 alert.showAndWait();
                 return false;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+
+        } finally {
+            if (queryResult != null) {
+                try {
+                    queryResult.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return false;
+    }
+
+    /**
+     * This part is responsible to control the events happening at the seller centre
+     */
+
+    @FXML
+    // The seller name menu button(manage profile and logout) at seller centre
+    private MenuButton sellerNameMenuButton;
+
+    @FXML
+    // The menu button(customer review, delivery status and orders) at seller centre
+    private MenuButton menuButton;
+
+    @FXML
+    // First product description entered by seller at seller centre
+    private TextArea description1;
+
+    @FXML
+    // Second product description entered by seller at seller centre
+    private TextArea description2;
+
+    @FXML
+    // Third product description entered by seller at seller centre
+    private TextArea description3;
+
+    @FXML
+    // Fourth product description entered by seller at seller centre
+    private TextArea description4;
+
+    @FXML
+    // Manage profile selection at sellerNameMenuButton at seller centre
+    public void manageProfilePressed(ActionEvent event) throws IOException {
+        // Forward user to the seller profile page
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-profile-page.fxml")));
+        stage = (Stage) sellerNameMenuButton.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    // Logout selection at sellerNameMenuButton at seller centre
+    public void logoutPressed(ActionEvent event) throws IOException {
+        // Forward user to seller login page
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
+        stage = (Stage) sellerNameMenuButton.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    // Add product button at seller centre
+    public void addProductButtonPressed(ActionEvent event) throws IOException {
+        // Forward user to seller add product page
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-add-product-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    // Remove product button at seller centre
+    public void removeProductButtonPressed(ActionEvent event) {
+    }
+
+    @FXML
+    // Customer review selection at menuButton at seller centre
+    public void customerReviewPressed(ActionEvent event) {
+    }
+
+    @FXML
+    // Delivery status selection at menuButton at seller centre
+    public void deliveryStatusPressed(ActionEvent event) {
+    }
+
+    @FXML
+    // Orders selection at menuButton at seller centre
+    public void ordersPressed(ActionEvent event) {
+    }
+
+    @FXML
+    // First update button at seller centre
+    public void update1ButtonPressed(MouseEvent event) {
+    }
+
+    @FXML
+    // Second update button at seller centre
+    public void update2ButtonPressed(MouseEvent event) {
+    }
+
+    @FXML
+    // Third update button at seller centre
+    public void update3ButtonPressed(MouseEvent event) {
+    }
+
+    @FXML
+    // Fourth update button at seller centre
+    public void update4ButtonPressed(MouseEvent event) {
+    }
+
+    /**
+     * This part is responsible to control the events happening at the seller-add-product-page
+     */
+
+    @FXML
+    public void addProductPageQuitButtonPressed(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller's-product-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
