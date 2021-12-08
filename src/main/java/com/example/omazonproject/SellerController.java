@@ -22,7 +22,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
 /**
  * This class is responsible to control the events happening in the seller centre
  */
@@ -68,6 +67,7 @@ public class SellerController {
     @FXML
     // The "Please enter email address and password." label
     private Label sellerLoginMessageLabel;
+
 
     @FXML
     // Sign-up button pressed at the seller sign-up page
@@ -230,7 +230,7 @@ public class SellerController {
 
 
     @FXML
-    // Quit button in the seller sign-up page pressed
+    // Quit button at the seller sign-up page pressed
     public void sellerRegistrationPageQuitButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the seller login page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
@@ -242,7 +242,7 @@ public class SellerController {
 
 
     @FXML
-    // Login button pressed in the seller login page
+    // Login button pressed at the seller login page
     public void sellerLoginButtonPressed(MouseEvent event) throws IOException {
         // hide the "Please enter email and password" label
         sellerLoginMessageLabel.setVisible(false);
@@ -252,7 +252,7 @@ public class SellerController {
             // Check the credentials entered by the user
             if (sellerValidateLogin()) {
                 // if valid,
-                // Forward user to the seller homepage if the credentials matches
+                // Forward user to the seller centre if the credentials matches
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller's-product-page.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -263,7 +263,6 @@ public class SellerController {
             sellerLoginMessageLabel.setVisible(true);
         }
     }
-
 
 
     /**
