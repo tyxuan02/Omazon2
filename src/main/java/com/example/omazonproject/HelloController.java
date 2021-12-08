@@ -65,7 +65,7 @@ public class HelloController {
     @FXML
     // Sign-up button pressed at the sign-up page
     // This method will check all the information entered by the user while the user is signing up
-    public void signUpButtonPressed(MouseEvent event) throws SQLException, MessagingException {
+    public void signUpButtonPressed(MouseEvent event) throws MessagingException {
 
         // hide the "Password does not match or is empty" label
         notMatchLabel.setVisible(false);
@@ -80,56 +80,86 @@ public class HelloController {
                 if (passwordEntered_SignUp.getText().equals(confirmPassword_SignUp.getText()) && ((!passwordEntered_SignUp.getText().isBlank())) && ((!confirmPassword_SignUp.getText().isBlank()))) {
                     // If password and confirmation password matches,
                     // Check whether the email entered is in use
-                    DatabaseConnection connectNow = new DatabaseConnection();
-                    Connection connectDB = connectNow.getConnection();
-                    Statement statement = connectDB.createStatement();
-                    String emailEntered = emailEntered_SignUp.getText();
-                    ResultSet emailResult = statement.executeQuery("SELECT email FROM user_account WHERE email= '" + emailEntered + "'");
-                    if (emailResult.next()) {
-                        // If the email entered is in use,
-                        // Display a warning pop-up message
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Invalid email address");
-                        alert.setHeaderText("The email address entered is in use.");
-                        alert.setContentText("Please re-enter a valid email address.");
-                        alert.showAndWait();
-                        connectDB.close();
+                    Connection connectDB = null;
+                    Statement statement = null;
+                    ResultSet emailResult = null;
 
-                    } else {
-                        // If the email entered is not in use,
-                        // Send verification email
-                        VerificationEmail verificationEmail = new VerificationEmail();
-                        verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText(), "user");
-
-                        // Create a dialog box and check the code entered
-                        TextInputDialog textInputDialog = new TextInputDialog();
-                        textInputDialog.setTitle("Verification email sent successfully");
-                        textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
-                        textInputDialog.setContentText("Verification code:");
-
-                        Optional<String> code = textInputDialog.showAndWait();
-                        if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
-                            // If the code entered matches,
-                            // Register the user
-                            registerUser();
-
-                            // Display sign-up successful pop-up message
-                            Alert alert = new Alert(Alert.AlertType.NONE);
-                            alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
-                            alert.setTitle("Success");
-                            alert.setHeaderText("Your account has been created.");
-                            alert.setContentText("Thank you for signing up at Omazon :D");
-                            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                    try {
+                        DatabaseConnection connectNow = new DatabaseConnection();
+                        connectDB = connectNow.getConnection();
+                        statement = connectDB.createStatement();
+                        String emailEntered = emailEntered_SignUp.getText();
+                        emailResult = statement.executeQuery("SELECT email FROM user_account WHERE email= '" + emailEntered + "'");
+                        if (emailResult.next()) {
+                            // If the email entered is in use,
+                            // Display a warning pop-up message
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Invalid email address");
+                            alert.setHeaderText("The email address entered is in use.");
+                            alert.setContentText("Please re-enter a valid email address.");
                             alert.showAndWait();
 
                         } else {
-                            // If the code entered does not match,
-                            // Display error pop-up message
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Error");
-                            alert.setHeaderText("The verification code entered does not match.");
-                            alert.setContentText("Please try again.");
-                            alert.showAndWait();
+                            // If the email entered is not in use,
+                            // Send verification email
+                            VerificationEmail verificationEmail = new VerificationEmail();
+                            verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText(), "user");
+
+                            // Create a dialog box and check the code entered
+                            TextInputDialog textInputDialog = new TextInputDialog();
+                            textInputDialog.setTitle("Verification email sent successfully");
+                            textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
+                            textInputDialog.setContentText("Verification code:");
+
+                            Optional<String> code = textInputDialog.showAndWait();
+                            if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
+                                // If the code entered matches,
+                                // Register the user
+                                registerUser();
+
+                                // Display sign-up successful pop-up message
+                                Alert alert = new Alert(Alert.AlertType.NONE);
+                                alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
+                                alert.setTitle("Success");
+                                alert.setHeaderText("Your account has been created.");
+                                alert.setContentText("Thank you for signing up at Omazon :D");
+                                alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                                alert.showAndWait();
+
+                            } else {
+                                // If the code entered does not match,
+                                // Display error pop-up message
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Error");
+                                alert.setHeaderText("The verification code entered does not match.");
+                                alert.setContentText("Please try again.");
+                                alert.showAndWait();
+                            }
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+
+                    } finally {
+                        if (emailResult != null) {
+                            try {
+                                emailResult.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (statement != null) {
+                            try {
+                                statement.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (connectDB != null) {
+                            try {
+                                connectDB.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
 
@@ -220,23 +250,40 @@ public class HelloController {
      * Register users and store their credentials into our database.
      */
     public void registerUser() {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
 
-        String username = username_SignUp.getText();
-        String email = emailEntered_SignUp.getText();
-        String password = passwordEntered_SignUp.getText();
-        String insertFields = "INSERT INTO user_account (username, email, password) VALUES ('";
-        String insertValues = username + "','" + email + "','" + password + "')";
-        String insertToRegister = insertFields + insertValues;
+        Connection connectDB = null;
+        Statement statement = null;
 
         try {
-            Statement statement = connectDB.createStatement();
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            String username = username_SignUp.getText();
+            String email = emailEntered_SignUp.getText();
+            String password = passwordEntered_SignUp.getText();
+            String insertFields = "INSERT INTO user_account (username, email, password) VALUES ('";
+            String insertValues = username + "','" + email + "','" + password + "')";
+            String insertToRegister = insertFields + insertValues;
+            statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
-            connectDB.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
-            e.getCause();
+
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -247,23 +294,38 @@ public class HelloController {
      */
     public boolean validateLogin() {
 
+        Connection connectDB = null;
+        Statement statement = null;
+        ResultSet queryResult = null;
+
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
-            Connection connectDB = connectNow.getConnection();
-            Statement statement = connectDB.createStatement();
+            connectDB = connectNow.getConnection();
+            statement = connectDB.createStatement();
             String email = emailEntered_Login.getText();
             String password = passwordEntered_Login.getText();
-            ResultSet queryResult = statement.executeQuery("SELECT * FROM user_account WHERE email = '" + email + "' AND password ='" + password + "'");
+            queryResult = statement.executeQuery("SELECT * FROM user_account WHERE email = '" + email + "' AND password ='" + password + "'");
             // if the credentials entered is valid
             if (queryResult.next()) {
-                // display login successful pop-up message
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Login Successful");
-                alert.setHeaderText(null);
-                alert.setContentText("Welcome to Omazon!");
-                alert.showAndWait();
-                connectDB.close();
-                return true;
+                String retrievedEmail = queryResult.getString("email");
+                String retrievedPassword = queryResult.getString("password");
+                if (retrievedEmail.equals(email) && retrievedPassword.equals(password)) {
+                    // display login successful pop-up message
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Login Successful");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Welcome to Omazon!");
+                    alert.showAndWait();
+                    return true;
+                } else {
+                    // display error pop-up message
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Invalid credentials. Please re-enter a valid credentials.");
+                    alert.showAndWait();
+                    return false;
+                }
             } else {
                 // display error pop-up message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -273,8 +335,34 @@ public class HelloController {
                 alert.showAndWait();
                 return false;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+
+        } finally {
+            if (queryResult != null) {
+                try {
+                    queryResult.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return false;
     }

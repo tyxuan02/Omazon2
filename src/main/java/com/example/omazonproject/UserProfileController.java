@@ -7,12 +7,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This class is responsible to control the events happening in the user profile page
+ */
 public class UserProfileController {
 
     private Stage stage;
@@ -32,7 +36,7 @@ public class UserProfileController {
     private PasswordField paymentPassword;
 
     @FXML
-    private TextField pickupAddress;
+    private TextArea pickupAddress;
 
     @FXML
     private TextField username;
@@ -62,8 +66,12 @@ public class UserProfileController {
     }
 
     @FXML
-    void myPurchaseButtonPressed(ActionEvent event) {
-
+    void myPurchaseButtonPressed(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("purchase-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
