@@ -289,6 +289,7 @@ public class HelloController {
 
     /**
      * Validate the credentials entered by the user with our database and log them into the server if it matches
+     * Store the current user's info who has logged into the server in the User class
      *
      * @return a boolean value indicating the validity of the credentials entered
      */
@@ -317,6 +318,14 @@ public class HelloController {
                     alert.setHeaderText(null);
                     alert.setContentText("Welcome to Omazon!");
                     alert.showAndWait();
+
+                    //store current user's info in the User class
+                    User.username = queryResult.getString("username");
+                    User.email = retrievedEmail;
+                    User.password = retrievedPassword;
+                    User.address = queryResult.getString("address");
+                    User.paymentPassword = queryResult.getString("paymentPassword");
+                    User.balance = queryResult.getString("balance");
                     return true;
                 } else {
                     // if the credentials does not match

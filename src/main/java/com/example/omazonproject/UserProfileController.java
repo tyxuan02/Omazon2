@@ -41,9 +41,14 @@ public class UserProfileController {
     @FXML
     private TextField username;
 
-    @FXML
-    void accountBalanceButtonPressed(ActionEvent event) {
 
+    @FXML
+    void accountBalanceButtonPressed(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-account-balance-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -86,6 +91,15 @@ public class UserProfileController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * This method fills the user's information into the respective text field
+     */
+    public void setInitialContents() {
+        emailAddress.setText(User.email);
+        username.setText(User.username);
+        pickupAddress.setText(User.address);
     }
 
 }
