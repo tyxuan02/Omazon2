@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/bannerHomepage.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0">
+               <image>
+                  <Image url="@../../../images/logoMarkOmazon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/malaysia%20flag.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
+            <AnchorPane layoutX="51.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="787.0" style="-fx-background-color: e9edc9;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="442.0" AnchorPane.topAnchor="226.0">
+               <children>
+                  <Label layoutX="192.0" layoutY="151.0" text="Account Balance" textAlignment="CENTER">
+                     <font>
+                        <Font name="SimSun-ExtB" size="52.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="287.0" layoutY="206.0" prefHeight="279.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="47.0" layoutY="57.0" text="RM  0.00" textFill="#e70707">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Line endX="70.4000244140625" endY="-3.0517578125E-5" layoutX="114.0" layoutY="100.0" startX="-100.0" />
+                        <Button layoutX="50.0" layoutY="118.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="90.0" style="-fx-background-color: e9edc9;" text="top up">
+                           <graphic>
+                              <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/topUpIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="826.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="433.0">
+               <children>
+                  <Button layoutX="103.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
+                     <graphic>
+                        <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/favouriteListIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="97.0" layoutY="197.0" prefHeight="85.0" prefWidth="156.0" text="Favourite List" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="287.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
+                     <graphic>
+                        <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/myPurchaseListIcon%20.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="287.0" layoutY="197.0" prefHeight="85.0" prefWidth="156.0" text="My Purchase" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="103.0" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="90.0" style="-fx-background-color: white; -fx-border-color: b4e7ce; -fx-border-radius: 10; -fx-border-width: 5;">
+                     <graphic>
+                        <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/accountBalanceIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="97.0" layoutY="425.0" prefHeight="62.0" prefWidth="126.0" text="Account Balance" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="287.0" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
+                     <graphic>
+                        <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/StartSellingIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="287.0" layoutY="425.0" prefHeight="62.0" prefWidth="126.0" text="Start Selling" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
+         <children>
+            <MenuButton layoutX="54.0" layoutY="19.0" mnemonicParsing="false" text="All" textFill="#912f2f" AnchorPane.topAnchor="19.0">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </MenuButton>
+            <Button layoutX="635.0" layoutY="21.0" mnemonicParsing="false" text="Cart" textFill="#912f2f">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <TextField layoutX="100.0" layoutY="18.0" prefHeight="27.0" prefWidth="510.0" promptText="Search Items" />
+            <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/userIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/HomePageIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
