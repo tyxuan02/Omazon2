@@ -1,5 +1,6 @@
 package com.example.omazonproject;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +45,9 @@ public class HomepageController implements Initializable {
 
         // fill-in the text field before displaying the scene
         userProfileController.setInitialContents();
+
+        // prevent autofocus to the text field
+        Platform.runLater(() -> root.requestFocus());
 
         // display the scene
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
