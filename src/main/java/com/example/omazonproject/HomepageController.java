@@ -9,16 +9,30 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.scene.control.ComboBox;
+import javafx.fxml.Initializable;
 
 /**
  * This class is responsible to control the events happening in the homepage
  */
-public class HomepageController {
+public class HomepageController implements Initializable {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    
+    @FXML
+    private ComboBox<String> productcategory_home;
+    
+    @Override
+    // Set the items viewing in product category
+    public void initialize(URL location, ResourceBundle resources) {
+        productcategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
+        productcategory_home.setPromptText("Select");
+    }
+    
     @FXML
     void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
@@ -36,5 +50,9 @@ public class HomepageController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    
+        
+        
+    
     }
 }
