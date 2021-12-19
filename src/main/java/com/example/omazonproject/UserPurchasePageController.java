@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * This class is responsible to control the events happening in the user purchase page
@@ -35,6 +38,27 @@ public class UserPurchasePageController {
 
     @FXML
     private Line toShipLine;
+    
+    @FXML
+    private ImageView picture_product;
+
+    @FXML
+    private Label quantity;
+
+    @FXML
+    private Label shop_name;
+    
+    @FXML
+    private Label total_price;
+
+    @FXML
+    private Label unit_price;
+    
+    @FXML
+    private AnchorPane background;
+
+    @FXML
+    private Line backgroundline;
 
     @FXML
     void cancelButtonPressed(ActionEvent event) {
@@ -43,6 +67,13 @@ public class UserPurchasePageController {
         toShipLine.setVisible(false);
         toReceivedLine.setVisible(false);
         orderHistoryLine.setVisible(false);
+        picture_product.setVisible(false);
+        quantity.setVisible(false);
+        shop_name.setVisible(false);
+        total_price.setVisible(false);
+        unit_price.setVisible(false);
+        background.setVisible(false);
+        backgroundline.setVisible(false);
     }
 
     @FXML
@@ -61,6 +92,13 @@ public class UserPurchasePageController {
         toShipLine.setVisible(false);
         toReceivedLine.setVisible(false);
         orderHistoryLine.setVisible(true);
+        picture_product.setVisible(true);
+        quantity.setVisible(true);
+        shop_name.setVisible(true);
+        total_price.setVisible(true);
+        unit_price.setVisible(true);
+        background.setVisible(true);
+        backgroundline.setVisible(true);
     }
 
     @FXML
@@ -79,6 +117,13 @@ public class UserPurchasePageController {
         toShipLine.setVisible(false);
         toReceivedLine.setVisible(false);
         orderHistoryLine.setVisible(false);
+        picture_product.setVisible(true);
+        quantity.setVisible(true);
+        shop_name.setVisible(true);
+        total_price.setVisible(true);
+        unit_price.setVisible(true);
+        background.setVisible(true);
+        backgroundline.setVisible(true);
     }
 
     @FXML
@@ -88,6 +133,13 @@ public class UserPurchasePageController {
         toShipLine.setVisible(false);
         toReceivedLine.setVisible(true);
         orderHistoryLine.setVisible(false);
+        picture_product.setVisible(false);
+        quantity.setVisible(false);
+        shop_name.setVisible(false);
+        total_price.setVisible(false);
+        unit_price.setVisible(false);
+        background.setVisible(false);
+        backgroundline.setVisible(false);
     }
 
     @FXML
@@ -97,6 +149,13 @@ public class UserPurchasePageController {
         toShipLine.setVisible(true);
         toReceivedLine.setVisible(false);
         orderHistoryLine.setVisible(false);
+        picture_product.setVisible(false);
+        quantity.setVisible(false);
+        shop_name.setVisible(false);
+        total_price.setVisible(false);
+        unit_price.setVisible(false);
+        background.setVisible(false);
+        backgroundline.setVisible(false);
     }
 
 }
