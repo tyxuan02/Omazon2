@@ -94,7 +94,7 @@ public class HelloController {
                             // If the email entered is in use,
                             // Display a warning pop-up message
                             Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setTitle("Invalid email address");
+                            alert.setTitle("Invalid Email Address");
                             alert.setHeaderText("The email address entered is in use.");
                             alert.setContentText("Please re-enter a valid email address.");
                             alert.showAndWait();
@@ -107,7 +107,7 @@ public class HelloController {
 
                             // Create a dialog box and check the code entered
                             TextInputDialog textInputDialog = new TextInputDialog();
-                            textInputDialog.setTitle("Verification email sent successfully");
+                            textInputDialog.setTitle("Verification Email Sent Successfully");
                             textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
                             textInputDialog.setContentText("Verification code:");
 

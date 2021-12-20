@@ -31,7 +31,8 @@ public class VerificationEmail {
      * This method will send a verification email to the recipient
      *
      * @param recipient email address of the recipient
-     * @param type      recipient type, "user" or "seller"
+     * @param type      type of email to be sent, "user" for user verification email, "seller" for seller verification email,
+     *                  and "forgetPassword" for forget password email;
      * @throws MessagingException if errors occur while sending email
      */
     public void sendVerificationEmail(String recipient, String type) throws MessagingException {
@@ -57,10 +58,16 @@ public class VerificationEmail {
 
         // Create a new message
         Message message = null;
-        if (type.equals("user")) {
-            message = prepareMessageForUser(session, myAccountEmail, recipient);
-        } else if (type.equals("seller")) {
-            message = prepareMessageForSeller(session, myAccountEmail, recipient);
+        switch (type) {
+            case "user":
+                message = prepareMessageForUser(session, myAccountEmail, recipient);
+                break;
+            case "seller":
+                message = prepareMessageForSeller(session, myAccountEmail, recipient);
+                break;
+            case "forgetPassword":
+                message = prepareMessageForForgetPassword(session, myAccountEmail, recipient);
+                break;
         }
 
         // Send message
@@ -170,6 +177,59 @@ public class VerificationEmail {
             // image body part
             messageBodyPart = new MimeBodyPart();
             DataSource fds = new FileDataSource("assets\\Seller Verification Email.png");
+            messageBodyPart.setDataHandler(new DataHandler(fds));
+            messageBodyPart.setHeader("Content-ID", "<image>");
+            multipart.addBodyPart(messageBodyPart);
+
+            // Place the contents into the message
+            message.setContent(multipart);
+
+            return message;
+
+        } catch (Exception ex) {
+            Logger.getLogger(VerificationEmail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * Prepare the message to be sent to the user who forgets his/her password
+     *
+     * @param session        session created in the sendVerificationEmail method
+     * @param myAccountEmail email address of our Omazon account
+     * @param recipient      email address of the recipient
+     * @return a multipart message containing an HTML header and an image
+     */
+    private Message prepareMessageForForgetPassword(Session session, String myAccountEmail, String recipient) {
+        try {
+            // Write down the code on the template and save the copy of it in Verification Email.png
+            final BufferedImage image = ImageIO.read(new File("assets\\Forget Password Template.png"));
+            Graphics g = image.getGraphics();
+            g.setFont(g.getFont().deriveFont(25f));
+            g.setColor(new Color(0));
+            codeGenerator();
+            g.drawString(Integer.toString(verificationCode), 260, 333);
+            g.dispose();
+            ImageIO.write(image, "png", new File("assets\\Forget Password.png"));
+
+            // Prepare a new message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("[Omazon] Reset your account password");
+
+            // Set the message to be a multi-part message
+            MimeMultipart multipart = new MimeMultipart("related");
+
+            // html body part
+            BodyPart messageBodyPart = new MimeBodyPart();
+            String htmlText = "<H1>Hi " + User.getUsername() + "!</H1><img src=\"cid:image\">";
+            messageBodyPart.setContent(htmlText, "text/html");
+            multipart.addBodyPart(messageBodyPart);
+
+            // image body part
+            messageBodyPart = new MimeBodyPart();
+            DataSource fds = new FileDataSource("assets\\Forget Password.png");
             messageBodyPart.setDataHandler(new DataHandler(fds));
             messageBodyPart.setHeader("Content-ID", "<image>");
             multipart.addBodyPart(messageBodyPart);
