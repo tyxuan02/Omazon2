@@ -69,7 +69,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <ComboBox fx:id="productcategory_home" layoutX="47.0" layoutY="17.0" prefHeight="27.0"
+                        <ComboBox fx:id="productCategory_home" layoutX="47.0" layoutY="17.0" prefHeight="27.0"
                                   prefWidth="117.0" promptText="Select"/>
                     </children>
                 </AnchorPane>

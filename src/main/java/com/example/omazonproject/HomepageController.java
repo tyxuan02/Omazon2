@@ -25,13 +25,13 @@ public class HomepageController implements Initializable {
     private Parent root;
     
     @FXML
-    private ComboBox<String> productcategory_home;
+    private ComboBox<String> productCategory_home;
     
     @Override
     // Set the items viewing in product category
     public void initialize(URL location, ResourceBundle resources) {
-        productcategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productcategory_home.setPromptText("Select");
+        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
+        productCategory_home.setPromptText("Select");
     }
     
     @FXML
