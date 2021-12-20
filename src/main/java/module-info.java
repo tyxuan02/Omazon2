@@ -6,8 +6,8 @@ module com.example.omazonproject {
     requires java.sql;
     requires json.simple;
     requires java.mail;
-    requires activation;
     requires commons.io;
+    requires activation;
 
     opens com.example.omazonproject to javafx.fxml;
     exports com.example.omazonproject;
