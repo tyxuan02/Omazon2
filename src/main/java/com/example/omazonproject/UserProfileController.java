@@ -88,7 +88,130 @@ public class UserProfileController {
 
     @FXML
     void saveButtonPressed(ActionEvent event) {
-        System.out.println(User.getPaymentPassword());
+        // when the save button is pressed
+
+        if (!username.getText().isEmpty() && !username.getText().equals(User.getUsername())) {
+            //if the username in the text field is not empty and is not the same as the username stored in the User class,
+            Connection connection = null;
+            PreparedStatement psUpdateUsername = null;
+
+            try {
+                //change the user's username in the database
+                DatabaseConnection databaseConnection = new DatabaseConnection();
+                connection = databaseConnection.getConnection();
+                psUpdateUsername = connection.prepareStatement("UPDATE user_account SET username = ? WHERE email = ?");
+                psUpdateUsername.setString(1, username.getText());
+                psUpdateUsername.setString(2, User.getEmail());
+                psUpdateUsername.executeUpdate();
+
+                // change the user's username in the User class
+                User.setUsername(username.getText());
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                if (psUpdateUsername != null) {
+                    try {
+                        psUpdateUsername.close();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        if (User.getAddress() == null) {
+            // if the user doesn't set the address before
+            if (pickupAddress.getText() != null) {
+                // if the address in the text field is not empty
+                //change the user's address in the database
+                Connection connection = null;
+                PreparedStatement psUpdateAddress = null;
+
+                try {
+                    // change the user's address in the database
+                    DatabaseConnection databaseConnection = new DatabaseConnection();
+                    connection = databaseConnection.getConnection();
+                    psUpdateAddress = connection.prepareStatement("UPDATE user_account SET address = ? WHERE email = ?");
+                    psUpdateAddress.setString(1, pickupAddress.getText());
+                    psUpdateAddress.setString(2, User.getEmail());
+                    psUpdateAddress.executeUpdate();
+
+                    // change the user's address in the User class
+                    User.setAddress(pickupAddress.getText());
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+
+                }finally {
+                    if (psUpdateAddress != null) {
+                        try {
+                            psUpdateAddress.close();
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (connection != null) {
+                        try {
+                            connection.close();
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        } else {
+            // if the user set the address before
+            if (!pickupAddress.getText().isEmpty() && !User.getAddress().equals(pickupAddress.getText())) {
+                Connection connection = null;
+                PreparedStatement psUpdateAddress = null;
+
+                try {
+                    // change the user's address in the database
+                    DatabaseConnection databaseConnection = new DatabaseConnection();
+                    connection = databaseConnection.getConnection();
+                    psUpdateAddress = connection.prepareStatement("UPDATE user_account SET address = ? WHERE email = ?");
+                    psUpdateAddress.setString(1, pickupAddress.getText());
+                    psUpdateAddress.setString(2, User.getEmail());
+                    psUpdateAddress.executeUpdate();
+
+                    // change the user's address in the User class
+                    User.setAddress(pickupAddress.getText());
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+
+                }finally {
+                    if (psUpdateAddress != null) {
+                        try {
+                            psUpdateAddress.close();
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (connection != null) {
+                        try {
+                            connection.close();
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @FXML
