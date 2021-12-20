@@ -85,12 +85,13 @@
                         <Button layoutX="313.0" layoutY="379.0" mnemonicParsing="false"
                                 onAction="#changeLoginPasswordButtonPressed" prefHeight="26.0" prefWidth="256.0"
                                 style="-fx-background-color: white;" text="Change login password"/>
-                        <Label layoutX="88.0" layoutY="435.0" text="Payment password           : ">
+                        <Label fx:id="paymentPassword" layoutX="88.0" layoutY="435.0"
+                               text="Payment password           : ">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Button layoutX="313.0" layoutY="435.0" mnemonicParsing="false"
+                        <Button fx:id="setPaymentPasswordButton" layoutX="313.0" layoutY="435.0" mnemonicParsing="false"
                                 onAction="#setPaymentPasswordButtonPressed" prefHeight="26.0" prefWidth="256.0"
                                 style="-fx-background-color: white;" text="Set payment password"/>
                         <Button layoutX="668.0" layoutY="483.0" mnemonicParsing="false"

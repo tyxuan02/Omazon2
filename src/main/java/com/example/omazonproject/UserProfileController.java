@@ -25,6 +25,7 @@ import java.util.Optional;
 
 /**
  * This class is responsible to control the events happening in the user profile page
+ * @author XiangLun
  */
 public class UserProfileController {
 
@@ -36,10 +37,16 @@ public class UserProfileController {
     private Label emailAddress;
 
     @FXML
+    private Label paymentPassword;
+
+    @FXML
     private TextArea pickupAddress;
 
     @FXML
     private TextField username;
+
+    @FXML
+    private Button setPaymentPasswordButton;
 
 
     @FXML
@@ -81,7 +88,7 @@ public class UserProfileController {
 
     @FXML
     void saveButtonPressed(ActionEvent event) {
-
+        System.out.println(User.getPaymentPassword());
     }
 
     @FXML
@@ -98,7 +105,7 @@ public class UserProfileController {
         // create a new custom dialog box with password field
         Dialog<ButtonType> preDialog = new Dialog<>();
         preDialog.setTitle("Change Login Password");
-        preDialog.setHeaderText("Please enter the current password before changing the password.");
+        preDialog.setHeaderText("Please enter your current password before changing the password.");
 
         // set up the buttons
         ButtonType forgetPasswordButtonType = new ButtonType("Forget password?");
@@ -136,15 +143,15 @@ public class UserProfileController {
             } else {
                 // if the password entered does not match with the current password
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("The password entered does not match with the current password.");
+                alert.setTitle("Incorrect Password");
+                alert.setHeaderText("The password entered does not match with the current login password.");
                 alert.setContentText("Please try again.");
                 alert.showAndWait();
             }
 
         } else if (btnPressed.isPresent() && btnPressed.get() == forgetPasswordButtonType) {
             // if forget button is pressed,
-            // inform the user
+            // inform the user that they will receive an email
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Reset Password");
             alert.setHeaderText(null);
@@ -184,22 +191,201 @@ public class UserProfileController {
 
     @FXML
     void setPaymentPasswordButtonPressed(ActionEvent event) {
+        // create a dialog box to request the current password from the user
+        Dialog<String> getCurrentPasswordDialog = new Dialog<>();
+        getCurrentPasswordDialog.setTitle("Set Payment Password");
+        getCurrentPasswordDialog.setHeaderText("Please enter your login password before setting the payment password.");
 
+        // set up buttons
+        getCurrentPasswordDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // create a new password field
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Enter current password");
+
+        // create a grid pane
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+        // add contents into the grid pane
+        gridPane.add(new Label("Current Password:"), 0, 0);
+        gridPane.add(passwordField, 1, 0);
+
+        // add grid pane into the dialog box
+        getCurrentPasswordDialog.getDialogPane().setContent(gridPane);
+
+        // auto-focus on the password field
+        Platform.runLater(passwordField::requestFocus);
+
+        // Convert the result to a password-confirmation password pair when the set button is clicked.
+        getCurrentPasswordDialog.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                return passwordField.getText();
+            }
+            return null;
+        });
+
+        // show the dialog box
+        Optional<String> password = getCurrentPasswordDialog.showAndWait();
+
+        // check the password entered
+        if (password.isPresent() && password.get().equals(User.getPassword())) {
+            // if the password entered matches,
+            // let the user set the password
+
+            // create a new custom dialog box with two inputs
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
+            dialog.setTitle("Set Payment Password");
+            dialog.setHeaderText("Please enter your payment password.\nYou are NOT allowed to change the payment password in the future");
+
+            // set up the button.
+            ButtonType setButtonType = new ButtonType("Set", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(setButtonType, ButtonType.CANCEL);
+
+            // create a grid pane
+            GridPane gp = new GridPane();
+            gp.setHgap(10);
+            gp.setVgap(10);
+            gp.setPadding(new Insets(20, 150, 10, 10));
+
+            // create the required password fields and labels
+            PasswordField newPass1 = new PasswordField();
+            newPass1.setPromptText("Enter payment password");
+            PasswordField newPass2 = new PasswordField();
+            newPass2.setPromptText("Re-enter the password");
+            Text warningText = new Text("The password does not match");
+            warningText.setFill(Color.RED);
+
+            // add the contents into the grid pane
+            gp.add(new Label("Payment password:"), 0, 0);
+            gp.add(newPass1, 1, 0);
+            gp.add(new Label("Confirm payment password:"), 0, 1);
+            gp.add(newPass2, 1, 1);
+            gp.add(warningText,0,2);
+            dialog.getDialogPane().setContent(gp);
+
+            // Enable/Disable change button depending on whether the passwords match.
+            // Show/Hide warning text depending on whether the passwords match.
+            Node setButton = dialog.getDialogPane().lookupButton(setButtonType);
+            setButton.setDisable(true);
+            warningText.setVisible(false);
+            newPass2.textProperty().addListener((observable, oldValue, newValue) -> {
+                warningText.setVisible(!newValue.isEmpty());
+                setButton.setDisable(true);
+                if(newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()){
+                    warningText.setVisible(false);
+                    setButton.setDisable(false);
+                }
+            });
+            newPass1.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()){
+                    warningText.setVisible(true);
+                    setButton.setDisable(true);
+                } else if (newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
+                    warningText.setVisible(false);
+                    setButton.setDisable(false);
+                }
+            });
+
+            // request focus on the first password field
+            Platform.runLater(newPass1::requestFocus);
+
+            // Convert the result to a password-confirmation password pair when the set button is clicked.
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == setButtonType) {
+                    return new Pair<>(newPass1.getText(), newPass2.getText());
+                }
+                return null;
+            });
+
+            // Show the dialog
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+
+            // If the confirmation password matches
+            result.ifPresent(newPassword -> {
+
+                // Connect to the database and change the user's payment password
+                Connection connection = null;
+                PreparedStatement psUpdatePass = null;
+
+                try {
+                    // Change the user's payment password in the database
+                    DatabaseConnection db = new DatabaseConnection();
+                    connection = db.getConnection();
+                    psUpdatePass = connection.prepareStatement("UPDATE user_account SET paymentPassword = ? WHERE email = ?");
+                    psUpdatePass.setString(1, newPassword.getKey());
+                    psUpdatePass.setString(2, User.getEmail());
+                    psUpdatePass.executeUpdate();
+
+                    // Change the user's payment password in the User class
+                    User.setPaymentPassword(newPassword.getKey());
+
+                    // Display successful pop-up message
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Successful");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Payment password set successfully.");
+                    alert.showAndWait();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+
+                } finally {
+                    if (psUpdatePass != null) {
+                        try {
+                            psUpdatePass.close();
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (connection != null) {
+                        try {
+                            connection.close();
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+
+        } else {
+            // if the password entered does not match,
+            // display password does not match pop-up message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Incorrect Password");
+            alert.setHeaderText("The password entered does not match with the current password.");
+            alert.setContentText("Please try again.");
+            alert.showAndWait();
+        }
     }
 
     /**
-     * This method fills the user's information into their respective text field
+     * This method fills the user's information into their respective text field and
+     * decides whether it is needed to hide the set payment password option
+     * @author XiangLun
      */
     public void setInitialContents() {
+        // fill user's information
         emailAddress.setText(User.getEmail());
         username.setText(User.getUsername());
         pickupAddress.setText(User.getAddress());
+
+        // decides whether it is needed to hide the set payment password option
+        if (User.getPaymentPassword() != null) {
+            paymentPassword.setVisible(false);
+            setPaymentPasswordButton.setVisible(false);
+        }
     }
 
     /**
      * This method create a dialog box that request the user to enter a new password and the confirmation password.
      * If the passwords match, change the user's account password in our database and display a successful pop-up
      * message if the password change successfully.
+     * @author XiangLun
      */
     public void changePassword() {
         // if the password entered matches with the current password
@@ -244,7 +430,7 @@ public class UserProfileController {
         newPass2.textProperty().addListener((observable, oldValue, newValue) -> {
             warningText.setVisible(!newValue.isEmpty());
             changeButton.setDisable(true);
-            if(newValue.equals(newPass1.getText())){
+            if(newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()){
                 warningText.setVisible(false);
                 changeButton.setDisable(false);
             }
@@ -262,7 +448,7 @@ public class UserProfileController {
         // Request focus on the first password field by default
         Platform.runLater(newPass1::requestFocus);
 
-        // Convert the result to a username-password-pair when the login button is clicked.
+        // Convert the result to a password-confirmation password pari when the button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == changeButtonType) {
                 return new Pair<>(newPass1.getText(), newPass2.getText());
