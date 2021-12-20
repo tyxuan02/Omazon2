@@ -195,6 +195,7 @@ public class HelloController {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-register-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -206,6 +207,7 @@ public class HelloController {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
