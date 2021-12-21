@@ -452,6 +452,10 @@ public class UserProfileController {
                     alert.setContentText("Payment password set successfully.");
                     alert.showAndWait();
 
+                    // Hide set payment password option
+                    paymentPassword.setVisible(false);
+                    setPaymentPasswordButton.setVisible(false);
+
                 } catch (SQLException e) {
                     e.printStackTrace();
 
