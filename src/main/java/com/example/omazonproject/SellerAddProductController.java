@@ -77,6 +77,7 @@ public class SellerAddProductController implements Initializable {
             Image image = new Image(selectedFile.toURI().toString(), 200, 200, false, false);
             productImage.setImage(image);
         } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -200,7 +201,7 @@ public class SellerAddProductController implements Initializable {
             statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         } finally {
             if (productImageNameResult != null) {
