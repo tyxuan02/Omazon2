@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 
 /**
  * This class is responsible to control the events happening in the homepage
+ * @author XiangLun
  */
 public class HomepageController implements Initializable {
 
@@ -43,7 +44,7 @@ public class HomepageController implements Initializable {
         // create an instance of the UserProfileController class
         UserProfileController userProfileController = fxmlLoader.getController();
 
-        // fill-in the text field before displaying the scene
+        // fill-in the text field before displaying the scene and show or hide the set payment password option
         userProfileController.setInitialContents();
 
         // prevent autofocus to the text field
