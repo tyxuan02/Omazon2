@@ -167,23 +167,25 @@ public class SellerAddProductController implements Initializable {
         Random r = new Random();
         Connection connectDB = null;
         Statement statement = null;
-        ResultSet productNameResult = null;
+        ResultSet productImageNameResult = null;
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             connectDB = connectNow.getConnection();
             statement = connectDB.createStatement();
-            String productNAME = productName.getText();
-            productNameResult = statement.executeQuery("SELECT name FROM product_info");
-            while (productNameResult.next()) {
-                String getName = productNameResult.getString("name");
-                if (getName.equals(productNAME)) {
-                    productNAME = productNAME + (char) ('a' + r.nextInt(26));
+            String productIMAGENAME = productName.getText();
+            productImageNameResult = statement.executeQuery("SELECT imageName FROM product_info");
+
+            // If the image name has already been used, add a character behind the image name
+            while (productImageNameResult.next()) {
+                String getImageName = productImageNameResult.getString("imageName");
+                if (getImageName.equals(productIMAGENAME)) {
+                    productIMAGENAME += (char) ('a' + r.nextInt(26));
                 }
             }
 
             // Store image into folder
-            File fileoutput = new File("image/" + productNAME + ".png");
+            File fileoutput = new File("src/main/resources/images/" + productIMAGENAME + ".png");
             BufferedImage BI = SwingFXUtils.fromFXImage(productImage.getImage(), null);
             ImageIO.write(BI, "png", fileoutput);
 
@@ -191,9 +193,9 @@ public class SellerAddProductController implements Initializable {
             String price = productPrice.getText();
             String category = productCategory.getValue();
             String description = productDescription.getText();
-            String location = "image/" + productNAME + ".png";
-            String insertFields = "INSERT INTO product_info (name, price, category, description, imageLocation) VALUES ('";
-            String insertValues = productName.getText() + "','" + price + "','" + category + "','" + description + "','" + location + "')";
+            String imageName = productIMAGENAME;
+            String insertFields = "INSERT INTO product_info (name, price, category, description, imageName) VALUES ('";
+            String insertValues = productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "')";
             String insertToRegister = insertFields + insertValues;
             statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
@@ -201,9 +203,9 @@ public class SellerAddProductController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (productNameResult != null) {
+            if (productImageNameResult != null) {
                 try {
-                    productNameResult.close();
+                    productImageNameResult.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
