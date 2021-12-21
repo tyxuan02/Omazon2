@@ -1,0 +1,39 @@
+/*adding hover effect to login and sign up button*/
+#btn1{
+    -fx-font-weight:bold;
+    -fx-background-color: #457b9d;
+    -fx-background-radius:30;
+    -fx-text-fill:white;
+}
+#btn1:hover{
+    -fx-font-weight:bold;
+    -fx-background-color:white;
+    -fx-background-radius:30;
+    -fx-text-fill: #457b9d;
+    -fx-border-color: #457b9d;
+    -fx-border-radius:28;
+    -fx-border-weight:3;
+}
+#btn1:pressed{
+   -fx-font-weight:bold;
+    -fx-background-color:white;
+    -fx-background-radius:30;
+    -fx-text-fill: #457b9d;
+    -fx-border-color: #457b9d;
+    -fx-border-radius:28;
+    -fx-border-width:3;
+   
+}
+/*adding effect to createAccountButton(main-login-page) and cancelButton(main-register-page)*/
+#btn2{
+    -fx-background-color: #457b9d;
+    -fx-text-fill:white;
+}
+
+#btn2:hover{
+    -fx-font-weight:bold;
+    -fx-background-color:white;
+    -fx-text-fill: #457b9d;
+    -fx-border-color: #457b9d;
+    -fx-border-weight:3;
+}

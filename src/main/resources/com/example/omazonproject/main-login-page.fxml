@@ -32,16 +32,16 @@
             <center>
                 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="471.0" style="-fx-background-color: #a8dadc;" BorderPane.alignment="CENTER">
                     <children>
-                        <Text fill="#1d3557" layoutX="188.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="188.4890625">
+                        <Text fx:id="btn1" fill="#1d3557" layoutX="189.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="212.2890625">
                             <font>
                                 <Font name="System Bold" size="36.0" />
                             </font>
                         </Text>
-                        <TextField fx:id="emailEntered_Login" layoutX="112.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="272.0" promptText="Enter email address" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="142.0" />
-                        <PasswordField fx:id="passwordEntered_Login" layoutX="112.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="272.0" promptText="Enter password" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="210.0" />
-                        <Button fx:id="btn1" layoutX="119.0" layoutY="299.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#loginButtonPressed" prefHeight="42.0" prefWidth="231.0" text="LOG  IN" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="299.0" />
-                        <Text fill="#1d3557" layoutX="177.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="180.299609375" />
-                        <Button fx:id="btn2" layoutX="205.0" layoutY="444.0" mnemonicParsing="false" onMouseClicked="#signUpPromptButtonPressed" text="Sign Up" />
+                        <TextField fx:id="emailEntered_Login" layoutX="112.0" layoutY="147.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="272.0" promptText="Enter email address" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="147.0" />
+                        <PasswordField fx:id="passwordEntered_Login" layoutX="112.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="272.0" promptText="Enter password" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="209.0" />
+                        <Button fx:id="btn1" layoutX="112.0" layoutY="292.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#loginButtonPressed" prefHeight="40.0" prefWidth="272.0" text="LOGIN" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="292.0" />
+                        <Text fill="#1d3557" layoutX="181.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="176.299609375" />
+                        <Button fx:id="btn2" layoutX="207.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#signUpPromptButtonPressed" text="Sign Up" />
                         <Label fx:id="loginMessageLabel" layoutX="113.0" layoutY="252.0" prefHeight="17.0" prefWidth="245.0" text="Please enter email and password" textFill="RED" visible="false" />
                     </children>
                 </AnchorPane>
