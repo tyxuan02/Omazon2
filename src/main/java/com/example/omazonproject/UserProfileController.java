@@ -60,7 +60,99 @@ public class UserProfileController {
 
     @FXML
     void deleteAccountButtonPressed(ActionEvent event) {
+        // create a pop-up message to alert the user
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Account");
+        alert.setHeaderText(null);
 
+        // create a text field
+        TextField textField = new TextField();
+
+        // create a grid pane
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20, 40, 10, 10));
+
+        // set up buttons
+        ButtonType delete = new ButtonType("DELETE", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(delete, ButtonType.CANCEL);
+
+        // add content into grid pane
+        gridPane.add(new Label("Are you sure you want to delete your account?\nYour account will be permanently erased. Enter CONFIRM to proceed."), 0, 0);
+        gridPane.add(textField, 0,1);
+        alert.getDialogPane().setContent(gridPane);
+
+        // enable/disable the deleteButton depending on user's input
+        Node deleteButton = alert.getDialogPane().lookupButton(delete);
+        deleteButton.setDisable(true);
+        textField.textProperty().addListener((observable, oldValue, newValue) -> deleteButton.setDisable(!newValue.equals("CONFIRM")));
+
+        // auto-focus on the text field
+        Platform.runLater(textField::requestFocus);
+
+        // show the alert box and wait for user
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == delete) {
+            // if delete button is pressed,
+            // delete user's account in our database
+            Connection connection = null;
+            PreparedStatement psDelete = null;
+
+            try {
+                // connect to database
+                DatabaseConnection db = new DatabaseConnection();
+                connection = db.getConnection();
+
+                // set up mySQL statement and execute update
+                psDelete = connection.prepareStatement("DELETE FROM user_account WHERE email = ?");
+                psDelete.setString(1, User.getEmail());
+                psDelete.executeUpdate();
+
+                // remove user's info in the User class
+                User.setAddress(null);
+                User.setUsername(null);
+                User.setEmail(null);
+                User.setPassword(null);
+                User.setPaymentPassword(null);
+                User.setBalance(null);
+
+                // say goodbye
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Account Deleted");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Your account was deleted successfully. All your data was removed from our services. Thank you for using Omazon.");
+                alert1.showAndWait();
+
+                // forward user to the login page
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-login-page.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+
+            }finally {
+                if (psDelete != null) {
+                    try {
+                        psDelete.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        }
     }
 
     @FXML
@@ -109,7 +201,7 @@ public class UserProfileController {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 if (psUpdateUsername != null) {
                     try {
                         psUpdateUsername.close();
@@ -152,7 +244,7 @@ public class UserProfileController {
                 } catch (SQLException e) {
                     e.printStackTrace();
 
-                }finally {
+                } finally {
                     if (psUpdateAddress != null) {
                         try {
                             psUpdateAddress.close();
@@ -192,7 +284,7 @@ public class UserProfileController {
                 } catch (SQLException e) {
                     e.printStackTrace();
 
-                }finally {
+                } finally {
                     if (psUpdateAddress != null) {
                         try {
                             psUpdateAddress.close();
@@ -245,8 +337,8 @@ public class UserProfileController {
         passwordField.setPromptText("Enter current password");
 
         // set contents of the grid pane
-        gridPane.add(new Label("Current Password:"),0,0);
-        gridPane.add(passwordField,1,0);
+        gridPane.add(new Label("Current Password:"), 0, 0);
+        gridPane.add(passwordField, 1, 0);
         preDialog.getDialogPane().setContent(gridPane);
 
         // focus on the password field by default
@@ -286,7 +378,7 @@ public class UserProfileController {
                 // if the user request an email,
                 // send a confirmation email to the user
                 VerificationEmail verificationEmail = new VerificationEmail();
-                verificationEmail.sendVerificationEmail(User.getEmail(),"forgetPassword");
+                verificationEmail.sendVerificationEmail(User.getEmail(), "forgetPassword");
 
                 // request the confirmation code from the user
                 TextInputDialog textInputDialog = new TextInputDialog();
@@ -386,7 +478,7 @@ public class UserProfileController {
             gp.add(newPass1, 1, 0);
             gp.add(new Label("Confirm payment password:"), 0, 1);
             gp.add(newPass2, 1, 1);
-            gp.add(warningText,0,2);
+            gp.add(warningText, 0, 2);
             dialog.getDialogPane().setContent(gp);
 
             // Enable/Disable change button depending on whether the passwords match.
@@ -397,13 +489,13 @@ public class UserProfileController {
             newPass2.textProperty().addListener((observable, oldValue, newValue) -> {
                 warningText.setVisible(!newValue.isEmpty());
                 setButton.setDisable(true);
-                if(newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()){
+                if (newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()) {
                     warningText.setVisible(false);
                     setButton.setDisable(false);
                 }
             });
             newPass1.textProperty().addListener((observable, oldValue, newValue) -> {
-                if(!newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()){
+                if (!newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
                     warningText.setVisible(true);
                     setButton.setDisable(true);
                 } else if (newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
@@ -493,6 +585,7 @@ public class UserProfileController {
     /**
      * This method fills the user's information into their respective text field and
      * decides whether it is needed to hide the set payment password option
+     *
      * @author XiangLun
      */
     public void setInitialContents() {
@@ -512,6 +605,7 @@ public class UserProfileController {
      * This method create a dialog box that request the user to enter a new password and the confirmation password.
      * If the passwords match, change the user's account password in our database and display a successful pop-up
      * message if the password change successfully.
+     *
      * @author XiangLun
      */
     public void changePassword() {
@@ -557,13 +651,13 @@ public class UserProfileController {
         newPass2.textProperty().addListener((observable, oldValue, newValue) -> {
             warningText.setVisible(!newValue.isEmpty());
             changeButton.setDisable(true);
-            if(newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()){
+            if (newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()) {
                 warningText.setVisible(false);
                 changeButton.setDisable(false);
             }
         });
         newPass1.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()){
+            if (!newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
                 warningText.setVisible(true);
                 changeButton.setDisable(true);
             } else if (newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
