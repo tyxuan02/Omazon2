@@ -8,6 +8,7 @@ module com.example.omazonproject {
     requires java.mail;
     requires commons.io;
     requires activation;
+    requires javafx.swing;
 
     opens com.example.omazonproject to javafx.fxml;
     exports com.example.omazonproject;
