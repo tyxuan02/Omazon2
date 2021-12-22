@@ -1,14 +1,20 @@
 package com.example.omazonproject;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -19,6 +25,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -109,6 +116,12 @@ public class SellerAddProductController implements Initializable {
                                     alert.setContentText("Your product has been added!");
                                     alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
                                     alert.showAndWait();
+
+                                    // Seller add product page will close automatically when product information has been added
+                                    Node n = (Node) event.getSource();
+                                    Stage stage = (Stage) n.getScene().getWindow();
+                                    stage.close();
+
                                 } else {
                                     // If product image is not uploaded
                                     Alert alert = new Alert(Alert.AlertType.ERROR);
