@@ -3,6 +3,7 @@ package com.example.omazonproject;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -110,6 +111,12 @@ public class SellerAddProductController implements Initializable {
                                     alert.setContentText("Your product has been added!");
                                     alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
                                     alert.showAndWait();
+
+                                    // Seller add product page will close automatically when product information has been added
+                                    Node n = (Node) event.getSource();
+                                    Stage stage = (Stage) n.getScene().getWindow();
+                                    stage.close();
+
                                 } else {
                                     // If product image is not uploaded
                                     Alert alert = new Alert(Alert.AlertType.ERROR);
