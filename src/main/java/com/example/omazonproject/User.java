@@ -2,6 +2,7 @@ package com.example.omazonproject;
 
 /**
  * This class is used to store the current user's info who had logged-in to the server
+ * @author XiangLun
  */
 public class User {
 

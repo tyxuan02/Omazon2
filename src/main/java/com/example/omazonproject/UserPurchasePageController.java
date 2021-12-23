@@ -3,21 +3,22 @@ package com.example.omazonproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+
 import javafx.animation.TranslateTransition;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * This class is responsible to control the events happening in the user purchase page
+ * @author XiangLun
  */
 public class UserPurchasePageController {
 
@@ -26,59 +27,22 @@ public class UserPurchasePageController {
     private Parent root;
 
     @FXML
-    private Line cancelLine;
+    private Button cancelPayment;
 
     @FXML
-    private Line orderHistoryLine;
+    private Button orderHistory;
 
     @FXML
-    private Line toPayLine;
+    private Button toPay;
 
     @FXML
-    private Line toReceivedLine;
+    private Button toReceived;
 
     @FXML
-    private Line toShipLine;
-    
-    @FXML
-    private ImageView picture_product;
+    private Button toShip;
 
     @FXML
-    private Label quantity;
-
-    @FXML
-    private Label shop_name;
-    
-    @FXML
-    private Label total_price;
-
-    @FXML
-    private Label unit_price;
-    
-    @FXML
-    private AnchorPane background;
-
-    @FXML
-    private Line backgroundline;
-
-    @FXML
-    void cancelButtonPressed(ActionEvent event) {
-        TranslateTransition translate =new TranslateTransition();
-        translate.setNode(toPayLine);
-        translate.setByX(200);
-        translate.play();
-        cancelLine.setVisible(true);
-        toShipLine.setVisible(false);
-        toReceivedLine.setVisible(false);
-        orderHistoryLine.setVisible(false);
-        picture_product.setVisible(false);
-        quantity.setVisible(false);
-        shop_name.setVisible(false);
-        total_price.setVisible(false);
-        unit_price.setVisible(false);
-        background.setVisible(false);
-        backgroundline.setVisible(false);
-    }
+    private Line underLine;
 
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
@@ -87,25 +51,6 @@ public class UserPurchasePageController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    @FXML
-    void orderHistoryButtonPressed(ActionEvent event) {
-        TranslateTransition translate =new TranslateTransition();
-        translate.setNode(toPayLine);
-        translate.setByX(-200);
-        translate.play();
-        cancelLine.setVisible(false);
-        toShipLine.setVisible(false);
-        toReceivedLine.setVisible(false);
-        orderHistoryLine.setVisible(true);
-        picture_product.setVisible(true);
-        quantity.setVisible(true);
-        shop_name.setVisible(true);
-        total_price.setVisible(true);
-        unit_price.setVisible(true);
-        background.setVisible(true);
-        backgroundline.setVisible(true);
     }
 
     @FXML
@@ -118,55 +63,75 @@ public class UserPurchasePageController {
     }
 
     @FXML
+    void cancelPaymentButtonPressed(ActionEvent event) {
+        // get the x-position of the cancel payment button and store the value in the currentPos variable
+        Bounds boundsInScene = cancelPayment.localToScene(cancelPayment.getBoundsInLocal());
+        double currentPos = boundsInScene.getCenterX();
+
+        // play the animation
+        playAnimation(currentPos, getLinePos());
+    }
+
+    @FXML
+    void orderHistoryButtonPressed(ActionEvent event) {
+        // get the x-position of the order history button and store the value in the currentPos variable
+        Bounds boundsInScene = orderHistory.localToScene(orderHistory.getBoundsInLocal());
+        double currentPos = boundsInScene.getCenterX();
+
+        // play the animation
+        playAnimation(currentPos, getLinePos());
+    }
+
+    @FXML
     void toPayButtonPressed(ActionEvent event) {
-        TranslateTransition translate =new TranslateTransition();
-        translate.setNode(toPayLine);
-        translate.setByX(100);
-        translate.play();
-        toPayLine.setVisible(true);
-        cancelLine.setVisible(false);
-        toShipLine.setVisible(false);
-        toReceivedLine.setVisible(false);
-        orderHistoryLine.setVisible(false);
-        picture_product.setVisible(true);
-        quantity.setVisible(true);
-        shop_name.setVisible(true);
-        total_price.setVisible(true);
-        unit_price.setVisible(true);
-        background.setVisible(true);
-        backgroundline.setVisible(true);
+        // get the x-position of the to pay button and store the value in the currentPos variable
+        Bounds boundsInScene = toPay.localToScene(toPay.getBoundsInLocal());
+        double currentPos = boundsInScene.getCenterX();
+
+        // play the animation
+        playAnimation(currentPos, getLinePos());
     }
 
     @FXML
     void toReceivedButtonPressed(ActionEvent event) {
-        toPayLine.setVisible(false);
-        cancelLine.setVisible(false);
-        toShipLine.setVisible(false);
-        toReceivedLine.setVisible(true);
-        orderHistoryLine.setVisible(false);
-        picture_product.setVisible(false);
-        quantity.setVisible(false);
-        shop_name.setVisible(false);
-        total_price.setVisible(false);
-        unit_price.setVisible(false);
-        background.setVisible(false);
-        backgroundline.setVisible(false);
+        // get the x-position of the received button and store the value in the currentPos variable
+        Bounds boundsInScene = toReceived.localToScene(toReceived.getBoundsInLocal());
+        double currentPos = boundsInScene.getCenterX();
+
+        // play the animation
+        playAnimation(currentPos, getLinePos());
     }
 
     @FXML
     void toShipButtonPressed(ActionEvent event) {
-        toPayLine.setVisible(false);
-        cancelLine.setVisible(false);
-        toShipLine.setVisible(true);
-        toReceivedLine.setVisible(false);
-        orderHistoryLine.setVisible(false);
-        picture_product.setVisible(false);
-        quantity.setVisible(false);
-        shop_name.setVisible(false);
-        total_price.setVisible(false);
-        unit_price.setVisible(false);
-        background.setVisible(false);
-        backgroundline.setVisible(false);
+        // get the x-position of the to ship button and store the value in the currentPos variable
+        Bounds boundsInScene = toShip.localToScene(toShip.getBoundsInLocal());
+        double currentPos = boundsInScene.getCenterX();
+
+        // play the animation
+        playAnimation(currentPos, getLinePos());
     }
 
+    /**
+     * This method is used to get the current x-position of the line
+     * @return current x-position of the line
+     * @author XiangLun
+     */
+    public double getLinePos(){
+        Bounds bounds = underLine.localToScene(underLine.getBoundsInLocal());
+        return bounds.getCenterX();
+    }
+
+    /**
+     * This method plays the animation of the underline
+     * @param currentPos x-position where the line wants to go to
+     * @param previousPos x-position where the line is currently at
+     * @author XiangLun
+     */
+    public void playAnimation(double currentPos, double previousPos){
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(underLine);
+        translate.setByX(currentPos - previousPos);
+        translate.play();
+    }
 }
