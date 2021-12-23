@@ -42,13 +42,14 @@
                        textFill="#1a0000"/>
                 <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
                     <children>
-                        <Button layoutX="741.0" layoutY="19.0" mnemonicParsing="false" text="search" textFill="#514e4e">
+                        <Button layoutX="741.0" layoutY="19.0" mnemonicParsing="false" text="search" textFill="#514e4e"
+                                AnchorPane.leftAnchor="741.0" AnchorPane.topAnchor="19.0">
                             <font>
                                 <Font name="Arial" size="12.0"/>
                             </font>
                         </Button>
                         <TextField layoutX="190.0" layoutY="17.0" prefHeight="27.0" prefWidth="510.0"
-                                   promptText="Search Items"/>
+                                   promptText="Search Items" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="17.0"/>
                         <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileButtonPressed"
                                 prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
                             <graphic>
@@ -70,7 +71,8 @@
                             </graphic>
                         </Button>
                         <ComboBox fx:id="productCategory_home" layoutX="47.0" layoutY="17.0" prefHeight="27.0"
-                                  prefWidth="117.0" promptText="Select"/>
+                                  prefWidth="117.0" promptText="Select" AnchorPane.leftAnchor="47.0"
+                                  AnchorPane.rightAnchor="1115.7462355557843" AnchorPane.topAnchor="17.0"/>
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutX="55.0" layoutY="205.0" prefHeight="323.0" prefWidth="642.0"
