@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -14,226 +15,233 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.omazonproject.HomepageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.HomepageController">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;"
-                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                    AnchorPane.topAnchor="0.0">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/bannerHomepage.gif"/>
+                        <Image url="@../../../images/bannerHomepage.gif" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0">
                     <image>
-                        <Image url="@../../../images/logoMarkOmazon.png"/>
+                        <Image url="@../../../images/logoMarkOmazon.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0">
                     <image>
-                        <Image url="@../../../images/malaysia flag.jpg"/>
+                        <Image url="@../../../images/malaysia flag.jpg" />
                     </image>
                 </ImageView>
-                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
-                       textFill="#1a0000"/>
+                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
                 <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
                     <children>
-                        <Button layoutX="741.0" layoutY="19.0" mnemonicParsing="false" text="search" textFill="#514e4e"
-                                AnchorPane.leftAnchor="741.0" AnchorPane.topAnchor="19.0">
+                        <Button layoutX="656.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" text="search" textFill="#514e4e" AnchorPane.leftAnchor="656.0" AnchorPane.topAnchor="17.0">
                             <font>
-                                <Font name="Arial" size="12.0"/>
+                                <Font name="Arial" size="12.0" />
                             </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </Button>
-                        <TextField layoutX="190.0" layoutY="17.0" prefHeight="27.0" prefWidth="510.0"
-                                   promptText="Search Items" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="17.0"/>
-                        <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileButtonPressed"
-                                prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+                        <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0" promptText="Search Items" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="17.0">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="6.96" radius="3.5650000000000004" width="9.3">
+                           <color>
+                              <Color red="0.03391812741756439" green="0.5189473628997803" blue="0.9157894849777222" />
+                           </color>
+                        </DropShadow>
+                     </effect></TextField>
+                        <Button fx:id="profileIcon" layoutX="1097.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/userIcon.png"/>
+                                        <Image url="@../../../images/userIcon.png" />
+                                    </image>
+                                </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="homeIcon" layoutX="1149.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
+                            <graphic>
+                                <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/HomePageIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0"
-                                prefWidth="30.0" style="-fx-background-color: b4e7ce;">
-                            <graphic>
-                                <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../../images/HomePageIcon.png"/>
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <ComboBox fx:id="productCategory_home" layoutX="47.0" layoutY="17.0" prefHeight="27.0"
-                                  prefWidth="117.0" promptText="Select" AnchorPane.leftAnchor="47.0"
-                                  AnchorPane.rightAnchor="1115.7462355557843" AnchorPane.topAnchor="17.0"/>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="55.0" layoutY="205.0" prefHeight="323.0" prefWidth="642.0"
-                            style="-fx-background-color: c9ada1;">
-                    <children>
-                        <ImageView fitHeight="328.0" fitWidth="643.0" layoutY="-5.0">
-                            <image>
-                                <Image url="@../../../images/mask.jpg"/>
-                            </image>
+                  <Button fx:id="logOutIcon" layoutX="1225.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="30.0" style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/userLogOutIcon.png" />
+                           </image>
                         </ImageView>
-                        <Button layoutY="-5.0" mnemonicParsing="false" style="-fx-background-color: B32E46;"
-                                text="FREE SHIPPING" textFill="#f9f7f7"/>
-                        <Button layoutX="532.0" layoutY="283.0" mnemonicParsing="false" prefHeight="26.0"
-                                prefWidth="110.0" style="-fx-background-color: #000000;" text="SHOP NOW"
-                                textFill="WHITE"/>
+                     </graphic>
+                  </Button>
+                        <ComboBox fx:id="productCategory_home" layoutX="72.0" layoutY="17.0" prefHeight="27.0" prefWidth="128.0" promptText="Select" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="1080.0" AnchorPane.topAnchor="17.0" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="726.0" layoutY="205.0" prefHeight="162.0" prefWidth="473.0"
-                            style="-fx-background-color: #463535AB;">
+                <AnchorPane layoutX="75.0" layoutY="203.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="327.0" prefWidth="635.0" style="-fx-background-color: c9ada1;">
                     <children>
-                        <ImageView fitHeight="163.0" fitWidth="475.0" layoutY="-2.0">
-                            <image>
-                                <Image url="@../../../images/daily necessities.jpg"/>
-                            </image>
-                        </ImageView>
-                        <Button layoutY="132.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0"
-                                style="-fx-background-color: #000000;" text="SHOP NOW" textFill="WHITE"/>
-                        <Button layoutX="378.0" layoutY="-2.0" mnemonicParsing="false"
-                                style="-fx-background-color: f77f00;" text="FREE SHIPPING" textFill="#f9f7f7"/>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="327.0" prefWidth="635.0" style="-fx-cursor: hand;">
+                     <graphic>
+                              <ImageView fitHeight="327.0" fitWidth="635.0">
+                                  <image>
+                                      <Image url="@../../../images/mask.jpg" />
+                                  </image>
+                              </ImageView>
+                     </graphic>
+                  </Button>
+                        <Button layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: B32E46;" text="FREE SHIPPING" textFill="#f9f7f7" />
+                        <Button layoutX="524.0" layoutY="300.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="SHOP NOW" textFill="WHITE" />
+                    </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN">
+                     <color>
+                        <Color red="0.10561403632164001" green="0.2270701825618744" blue="0.4526315927505493" />
+                     </color>
+                  </DropShadow>
+               </effect>
+                </AnchorPane>
+                <AnchorPane layoutX="726.0" layoutY="205.0" prefHeight="162.0" prefWidth="473.0" style="-fx-background-color: #463535AB;">
+                    <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="163.0" prefWidth="475.0" style="-fx-cursor: hand;">
+                     <graphic>
+                              <ImageView fitHeight="163.0" fitWidth="475.0">
+                                  <image>
+                                      <Image url="@../../../images/daily necessities.jpg" />
+                                  </image>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" />
+                           </effect>
+                              </ImageView>
+                     </graphic>
+                  </Button>
+                        <Button layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #000000;" text="SHOP NOW" textFill="WHITE" />
+                        <Button layoutX="378.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: f77f00;" text="FREE SHIPPING" textFill="#f9f7f7" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="874.0" layoutY="380.0" prefHeight="146.0" prefWidth="328.0"
-                            style="-fx-background-color: #463535AB;">
+                <AnchorPane layoutX="874.0" layoutY="380.0" prefHeight="146.0" prefWidth="328.0" style="-fx-background-color: #463535AB;">
                     <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0"
-                                prefWidth="329.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="329.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="148.0" fitWidth="324.0">
                                     <image>
-                                        <Image url="@../../../images/watches.jpeg"/>
+                                        <Image url="@../../../images/watches.jpeg" />
                                     </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                                 </ImageView>
                             </graphic>
                         </Button>
                     </children>
                 </AnchorPane>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="724.0" layoutY="379.0" prefHeight="149.0"
-                       prefWidth="154.0" style="-fx-background-color: fec89a;" text="FLASH SALE" textAlignment="CENTER">
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="726.0" layoutY="380.0" prefHeight="149.0" prefWidth="154.0" style="-fx-background-color: fec89a;" text="FLASH SALE" textAlignment="CENTER">
                     <font>
-                        <Font name="Stencil" size="23.0"/>
+                        <Font name="Stencil" size="23.0" />
                     </font>
                     <textFill>
-                        <LinearGradient endX="0.7272726983735055" endY="1.0" startX="0.7196969471194529"
-                                        startY="0.3522727525595463">
+                        <LinearGradient endX="0.7272726983735055" endY="1.0" startX="0.7196969471194529" startY="0.3522727525595463">
                             <stops>
                                 <Stop>
                                     <color>
-                                        <Color red="0.7052631378173828" green="0.2324756383895874"
-                                               blue="0.2324756383895874"/>
+                                        <Color red="0.7052631378173828" green="0.2324756383895874" blue="0.2324756383895874" />
                                     </color>
                                 </Stop>
                                 <Stop offset="1.0">
                                     <color>
-                                        <Color red="0.7157894968986511" green="0.22534112632274628"
-                                               blue="0.22534112632274628"/>
+                                        <Color red="0.7157894968986511" green="0.22534112632274628" blue="0.22534112632274628" />
                                     </color>
                                 </Stop>
                             </stops>
                         </LinearGradient>
                     </textFill>
-                    <effect>
-                        <DropShadow height="16.31" radius="7.657499999999999" spread="0.24" width="16.32">
-                            <input>
-                                <Glow/>
-                            </input>
-                        </DropShadow>
-                    </effect>
+               <effect>
+                  <DropShadow height="16.314999999999998" radius="7.6587499999999995" spread="0.24" width="16.32">
+                     <input>
+                        <Glow />
+                     </input>
+                  </DropShadow>
+               </effect>
                 </Label>
-                <AnchorPane layoutX="75.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0"
-                            style="-fx-background-color: ffffff;">
+                <AnchorPane layoutX="75.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0" style="-fx-background-color: F2F7F4;">
                     <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0"
-                                prefWidth="188.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0" prefWidth="188.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="117.0" fitWidth="188.0">
                                     <image>
-                                        <Image url="@../../../images/clothes.jpg"/>
+                                        <Image url="@../../../images/clothes.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutY="117.0" prefHeight="17.0" prefWidth="188.0" text="   Women Clothes "/>
-                        <Label layoutX="7.0" layoutY="169.0" text=" Rm15.00" textFill="#a71d1d"/>
+                        <Label layoutY="124.0" prefHeight="17.0" prefWidth="188.0" text="   Women Clothes " />
+                        <Label layoutX="7.0" layoutY="169.0" text=" Rm15.00" textFill="#a71d1d" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="295.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0"
-                            style="-fx-background-color: ffffff;">
+                <AnchorPane layoutX="299.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0" style="-fx-background-color: F2F7F4;">
                     <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0"
-                                prefWidth="188.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0" prefWidth="188.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="117.0" fitWidth="188.0">
                                     <image>
-                                        <Image url="@../../../images/belt.jpg"/>
+                                        <Image url="@../../../images/belt.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutY="117.0" text="   Men belt"/>
-                        <Label layoutX="-1.0" layoutY="169.0" text="   Rm 10.00" textFill="#a53434"/>
+                        <Label layoutY="124.0" text="   Men belt" />
+                        <Label layoutX="-1.0" layoutY="169.0" text="   Rm 10.00" textFill="#a53434" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="516.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0"
-                            style="-fx-background-color: ffffff;">
+                <AnchorPane layoutX="526.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0" style="-fx-background-color: F2F7F4;">
                     <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0"
-                                prefWidth="200.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0" prefWidth="200.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="117.0" fitWidth="200.0">
                                     <image>
-                                        <Image url="@../../../images/bottle.jpg"/>
+                                        <Image url="@../../../images/bottle.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutY="117.0" text="   Glass bottle"/>
-                        <Label layoutY="169.0" text="   Rm 25.00" textFill="#ae2b2b"/>
+                        <Label layoutY="124.0" text="   Glass bottle" />
+                        <Label layoutY="169.0" text="   Rm 25.00" textFill="#ae2b2b" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="758.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0"
-                            style="-fx-background-color: ffffff;">
+                <AnchorPane layoutX="766.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0" style="-fx-background-color: F2F7F4;">
                     <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="120.0"
-                                prefWidth="197.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="120.0" prefWidth="197.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="120.0" fitWidth="197.0">
                                     <image>
-                                        <Image url="@../../../images/toothpaste.jpg"/>
+                                        <Image url="@../../../images/toothpaste.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutY="117.0" text="   Toothpaste"/>
-                        <Label layoutY="169.0" text="   Rm 11.00" textFill="#ae2b2b"/>
+                        <Label layoutY="124.0" text="   Toothpaste" />
+                        <Label layoutY="169.0" text="   Rm 11.00" textFill="#ae2b2b" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="1001.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0"
-                            style="-fx-background-color: ffffff;">
+                <AnchorPane layoutX="1001.0" layoutY="569.0" prefHeight="201.0" prefWidth="188.0" style="-fx-background-color: F2F7F4;">
                     <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0"
-                                prefWidth="200.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="117.0" prefWidth="200.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fitHeight="117.0" fitWidth="200.0">
                                     <image>
-                                        <Image url="@../../../images/SportShoes.jpg"/>
+                                        <Image url="@../../../images/SportShoes.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label alignment="CENTER" layoutX="14.0" layoutY="117.0" text="Sport shoes"/>
-                        <Label layoutY="169.0" text="   Rm 149.00" textFill="#ae2b2b"/>
+                        <Label alignment="CENTER" layoutX="11.0" layoutY="124.0" text="Sport shoes" />
+                        <Label layoutY="169.0" text="   Rm 149.00" textFill="#ae2b2b" />
                     </children>
                 </AnchorPane>
             </children>

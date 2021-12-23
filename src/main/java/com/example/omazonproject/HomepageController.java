@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import javafx.scene.control.ComboBox;
+import javafx.geometry.Bounds;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 
 
 /**
@@ -24,12 +27,50 @@ public class HomepageController {//implements Initializable {
     private Parent root;
     
     @FXML
+    private Button profileIcon;
+            
+    @FXML
+    private Button homeIcon;
+    
+    @FXML
+    private Button logOutIcon;
+    
+    @FXML
     private ComboBox<String> productCategory_home;
     
     @FXML
     public void initialize() {
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory_home.setPromptText("select");
+        
+        // Show tooltip message when user point at the icon
+        final Tooltip tooltipProfile=new Tooltip();
+        tooltipProfile.setText("My Profile");
+        profileIcon.setTooltip(tooltipProfile);
+        profileIcon.getTooltip().setOnShowing(p->{
+        Bounds bProfile = profileIcon.localToScreen(profileIcon.getBoundsInLocal());
+        profileIcon.getTooltip().setX(bProfile.getMaxX()-70);
+        profileIcon.getTooltip().setY(bProfile.getMinY()+35);
+        });
+        
+        final Tooltip tooltipHome=new Tooltip();
+        tooltipHome.setText("Homepage");
+        homeIcon.setTooltip(tooltipHome);
+        homeIcon.getTooltip().setOnShowing(h->{
+        Bounds bHome = homeIcon.localToScreen(homeIcon.getBoundsInLocal());
+        homeIcon.getTooltip().setX(bHome.getMaxX()-60);
+        homeIcon.getTooltip().setY(bHome.getMinY()+35);
+        });
+        
+        final Tooltip tooltipLogOut=new Tooltip();
+        tooltipLogOut.setText("Log Out");
+        logOutIcon.setTooltip(tooltipLogOut); 
+        logOutIcon.getTooltip().setOnShowing(l->{
+        Bounds bLog = logOutIcon.localToScreen(logOutIcon.getBoundsInLocal());
+        logOutIcon.getTooltip().setX(bLog.getMaxX()-40);
+        logOutIcon.getTooltip().setY(bLog.getMinY()+35);
+        });
+      
     }
     
     @FXML
