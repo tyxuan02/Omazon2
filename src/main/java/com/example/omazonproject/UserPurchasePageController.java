@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import javafx.animation.TranslateTransition;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -62,7 +63,10 @@ public class UserPurchasePageController {
 
     @FXML
     void cancelButtonPressed(ActionEvent event) {
-        toPayLine.setVisible(false);
+        TranslateTransition translate =new TranslateTransition();
+        translate.setNode(toPayLine);
+        translate.setByX(200);
+        translate.play();
         cancelLine.setVisible(true);
         toShipLine.setVisible(false);
         toReceivedLine.setVisible(false);
@@ -87,7 +91,10 @@ public class UserPurchasePageController {
 
     @FXML
     void orderHistoryButtonPressed(ActionEvent event) {
-        toPayLine.setVisible(false);
+        TranslateTransition translate =new TranslateTransition();
+        translate.setNode(toPayLine);
+        translate.setByX(-200);
+        translate.play();
         cancelLine.setVisible(false);
         toShipLine.setVisible(false);
         toReceivedLine.setVisible(false);
@@ -112,6 +119,10 @@ public class UserPurchasePageController {
 
     @FXML
     void toPayButtonPressed(ActionEvent event) {
+        TranslateTransition translate =new TranslateTransition();
+        translate.setNode(toPayLine);
+        translate.setByX(100);
+        translate.play();
         toPayLine.setVisible(true);
         cancelLine.setVisible(false);
         toShipLine.setVisible(false);
