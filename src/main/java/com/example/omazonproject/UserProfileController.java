@@ -47,8 +47,16 @@ public class UserProfileController {
 
     @FXML
     private Button setPaymentPasswordButton;
-
-
+    
+    @FXML
+    private ComboBox<String> productCategory_home;
+    
+    @FXML
+    public void initialize() {
+        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
+        productCategory_home.setPromptText("Select");
+    }
+    
     @FXML
     void accountBalanceButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-account-balance-page.fxml")));

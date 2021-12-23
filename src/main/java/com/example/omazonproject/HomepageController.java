@@ -10,16 +10,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.scene.control.ComboBox;
-import javafx.fxml.Initializable;
+
 
 /**
  * This class is responsible to control the events happening in the homepage
  * @author XiangLun
  */
-public class HomepageController implements Initializable {
+public class HomepageController {//implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -28,11 +26,10 @@ public class HomepageController implements Initializable {
     @FXML
     private ComboBox<String> productCategory_home;
     
-    @Override
-    // Set the items viewing in product category
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize() {
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productCategory_home.setPromptText("Select");
+        productCategory_home.setPromptText("select");
     }
     
     @FXML
