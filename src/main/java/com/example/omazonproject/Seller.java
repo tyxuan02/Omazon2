@@ -17,12 +17,15 @@ public class Seller {
     public static String getSellerName() {
         return sellerName;
     }
+
     public static String getEmail() {
         return email;
     }
+
     public static String getAddress() {
         return address;
     }
+
     public static String getPassword() {
         return password;
     }
@@ -31,12 +34,15 @@ public class Seller {
     public static void setSellerName(String sellerName) {
         Seller.sellerName = sellerName;
     }
+
     public static void setAddress(String address) {
         Seller.address = address;
     }
+
     public static void setPassword(String password) {
         Seller.password = password;
     }
+
     public static void setEmail(String email) {
         Seller.email = email;
     }

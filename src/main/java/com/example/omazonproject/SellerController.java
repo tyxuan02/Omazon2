@@ -317,8 +317,12 @@ public class SellerController {
         }
     }
 
-    //Validate the credentials entered by the user(seller) with our database and log them into seller page if it matches
-    //@return a boolean value indicating the validity of the credentials entered
+    /**
+     * Validate the credentials entered by the seller with our database and log them into the seller page if it matches, and
+     * store the current seller's info who has logged into the server in the Seller class
+     *
+     * @return A boolean value indicating the validity of the credentials entered
+     */
     public boolean sellerValidateLogin() {
 
         Connection connectDB = null;
@@ -344,7 +348,14 @@ public class SellerController {
                     alert.setHeaderText(null);
                     alert.setContentText("Welcome to Seller Centre!");
                     alert.showAndWait();
+
+                    //store current seller's info in the Seller class
+                    Seller.setSellerName(queryResult.getString("sellerName"));
+                    Seller.setEmail(retrievedSellerEmail);
+                    Seller.setPassword(retrievedSellerPassword);
+                    Seller.setAddress(queryResult.getString("address"));
                     return true;
+
                 } else {
                     // if the credentials does not match
                     // display error pop-up message

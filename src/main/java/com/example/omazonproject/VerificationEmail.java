@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 
 /**
  * This class contains method which is responsible to send verification email to the user while they are signing up
+ *
+ * @author XiangLun
  */
 public class VerificationEmail {
 
@@ -30,6 +32,7 @@ public class VerificationEmail {
     /**
      * This method will send a verification email to the recipient
      *
+     * @author XiangLun
      * @param recipient email address of the recipient
      * @param type      type of email to be sent, "user" for user verification email, "seller" for seller verification email,
      *                  and "forgetPassword" for forget password email;
@@ -57,18 +60,12 @@ public class VerificationEmail {
         });
 
         // Create a new message
-        Message message = null;
-        switch (type) {
-            case "user":
-                message = prepareMessageForUser(session, myAccountEmail, recipient);
-                break;
-            case "seller":
-                message = prepareMessageForSeller(session, myAccountEmail, recipient);
-                break;
-            case "forgetPassword":
-                message = prepareMessageForForgetPassword(session, myAccountEmail, recipient);
-                break;
-        }
+        Message message = switch (type) {
+            case "user" -> prepareMessageForUser(session, myAccountEmail, recipient);
+            case "seller" -> prepareMessageForSeller(session, myAccountEmail, recipient);
+            case "forgetPassword" -> prepareMessageForForgetPassword(session, myAccountEmail, recipient);
+            default -> null;
+        };
 
         // Send message
         assert message != null;
@@ -77,6 +74,7 @@ public class VerificationEmail {
 
     /**
      * Generate random 6-digits code and store it in the verificationCode field
+     * @author XiangLun
      */
     private void codeGenerator() {
         // Generate random code with 6 digits
@@ -89,6 +87,7 @@ public class VerificationEmail {
     /**
      * Prepare the message to be sent to the user
      *
+     * @author XiangLun
      * @param session        session created in the sendVerificationEmail method
      * @param myAccountEmail email address of our Omazon account
      * @param recipient      email address of the recipient
@@ -142,6 +141,7 @@ public class VerificationEmail {
     /**
      * Prepare the message to be sent to the seller
      *
+     * @author XiangLun
      * @param session        session created in the sendVerificationEmail method
      * @param myAccountEmail email address of our Omazon account
      * @param recipient      email address of the recipient (seller)
@@ -195,6 +195,7 @@ public class VerificationEmail {
     /**
      * Prepare the message to be sent to the user who forgets his/her password
      *
+     * @author XiangLun
      * @param session        session created in the sendVerificationEmail method
      * @param myAccountEmail email address of our Omazon account
      * @param recipient      email address of the recipient
