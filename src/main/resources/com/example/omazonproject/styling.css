@@ -1,4 +1,5 @@
-/*adding hover effect to login and sign up button*/
+/*adding hover effect to user's login and sign up button
+  also seller's login and sign up button*/
 #btn1{
     -fx-font-weight:bold;
     -fx-background-color: #457b9d;
@@ -22,9 +23,11 @@
     -fx-border-color: #457b9d;
     -fx-border-radius:28;
     -fx-border-width:3;
-   
+    
 }
-/*adding effect to createAccountButton(main-login-page) and cancelButton(main-register-page)*/
+
+/*adding effect to user's createAccountButton(main-login-page) and quitButton(main-register-page)
+  also seller's createAccButton and quitButton(seller-login-page) and quitButton(seller-register-page) */
 #btn2{
     -fx-background-color: #457b9d;
     -fx-text-fill:white;
