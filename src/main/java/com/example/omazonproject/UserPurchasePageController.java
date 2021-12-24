@@ -18,6 +18,7 @@ import javafx.animation.TranslateTransition;
 
 /**
  * This class is responsible to control the events happening in the user purchase page
+ *
  * @author XiangLun
  */
 public class UserPurchasePageController {
@@ -114,21 +115,23 @@ public class UserPurchasePageController {
 
     /**
      * This method is used to get the current x-position of the line
+     *
      * @return current x-position of the line
      * @author XiangLun
      */
-    public double getLinePos(){
+    public double getLinePos() {
         Bounds bounds = underLine.localToScene(underLine.getBoundsInLocal());
         return bounds.getCenterX();
     }
 
     /**
      * This method plays the animation of the underline
-     * @param currentPos x-position where the line wants to go to
+     *
+     * @param currentPos  x-position where the line wants to go to
      * @param previousPos x-position where the line is currently at
      * @author XiangLun
      */
-    public void playAnimation(double currentPos, double previousPos){
+    public void playAnimation(double currentPos, double previousPos) {
         TranslateTransition translate = new TranslateTransition();
         translate.setNode(underLine);
         translate.setByX(currentPos - previousPos);

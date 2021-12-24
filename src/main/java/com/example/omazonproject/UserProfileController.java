@@ -25,6 +25,7 @@ import java.util.Optional;
 
 /**
  * This class is responsible to control the events happening in the user profile page
+ *
  * @author XiangLun
  */
 public class UserProfileController {
@@ -47,16 +48,16 @@ public class UserProfileController {
 
     @FXML
     private Button setPaymentPasswordButton;
-    
+
     @FXML
     private ComboBox<String> productCategory_home;
-    
+
     @FXML
     public void initialize() {
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory_home.setPromptText("Select");
     }
-    
+
     @FXML
     void accountBalanceButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-account-balance-page.fxml")));
@@ -88,7 +89,7 @@ public class UserProfileController {
 
         // add content into grid pane
         gridPane.add(new Label("Are you sure you want to delete your account?\nYour account will be permanently erased. Enter CONFIRM to proceed."), 0, 0);
-        gridPane.add(textField, 0,1);
+        gridPane.add(textField, 0, 1);
         alert.getDialogPane().setContent(gridPane);
 
         // enable/disable the deleteButton depending on user's input
@@ -144,7 +145,7 @@ public class UserProfileController {
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
 
-            }finally {
+            } finally {
                 if (psDelete != null) {
                     try {
                         psDelete.close();

@@ -14,124 +14,146 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" vmax="2.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerCentreController">
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" vmax="2.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerCentreController">
     <AnchorPane prefHeight="800.0" prefWidth="1280.0">
-      <VBox layoutX="14.0" layoutY="175.0" prefHeight="98.0" prefWidth="100.0">
-         <children>
-              <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: e2ece9;">
-                  <items>
-                      <MenuItem mnemonicParsing="false" onAction="#customerReviewPressed" text="Customer Review" />
-                      <MenuItem mnemonicParsing="false" onAction="#deliveryStatusPressed" text="Delivery Status" />
-                      <MenuItem mnemonicParsing="false" onAction="#ordersPressed" text="Orders" />
-                  </items>
-                  <graphic>
-                      <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true">
-                          <Image url="@../../../images/Dashboard icon.png" />
-                      </ImageView>
-                  </graphic>
-              </MenuButton>
-         </children>
-      </VBox>
-        <AnchorPane layoutX="-22.0" layoutY="-9.0" prefHeight="171.0" prefWidth="1310.0" style="-fx-background-color: b4e7ce;">
-            <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../../images/logoMarkOmazon.png" />
+        <VBox layoutX="14.0" layoutY="175.0" prefHeight="98.0" prefWidth="100.0">
+            <children>
+                <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0"
+                            style="-fx-background-color: e2ece9;">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#customerReviewPressed" text="Customer Review"/>
+                        <MenuItem mnemonicParsing="false" onAction="#deliveryStatusPressed" text="Delivery Status"/>
+                        <MenuItem mnemonicParsing="false" onAction="#ordersPressed" text="Orders"/>
+                    </items>
+                    <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true">
+                            <Image url="@../../../images/Dashboard icon.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuButton>
+            </children>
+        </VBox>
+        <AnchorPane layoutX="-22.0" layoutY="-9.0" prefHeight="171.0" prefWidth="1310.0"
+                    style="-fx-background-color: b4e7ce;">
+            <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../../../images/logoMarkOmazon.png"/>
             </ImageView>
-            <Label alignment="CENTER" layoutX="443.0" layoutY="36.0" prefHeight="98.0" prefWidth="423.0" style="-fx-font-family: Impact; -fx-font-size: 74;" text="Seller Centre">
+            <Label alignment="CENTER" layoutX="443.0" layoutY="36.0" prefHeight="98.0" prefWidth="423.0"
+                   style="-fx-font-family: Impact; -fx-font-size: 74;" text="Seller Centre">
                 <font>
-                    <Font size="72.0" />
+                    <Font size="72.0"/>
                 </font>
             </Label>
-         <VBox layoutX="1135.0" layoutY="99.0" prefHeight="70.0" prefWidth="142.0">
-            <children>
-                  <MenuButton fx:id="sellerNameMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: e2ece9;" text="       Seller Name" textAlignment="CENTER">
-                      <items>
-                          <MenuItem onAction="#manageProfilePressed" text="Manage Profile">
-                              <graphic>
-                                  <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                      <Image url="@../../../images/SellerProfileIcon.png" />
-                                  </ImageView>
-                              </graphic>
-                          </MenuItem>
-                          <MenuItem mnemonicParsing="false" onAction="#logoutPressed" text="Logout" />
-                      </items>
-                      <graphic>
-                          <ImageView fitHeight="13.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <effect>
-                                  <Glow />
-                              </effect>
-                              <Image url="@../../../images/VerifiedBadge.png" />
-                          </ImageView>
-                      </graphic>
-                  </MenuButton>
-            </children>
-         </VBox>
+            <VBox layoutX="1135.0" layoutY="99.0" prefHeight="70.0" prefWidth="142.0">
+                <children>
+                    <MenuButton fx:id="sellerNameMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0"
+                                style="-fx-background-color: e2ece9;" text="       Seller Name" textAlignment="CENTER">
+                        <items>
+                            <MenuItem onAction="#manageProfilePressed" text="Manage Profile">
+                                <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true"
+                                               preserveRatio="true">
+                                        <Image url="@../../../images/SellerProfileIcon.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" onAction="#logoutPressed" text="Logout"/>
+                        </items>
+                        <graphic>
+                            <ImageView fitHeight="13.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                <effect>
+                                    <Glow/>
+                                </effect>
+                                <Image url="@../../../images/VerifiedBadge.png"/>
+                            </ImageView>
+                        </graphic>
+                    </MenuButton>
+                </children>
+            </VBox>
         </AnchorPane>
         <Label layoutX="593.0" layoutY="214.0" text="My Products">
             <font>
-                <Font name="Times New Roman" size="24.0" />
+                <Font name="Times New Roman" size="24.0"/>
             </font>
         </Label>
-        <AnchorPane layoutX="102.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;">
-            <ImageView fitHeight="97.0" fitWidth="191.0" layoutX="12.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../../images/PS5.jpg" />
+        <AnchorPane layoutX="102.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: e2ece9;">
+            <ImageView fitHeight="97.0" fitWidth="191.0" layoutX="12.0" layoutY="52.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../../../images/PS5.jpg"/>
             </ImageView>
         </AnchorPane>
-        <AnchorPane layoutX="932.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;">
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../../images/CoolerFan.jpg" />
+        <AnchorPane layoutX="932.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: e2ece9;">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="44.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../../../images/CoolerFan.jpg"/>
             </ImageView>
         </AnchorPane>
-        <AnchorPane layoutX="376.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;">
-            <ImageView fitHeight="106.0" fitWidth="190.0" layoutX="5.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../../images/Laptop.jpg" />
+        <AnchorPane layoutX="376.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: e2ece9;">
+            <ImageView fitHeight="106.0" fitWidth="190.0" layoutX="5.0" layoutY="47.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../../../images/Laptop.jpg"/>
             </ImageView>
         </AnchorPane>
-        <AnchorPane layoutX="655.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;">
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../../images/PhoneCase.jpg" />
+        <AnchorPane layoutX="655.0" layoutY="292.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: e2ece9;">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../../../images/PhoneCase.jpg"/>
             </ImageView>
         </AnchorPane>
         <Label alignment="CENTER" layoutX="180.0" layoutY="518.0" prefHeight="18.0" prefWidth="43.0" text="PS5">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
         <Label alignment="CENTER" layoutX="422.0" layoutY="518.0" prefHeight="27.0" prefWidth="107.0" text="ROG LAPTOP">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
         <Label alignment="CENTER" layoutX="693.0" layoutY="518.0" prefHeight="27.0" prefWidth="124.0" text="PHONE CASE">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="961.0" layoutY="518.0" prefHeight="27.0" prefWidth="150.0" text="LAPTOP COOLER">
+        <Label alignment="CENTER" layoutX="961.0" layoutY="518.0" prefHeight="27.0" prefWidth="150.0"
+               text="LAPTOP COOLER">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
-        <Button layoutX="174.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update1ButtonPressed" style="-fx-background-color: e2ece9;" text="Update" />
-        <Button layoutX="448.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update2ButtonPressed" style="-fx-background-color: e2ece9;" text="Update" />
-        <Button layoutX="727.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update3ButtonPressed" style="-fx-background-color: e2ece9;" text="Update" />
-        <Button layoutX="1009.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update4ButtonPressed" style="-fx-background-color: e2ece9;" text="Update" />
-        <Button layoutX="1022.0" layoutY="182.0" mnemonicParsing="false" onAction="#addProductButtonPressed" prefHeight="30.0" prefWidth="119.2" style="-fx-background-color: green;" text="Add Products" />
-        <Button layoutX="1160.0" layoutY="182.0" mnemonicParsing="false" onAction="#removeProductButtonPressed" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: red;" text="Remove Products" />
-        <Label layoutX="116.0" layoutY="580.0" text="Review will be displayed in this label" />
-        <Label layoutX="368.0" layoutY="580.0" text="Review will be displayed in this label" />
-        <Label layoutX="648.0" layoutY="580.0" text="Review will be displayed in this label" />
-        <Label layoutX="940.0" layoutY="580.0" text="Review will be displayed in this label" />
-        <TextArea fx:id="description1" layoutX="102.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0" />
-        <TextArea fx:id="description2" layoutX="364.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0" />
-        <TextArea fx:id="description3" layoutX="655.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0" />
-        <TextArea fx:id="description4" layoutX="937.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0" />
-        <CheckBox layoutX="165.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false" />
-        <CheckBox layoutX="443.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false" />
-        <CheckBox layoutX="711.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false" />
-        <CheckBox layoutX="1004.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false" />
-        <Label layoutX="180.0" layoutY="545.0" text="RM2000" />
-        <Label layoutX="454.0" layoutY="545.0" text="RM2000" />
-        <Label layoutX="739.0" layoutY="545.0" text="RM10" />
-        <Label layoutX="1037.0" layoutY="545.0" text="RM50" />
+        <Button layoutX="174.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update1ButtonPressed"
+                style="-fx-background-color: e2ece9;" text="Update"/>
+        <Button layoutX="448.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update2ButtonPressed"
+                style="-fx-background-color: e2ece9;" text="Update"/>
+        <Button layoutX="727.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update3ButtonPressed"
+                style="-fx-background-color: e2ece9;" text="Update"/>
+        <Button layoutX="1009.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update4ButtonPressed"
+                style="-fx-background-color: e2ece9;" text="Update"/>
+        <Button layoutX="1022.0" layoutY="182.0" mnemonicParsing="false" onAction="#addProductButtonPressed"
+                prefHeight="30.0" prefWidth="119.2" style="-fx-background-color: green;" text="Add Products"/>
+        <Button layoutX="1160.0" layoutY="182.0" mnemonicParsing="false" onAction="#removeProductButtonPressed"
+                prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: red;" text="Remove Products"/>
+        <Label layoutX="116.0" layoutY="580.0" text="Review will be displayed in this label"/>
+        <Label layoutX="368.0" layoutY="580.0" text="Review will be displayed in this label"/>
+        <Label layoutX="648.0" layoutY="580.0" text="Review will be displayed in this label"/>
+        <Label layoutX="940.0" layoutY="580.0" text="Review will be displayed in this label"/>
+        <TextArea fx:id="description1" layoutX="102.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0"/>
+        <TextArea fx:id="description2" layoutX="364.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0"/>
+        <TextArea fx:id="description3" layoutX="655.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0"/>
+        <TextArea fx:id="description4" layoutX="937.0" layoutY="643.0" prefHeight="150.0" prefWidth="200.0"/>
+        <CheckBox layoutX="165.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
+        <CheckBox layoutX="443.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
+        <CheckBox layoutX="711.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
+        <CheckBox layoutX="1004.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
+        <Label layoutX="180.0" layoutY="545.0" text="RM2000"/>
+        <Label layoutX="454.0" layoutY="545.0" text="RM2000"/>
+        <Label layoutX="739.0" layoutY="545.0" text="RM10"/>
+        <Label layoutX="1037.0" layoutY="545.0" text="RM50"/>
     </AnchorPane>
 </ScrollPane>
