@@ -37,18 +37,18 @@
                                 <Font name="System Bold" size="36.0" />
                             </font>
                         </Text>
-                        <Button layoutX="122.0" layoutY="398.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sellerSignUpButtonPressed" prefHeight="30.0" prefWidth="236.0" style="-fx-background-color: #457b9d;" text="SIGN UP" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="398.0" />
-                        <TextField fx:id="sellerName_Signup" layoutX="121.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="234.0" promptText="Seller Name" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="100.0" />
-                        <TextField fx:id="sellerEmail_SignUp" layoutX="121.0" layoutY="157.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="234.0" promptText="Email Address" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="157.0" />
-                        <PasswordField fx:id="sellerPassword_SignUp" layoutX="121.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="235.0" promptText="Password" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="274.0" />
-                        <PasswordField fx:id="sellerConfirmPassword_SignUp" layoutX="121.0" layoutY="335.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="236.0" promptText="Confirm password" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="335.0" />
-                        <Button ellipsisString="X" layoutX="302.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sellerRegistrationPageQuitButtonPressed" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: #457b9d;" text="Button">
+                        <Button fx:id="btn1" layoutX="117.0" layoutY="400.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sellerSignUpButtonPressed" prefHeight="40.0" prefWidth="210.0" text="SIGN UP" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="400.0" />
+                        <TextField fx:id="sellerName_Signup" layoutX="121.0" layoutY="100.0" prefHeight="35.0" prefWidth="234.0" promptText="Seller Name" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="100.0" />
+                        <TextField fx:id="sellerEmail_SignUp" layoutX="121.0" layoutY="157.0" prefHeight="35.0" prefWidth="234.0" promptText="Email Address" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="157.0" />
+                        <PasswordField fx:id="sellerPassword_SignUp" layoutX="121.0" layoutY="274.0" prefHeight="35.0" prefWidth="235.0" promptText="Password" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="274.0" />
+                        <PasswordField fx:id="sellerConfirmPassword_SignUp" layoutX="121.0" layoutY="335.0" prefHeight="35.0" prefWidth="236.0" promptText="Confirm password" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="335.0" />
+                        <Button fx:id="btn2" ellipsisString="X" layoutX="302.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sellerRegistrationPageQuitButtonPressed" prefHeight="26.0" prefWidth="30.0" text="Button">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Button>
                         <Label fx:id="sellerSignUpPageNotMatchLabel" layoutX="121.0" layoutY="376.0" prefHeight="18.0" prefWidth="218.0" text="Password does not match or is empty." textFill="RED" visible="false" />
-                        <TextField fx:id="shopAddress_SignUp" layoutX="119.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="235.0" promptText="Shop Address" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="216.0" />
+                        <TextField fx:id="shopAddress_SignUp" layoutX="121.0" layoutY="216.0" prefHeight="35.0" prefWidth="235.0" promptText="Shop Address" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="216.0" />
                     </children>
                 </AnchorPane>
             </center>
