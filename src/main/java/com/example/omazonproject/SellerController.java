@@ -265,7 +265,7 @@ public class SellerController {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-register-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styling.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styling.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -278,7 +278,7 @@ public class SellerController {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styling.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styling.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

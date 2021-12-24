@@ -71,7 +71,7 @@ public class SellerCentreController implements Initializable {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
         stage = (Stage) sellerNameMenuButton.getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styling.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styling.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
