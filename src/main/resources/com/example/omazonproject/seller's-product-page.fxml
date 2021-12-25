@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" vmax="2.0" xmlns="http://javafx.com/javafx/17"
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" vmax="2.0" xmlns="http://javafx.com/javafx/11.0.0"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerCentreController">
     <AnchorPane prefHeight="800.0" prefWidth="1280.0">
         <VBox layoutX="14.0" layoutY="175.0" prefHeight="98.0" prefWidth="100.0">
