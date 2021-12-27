@@ -1,181 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.omazonproject.UserProfileController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.UserProfileController">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutX="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/bannerHomepage.gif"/>
-                    </image>
-                </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/bannerHomepage.gif" />
+               </image>
+            </ImageView>
                 <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0">
                     <image>
-                        <Image url="@../../../images/logoMarkOmazon.png"/>
+                        <Image url="@../../../images/logoMarkOmazon.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0">
                     <image>
-                        <Image url="@../../../images/malaysia flag.jpg"/>
+                        <Image url="@../../../images/malaysia flag.jpg" />
                     </image>
                 </ImageView>
-                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
-                       textFill="#1a0000"/>
-                <AnchorPane layoutX="51.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="787.0"
-                            style="-fx-background-color: e9edc9;" AnchorPane.bottomAnchor="43.0"
-                            AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="442.0" AnchorPane.topAnchor="226.0">
+                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
+                <AnchorPane layoutX="72.0" layoutY="205.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="773.0" style="-fx-background-color: e9edc9;" AnchorPane.bottomAnchor="24.600000000000023" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="434.4" AnchorPane.topAnchor="205.0">
                     <children>
-                        <Label layoutX="216.0" layoutY="45.0" text="User Profile" textAlignment="CENTER">
+                        <Label layoutX="51.0" layoutY="211.0" text="Username                         :">
                             <font>
-                                <Font name="SimSun-ExtB" size="52.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Label layoutX="359.0" layoutY="98.0" text="Manage and Update Account">
+                        <TextField fx:id="username" layoutX="272.0" layoutY="211.0" prefHeight="26.0" prefWidth="256.0" promptText="Enter username" />
+                        <Label layoutX="51.0" layoutY="268.0" text="Email address                   : ">
                             <font>
-                                <Font size="13.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <ImageView fitHeight="144.0" fitWidth="262.0" layoutX="453.0" layoutY="1.0" pickOnBounds="true"
-                                   preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/OmzonCharacter.png"/>
-                            </image>
-                        </ImageView>
-                        <Label layoutX="88.0" layoutY="159.0" text="Username                         :">
+                        <Label fx:id="emailAddress" layoutX="272.0" layoutY="271.0" prefHeight="26.0" prefWidth="256.0" />
+                        <Label layoutX="51.0" layoutY="326.0" text="Pickup address                 : ">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="username" layoutX="313.0" layoutY="159.0" prefHeight="26.0" prefWidth="256.0"
-                                   promptText="Enter username"/>
-                        <Label layoutX="88.0" layoutY="216.0" text="Email address                   : ">
+                        <Label layoutX="51.0" layoutY="431.0" text="New password                  : ">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Label fx:id="emailAddress" layoutX="320.0" layoutY="219.0" prefHeight="26.0"
-                               prefWidth="256.0"/>
-                        <Label layoutX="88.0" layoutY="273.0" text="Pickup address                 : ">
+                        <Button layoutX="272.0" layoutY="431.0" mnemonicParsing="false" onAction="#changeLoginPasswordButtonPressed" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: white;" text="Change login password" />
+                        <Label fx:id="paymentPassword" layoutX="51.0" layoutY="488.0" text="Payment password           : ">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Label layoutX="88.0" layoutY="379.0" text="New password                  : ">
+                        <Button fx:id="setPaymentPasswordButton" layoutX="272.0" layoutY="488.0" mnemonicParsing="false" onAction="#setPaymentPasswordButtonPressed" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: white;" text="Set payment password" />
+                        <Button layoutX="659.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteAccountButtonPressed" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: brown;" text="Delete Account" textFill="#f2f2f2" />
+                        <Button layoutX="591.0" layoutY="525.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="30.0" prefWidth="51.0" style="-fx-background-color: green;" text="SAVE" textFill="#fcfafa">
                             <font>
-                                <Font size="18.0"/>
-                            </font>
-                        </Label>
-                        <Button layoutX="313.0" layoutY="379.0" mnemonicParsing="false"
-                                onAction="#changeLoginPasswordButtonPressed" prefHeight="26.0" prefWidth="256.0"
-                                style="-fx-background-color: white;" text="Change login password"/>
-                        <Label fx:id="paymentPassword" layoutX="88.0" layoutY="435.0"
-                               text="Payment password           : ">
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                        </Label>
-                        <Button fx:id="setPaymentPasswordButton" layoutX="313.0" layoutY="435.0" mnemonicParsing="false"
-                                onAction="#setPaymentPasswordButtonPressed" prefHeight="26.0" prefWidth="256.0"
-                                style="-fx-background-color: white;" text="Set payment password"/>
-                        <Button layoutX="668.0" layoutY="483.0" mnemonicParsing="false"
-                                onAction="#deleteAccountButtonPressed" prefHeight="30.0" prefWidth="98.0"
-                                style="-fx-background-color: brown;" text="Delete Account" textFill="#f2f2f2"/>
-                        <Button layoutX="606.0" layoutY="483.0" mnemonicParsing="false" onAction="#saveButtonPressed"
-                                prefHeight="30.0" prefWidth="51.0" style="-fx-background-color: green;" text="SAVE"
-                                textFill="#fcfafa">
-                            <font>
-                                <Font size="13.0"/>
+                                <Font size="13.0" />
                             </font>
                         </Button>
-                        <TextArea fx:id="pickupAddress" layoutX="313.0" layoutY="273.0" prefHeight="78.0"
-                                  prefWidth="256.0" promptText="Enter pickup address"/>
+                        <TextArea fx:id="pickupAddress" layoutX="272.0" layoutY="326.0" prefHeight="78.0" prefWidth="256.0" promptText="Enter pickup address" />
+                  <ImageView fitHeight="98.0" fitWidth="86.0" layoutX="354.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="420.4" AnchorPane.leftAnchor="354.0" AnchorPane.rightAnchor="333.6" AnchorPane.topAnchor="64.0">
+                     <image>
+                        <Image url="@../../../images/profilePicture.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="359.0" layoutY="161.0" mnemonicParsing="false" style="-fx-background-color: e9edc9;" text="Edit picture" textFill="#003d69">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                        <Label layoutX="335.0" layoutY="10.0" prefHeight="52.0" prefWidth="146.0" text="User Profile" textAlignment="CENTER">
+                            <font>
+                                <Font name="Tw Cen MT" size="30.0" />
+                            </font>
+                        </Label>
                     </children>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" height="33.87" radius="16.7275" width="35.04">
+                     <color>
+                        <Color red="0.20392157137393951" green="0.5058823823928833" blue="0.40392157435417175" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </AnchorPane>
-                <AnchorPane layoutX="826.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity"
-                            prefHeight="531.0" prefWidth="433.0">
+                <AnchorPane layoutX="826.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="433.0">
                     <children>
-                        <Button layoutX="103.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onAction="#favouriteListButtonPressed" prefHeight="98.0"
-                                prefWidth="86.0" style="-fx-background-color: white;">
+                        <Button layoutX="103.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#favouriteListButtonPressed" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
                             <graphic>
                                 <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/favouriteListIcon.png"/>
+                                        <Image url="@../../../images/favouriteListIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutX="97.0" layoutY="197.0" prefHeight="85.0" prefWidth="156.0" text="Favourite List"
-                               textAlignment="CENTER">
+                        <Label layoutX="97.0" layoutY="197.0" prefHeight="85.0" prefWidth="156.0" text="Favourite List" textAlignment="CENTER">
                             <font>
-                                <Font size="15.0"/>
+                                <Font size="15.0" />
                             </font>
                         </Label>
-                        <Button layoutX="287.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onAction="#myPurchaseButtonPressed" prefHeight="98.0"
-                                prefWidth="86.0" style="-fx-background-color: white;">
+                        <Button layoutX="287.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#myPurchaseButtonPressed" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
                             <graphic>
                                 <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/myPurchaseListIcon .png"/>
+                                        <Image url="@../../../images/myPurchaseListIcon .png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutX="287.0" layoutY="197.0" prefHeight="85.0" prefWidth="156.0" text="My Purchase"
-                               textAlignment="CENTER">
+                        <Label layoutX="287.0" layoutY="197.0" prefHeight="85.0" prefWidth="156.0" text="My Purchase" textAlignment="CENTER">
                             <font>
-                                <Font size="15.0"/>
+                                <Font size="15.0" />
                             </font>
                         </Label>
-                        <Button layoutX="103.0" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onAction="#accountBalanceButtonPressed" prefHeight="98.0"
-                                prefWidth="86.0" style="-fx-background-color: white;">
+                        <Button layoutX="103.0" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#accountBalanceButtonPressed" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
                             <graphic>
                                 <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/accountBalanceIcon.png"/>
+                                        <Image url="@../../../images/accountBalanceIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutX="97.0" layoutY="425.0" prefHeight="62.0" prefWidth="126.0" text="Account Balance"
-                               textAlignment="CENTER">
+                        <Label layoutX="97.0" layoutY="425.0" prefHeight="62.0" prefWidth="126.0" text="Account Balance" textAlignment="CENTER">
                             <font>
-                                <Font size="15.0"/>
+                                <Font size="15.0" />
                             </font>
                         </Label>
-                        <Button layoutX="287.0" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onAction="#startSellingButtonPressed" prefHeight="98.0"
-                                prefWidth="86.0" style="-fx-background-color: white;">
+                        <Button layoutX="287.0" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startSellingButtonPressed" prefHeight="98.0" prefWidth="86.0" style="-fx-background-color: white;">
                             <graphic>
                                 <ImageView fitHeight="98.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/StartSellingIcon.png"/>
+                                        <Image url="@../../../images/StartSellingIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label layoutX="287.0" layoutY="425.0" prefHeight="62.0" prefWidth="126.0" text="Start Selling"
-                               textAlignment="CENTER">
+                        <Label layoutX="287.0" layoutY="425.0" prefHeight="62.0" prefWidth="126.0" text="Start Selling" textAlignment="CENTER">
                             <font>
-                                <Font size="14.0"/>
+                                <Font size="14.0" />
                             </font>
                         </Label>
                     </children>
@@ -184,36 +159,40 @@
         </AnchorPane>
         <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
             <children>
-                <Button layoutX="635.0" layoutY="21.0" mnemonicParsing="false" text="search"
-                        AnchorPane.leftAnchor="741.0" AnchorPane.topAnchor="19.0">
+                <Button layoutX="656.0" layoutY="17.0" mnemonicParsing="false" prefHeight="27.0" text="search" AnchorPane.leftAnchor="656.0" AnchorPane.topAnchor="17.0">
                     <font>
-                        <Font name="Arial" size="12.0"/>
+                        <Font name="Arial" size="12.0" />
                     </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
-                <TextField layoutX="100.0" layoutY="18.0" prefHeight="27.0" prefWidth="510.0" promptText="Search Items"
-                           AnchorPane.leftAnchor="190.0"/>
-                <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0"
-                        style="-fx-background-color: b4e7ce;">
+                <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0" promptText="Search Items" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="17.0" />
+                <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/userIcon.png"/>
+                                <Image url="@../../../images/userIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
-                <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homepageButtonPressed"
-                        prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+                <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homepageButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/HomePageIcon.png"/>
+                                <Image url="@../../../images/HomePageIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
-                <ComboBox fx:id="productCategory_home" layoutX="41.0" layoutY="19.0" prefHeight="27.0" prefWidth="117.0"
-                          promptText="Select" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="17.0"/>
+                <ComboBox fx:id="productCategory_home" layoutX="72.0" layoutY="17.0" prefHeight="27.0" prefWidth="128.0" promptText="Select" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="17.0" />
             </children>
         </AnchorPane>
     </children>
