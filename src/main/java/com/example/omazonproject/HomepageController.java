@@ -13,13 +13,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -54,10 +49,6 @@ public class HomepageController {//implements Initializable {
 
     @FXML
     public void initialize() {
-
-        // Autocomplete search
-        getProductNameFromDatabase();
-        TextFields.bindAutoCompletion(searchItems, productName);
 
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory_home.setPromptText("select");
@@ -124,53 +115,6 @@ public class HomepageController {//implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-    }
-
-    // This method is used to get the product name from database and store it in an array list named productName
-    // Therefore it can be used by the autocomplete search
-    void getProductNameFromDatabase() {
-        Connection connectDB = null;
-        Statement statement = null;
-        ResultSet productNameResult = null;
-
-        try {
-            DatabaseConnection connectNow = new DatabaseConnection();
-            connectDB = connectNow.getConnection();
-            statement = connectDB.createStatement();
-
-            productNameResult = statement.executeQuery("SELECT name FROM product_info");
-
-            while (productNameResult.next()) {
-                String PRODUCTNAME = productNameResult.getString("name");
-                // Add product name that retrieved from database to the productName array list
-                productName.add(PRODUCTNAME);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (productNameResult != null) {
-                try {
-                    productNameResult.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connectDB != null) {
-                try {
-                    connectDB.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
 }
