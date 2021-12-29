@@ -210,6 +210,7 @@ public class SellerController {
      *
      * @param input the email entered by the user(seller)
      * @return a boolean value indicating the validity of the email
+     * @author XiangLun
      */
     public static boolean valEmail(String input) {
         String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";

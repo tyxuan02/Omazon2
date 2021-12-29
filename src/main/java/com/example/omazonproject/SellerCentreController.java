@@ -1,33 +1,28 @@
 package com.example.omazonproject;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class SellerCentreController implements Initializable {
+/**
+ * This controller is responsible to control the events happening in the Seller Centre
+ */
+public class SellerCentreController {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    // This part is responsible to control the events happening at the seller centre
 
     @FXML
     // The seller name menu button(manage profile and logout) at seller centre
@@ -56,8 +51,20 @@ public class SellerCentreController implements Initializable {
     @FXML
     // Manage profile selection at sellerNameMenuButton at seller centre
     public void manageProfilePressed(ActionEvent event) throws IOException {
-        // Forward user to the seller profile page
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-profile-page.fxml")));
+        // create an instance of the FXMLLoader class
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-profile-page.fxml"));
+        root = fxmlLoader.load();
+
+        // create an instance of the UserProfileController class
+        SellerProfileController sellerProfileController = fxmlLoader.getController();
+
+        // fill-in the text field before displaying the scene and show or hide the set payment password option
+        sellerProfileController.setSellerInitialContents();
+
+        // prevent autofocus to the text field
+        Platform.runLater(() -> root.requestFocus());
+
+        // display the scene
         stage = (Stage) sellerNameMenuButton.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -131,71 +138,6 @@ public class SellerCentreController implements Initializable {
     // Fourth update button at seller centre
     public void update4ButtonPressed(MouseEvent event) {
     }
-
-
-    //This part is responsible to control the events happening at the seller-profile-page
-
-    @FXML
-    private PasswordField sellerCurrentPassword;
-
-    @FXML
-    private TextField sellerEmail;
-
-    @FXML
-    private PasswordField sellerNewPassword;
-
-    @FXML
-    private TextField sellerUsername;
-
-    @FXML
-    private TextField shopAddress;
-
-    @FXML
-    public void accountBalanceButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void deleteAccountButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void favouriteListButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void homepageButtonPressed(ActionEvent event) throws IOException {
-        // Forward user to the seller centre
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller's-product-page.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void myPurchaseButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void saveButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void startSellingButtonPressed(ActionEvent event) {
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
-    //This part is responsible to control the events happening at the seller-add-product-page
 
 }
 

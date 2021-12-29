@@ -24,7 +24,7 @@ import java.util.Objects;
  *
  * @author XiangLun
  */
-public class HomepageController {//implements Initializable {
+public class HomepageController {
 
     private Stage stage;
     private Scene scene;
@@ -45,7 +45,7 @@ public class HomepageController {//implements Initializable {
     @FXML
     private TextField searchItems;
 
-    ArrayList<String> productName = new ArrayList();
+    ArrayList<String> productName = new ArrayList<>();
 
     @FXML
     public void initialize() {
