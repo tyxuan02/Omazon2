@@ -49,7 +49,7 @@
             <VBox layoutX="1135.0" layoutY="99.0" prefHeight="70.0" prefWidth="142.0">
                 <children>
                     <MenuButton fx:id="sellerNameMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0"
-                                style="-fx-background-color: e2ece9;" text="       Seller Name" textAlignment="CENTER">
+                                style="-fx-background-color: e2ece9;" textAlignment="CENTER">
                         <items>
                             <MenuItem onAction="#manageProfilePressed" text="Manage Profile">
                                 <graphic>
