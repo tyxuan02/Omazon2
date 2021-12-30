@@ -1,6 +1,7 @@
 package com.example.omazonproject;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +10,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+import javax.imageio.ImageIO;
 import javax.mail.MessagingException;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,9 +61,49 @@ public class UserProfileController {
     private ComboBox<String> productCategory_home;
 
     @FXML
+    private Circle userProfileImage;
+
+    @FXML
     public void initialize() {
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory_home.setPromptText("Select");
+
+        //User profile image
+        Image image = null;
+        String userImageName = User.getEmail() + "-" + User.getUsername();
+        File file = new File("assets/" + userImageName + ".png");
+
+        //Check if the user profile image exists or not
+        if (file.exists()) {
+            //If exists, display the user profile image
+            image = new Image(new File("assets/" + userImageName + ".png").toURI().toString());
+            userProfileImage.setFill(new ImagePattern(image));
+        } else {
+
+        }
+    }
+
+    @FXML
+    public void editUserImagePressed(ActionEvent event) {
+        try {
+
+            //Upload user profile image
+            Stage stage = new Stage();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Upload profile image");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG", "*.png"), new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("JPEG", "*.jpeg"));
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            Image image = new Image(selectedFile.toURI().toString(), 200, 200, false, false);
+            userProfileImage.setFill(new ImagePattern(image));
+
+            //Store user profile image in assets folder
+            //user profile image name = "(user_email_address)-(user_username)"
+            File fileoutput = new File("assets/" + User.getEmail() + "-" + User.getUsername() + ".png");
+            BufferedImage BI = SwingFXUtils.fromFXImage(image, null);
+            ImageIO.write(BI, "png", fileoutput);
+
+        } catch (NullPointerException | IOException e) {
+        }
     }
 
     @FXML

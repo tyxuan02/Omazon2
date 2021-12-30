@@ -1,6 +1,7 @@
 package com.example.omazonproject;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +10,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+import javax.imageio.ImageIO;
 import javax.mail.MessagingException;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +50,49 @@ public class SellerProfileController {
 
     @FXML
     private TextArea shopAddress;
+
+    @FXML
+    private Circle sellerProfileImage;
+
+    @FXML
+    public void initialize() {
+        Image image = null;
+        String sellerImageName = Seller.getSellerName() + "-" + Seller.getEmail();
+        File file = new File("assets/" + sellerImageName + ".png");
+
+        //Check if the seller profile image exists or not
+        if (file.exists()) {
+            //If exists, display the seller profile image
+            image = new Image(new File("assets/" + sellerImageName + ".png").toURI().toString());
+            sellerProfileImage.setFill(new ImagePattern(image));
+        } else {
+
+        }
+    }
+
+    @FXML
+    public void editSellerImagePressed(ActionEvent event) {
+        Image image = null;
+        try {
+
+            //Upload seller profile image
+            Stage stage = new Stage();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Upload profile image");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG", "*.png"), new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("JPEG", "*.jpeg"));
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            image = new Image(selectedFile.toURI().toString(), 200, 200, false, false);
+            sellerProfileImage.setFill(new ImagePattern(image));
+
+            //Store seller profile image in assets folder
+            //seller profile image name = "(seller_name)-(seller_email_address)"
+            File fileoutput = new File("assets/" + Seller.getSellerName() + "-" + Seller.getEmail() + ".png");
+            BufferedImage BI = SwingFXUtils.fromFXImage(image, null);
+            ImageIO.write(BI, "png", fileoutput);
+
+        } catch (NullPointerException | IOException e) {
+        }
+    }
 
     @FXML
     public void accountBalanceButtonPressed(ActionEvent event) {
@@ -505,4 +556,9 @@ public class SellerProfileController {
         shopAddress.setText(Seller.getAddress());
 
     }
+
 }
+
+
+
+
