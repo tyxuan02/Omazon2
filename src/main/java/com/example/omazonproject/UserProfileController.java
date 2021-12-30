@@ -214,8 +214,12 @@ public class UserProfileController {
     }
 
     @FXML
-    void favouriteListButtonPressed(ActionEvent event) {
-
+    void favouriteListButtonPressed(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-favorite-list-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
