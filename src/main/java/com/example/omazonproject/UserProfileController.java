@@ -65,11 +65,24 @@ public class UserProfileController {
 
     @FXML
     public void initialize() {
+
+        // instantiate combo box
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory_home.setPromptText("Select");
 
-        //User profile image
-        Image image = null;
+        // fill user's information
+        emailAddress.setText(User.getEmail());
+        username.setText(User.getUsername());
+        pickupAddress.setText(User.getAddress());
+
+        // decides whether it is needed to hide the set payment password option
+        if (User.getPaymentPassword() != null) {
+            paymentPassword.setVisible(false);
+            setPaymentPasswordButton.setVisible(false);
+        }
+
+        // load user profile image
+        Image image;
         String userImageName = User.getEmail() + "-" + User.getUsername();
         File file = new File("assets/" + userImageName + ".png");
 
@@ -78,15 +91,12 @@ public class UserProfileController {
             //If exists, display the user profile image
             image = new Image(new File("assets/" + userImageName + ".png").toURI().toString());
             userProfileImage.setFill(new ImagePattern(image));
-        } else {
-
         }
     }
 
     @FXML
     public void editUserImagePressed(ActionEvent event) {
         try {
-
             //Upload user profile image
             Stage stage = new Stage();
             FileChooser fileChooser = new FileChooser();
@@ -103,6 +113,7 @@ public class UserProfileController {
             ImageIO.write(BI, "png", fileoutput);
 
         } catch (NullPointerException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -642,25 +653,6 @@ public class UserProfileController {
             alert.setHeaderText("The password entered does not match with the current password.");
             alert.setContentText("Please try again.");
             alert.showAndWait();
-        }
-    }
-
-    /**
-     * This method fills the user's information into their respective text field and
-     * decides whether it is needed to hide the set payment password option
-     *
-     * @author XiangLun
-     */
-    public void setInitialContents() {
-        // fill user's information
-        emailAddress.setText(User.getEmail());
-        username.setText(User.getUsername());
-        pickupAddress.setText(User.getAddress());
-
-        // decides whether it is needed to hide the set payment password option
-        if (User.getPaymentPassword() != null) {
-            paymentPassword.setVisible(false);
-            setPaymentPasswordButton.setVisible(false);
         }
     }
 

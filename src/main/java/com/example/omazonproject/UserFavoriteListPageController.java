@@ -2,6 +2,8 @@ package com.example.omazonproject;
 
 import java.io.IOException;
 import java.util.Objects;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-//This class is responsible to control the events happening in the user favorite list page
+/**
+ * This class is responsible to control the events happening in the user favorite list page
+ */
 
 public class UserFavoriteListPageController {
     
@@ -39,7 +43,14 @@ public class UserFavoriteListPageController {
 
     @FXML
     void profileButtonPressed(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-page.fxml")));
+        // create an instance of the FXMLLoader class
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
+        root = fxmlLoader.load();
+
+        // prevent autofocus to the text field
+        Platform.runLater(() -> root.requestFocus());
+
+        // display the scene
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

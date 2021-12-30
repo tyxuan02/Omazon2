@@ -100,16 +100,11 @@ public class HomepageController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
 
-        // create an instance of the UserProfileController class
-        UserProfileController userProfileController = fxmlLoader.getController();
-
-        // fill-in the text field before displaying the scene and show or hide the set payment password option
-        userProfileController.setInitialContents();
-
         // prevent autofocus to the text field
         Platform.runLater(() -> root.requestFocus());
 
         // display the scene
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

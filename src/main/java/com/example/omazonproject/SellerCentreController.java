@@ -55,12 +55,6 @@ public class SellerCentreController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-profile-page.fxml"));
         root = fxmlLoader.load();
 
-        // create an instance of the UserProfileController class
-        SellerProfileController sellerProfileController = fxmlLoader.getController();
-
-        // fill-in the text field before displaying the scene and show or hide the set payment password option
-        sellerProfileController.setSellerInitialContents();
-
         // prevent autofocus to the text field
         Platform.runLater(() -> root.requestFocus());
 

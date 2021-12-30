@@ -1,5 +1,6 @@
 package com.example.omazonproject;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +57,14 @@ public class UserPurchasePageController {
 
     @FXML
     void profileButtonPressed(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-page.fxml")));
+        // create an instance of the FXMLLoader class
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
+        root = fxmlLoader.load();
+
+        // prevent autofocus to the text field
+        Platform.runLater(() -> root.requestFocus());
+
+        // display the scene
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

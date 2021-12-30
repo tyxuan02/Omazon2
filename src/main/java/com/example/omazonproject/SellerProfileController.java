@@ -56,7 +56,13 @@ public class SellerProfileController {
 
     @FXML
     public void initialize() {
-        Image image = null;
+        // fill seller's information
+        sellerEmail.setText(Seller.getEmail());
+        sellerUsername.setText(Seller.getSellerName());
+        shopAddress.setText(Seller.getAddress());
+
+        // load the seller's profile image
+        Image image;
         String sellerImageName = Seller.getSellerName() + "-" + Seller.getEmail();
         File file = new File("assets/" + sellerImageName + ".png");
 
@@ -65,16 +71,13 @@ public class SellerProfileController {
             //If exists, display the seller profile image
             image = new Image(new File("assets/" + sellerImageName + ".png").toURI().toString());
             sellerProfileImage.setFill(new ImagePattern(image));
-        } else {
-
         }
     }
 
     @FXML
     public void editSellerImagePressed(ActionEvent event) {
-        Image image = null;
+        Image image;
         try {
-
             //Upload seller profile image
             Stage stage = new Stage();
             FileChooser fileChooser = new FileChooser();
@@ -91,6 +94,7 @@ public class SellerProfileController {
             ImageIO.write(BI, "png", fileoutput);
 
         } catch (NullPointerException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -541,19 +545,6 @@ public class SellerProfileController {
                 alert.showAndWait();
             }
         });
-
-    }
-
-    /**
-     * This method fills the seller's information into their respective text field
-     *
-     * @author XiangLun
-     */
-    public void setSellerInitialContents() {
-        // fill seller's information
-        sellerEmail.setText(Seller.getEmail());
-        sellerUsername.setText(Seller.getSellerName());
-        shopAddress.setText(Seller.getAddress());
 
     }
 
