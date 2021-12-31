@@ -203,13 +203,13 @@ public class SellerAddProductController implements Initializable {
             ImageIO.write(BI, "png", fileoutput);
 
             // Store product information into database
-            String sellerName = Seller.getSellerName();
+            String sellerEmail = Seller.getEmail();
             String price = productPrice.getText();
             String category = productCategory.getValue();
             String description = productDescription.getText();
             String imageName = productIMAGENAME;
-            String insertFields = "INSERT INTO product_info (sellerName, name, price, category, description, imageName) VALUES ('";
-            String insertValues = sellerName + "','" + productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "')";
+            String insertFields = "INSERT INTO product_info (sellerEmail, name, price, category, description, imageName) VALUES ('";
+            String insertValues = sellerEmail + "','" + productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "')";
             String insertToRegister = insertFields + insertValues;
             statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
