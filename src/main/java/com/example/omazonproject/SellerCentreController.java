@@ -99,7 +99,12 @@ public class SellerCentreController {
 
     @FXML
     // Customer review selection at menuButton at seller centre
-    public void customerReviewPressed(ActionEvent event) {
+    public void customerReviewPressed(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("customer-review-page.fxml")));
+        stage = (Stage) sellerNameMenuButton.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
