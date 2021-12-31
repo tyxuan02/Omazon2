@@ -306,17 +306,8 @@ public class SellerController {
             // Check the credentials entered by the user
             if (sellerValidateLogin()) {
                 // if valid,
-                // create an instance of the FXMLLoader class
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller's-product-page.fxml"));
-                root = fxmlLoader.load();
-
-                // create an instance of the UserProfileController class
-                SellerCentreController sellerCentreController = fxmlLoader.getController();
-
-                // fill-in the seller name in the menu button
-                sellerCentreController.setSellerName();
-
-                // display the scene
+                // forward the user to the seller centre
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller's-product-page.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

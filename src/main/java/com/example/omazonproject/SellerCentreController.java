@@ -138,7 +138,8 @@ public class SellerCentreController {
     public void update4ButtonPressed(MouseEvent event) {
     }
 
-    public void setSellerName() {
+    @FXML
+    public void initialize(){
         // fill-in seller name in the menu button
         sellerNameMenuButton.setText("  " + Seller.getSellerName());
     }
