@@ -43,7 +43,7 @@
                      </cursor>
                   </Button>
                   <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0" promptText="Search Items" />
-                  <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+                  <Button fx:id="profileIcon" layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+                  <Button fx:id="homeIcon" layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
