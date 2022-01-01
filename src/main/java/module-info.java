@@ -9,6 +9,7 @@ module com.example.omazonproject {
     requires commons.io;
     requires activation;
     requires javafx.swing;
+    requires org.controlsfx.controls;
 
     opens com.example.omazonproject to javafx.fxml;
     exports com.example.omazonproject;
