@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" vmax="2.0" xmlns="http://javafx.com/javafx/17"
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" vmax="2.0" xmlns="http://javafx.com/javafx/11.0.2"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerCentreController">
     <AnchorPane prefHeight="800.0" prefWidth="1280.0">
-        <VBox layoutX="14.0" layoutY="175.0" prefHeight="98.0" prefWidth="100.0">
+        <VBox layoutX="14.0" layoutY="199.0" prefHeight="98.0" prefWidth="100.0">
             <children>
                 <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0"
                             style="-fx-background-color: e2ece9;">
@@ -34,45 +26,6 @@
                 </MenuButton>
             </children>
         </VBox>
-        <AnchorPane layoutX="-22.0" layoutY="-9.0" prefHeight="171.0" prefWidth="1310.0"
-                    style="-fx-background-color: b4e7ce;">
-            <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0" pickOnBounds="true"
-                       preserveRatio="true">
-                <Image url="@../../../images/logoMarkOmazon.png"/>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="443.0" layoutY="36.0" prefHeight="98.0" prefWidth="423.0"
-                   style="-fx-font-family: Impact; -fx-font-size: 74;" text="Seller Centre">
-                <font>
-                    <Font size="72.0"/>
-                </font>
-            </Label>
-            <VBox layoutX="1135.0" layoutY="99.0" prefHeight="70.0" prefWidth="142.0">
-                <children>
-                    <MenuButton fx:id="sellerNameMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0"
-                                style="-fx-background-color: e2ece9;" textAlignment="CENTER">
-                        <items>
-                            <MenuItem onAction="#manageProfilePressed" text="Manage Profile">
-                                <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true"
-                                               preserveRatio="true">
-                                        <Image url="@../../../images/SellerProfileIcon.png"/>
-                                    </ImageView>
-                                </graphic>
-                            </MenuItem>
-                            <MenuItem mnemonicParsing="false" onAction="#logoutPressed" text="Logout"/>
-                        </items>
-                        <graphic>
-                            <ImageView fitHeight="13.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                <effect>
-                                    <Glow/>
-                                </effect>
-                                <Image url="@../../../images/VerifiedBadge.png"/>
-                            </ImageView>
-                        </graphic>
-                    </MenuButton>
-                </children>
-            </VBox>
-        </AnchorPane>
         <Label layoutX="593.0" layoutY="214.0" text="My Products">
             <font>
                 <Font name="Times New Roman" size="24.0"/>
@@ -135,9 +88,9 @@
                 style="-fx-background-color: e2ece9;" text="Update"/>
         <Button layoutX="1009.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#update4ButtonPressed"
                 style="-fx-background-color: e2ece9;" text="Update"/>
-        <Button layoutX="1022.0" layoutY="182.0" mnemonicParsing="false" onAction="#addProductButtonPressed"
+        <Button layoutX="1022.0" layoutY="199.0" mnemonicParsing="false" onAction="#addProductButtonPressed"
                 prefHeight="30.0" prefWidth="119.2" style="-fx-background-color: green;" text="Add Products"/>
-        <Button layoutX="1160.0" layoutY="182.0" mnemonicParsing="false" onAction="#removeProductButtonPressed"
+        <Button layoutX="1164.0" layoutY="199.0" mnemonicParsing="false" onAction="#removeProductButtonPressed"
                 prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: red;" text="Remove Products"/>
         <Label layoutX="116.0" layoutY="580.0" text="Review will be displayed in this label"/>
         <Label layoutX="368.0" layoutY="580.0" text="Review will be displayed in this label"/>
@@ -155,5 +108,56 @@
         <Label layoutX="454.0" layoutY="545.0" text="RM2000"/>
         <Label layoutX="739.0" layoutY="545.0" text="RM10"/>
         <Label layoutX="1037.0" layoutY="545.0" text="RM50"/>
+        <ImageView fitHeight="150.0" fitWidth="1280.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/bannerHomepage.gif"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../images/malaysia%20flag.jpg"/>
+            </image>
+        </ImageView>
+        <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text="Deliver to Malaysia"/>
+        <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../images/logoMarkOmazon.png"/>
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="-2.0" layoutY="120.0" prefHeight="62.0" prefWidth="1280.0"
+                    style="-fx-background-color: b4e7ce;">
+            <children>
+                <Label alignment="CENTER" layoutX="448.0" layoutY="-12.0" prefHeight="86.0" prefWidth="416.0"
+                       style="-fx-font-family: Impact; -fx-font-size: 48;" text="Seller Centre">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <MenuButton fx:id="sellerNameMenuButton" layoutX="1140.0" layoutY="24.0" mnemonicParsing="false"
+                            prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: e2ece9;"
+                            textAlignment="CENTER">
+                    <items>
+                        <MenuItem onAction="#manageProfilePressed" text="Manage Profile">
+                            <graphic>
+                                <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@../../../images/SellerProfileIcon.png"/>
+                                </ImageView>
+                            </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#logoutPressed" text="Logout"/>
+                    </items>
+                    <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <effect>
+                                <Glow/>
+                            </effect>
+                            <Image url="@../../../images/VerifiedBadge.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuButton>
+            </children>
+        </AnchorPane>
     </AnchorPane>
 </ScrollPane>
