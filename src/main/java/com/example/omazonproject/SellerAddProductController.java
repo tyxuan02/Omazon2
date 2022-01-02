@@ -75,7 +75,7 @@ public class SellerAddProductController implements Initializable {
             fileChooser.setTitle("Upload product image");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG", "*.png"), new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("JPEG", "*.jpeg"));
             File selectedFile = fileChooser.showOpenDialog(stage);
-            Image image = new Image(selectedFile.toURI().toString(), 200, 200, false, false);
+            Image image = new Image(selectedFile.toURI().toString(), 1024, 720, false, false);
             productImage.setImage(image);
         } catch (NullPointerException e) {
             // If product image is not uploaded
