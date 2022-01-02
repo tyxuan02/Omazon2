@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="120.0" fitWidth="188.0" layoutX="6.0" layoutY="62.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../images/PS5.jpg"/>
+            </image>
+        </ImageView>
+        <Label layoutX="14.0" layoutY="25.0" text="PS5">
+            <font>
+                <Font name="Impact" size="18.0"/>
+            </font>
+        </Label>
+        <Label layoutX="80.0" layoutY="174.0" text="RM 2000">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
