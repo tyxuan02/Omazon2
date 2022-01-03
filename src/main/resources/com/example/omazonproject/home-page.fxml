@@ -86,7 +86,7 @@
                 </AnchorPane>
                 <AnchorPane layoutX="75.0" layoutY="203.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="327.0" prefWidth="635.0" style="-fx-background-color: c9ada1;">
                     <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#top1Pressed" prefHeight="327.0" prefWidth="635.0" style="-fx-cursor: hand;">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="327.0" prefWidth="635.0" style="-fx-cursor: hand;">
                             <graphic>
                                 <ImageView fx:id="top1" fitHeight="327.0" fitWidth="635.0">
                                     <image>
@@ -113,7 +113,7 @@
                     <children>
                         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="163.0" prefWidth="475.0" style="-fx-cursor: hand;">
                             <graphic>
-                                <ImageView fx:id="top2" fitHeight="163.0" fitWidth="475.0" onMouseClicked="#top2Pressed">
+                                <ImageView fx:id="top2" fitHeight="163.0" fitWidth="475.0">
                                     <image>
                                         <Image url="@../../../images/daily necessities.jpg" />
                                     </image>
@@ -131,7 +131,7 @@
                     <children>
                         <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="329.0" style="-fx-cursor: hand;">
                             <graphic>
-                                <ImageView fx:id="top3" fitHeight="148.0" fitWidth="324.0" onMouseClicked="#top3Pressed">
+                                <ImageView fx:id="top3" fitHeight="148.0" fitWidth="324.0">
                                     <image>
                                         <Image url="@../../../images/watches.jpeg" />
                                     </image>
