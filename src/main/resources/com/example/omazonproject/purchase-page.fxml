@@ -23,12 +23,12 @@
                 <Image url="@../../../images/logoMarkOmazon.png" />
             </image>
         </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0" pickOnBounds="true">
+      <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/malaysia flag.jpg" />
+            <Image url="@../../../images/malaysiaFlag.png" />
          </image>
       </ImageView>
-      <Label layoutX="1160.0" layoutY="95.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
+      <Label layoutX="1163.0" layoutY="94.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
         <AnchorPane layoutX="44.0" layoutY="208.0" minWidth="-Infinity" prefHeight="35.0" prefWidth="1190.0" style="-fx-background-color: F2F7F4;">
             <children>
                 <Button fx:id="toPay" layoutX="23.0" layoutY="5.0" mnemonicParsing="false" onAction="#toPayButtonPressed" prefHeight="27.0" prefWidth="127.0" style="-fx-background-color: F2F7F4;" text="To Pay" />

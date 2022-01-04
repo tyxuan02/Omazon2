@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -15,7 +17,7 @@
     <children>
         <AnchorPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-            <ImageView fitHeight="363.0" fitWidth="582.0" layoutX="724.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="378.0" fitWidth="606.0" layoutX="700.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/decoAccBalancePage_2.png" />
                </image>
@@ -30,26 +32,26 @@
                         <Image url="@../../../images/logoMarkOmazon.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/malaysia flag.jpg" />
+                        <Image url="@../../../images/malaysiaFlag.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
-                <AnchorPane layoutX="60.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="685.0" style="-fx-background-color: F2F4F7;">
+                <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
+                <AnchorPane layoutX="73.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="694.0" style="-fx-background-color: F2F4F7;">
                     <children>
-                        <Label layoutX="124.0" layoutY="144.0" text="Account Balance" textAlignment="CENTER">
+                        <Label layoutX="144.0" layoutY="144.0" text="Account Balance" textAlignment="CENTER">
                             <font>
-                                <Font name="SimSun-ExtB" size="57.0" />
+                                <Font name="SimSun-ExtB" size="53.0" />
                             </font>
                         </Label>
-                          <Label layoutX="257.0" layoutY="237.0" text="RM  0.00" textFill="#e70707">
+                          <Label layoutX="275.0" layoutY="233.0" text="RM  0.00" textFill="#e70707">
                               <font>
-                                  <Font size="33.0" />
+                                  <Font size="30.0" />
                               </font>
                           </Label>
-                          <Line endX="70.4000244140625" endY="-3.0517578125E-5" layoutX="345.0" layoutY="288.0" startX="-112.27438354492188" startY="-6.103515625E-5" />
-                          <Button layoutX="261.0" layoutY="292.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="118.0" style="-fx-background-color: F2F4F7;" text="top up">
+                          <Line endX="57.1256103515625" endY="-6.103515625E-5" layoutX="362.0" layoutY="281.0" startX="-112.27438354492188" startY="-6.103515625E-5" />
+                          <Button layoutX="275.0" layoutY="283.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="118.0" style="-fx-background-color: F2F4F7;" text="top up">
                               <graphic>
                                   <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
@@ -65,6 +67,13 @@
                      </font>
                           </Button>
                     </children>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" height="18.66" radius="8.83" width="18.66">
+                     <color>
+                        <Color red="0.20392157137393951" green="0.5058823823928833" blue="0.40392157435417175" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </AnchorPane>
             <ImageView fitHeight="424.0" fitWidth="400.0" layoutX="878.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -76,25 +85,25 @@
                   <Image url="@../../../images/moneyBag.png" />
                </image>
             </ImageView>
-            <Label layoutX="75.0" layoutY="200.0" text="My Account" textFill="#6b6464">
+            <Label layoutX="76.0" layoutY="199.0" text="My Account" textFill="#6b6464">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Line endX="843.0" endY="1.20001220703125" layoutX="437.0" layoutY="771.0" startX="-437.0" startY="1.20001220703125" stroke="#c4c4c4" />
-            <ImageView fitHeight="220.0" fitWidth="359.0" layoutX="851.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+            <Line endX="843.0" endY="1.20001220703125" layoutX="437.0" layoutY="771.0" startX="-443.2743835449219" startY="1.20001220703125" stroke="#c4c4c4" />
+            <ImageView fitHeight="210.0" fitWidth="343.0" layoutX="857.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/decoAccBalancePage_4.png" />
                </image>
             </ImageView>
-            <Label layoutX="916.0" layoutY="285.0" prefHeight="78.0" prefWidth="238.0" text="Always be careful">
+            <Label layoutX="918.0" layoutY="273.0" prefHeight="78.0" prefWidth="238.0" text="Always be careful">
                <font>
-                  <Font name="KaiTi" size="24.0" />
+                  <Font name="KaiTi" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="915.0" layoutY="349.0" text="with your transaction">
+            <Label layoutX="918.0" layoutY="340.0" text="with your transaction">
                <font>
-                  <Font name="KaiTi" size="24.0" />
+                  <Font name="KaiTi" size="22.0" />
                </font>
             </Label>
             <ImageView fitHeight="291.0" fitWidth="238.0" layoutX="947.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
