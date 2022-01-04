@@ -18,6 +18,8 @@ public class Product {
     private int numOfFourStars;
     private int numOfFiveStars;
     private int numberOfSales;
+    private int numOfStock;
+    private String address;
 
     public String getProductName() {
         return productName;
@@ -99,9 +101,7 @@ public class Product {
         this.numberOfSales = numberOfSales;
     }
 
-    public double getProductPrice() {
-        return productPrice;
-    }
+    public double getProductPrice() {return productPrice;}
 
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
@@ -113,5 +113,17 @@ public class Product {
 
     public void setProductImagePath(String productImagePath) {
         this.productImagePath = productImagePath;
+    }
+
+    public void setProductStock(int numOfStock) { this.numOfStock = numOfStock; }
+
+    public int getNumOfStock() { return this.numOfStock; }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }
