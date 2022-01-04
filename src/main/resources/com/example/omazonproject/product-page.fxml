@@ -8,103 +8,128 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.AutoFillProductPageClass">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.omazonproject.AutoFillProductPageClass">
     <children>
-        <AnchorPane layoutX="-24.0" layoutY="-50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutX="-24.0" layoutY="-50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
             <children>
                 <ImageView fitHeight="120.0" fitWidth="1280.0" layoutY="-2.0">
                     <image>
-                        <Image url="@../../../images/bannerHomepage.gif" />
+                        <Image url="@../../../images/bannerHomepage.gif"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0">
                     <image>
-                        <Image url="@../../../images/malaysia flag.jpg" />
+                        <Image url="@../../../images/malaysia flag.jpg"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0">
                     <image>
-                        <Image url="@../../../images/malaysia flag.jpg" />
+                        <Image url="@../../../images/malaysia flag.jpg"/>
                     </image>
                 </ImageView>
-                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
+                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
+                       textFill="#1a0000"/>
                 <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="1103.0" layoutY="15.0" onMouseClicked="#userProfileButtonPressed">
+                        <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="1103.0" layoutY="15.0"
+                                   onMouseClicked="#userProfileButtonPressed">
                             <image>
-                                <Image url="@../../../images/userIcon.png" />
+                                <Image url="@../../../images/userIcon.png"/>
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="1154.0" layoutY="15.0" onMouseClicked="#homeButtonPressed" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="1154.0" layoutY="15.0"
+                                   onMouseClicked="#homeButtonPressed" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/HomePageIcon.png" />
+                                <Image url="@../../../images/HomePageIcon.png"/>
                             </image>
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="23.0" layoutY="195.0" prefHeight="418.0" prefWidth="837.0" style="-fx-background-color: F2F7F4;">
+                <AnchorPane layoutX="23.0" layoutY="195.0" prefHeight="418.0" prefWidth="837.0"
+                            style="-fx-background-color: F2F7F4;">
                     <children>
-                        <AnchorPane layoutX="25.0" layoutY="23.0" prefHeight="380.0" prefWidth="488.0" style="-fx-background-color: FFFFFF;">
-                     <children>
-                        <ImageView fx:id="productImage" fitHeight="334.0" fitWidth="440.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                     </children></AnchorPane>
-                        <AnchorPane layoutX="528.0" layoutY="128.0" prefHeight="133.0" prefWidth="294.0" style="-fx-background-color: FFFFFF;">
+                        <AnchorPane layoutX="25.0" layoutY="23.0" prefHeight="380.0" prefWidth="488.0"
+                                    style="-fx-background-color: FFFFFF;">
                             <children>
-                                <Label layoutX="14.0" layoutY="43.0" prefHeight="35.0" prefWidth="64.0" text="RM " textFill="#e11919">
-                                    <font>
-                                        <Font size="30.0" />
-                                    </font>
-                                </Label>
-                        <Label fx:id="priceLabel" layoutX="78.0" layoutY="42.0" prefHeight="46.0" prefWidth="196.0">
-                           <font>
-                              <Font size="30.0" />
-                           </font></Label>
+                                <ImageView fx:id="productImage" fitHeight="334.0" fitWidth="440.0" layoutX="25.0"
+                                           layoutY="25.0" pickOnBounds="true" preserveRatio="true"/>
                             </children>
                         </AnchorPane>
-                        <Label layoutX="543.0" layoutY="322.0" prefHeight="24.0" prefWidth="57.0" text="Quantity" />
-                        <TextField fx:id="quantity" layoutX="617.0" layoutY="320.0" prefHeight="27.0" prefWidth="187.0" />
-                        <Button layoutX="740.0" layoutY="369.0" mnemonicParsing="false" style="-fx-background-color: b4e7ce;" text="Buy Now" />
-                        <Button layoutX="617.0" layoutY="369.0" mnemonicParsing="false" style="-fx-background-color: D0FFE8;" text="Add To Cart" />
+                        <AnchorPane layoutX="528.0" layoutY="128.0" prefHeight="133.0" prefWidth="294.0"
+                                    style="-fx-background-color: FFFFFF;">
+                            <children>
+                                <Label layoutX="14.0" layoutY="43.0" prefHeight="35.0" prefWidth="64.0" text="RM "
+                                       textFill="#e11919">
+                                    <font>
+                                        <Font size="30.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="priceLabel" layoutX="78.0" layoutY="42.0" prefHeight="46.0"
+                                       prefWidth="196.0">
+                                    <font>
+                                        <Font size="30.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <Label layoutX="543.0" layoutY="322.0" prefHeight="24.0" prefWidth="57.0" text="Quantity"/>
+                        <TextField fx:id="quantity" layoutX="617.0" layoutY="320.0" prefHeight="27.0"
+                                   prefWidth="187.0"/>
+                        <Button layoutX="740.0" layoutY="369.0" mnemonicParsing="false"
+                                style="-fx-background-color: b4e7ce;" text="Buy Now"/>
+                        <Button layoutX="617.0" layoutY="369.0" mnemonicParsing="false"
+                                style="-fx-background-color: D0FFE8;" text="Add To Cart"/>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="872.0" layoutY="195.0" prefHeight="590.0" prefWidth="393.0" style="-fx-background-color: F2F7F4;">
+                <AnchorPane layoutX="872.0" layoutY="195.0" prefHeight="590.0" prefWidth="393.0"
+                            style="-fx-background-color: F2F7F4;">
                     <children>
-                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="366.0" style="-fx-background-size: auto;">
+                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="366.0"
+                                    style="-fx-background-size: auto;">
                             <children>
-                                <Label prefHeight="35.0" prefWidth="366.0" style="-fx-background-color: #FFFFFF;" text="  Product Specifications">
+                                <Label prefHeight="35.0" prefWidth="366.0" style="-fx-background-color: #FFFFFF;"
+                                       text="  Product Specifications">
                                     <font>
-                                        <Font size="15.0" />
+                                        <Font size="15.0"/>
                                     </font>
                                 </Label>
                             </children>
                         </AnchorPane>
-                        <Label layoutX="22.0" layoutY="60.0" text="Category:" />
-                        <Label layoutX="22.0" layoutY="86.0" text="Brand:" />
-                        <Label layoutX="22.0" layoutY="112.0" text="Country Of Origin:" />
-                        <Label layoutX="22.0" layoutY="138.0" text="Stock:" />
-                        <Label layoutX="22.0" layoutY="164.0" text="Ships From:" />
-                        <AnchorPane layoutX="14.0" layoutY="195.0" prefHeight="35.0" prefWidth="366.0" style="-fx-background-color: #FFFFFF;">
+                        <Label layoutX="22.0" layoutY="60.0" text="Category:"/>
+                        <Label layoutX="22.0" layoutY="86.0" text="Brand:"/>
+                        <Label layoutX="22.0" layoutY="112.0" text="Country Of Origin:"/>
+                        <Label layoutX="22.0" layoutY="138.0" text="Stock:"/>
+                        <Label layoutX="22.0" layoutY="164.0" text="Ships From:"/>
+                        <AnchorPane layoutX="14.0" layoutY="195.0" prefHeight="35.0" prefWidth="366.0"
+                                    style="-fx-background-color: #FFFFFF;">
                             <children>
                                 <Label prefHeight="35.0" prefWidth="366.0" text="  Product Description">
                                     <font>
-                                        <Font size="15.0" />
+                                        <Font size="15.0"/>
                                     </font>
                                 </Label>
                             </children>
                         </AnchorPane>
-                  <Label fx:id="category" layoutX="84.0" layoutY="60.0" prefHeight="18.0" prefWidth="294.0" />
-                  <Label fx:id="brand" layoutX="63.0" layoutY="86.0" prefHeight="18.0" prefWidth="317.0" />
-                  <Label fx:id="country" layoutX="135.0" layoutY="112.0" prefHeight="18.0" prefWidth="244.0" />
-                  <Label fx:id="stock" layoutX="62.0" layoutY="138.0" prefHeight="18.0" prefWidth="318.0" />
-                  <Label fx:id="shipFrom" layoutX="98.0" layoutY="164.0" prefHeight="18.0" prefWidth="282.0" />
-                  <Label fx:id="productDescription" alignment="TOP_LEFT" layoutX="21.0" layoutY="244.0" prefHeight="147.0" prefWidth="359.0" />
+                        <Label fx:id="category" layoutX="84.0" layoutY="60.0" prefHeight="18.0" prefWidth="294.0"/>
+                        <Label fx:id="brand" layoutX="63.0" layoutY="86.0" prefHeight="18.0" prefWidth="317.0"/>
+                        <Label fx:id="country" layoutX="135.0" layoutY="112.0" prefHeight="18.0" prefWidth="244.0"/>
+                        <Label fx:id="stock" layoutX="62.0" layoutY="138.0" prefHeight="18.0" prefWidth="318.0"/>
+                        <Label fx:id="shipFrom" layoutX="98.0" layoutY="164.0" prefHeight="18.0" prefWidth="282.0"/>
+                        <Label fx:id="productDescription" alignment="TOP_LEFT" layoutX="21.0" layoutY="244.0"
+                               prefHeight="147.0" prefWidth="359.0"/>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="23.0" layoutY="628.0" prefHeight="156.0" prefWidth="837.0" style="-fx-background-color: F2F7F4;">
+                <AnchorPane layoutX="23.0" layoutY="628.0" prefHeight="156.0" prefWidth="837.0"
+                            style="-fx-background-color: F2F7F4;">
                     <children>
                         <Label layoutX="14.0" layoutY="14.0" text="Product Ratings">
                             <font>
-                                <Font size="15.0" />
+                                <Font size="15.0"/>
                             </font>
                         </Label>
                     </children>
@@ -113,7 +138,7 @@
         </AnchorPane>
         <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0">
             <image>
-                <Image url="@../../../images/logoMarkOmazon.png" />
+                <Image url="@../../../images/logoMarkOmazon.png"/>
             </image>
         </ImageView>
     </children>

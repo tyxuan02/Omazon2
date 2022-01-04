@@ -9,10 +9,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.animation.TranslateTransition;
@@ -47,21 +51,25 @@ public class UserPurchasePageController {
 
     @FXML
     private Line underLine;
-    
+
     @FXML
     private ComboBox<String> productCategory_home;
-    
+
     @FXML
     private Button profileIcon;
 
     @FXML
     private Button homeIcon;
-    
+
+    @FXML
+    private VBox vBox;
+
     @FXML
     public void initialize() {
+        // Set-up category in the combo box
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory_home.setPromptText("Select");
-        
+
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
         tooltipProfile.setText("My Profile");
@@ -80,6 +88,8 @@ public class UserPurchasePageController {
             homeIcon.getTooltip().setX(bHome.getMaxX() - 60);
             homeIcon.getTooltip().setY(bHome.getMinY() + 35);
         });
+
+        displayCartItem();
     }
 
     @FXML
@@ -115,6 +125,11 @@ public class UserPurchasePageController {
 
         // play the animation
         playAnimation(currentPos, getLinePos());
+
+        // clear the contents in the vbox
+        vBox.getChildren().clear();
+
+        // TODO: 1/2/2022 display different contents
     }
 
     @FXML
@@ -135,6 +150,12 @@ public class UserPurchasePageController {
 
         // play the animation
         playAnimation(currentPos, getLinePos());
+
+        // clear the contents in the vbox
+        vBox.getChildren().clear();
+
+        // display the contents
+        displayCartItem();
     }
 
     @FXML
@@ -180,5 +201,56 @@ public class UserPurchasePageController {
         translate.setNode(underLine);
         translate.setByX(currentPos - previousPos);
         translate.play();
+    }
+
+    /**
+     * This method is used to add the cart item of the user into the vbox
+     *
+     * @author XiangLun
+     */
+    private void displayCartItem(){
+        // create an array list and call the get cart item list method
+        List<CartItem> cartItemList = new ArrayList<>(getCartItemList());
+
+        // loop through the cartItemList, fills in the cart item information and add it to the vbox
+        for (CartItem cartItem : cartItemList) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart-item-template.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                CartItemController cartItemController = fxmlLoader.getController();
+                cartItemController.setData(cartItem);
+                vBox.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    /**
+     * This method is used to get an array list of cart items
+     *
+     * @return an array list with all the cart item required
+     * @author XiangLun
+     */
+    private List<CartItem> getCartItemList() {
+
+        // create a list
+        List<CartItem> cartItemList = new ArrayList<>();
+
+        // create an cart item object
+        CartItem cartItem;
+
+        // add cart item into the list
+        // TODO: 1/2/2022 Find a way to store user's cart item and add them to the list
+        for (int i = 0; i < 20; i++) {
+            cartItem = new CartItem();
+            cartItem.setSellerName("Amazon");
+            cartItem.setCartImagePath("src/main/resources/images/clothes.jpg");
+            cartItem.setPricePerUnit(10.00);
+            cartItem.setQuantity(3);
+            cartItemList.add(cartItem);
+        }
+
+        // return the list
+        return cartItemList;
     }
 }

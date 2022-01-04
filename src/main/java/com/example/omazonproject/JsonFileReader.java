@@ -17,7 +17,7 @@ public class JsonFileReader {
 
     public JsonFileReader() {
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader("credentials.json")) {
+        try (FileReader reader = new FileReader("JsonFiles/credentials.json")) {
             Object obj = jsonParser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
             this.emailAddress = (String) jsonObject.get("email address");
