@@ -40,6 +40,9 @@ public class SellerAddProductController implements Initializable {
     @FXML
     private ImageView productImage;
 
+    @FXML
+    private TextField stockNumber;
+
     @Override
     // Set the items viewing in product category
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,6 +98,7 @@ public class SellerAddProductController implements Initializable {
         String productPRICE = productPrice.getText();
         String productCATEGORY = String.valueOf(productCategory.getValue());
         String productDESCRIPTION = productDescription.getText();
+        String productSTOCKNUMBER = stockNumber.getText();
 
         // If product name is entered
         if (!productNAME.isBlank())
@@ -107,27 +111,37 @@ public class SellerAddProductController implements Initializable {
                         if (productCATEGORY.equals("Electronic Devices") || productCATEGORY.equals("Fashion") || productCATEGORY.equals("Food") || productCATEGORY.equals("Health & Beauty") || productCATEGORY.equals("Sports") || productCATEGORY.equals("TV & Home Appliances")) {
                             // If product description is entered
                             if (!productDESCRIPTION.isBlank()) {
-                                // If product image is uploaded
-                                if (productImage.getImage() != null) {
-                                    // Add product information into database
-                                    addProduct();
-                                    Alert alert = new Alert(Alert.AlertType.NONE);
-                                    alert.setTitle("Successful");
-                                    alert.setContentText("Your product has been added!");
-                                    alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                                    alert.showAndWait();
+                                // If product stock number is entered
+                                if (!productSTOCKNUMBER.isBlank()) {
+                                    // If product image is uploaded
+                                    if (productImage.getImage() != null) {
+                                        // Add product information into database
+                                        addProduct();
+                                        Alert alert = new Alert(Alert.AlertType.NONE);
+                                        alert.setTitle("Successful");
+                                        alert.setContentText("Your product has been added!");
+                                        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                                        alert.showAndWait();
 
-                                    // Seller add product page will close automatically when product information has been added
-                                    Node n = (Node) event.getSource();
-                                    Stage stage = (Stage) n.getScene().getWindow();
-                                    stage.close();
+                                        // Seller add product page will close automatically when product information has been added
+                                        Node n = (Node) event.getSource();
+                                        Stage stage = (Stage) n.getScene().getWindow();
+                                        stage.close();
 
+                                    } else {
+                                        // If product image is not uploaded
+                                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                                        alert.setTitle("Error");
+                                        alert.setHeaderText("Product image is not uploaded");
+                                        alert.setContentText("Please upload product image");
+                                        alert.showAndWait();
+                                    }
                                 } else {
-                                    // If product image is not uploaded
+                                    // If product stock number is not entered
                                     Alert alert = new Alert(Alert.AlertType.ERROR);
                                     alert.setTitle("Error");
-                                    alert.setHeaderText("Product image is not uploaded");
-                                    alert.setContentText("Please upload product image");
+                                    alert.setHeaderText("Stock number is not entered");
+                                    alert.setContentText("Please enter stock number");
                                     alert.showAndWait();
                                 }
                             } else {
@@ -208,8 +222,10 @@ public class SellerAddProductController implements Initializable {
             String category = productCategory.getValue();
             String description = productDescription.getText();
             String imageName = productIMAGENAME;
-            String insertFields = "INSERT INTO product_info (sellerEmail, name, price, category, description, imageName) VALUES ('";
-            String insertValues = sellerEmail + "','" + productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "')";
+            String stock = stockNumber.getText();
+            String sellerAddress = Seller.getAddress();
+            String insertFields = "INSERT INTO product_info (sellerEmail, name, price, category, description, imageName, numOfStock, sellerAddress) VALUES ('";
+            String insertValues = sellerEmail + "','" + productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "','" + stock + "','" + sellerAddress + "')";
             String insertToRegister = insertFields + insertValues;
             statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);

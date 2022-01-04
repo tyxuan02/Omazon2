@@ -11,53 +11,44 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.omazonproject.SellerAddProductController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerAddProductController">
     <top>
-        <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: b4e7ce;"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: b4e7ce;" BorderPane.alignment="CENTER">
             <children>
                 <Label layoutX="228.0" layoutY="41.0" text="ADD PRODUCTS">
                     <font>
-                        <Font name="Impact" size="24.0"/>
+                        <Font name="Impact" size="24.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-27.0" layoutY="-15.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-27.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/logoMarkOmazon.png"/>
+                        <Image url="@../../../images/logoMarkOmazon.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
     </top>
     <bottom>
-        <AnchorPane prefHeight="322.0" prefWidth="600.0" style="-fx-background-color: e2ece9;"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="322.0" prefWidth="600.0" style="-fx-background-color: e2ece9;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="14.0" layoutY="24.0" text="PRODUCT NAME             :"/>
-                <ImageView fitHeight="101.0" fitWidth="100.0" layoutX="490.0" layoutY="14.0" pickOnBounds="true"
-                           preserveRatio="true"/>
-                <Button layoutX="431.0" layoutY="218.0" mnemonicParsing="false"
-                        onMouseClicked="#uploadImageButtonPressed" text="UPLOAD IMAGE">
+                <Label layoutX="14.0" layoutY="24.0" text="PRODUCT NAME             :" />
+                <ImageView fitHeight="101.0" fitWidth="100.0" layoutX="490.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                <Button layoutX="431.0" layoutY="218.0" mnemonicParsing="false" onMouseClicked="#uploadImageButtonPressed" text="UPLOAD IMAGE">
                     <font>
-                        <Font size="10.0"/>
+                        <Font size="10.0" />
                     </font>
                 </Button>
-                <Label layoutX="14.0" layoutY="73.0" text="PRODUCT PRICE              :"/>
-                <ComboBox fx:id="productCategory" layoutX="163.0" layoutY="121.0" prefWidth="150.0"
-                          style="-fx-background-color: WHITE;"/>
-                <Label layoutX="15.0" layoutY="125.0" text="PRODUCT CATEGORY      :"/>
-                <TextField fx:id="productName" layoutX="163.0" layoutY="20.0"/>
-                <TextField fx:id="productPrice" layoutX="163.0" layoutY="69.0"/>
-                <Label layoutX="13.0" layoutY="173.0" text="PRODUCT DESCRIPTION  :        :"/>
-                <TextArea fx:id="productDescription" layoutX="161.0" layoutY="164.0" prefHeight="129.0"
-                          prefWidth="154.0"/>
-                <ImageView fx:id="productImage" fitHeight="200.0" fitWidth="200.0" layoutX="373.0" layoutY="8.0"
-                           pickOnBounds="true" preserveRatio="true"/>
-                <Button layoutX="551.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#saveButtonPressed"
-                        text="SAVE"/>
+                <Label layoutX="14.0" layoutY="73.0" text="PRODUCT PRICE              :" />
+                <ComboBox fx:id="productCategory" layoutX="163.0" layoutY="121.0" prefWidth="150.0" style="-fx-background-color: WHITE;" />
+                <Label layoutX="15.0" layoutY="125.0" text="PRODUCT CATEGORY      :" />
+                <TextField fx:id="productName" layoutX="163.0" layoutY="20.0" />
+                <TextField fx:id="productPrice" layoutX="163.0" layoutY="69.0" />
+                <Label layoutX="13.0" layoutY="173.0" text="PRODUCT DESCRIPTION  :        :" />
+                <TextArea fx:id="productDescription" layoutX="163.0" layoutY="162.0" prefHeight="86.0" prefWidth="154.0" />
+                <ImageView fx:id="productImage" fitHeight="155.0" fitWidth="200.0" layoutX="373.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+                <Button layoutX="551.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#saveButtonPressed" text="SAVE" />
+            <Label layoutX="15.0" layoutY="268.0" prefHeight="18.0" prefWidth="145.0" text="STOCK NUMBER              :" />
+            <TextField fx:id="stockNumber" layoutX="163.0" layoutY="264.0" />
             </children>
         </AnchorPane>
     </bottom>
