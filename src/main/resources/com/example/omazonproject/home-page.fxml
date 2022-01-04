@@ -29,12 +29,12 @@
                         <Image url="@../../../images/logoMarkOmazon.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0">
+                <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/malaysia flag.jpg" />
+                        <Image url="@../../../images/malaysiaFlag.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
+                <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
                 <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
                     <children>
                         <Button layoutX="656.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" text="search" textFill="#514e4e" AnchorPane.leftAnchor="656.0" AnchorPane.topAnchor="17.0">
