@@ -63,12 +63,12 @@
                                        minWidth="-Infinity" prefHeight="40.0" prefWidth="235.0"
                                        promptText="Enter password" AnchorPane.leftAnchor="115.0"
                                        AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="230.0"/>
-                        <Label  layoutX="156.0" layoutY="431.0" text="Create a new seller account" textFill="#1d3557"/>
+                        <Label layoutX="156.0" layoutY="431.0" text="Create a new seller account" textFill="#1d3557"/>
                         <Button fx:id="btn2" layoutX="198.0" layoutY="453.0" mnemonicParsing="false"
                                 onMouseClicked="#sellerSignUpPromptButtonPressed" text="Sign Up"/>
-                        <Label  fx:id="sellerLoginMessageLabel" layoutX="115.0" layoutY="278.0" prefHeight="18.0"
-                                prefWidth="230.0" text="Please enter email address and password." textFill="RED"
-                                visible="false"/>
+                        <Label fx:id="sellerLoginMessageLabel" layoutX="115.0" layoutY="278.0" prefHeight="18.0"
+                               prefWidth="230.0" text="Please enter email address and password." textFill="RED"
+                               visible="false"/>
                         <Button fx:id="btn2" layoutX="394.0" layoutY="21.0" mnemonicParsing="false"
                                 onMouseClicked="#sellerLoginPageQuitButtonPressed" prefHeight="28.0" prefWidth="32.0"
                                 text="X">

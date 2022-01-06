@@ -101,7 +101,9 @@ public class Product {
         this.numberOfSales = numberOfSales;
     }
 
-    public double getProductPrice() {return productPrice;}
+    public double getProductPrice() {
+        return productPrice;
+    }
 
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
@@ -115,9 +117,13 @@ public class Product {
         this.productImagePath = productImagePath;
     }
 
-    public void setProductStock(int numOfStock) { this.numOfStock = numOfStock; }
+    public void setProductStock(int numOfStock) {
+        this.numOfStock = numOfStock;
+    }
 
-    public int getNumOfStock() { return this.numOfStock; }
+    public int getNumOfStock() {
+        return this.numOfStock;
+    }
 
     public void setAddress(String address) {
         this.address = address;
@@ -125,5 +131,9 @@ public class Product {
 
     public String getAddress() {
         return address;
+    }
+
+    public void setNumOfStock(int numOfStock) {
+        this.numOfStock = numOfStock;
     }
 }

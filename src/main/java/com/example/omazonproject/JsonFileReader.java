@@ -8,7 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * This class responsible to read the credentials of our Omazon email account from a .json file
+ * This class is solely responsible to read the credentials of our Omazon email account from a .json file
+ *
  * @author XiangLun
  */
 public class JsonFileReader {

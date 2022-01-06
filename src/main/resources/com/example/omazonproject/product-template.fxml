@@ -6,21 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ImageView fx:id="productImagePath" fitHeight="145.0" fitWidth="188.0" layoutX="6.0" layoutY="31.0" pickOnBounds="true">
+        <ImageView fx:id="productImagePath" fitHeight="145.0" fitWidth="188.0" layoutX="6.0" layoutY="31.0"
+                   pickOnBounds="true">
             <image>
-                <Image url="@../../../images/PS5.jpg" />
+                <Image url="@../../../images/PS5.jpg"/>
             </image>
         </ImageView>
         <Label fx:id="productName" layoutX="14.0" layoutY="8.0" prefHeight="15.0" prefWidth="171.0" text="PS5">
             <font>
-                <Font name="Impact" size="18.0" />
+                <Font name="Impact" size="18.0"/>
             </font>
         </Label>
         <Label fx:id="productPrice" layoutX="80.0" layoutY="178.0" text="RM 2000">
             <font>
-                <Font size="10.0" />
+                <Font size="10.0"/>
             </font>
         </Label>
     </children>

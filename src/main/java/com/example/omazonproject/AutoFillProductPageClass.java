@@ -1,5 +1,6 @@
 package com.example.omazonproject;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,20 +18,23 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+/**
+ * This class acts as a controller for the product page
+ */
 public class AutoFillProductPageClass {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    private Product currentProduct;
     DecimalFormat df = new DecimalFormat("0.00");
-
 
     @FXML
     private ImageView productImage;
 
     @FXML
-    private Label brand;
+    private Label name;
 
     @FXML
     private Label category;
@@ -56,10 +60,13 @@ public class AutoFillProductPageClass {
     @FXML
     public void autoFill(Product product) {
 
+        //Save the object of the current product
+        this.currentProduct = product;
+
         //Autofill the product information into product page
         priceLabel.setText(String.valueOf(df.format(product.getProductPrice())));
         category.setText(product.getCategory());
-        brand.setText(product.getProductName());
+        name.setText(product.getProductName());
         country.setText("Malaysia");
         stock.setText(String.valueOf(product.getNumOfStock()));
         shipFrom.setText(product.getAddress());
@@ -95,4 +102,15 @@ public class AutoFillProductPageClass {
         stage.show();
     }
 
+    @FXML
+    void addToCartButtonPressed(ActionEvent event) {
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        try {
+            // use button to choose quantity
+            jsonFileUtil.writeCartFile(currentProduct, Integer.parseInt(quantity.getText()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

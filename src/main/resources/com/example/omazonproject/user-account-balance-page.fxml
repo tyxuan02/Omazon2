@@ -13,141 +13,165 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.UserAccountBalancePageController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.omazonproject.UserAccountBalancePageController">
     <children>
-        <AnchorPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-            <ImageView fitHeight="378.0" fitWidth="606.0" layoutX="700.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/decoAccBalancePage_2.png" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="378.0" fitWidth="606.0" layoutX="700.0" layoutY="395.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/decoAccBalancePage_2.png"/>
+                    </image>
+                </ImageView>
                 <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/bannerHomepage.gif" />
+                        <Image url="@../../../images/bannerHomepage.gif"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0">
                     <image>
-                        <Image url="@../../../images/logoMarkOmazon.png" />
+                        <Image url="@../../../images/logoMarkOmazon.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/malaysiaFlag.png" />
+                        <Image url="@../../../images/malaysiaFlag.png"/>
                     </image>
                 </ImageView>
-                <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
-                <AnchorPane layoutX="73.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="694.0" style="-fx-background-color: F2F4F7;">
+                <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
+                       textFill="#1a0000"/>
+                <AnchorPane layoutX="73.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="694.0"
+                            style="-fx-background-color: F2F4F7;">
                     <children>
                         <Label layoutX="144.0" layoutY="144.0" text="Account Balance" textAlignment="CENTER">
                             <font>
-                                <Font name="SimSun-ExtB" size="53.0" />
+                                <Font name="SimSun-ExtB" size="53.0"/>
                             </font>
                         </Label>
-                          <Label layoutX="275.0" layoutY="233.0" text="RM  0.00" textFill="#e70707">
-                              <font>
-                                  <Font size="30.0" />
-                              </font>
-                          </Label>
-                          <Line endX="57.1256103515625" endY="-6.103515625E-5" layoutX="362.0" layoutY="281.0" startX="-112.27438354492188" startY="-6.103515625E-5" />
-                          <Button layoutX="275.0" layoutY="283.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="118.0" style="-fx-background-color: F2F4F7;" text="top up">
-                              <graphic>
-                                  <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                      <image>
-                                          <Image url="@../../../images/topUpIcon.png" />
-                                      </image>
-                                  </ImageView>
-                              </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                          </Button>
+                        <Label layoutX="275.0" layoutY="233.0" text="RM  0.00" textFill="#e70707">
+                            <font>
+                                <Font size="30.0"/>
+                            </font>
+                        </Label>
+                        <Line endX="57.1256103515625" endY="-6.103515625E-5" layoutX="362.0" layoutY="281.0"
+                              startX="-112.27438354492188" startY="-6.103515625E-5"/>
+                        <Button layoutX="275.0" layoutY="283.0" mnemonicParsing="false" prefHeight="62.0"
+                                prefWidth="118.0" style="-fx-background-color: F2F4F7;" text="top up">
+                            <graphic>
+                                <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/topUpIcon.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Button>
                     </children>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" height="18.66" radius="8.83" width="18.66">
-                     <color>
-                        <Color red="0.20392157137393951" green="0.5058823823928833" blue="0.40392157435417175" />
-                     </color>
-                  </DropShadow>
-               </effect>
+                    <effect>
+                        <DropShadow blurType="TWO_PASS_BOX" height="18.66" radius="8.83" width="18.66">
+                            <color>
+                                <Color red="0.20392157137393951" green="0.5058823823928833" blue="0.40392157435417175"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
                 </AnchorPane>
-            <ImageView fitHeight="424.0" fitWidth="400.0" layoutX="878.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/decoAccBalancePage_3.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="249.0" fitWidth="390.0" layoutX="1035.0" layoutY="604.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/moneyBag.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="76.0" layoutY="199.0" text="My Account" textFill="#6b6464">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Line endX="843.0" endY="1.20001220703125" layoutX="437.0" layoutY="771.0" startX="-443.2743835449219" startY="1.20001220703125" stroke="#c4c4c4" />
-            <ImageView fitHeight="210.0" fitWidth="343.0" layoutX="857.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/decoAccBalancePage_4.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="918.0" layoutY="273.0" prefHeight="78.0" prefWidth="238.0" text="Always be careful">
-               <font>
-                  <Font name="KaiTi" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="918.0" layoutY="340.0" text="with your transaction">
-               <font>
-                  <Font name="KaiTi" size="22.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="291.0" fitWidth="238.0" layoutX="947.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/decoAccBalancePage_1.png" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="424.0" fitWidth="400.0" layoutX="878.0" layoutY="421.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/decoAccBalancePage_3.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="249.0" fitWidth="390.0" layoutX="1035.0" layoutY="604.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/moneyBag.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="76.0" layoutY="199.0" text="My Account" textFill="#6b6464">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Line endX="843.0" endY="1.20001220703125" layoutX="437.0" layoutY="771.0" startX="-443.2743835449219"
+                      startY="1.20001220703125" stroke="#c4c4c4"/>
+                <ImageView fitHeight="210.0" fitWidth="343.0" layoutX="857.0" layoutY="222.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/decoAccBalancePage_4.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="918.0" layoutY="273.0" prefHeight="78.0" prefWidth="238.0" text="Always be careful">
+                    <font>
+                        <Font name="KaiTi" size="22.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="918.0" layoutY="340.0" text="with your transaction">
+                    <font>
+                        <Font name="KaiTi" size="22.0"/>
+                    </font>
+                </Label>
+                <ImageView fitHeight="291.0" fitWidth="238.0" layoutX="947.0" layoutY="520.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/decoAccBalancePage_1.png"/>
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
         <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
             <children>
-            <ComboBox fx:id="productCategory_home" layoutX="72.0" layoutY="17.0" prefHeight="27.0" prefWidth="128.0" promptText="Select" />
-                <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0" promptText="Search Items" />
-            <Button layoutX="656.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" text="search" textFill="#514e4e">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-                <Button fx:id="profileIcon" layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
-                    <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/userIcon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+                <ComboBox fx:id="productCategory_home" layoutX="72.0" layoutY="17.0" prefHeight="27.0" prefWidth="128.0"
+                          promptText="Select"/>
+                <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0"
+                           promptText="Search Items"/>
+                <Button layoutX="656.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                        minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" text="search" textFill="#514e4e">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
                 </Button>
-                <Button fx:id="homeIcon" layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce;">
+                <Button fx:id="profileIcon" layoutX="1088.0" layoutY="11.0" mnemonicParsing="false"
+                        onAction="#profileButtonPressed" prefHeight="27.0" prefWidth="30.0"
+                        style="-fx-background-color: b4e7ce;">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/HomePageIcon.png" />
+                                <Image url="@../../../images/userIcon.png"/>
                             </image>
                         </ImageView>
                     </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="homeIcon" layoutX="1146.0" layoutY="11.0" mnemonicParsing="false"
+                        onAction="#homeButtonPressed" prefHeight="27.0" prefWidth="30.0"
+                        style="-fx-background-color: b4e7ce;">
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/HomePageIcon.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
                 </Button>
             </children>
         </AnchorPane>
