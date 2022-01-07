@@ -19,7 +19,7 @@ public class CartItemController {
     private Label quantity;
 
     @FXML
-    private Label sellerName;
+    private Label productName;
 
     @FXML
     private Label totalPrice;
@@ -31,8 +31,8 @@ public class CartItemController {
      * @author XiangLun
      */
     public void setData(CartItem cartItem) {
-        sellerName.setText(cartItem.getSellerName());
-        pricePerUnit.setText(Double.toString(cartItem.getPricePerUnit()));
+        productName.setText(cartItem.getProductName());
+        pricePerUnit.setText(String.format("RM %.2f", cartItem.getPricePerUnit()));
         quantity.setText(Integer.toString(cartItem.getQuantity()));
         totalPrice.setText(String.format("RM %.2f", cartItem.getPricePerUnit() * cartItem.getQuantity()));
         Image image = new Image(new File(cartItem.getCartImagePath()).toURI().toString());

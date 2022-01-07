@@ -208,9 +208,10 @@ public class UserPurchasePageController {
      *
      * @author XiangLun
      */
-    private void displayCartItem(){
+    private void displayCartItem() {
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
         // create an array list and call the get cart item list method
-        List<CartItem> cartItemList = new ArrayList<>(getCartItemList());
+        List<CartItem> cartItemList = new ArrayList<>(jsonFileUtil.readCartFile());
 
         // loop through the cartItemList, fills in the cart item information and add it to the vbox
         for (CartItem cartItem : cartItemList) {
@@ -224,33 +225,5 @@ public class UserPurchasePageController {
                 e.printStackTrace();
             }
         }
-    }
-    /**
-     * This method is used to get an array list of cart items
-     *
-     * @return an array list with all the cart item required
-     * @author XiangLun
-     */
-    private List<CartItem> getCartItemList() {
-
-        // create a list
-        List<CartItem> cartItemList = new ArrayList<>();
-
-        // create an cart item object
-        CartItem cartItem;
-
-        // add cart item into the list
-        // TODO: 1/2/2022 Find a way to store user's cart item and add them to the list
-        for (int i = 0; i < 20; i++) {
-            cartItem = new CartItem();
-            cartItem.setSellerName("Amazon");
-            cartItem.setCartImagePath("src/main/resources/images/clothes.jpg");
-            cartItem.setPricePerUnit(10.00);
-            cartItem.setQuantity(3);
-            cartItemList.add(cartItem);
-        }
-
-        // return the list
-        return cartItemList;
     }
 }

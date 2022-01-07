@@ -1,11 +1,13 @@
 package com.example.omazonproject;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Objects;
+
 import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -58,10 +61,10 @@ public class AutoFillProductPageClass {
 
     @FXML
     private Label stock;
-    
+
     @FXML
     private Button profileIcon;
-    
+
     @FXML
     private Button homeIcon;
 
@@ -84,7 +87,7 @@ public class AutoFillProductPageClass {
         Image image = new Image(String.valueOf(u));
         productImage.setImage(image);
     }
-    
+
     @FXML
     public void initialize() {
         // Show tooltip message when user point at the icon
@@ -123,6 +126,9 @@ public class AutoFillProductPageClass {
     @FXML
     void userProfileButtonPressed(MouseEvent event) throws IOException {
 
+        // prevent autofocus to the text field
+        Platform.runLater(() -> root.requestFocus());
+
         // Forward user to user profile page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -139,8 +145,29 @@ public class AutoFillProductPageClass {
             // use button to choose quantity
             jsonFileUtil.writeCartFile(currentProduct, Integer.parseInt(quantity.getText()));
 
+            // inform the user that the item is added to cart successfully
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("Item added to cart successfully.");
+            alert.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void decreaseQuantityButtonPressed(ActionEvent event) {
+        int currentQuantity = Integer.parseInt(quantity.getText());
+        if (currentQuantity > 1) {
+            quantity.setText(Integer.toString(currentQuantity - 1));
+        }
+    }
+
+    @FXML
+    void increaseQuantityButtonPressed(ActionEvent event) {
+        int currentQuantity = Integer.parseInt(quantity.getText());
+        quantity.setText(Integer.toString(currentQuantity + 1));
     }
 }

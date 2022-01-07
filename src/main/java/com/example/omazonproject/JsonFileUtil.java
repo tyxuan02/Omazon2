@@ -6,6 +6,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This method is used to write and read .json file for different purposes
@@ -32,8 +34,9 @@ public class JsonFileUtil {
 
                 JSONObject cartItem = new JSONObject();
                 cartItem.put("productName", product.getProductName());
-                cartItem.put("sellerEmail", product.getSellerEmail());
+                cartItem.put("pricePerUnit", product.getProductPrice());
                 cartItem.put("quantity", quantity);
+                cartItem.put("cartImagePath", product.getProductImagePath());
 
                 jsonArray.add(cartItem);
 
@@ -51,8 +54,9 @@ public class JsonFileUtil {
             // write the information of the cart item into a new cart.json file
             JSONObject cartItem = new JSONObject();
             cartItem.put("productName", product.getProductName());
-            cartItem.put("sellerEmail", product.getSellerEmail());
+            cartItem.put("pricePerUnit", product.getProductPrice());
             cartItem.put("quantity", quantity);
+            cartItem.put("cartImagePath", product.getProductImagePath());
 
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(cartItem);
@@ -64,7 +68,31 @@ public class JsonFileUtil {
         }
     }
 
-    public static void readCartFile() {
+    public List<CartItem> readCartFile() {
+        List<CartItem> cartItemList = new ArrayList<>();
+        if (new File("JsonFiles\\cart.json").exists()) {
+            JSONParser jsonParser = new JSONParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader("JsonFiles\\cart.json"));
+                JSONArray jsonArray = (JSONArray) obj;
 
+                // Iterate over jsonArray to load all the cart item in it
+                for (Object object : jsonArray) {
+                    if (object instanceof JSONObject) {
+                        CartItem cartItem = new CartItem();
+                        cartItem.setProductName((String) ((JSONObject) object).get("productName"));
+                        cartItem.setQuantity(Math.toIntExact((Long) ((JSONObject) object).get("quantity")));
+                        cartItem.setPricePerUnit((Double) ((JSONObject) object).get("pricePerUnit"));
+                        cartItem.setCartImagePath("src/main/resources/images/" + ((JSONObject) object).get("cartImagePath") + ".png");
+                        cartItemList.add(cartItem);
+                    }
+                }
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return cartItemList;
     }
 }

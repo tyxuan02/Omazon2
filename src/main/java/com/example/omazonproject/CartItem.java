@@ -6,17 +6,17 @@ package com.example.omazonproject;
  * @author XiangLun
  */
 public class CartItem {
-    private String sellerName;
+    private String productName;
     private String cartImagePath;
     private int quantity;
     private double pricePerUnit;
 
-    public String getSellerName() {
-        return sellerName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getCartImagePath() {

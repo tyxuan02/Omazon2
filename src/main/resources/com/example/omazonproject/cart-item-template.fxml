@@ -16,7 +16,7 @@
                preserveRatio="true">
         <Image url="@../../../images/clothes.jpg"/>
     </ImageView>
-    <Label fx:id="sellerName" layoutX="14.0" layoutY="8.0" text="Boutique Shop">
+    <Label fx:id="productName" layoutX="14.0" layoutY="8.0" text="Boutique Shop">
         <font>
             <Font name="System Bold Italic" size="19.0"/>
         </font>
