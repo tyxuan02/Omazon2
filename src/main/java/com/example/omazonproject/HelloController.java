@@ -338,7 +338,7 @@ public class HelloController {
                     User.setPassword(retrievedPassword);
                     User.setAddress(queryResult.getString("address"));
                     User.setPaymentPassword(queryResult.getString("paymentPassword"));
-                    User.setBalance(queryResult.getString("balance"));
+                    User.setBalance(Double.parseDouble(queryResult.getString("balance")));
                     return true;
 
                 } else {

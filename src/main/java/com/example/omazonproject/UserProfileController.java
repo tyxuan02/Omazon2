@@ -210,7 +210,7 @@ public class UserProfileController {
                 User.setEmail(null);
                 User.setPassword(null);
                 User.setPaymentPassword(null);
-                User.setBalance(null);
+                User.setBalance(0);
 
                 // say goodbye
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
