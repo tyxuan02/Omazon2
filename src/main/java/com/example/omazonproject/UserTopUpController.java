@@ -22,7 +22,7 @@ public class UserTopUpController {
 
     @FXML
     public void initialize() {
-        balanceLabel.setText(String.valueOf(User.getBalance()));
+        balanceLabel.setText(String.format("%.2f", User.getBalance()));
     }
 
     @FXML
@@ -39,7 +39,7 @@ public class UserTopUpController {
                 alert.showAndWait();
                 double currentBalance = User.getBalance() + Double.parseDouble(priceEntered.getText());
                 User.setBalance(currentBalance);
-                balanceLabel.setText(String.valueOf(User.getBalance()));
+                balanceLabel.setText(String.format("%.2f", User.getBalance()));
                 resetAccountBalance(User.getBalance());
 
                 // top up page will close automatically when product information has been added

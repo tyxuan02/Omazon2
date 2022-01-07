@@ -66,11 +66,11 @@
                                 <Font size="13.0" />
                             </font>
                         </Button>
-                  <Label fx:id="accountBalanceLabel" layoutX="307.0" layoutY="233.0" prefHeight="46.0" prefWidth="160.0" textFill="#ea0101">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                        <Label fx:id="accountBalanceLabel" layoutX="323.0" layoutY="233.0" prefHeight="46.0" prefWidth="160.0" text="0.00" textFill="#ea0101">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                        </Label>
                     </children>
                     <effect>
                         <DropShadow blurType="TWO_PASS_BOX" height="18.66" radius="8.83" width="18.66">

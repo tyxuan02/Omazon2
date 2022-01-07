@@ -57,7 +57,7 @@ public class UserAccountBalancePageController {
             homeIcon.getTooltip().setY(bHome.getMinY() + 35);
         });
 
-        accountBalanceLabel.setText(String.valueOf(User.getBalance()));
+        accountBalanceLabel.setText(String.format("%.2f", User.getBalance()));
 
     }
 
