@@ -13,7 +13,7 @@ public class User {
     private static String password;
     private static String address;
     private static String paymentPassword;
-    private static String balance;
+    private static double balance;
 
     // A list of getters
     public static String getUsername() {
@@ -31,7 +31,7 @@ public class User {
     public static String getPaymentPassword() {
         return paymentPassword;
     }
-    public static String getBalance() {
+    public static double getBalance() {
         return balance;
     }
 
@@ -51,8 +51,6 @@ public class User {
     public static void setPaymentPassword(String paymentPassword) {
         User.paymentPassword = paymentPassword;
     }
-    public static void setBalance(String balance) {
-        User.balance = balance;
-    }
+    public static void setBalance(double balance) {User.balance = balance;}
 
 }
