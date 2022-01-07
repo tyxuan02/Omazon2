@@ -101,39 +101,50 @@ public class HelloController {
 
                         } else {
                             // If the email entered is not in use,
-                            // Send verification email
-                            VerificationEmail verificationEmail = new VerificationEmail();
-                            verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText(), "user");
+                            // inform the user that they will receive an email
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Creating new account");
+                            alert1.setHeaderText(null);
+                            alert1.setContentText("An email containing a verification email will be sent to your email address.");
+                            alert1.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
 
-                            // Create a dialog box and check the code entered
-                            TextInputDialog textInputDialog = new TextInputDialog();
-                            textInputDialog.setTitle("Verification Email Sent Successfully");
-                            textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
-                            textInputDialog.setContentText("Verification code:");
+                            Optional<ButtonType> btn = alert1.showAndWait();
+                            if (btn.isPresent() && btn.get() == ButtonType.OK) {
+                                // if the user request an email,
+                                // send a confirmation email to the user
+                                VerificationEmail verificationEmail = new VerificationEmail();
+                                verificationEmail.sendVerificationEmail(emailEntered_SignUp.getText(), "user");
 
-                            Optional<String> code = textInputDialog.showAndWait();
-                            if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
-                                // If the code entered matches,
-                                // Register the user
-                                registerUser();
+                                // Create a dialog box and check the code entered
+                                TextInputDialog textInputDialog = new TextInputDialog();
+                                textInputDialog.setTitle("Verification Email Sent Successfully");
+                                textInputDialog.setHeaderText("Please enter the verification code to verify your email address");
+                                textInputDialog.setContentText("Verification code:");
 
-                                // Display sign-up successful pop-up message
-                                Alert alert = new Alert(Alert.AlertType.NONE);
-                                alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
-                                alert.setTitle("Success");
-                                alert.setHeaderText("Your account has been created.");
-                                alert.setContentText("Thank you for signing up at Omazon :D");
-                                alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                                alert.showAndWait();
+                                Optional<String> code = textInputDialog.showAndWait();
+                                if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
+                                    // If the code entered matches,
+                                    // Register the user
+                                    registerUser();
 
-                            } else {
-                                // If the code entered does not match,
-                                // Display error pop-up message
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Error");
-                                alert.setHeaderText("The verification code entered does not match.");
-                                alert.setContentText("Please try again.");
-                                alert.showAndWait();
+                                    // Display sign-up successful pop-up message
+                                    Alert alert = new Alert(Alert.AlertType.NONE);
+                                    alert.setGraphic(new ImageView(Objects.requireNonNull(this.getClass().getResource("GreenTick.gif")).toString()));
+                                    alert.setTitle("Success");
+                                    alert.setHeaderText("Your account has been created.");
+                                    alert.setContentText("Thank you for signing up at Omazon :D");
+                                    alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                                    alert.showAndWait();
+
+                                } else {
+                                    // If the code entered does not match,
+                                    // Display error pop-up message
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Error");
+                                    alert.setHeaderText("The verification code entered does not match.");
+                                    alert.setContentText("Please try again.");
+                                    alert.showAndWait();
+                                }
                             }
                         }
                     } catch (SQLException e) {
