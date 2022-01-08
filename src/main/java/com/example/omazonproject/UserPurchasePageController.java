@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
@@ -35,7 +36,7 @@ public class UserPurchasePageController {
     private Parent root;
 
     @FXML
-    private Button cancelPayment;
+    private Button orders;
 
     @FXML
     private Button orderHistory;
@@ -44,16 +45,19 @@ public class UserPurchasePageController {
     private Button toPay;
 
     @FXML
-    private Button toReceived;
+    private Label deliveredLabel;
 
     @FXML
-    private Button toShip;
+    private Label totalPriceLabel;
 
     @FXML
     private Line underLine;
 
     @FXML
     private ComboBox<String> productCategory_home;
+
+    @FXML
+    private Label unitPriceLabel;
 
     @FXML
     private Button profileIcon;
@@ -118,9 +122,13 @@ public class UserPurchasePageController {
     }
 
     @FXML
-    void cancelPaymentButtonPressed(ActionEvent event) {
+    void ordersButtonPressed(ActionEvent event) {
+        unitPriceLabel.setVisible(false);
+        totalPriceLabel.setVisible(false);
+        deliveredLabel.setVisible(true);
+
         // get the x-position of the cancel payment button and store the value in the currentPos variable
-        Bounds boundsInScene = cancelPayment.localToScene(cancelPayment.getBoundsInLocal());
+        Bounds boundsInScene = orders.localToScene(orders.getBoundsInLocal());
         double currentPos = boundsInScene.getCenterX();
 
         // play the animation
@@ -129,21 +137,35 @@ public class UserPurchasePageController {
         // clear the contents in the vbox
         vBox.getChildren().clear();
 
-        // TODO: 1/2/2022 display different contents
+        // display orders
+        displayOrderedItem();
     }
 
     @FXML
     void orderHistoryButtonPressed(ActionEvent event) {
+        unitPriceLabel.setVisible(true);
+        totalPriceLabel.setVisible(true);
+        deliveredLabel.setVisible(false);
+
         // get the x-position of the order history button and store the value in the currentPos variable
         Bounds boundsInScene = orderHistory.localToScene(orderHistory.getBoundsInLocal());
         double currentPos = boundsInScene.getCenterX();
 
         // play the animation
         playAnimation(currentPos, getLinePos());
+
+        // clear the contents in the vbox
+        vBox.getChildren().clear();
+
+        // display order history
     }
 
     @FXML
     void toPayButtonPressed(ActionEvent event) {
+        unitPriceLabel.setVisible(true);
+        totalPriceLabel.setVisible(true);
+        deliveredLabel.setVisible(false);
+
         // get the x-position of the to pay button and store the value in the currentPos variable
         Bounds boundsInScene = toPay.localToScene(toPay.getBoundsInLocal());
         double currentPos = boundsInScene.getCenterX();
@@ -154,28 +176,8 @@ public class UserPurchasePageController {
         // clear the contents in the vbox
         vBox.getChildren().clear();
 
-        // display the contents
+        // display the cart contents
         displayCartItem();
-    }
-
-    @FXML
-    void toReceivedButtonPressed(ActionEvent event) {
-        // get the x-position of the received button and store the value in the currentPos variable
-        Bounds boundsInScene = toReceived.localToScene(toReceived.getBoundsInLocal());
-        double currentPos = boundsInScene.getCenterX();
-
-        // play the animation
-        playAnimation(currentPos, getLinePos());
-    }
-
-    @FXML
-    void toShipButtonPressed(ActionEvent event) {
-        // get the x-position of the to ship button and store the value in the currentPos variable
-        Bounds boundsInScene = toShip.localToScene(toShip.getBoundsInLocal());
-        double currentPos = boundsInScene.getCenterX();
-
-        // play the animation
-        playAnimation(currentPos, getLinePos());
     }
 
     /**
@@ -219,9 +221,34 @@ public class UserPurchasePageController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart-item-template.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 CartItemController cartItemController = fxmlLoader.getController();
-                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("cart-item-template.css")).toExternalForm());
+                //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("cart-item-template.css")).toExternalForm());
                 cartItemController.setData(cartItem);
                 vBox.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * This method is used to display the user's ordered item
+     *
+     * @author XiangLun
+     */
+    private void displayOrderedItem() {
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        // create an array list and call the get ordered item list method
+        List<OrderedItem> orderedItemList = new ArrayList<>(jsonFileUtil.readOrdersFile());
+
+        // loop through the orderedItemList, fills in the ordered item information and add it to the vbox
+        for (OrderedItem orderedItem : orderedItemList) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ordered-item-template.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                OrderedItemController orderedItemController = fxmlLoader.getController();
+                orderedItemController.setData(orderedItem);
+                vBox.getChildren().add(anchorPane);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

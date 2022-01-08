@@ -62,9 +62,66 @@ public class JsonFileUtil {
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(cartItem);
 
-            FileWriter file = null;
             try {
-                file = new FileWriter("JsonFiles\\cart.json");
+                FileWriter file = new FileWriter("JsonFiles\\cart.json");
+                file.write(jsonArray.toJSONString());
+                file.flush();
+                file.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * This method is used to write orders.json file, which stores the information of the ordered items.
+     *
+     * @author XiangLun
+     */
+    @SuppressWarnings("unchecked")
+    public void writeOrdersFile(Product product, int quantity) {
+        File ordersFile = new File("JsonFiles\\orders.json");
+        if (ordersFile.exists()) {
+            // if the orders file exists,
+            // append the newly added ordered item at the end of the .json file
+            JSONParser jsonParser = new JSONParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader(ordersFile));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                JSONObject orderedItem = new JSONObject();
+                orderedItem.put("productName", product.getProductName());
+                orderedItem.put("pricePerUnit", product.getProductPrice());
+                orderedItem.put("quantity", quantity);
+                orderedItem.put("cartImagePath", product.getProductImagePath());
+
+                jsonArray.add(orderedItem);
+
+                FileWriter file = new FileWriter("JsonFiles\\orders.json");
+                file.write(jsonArray.toJSONString());
+                file.flush();
+                file.close();
+
+
+            } catch (ParseException | IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            // if orders.json file is not found,
+            // write the information of the ordered item into a new orders.json file
+            JSONObject orderedItem = new JSONObject();
+            orderedItem.put("productName", product.getProductName());
+            orderedItem.put("pricePerUnit", product.getProductPrice());
+            orderedItem.put("quantity", quantity);
+            orderedItem.put("cartImagePath", product.getProductImagePath());
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(orderedItem);
+
+            try {
+                FileWriter file = new FileWriter("JsonFiles\\orders.json");
                 file.write(jsonArray.toJSONString());
                 file.flush();
                 file.close();
@@ -128,6 +185,39 @@ public class JsonFileUtil {
             }
 
         }
+    }
+
+    /**
+     * This method is used to read the orders.json file
+     *
+     * @return a list of OrderedItem object
+     * @author XiangLun
+     */
+    public List<OrderedItem> readOrdersFile() {
+        List<OrderedItem> orderedItemsList = new ArrayList<>();
+        if (new File("JsonFiles\\orders.json").exists()) {
+            JSONParser jsonParser = new JSONParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader("JsonFiles\\orders.json"));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                // Iterate over jsonArray to load all the ordered item in it
+                for (Object object : jsonArray) {
+                    if (object instanceof JSONObject) {
+                        OrderedItem orderedItem = new OrderedItem();
+                        orderedItem.setProductName((String) ((JSONObject) object).get("productName"));
+                        orderedItem.setQuantity(Math.toIntExact((Long) ((JSONObject) object).get("quantity")));
+                        orderedItem.setOrderedImagePath("src/main/resources/images/" + ((JSONObject) object).get("cartImagePath") + ".png");
+                        orderedItemsList.add(orderedItem);
+                    }
+                }
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return orderedItemsList;
     }
 
     /**

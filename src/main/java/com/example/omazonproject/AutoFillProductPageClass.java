@@ -25,6 +25,8 @@ import java.util.Optional;
 
 import javafx.geometry.Bounds;
 
+import javax.mail.MessagingException;
+
 /**
  * This class acts as a controller for the product page
  */
@@ -69,7 +71,7 @@ public class AutoFillProductPageClass {
 
     @FXML
     private Button homeIcon;
-    
+
     @FXML
     private ImageView favorite;
 
@@ -171,11 +173,10 @@ public class AutoFillProductPageClass {
         int currentQuantity = Integer.parseInt(quantity.getText());
         quantity.setText(Integer.toString(currentQuantity + 1));
     }
-    
+
     @FXML
-    void favoriteButtonPressed(ActionEvent event){
+    void favoriteButtonPressed(ActionEvent event) {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
-        // use button to choose quantity
         jsonFileUtil.writeFavoriteFile(currentProduct);
         URL icon = this.getClass().getResource("/images/favoriteButtonPressed.png");
         Image image = new Image(String.valueOf(icon));
@@ -252,7 +253,18 @@ public class AutoFillProductPageClass {
                     }
                 }
 
-                // TODO: 1/8/2022 add the bought item into toReceive.json file
+                // add ordered item into orders.json file
+                JsonFileUtil jsonFileUtil = new JsonFileUtil();
+                jsonFileUtil.writeOrdersFile(currentProduct, Integer.parseInt(quantity.getText()));
+
+                try {
+                    // send notification email to the seller
+                    Email.sendNotification(currentProduct.getSellerEmail(), currentProduct.getProductName(), Integer.parseInt(quantity.getText()), currentProduct.getProductPrice());
+
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+
                 // inform the user that the payment is successful
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Payment successful");

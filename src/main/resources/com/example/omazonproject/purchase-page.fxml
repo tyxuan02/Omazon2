@@ -41,15 +41,9 @@
                 <Button fx:id="toPay" layoutX="23.0" layoutY="5.0" mnemonicParsing="false"
                         onAction="#toPayButtonPressed" prefHeight="27.0" prefWidth="127.0"
                         style="-fx-background-color: F2F7F4;" text="To Pay"/>
-                <Button fx:id="toShip" layoutX="248.0" layoutY="5.0" mnemonicParsing="false"
-                        onAction="#toShipButtonPressed" prefHeight="27.0" prefWidth="127.0"
-                        style="-fx-background-color: F2F7F4;" text="To Ship"/>
-                <Button fx:id="toReceived" layoutX="504.0" layoutY="5.0" mnemonicParsing="false"
-                        onAction="#toReceivedButtonPressed" prefHeight="24.0" prefWidth="127.0"
-                        style="-fx-background-color: F2F7F4;" text="To Received"/>
-                <Button fx:id="cancelPayment" layoutX="765.0" layoutY="5.0" mnemonicParsing="false"
-                        onAction="#cancelPaymentButtonPressed" prefHeight="27.0" prefWidth="127.0"
-                        style="-fx-background-color: F2F7F4;" text="Cancel Payment"/>
+                <Button fx:id="orders" layoutX="531.0" layoutY="5.0" mnemonicParsing="false"
+                        onAction="#ordersButtonPressed" prefHeight="27.0" prefWidth="127.0"
+                        style="-fx-background-color: F2F7F4;" text="Orders"/>
                 <Button fx:id="orderHistory" layoutX="1022.0" layoutY="5.0" mnemonicParsing="false"
                         onAction="#orderHistoryButtonPressed" prefHeight="27.0" prefWidth="127.0"
                         style="-fx-background-color: F2F7F4;" text="Order History"/>
@@ -59,9 +53,11 @@
                     style="-fx-background-color: F2F7F4;">
             <children>
                 <Label layoutX="21.0" layoutY="9.0" text="Product"/>
-                <Label layoutX="752.0" layoutY="9.0" text="Unit Price"/>
+                <Label fx:id="unitPriceLabel" layoutX="752.0" layoutY="9.0" text="Unit Price"/>
                 <Label layoutX="934.0" layoutY="9.0" text="Quantity"/>
-                <Label layoutX="1090.0" layoutY="9.0" text="Total Price"/>
+                <Label fx:id="totalPriceLabel" layoutX="1090.0" layoutY="9.0" text="Total Price"/>
+                <Label fx:id="deliveredLabel" layoutX="1090.0" layoutY="9.0" prefHeight="18.0" prefWidth="56.0"
+                       text="Delivered" visible="false"/>
             </children>
         </AnchorPane>
         <Line fx:id="underLine" endX="16.79998779296875" layoutX="175.0" layoutY="243.0" startX="-100.0"/>
