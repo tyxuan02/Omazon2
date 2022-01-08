@@ -67,6 +67,9 @@ public class AutoFillProductPageClass {
 
     @FXML
     private Button homeIcon;
+    
+    @FXML
+    private ImageView favorite;
 
     @FXML
     public void autoFill(Product product) {
@@ -169,5 +172,12 @@ public class AutoFillProductPageClass {
     void increaseQuantityButtonPressed(ActionEvent event) {
         int currentQuantity = Integer.parseInt(quantity.getText());
         quantity.setText(Integer.toString(currentQuantity + 1));
+    }
+    
+    @FXML
+    void favoriteButtonPressed(ActionEvent event){
+        URL icon = this.getClass().getResource("/images/favoriteButtonPressed.png");
+        Image image = new Image(String.valueOf(icon));
+        favorite.setImage(image);
     }
 }
