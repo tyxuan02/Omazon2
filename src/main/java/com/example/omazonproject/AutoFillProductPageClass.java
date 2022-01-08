@@ -1,5 +1,6 @@
 package com.example.omazonproject;
 
+import com.mysql.cj.protocol.PacketReceivedTimeHolder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,8 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,12 +16,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Objects;
+import java.util.Optional;
 
 import javafx.geometry.Bounds;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
 
 /**
  * This class acts as a controller for the product page
@@ -178,5 +180,94 @@ public class AutoFillProductPageClass {
         URL icon = this.getClass().getResource("/images/favoriteButtonPressed.png");
         Image image = new Image(String.valueOf(icon));
         favorite.setImage(image);
+    }
+
+    @FXML
+    void BuyNowButtonPressed(ActionEvent event) {
+        // calculate the total price in 2 decimal places
+        double totalPrice = (int) (Integer.parseInt(quantity.getText()) * Double.parseDouble(priceLabel.getText()) * 100 + 0.5) / 100.0;
+
+        // check whether the user have enough balance
+        if (User.getPaymentPassword() == null) {
+            // if the user haven't set the payment password before, ask them to set it first
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("A Payment Password is Required");
+            alert.setHeaderText(null);
+            alert.setContentText("Please set your payment password at the profile page.");
+            alert.showAndWait();
+
+        } else if (User.getBalance() < totalPrice) {
+            // if the user does not have enough balance, ask them to top up
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Payment Unsuccessful");
+            alert.setHeaderText(null);
+            alert.setContentText("You do not have sufficient balance to proceed with this payment.");
+            alert.showAndWait();
+
+        } else {
+            // if the user do have enough balance
+            // request payment password
+            TextInputDialog textInputDialog = new TextInputDialog();
+            textInputDialog.setTitle("Processing Payment");
+            textInputDialog.setHeaderText("Please enter your payment password.");
+            textInputDialog.setContentText("Payment password");
+
+            Optional<String> result = textInputDialog.showAndWait();
+            if (result.isPresent() && result.get().equals(User.getPaymentPassword())) {
+                // if payment password entered is correct
+                // subtract the amount from the user's balance in the User class
+                double balance = User.getBalance() - totalPrice;
+                User.setBalance(balance);
+
+                // connect to the database and update the new balance
+                Connection connection = null;
+                PreparedStatement psUpdate = null;
+
+                try {
+                    DatabaseConnection db = new DatabaseConnection();
+                    connection = db.getConnection();
+
+                    psUpdate = connection.prepareStatement("UPDATE user_account SET balance = ? WHERE email = ?");
+                    psUpdate.setString(1, String.format("%.2f", balance));
+                    psUpdate.setString(2, User.getEmail());
+                    psUpdate.executeUpdate();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+
+                } finally {
+                    if (psUpdate != null) {
+                        try {
+                            psUpdate.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (connection != null) {
+                        try {
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                // TODO: 1/8/2022 add the bought item into toReceive.json file
+                // inform the user that the payment is successful
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Payment successful");
+                alert.setHeaderText(null);
+                alert.setContentText("The payment is successful. You can view your orders at Profile > My Purchase > Orders.");
+                alert.showAndWait();
+            } else {
+                // if the payment password is incorrect
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Payment Unsuccessful");
+                alert.setHeaderText(null);
+                alert.setContentText("The payment password entered is incorrect.");
+                alert.showAndWait();
+
+            }
+        }
     }
 }
