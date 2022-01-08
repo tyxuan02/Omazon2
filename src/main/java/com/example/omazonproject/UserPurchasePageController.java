@@ -219,6 +219,7 @@ public class UserPurchasePageController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart-item-template.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 CartItemController cartItemController = fxmlLoader.getController();
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("cart-item-template.css")).toExternalForm());
                 cartItemController.setData(cartItem);
                 vBox.getChildren().add(anchorPane);
             } catch (IOException e) {
