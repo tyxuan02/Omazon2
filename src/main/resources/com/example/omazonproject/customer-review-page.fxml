@@ -14,107 +14,124 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.omazonproject.CustomerReviewController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.CustomerReviewController">
     <children>
         <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../images/bannerHomepage.gif"/>
+                <Image url="@../../../images/bannerHomepage.gif" />
             </image>
         </ImageView>
         <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0" pickOnBounds="true">
             <image>
-                <Image url="@../../../images/logoMarkOmazon.png"/>
+                <Image url="@../../../images/logoMarkOmazon.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="1227.0" layoutY="75.0" pickOnBounds="true">
+        <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../images/malaysia flag.jpg"/>
+                <Image url="@../../../images/malaysiaFlag.png" />
             </image>
         </ImageView>
-        <Label layoutX="1160.0" layoutY="95.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
-               textFill="#1a0000"/>
+        <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia" textFill="#1a0000" />
         <AnchorPane layoutY="116.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
             <children>
-                <Button layoutX="656.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                        minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" text="search" textFill="#514e4e"
-                        AnchorPane.leftAnchor="656.0" AnchorPane.topAnchor="17.0">
+                <Button layoutX="656.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" text="search" textFill="#514e4e" AnchorPane.leftAnchor="656.0" AnchorPane.topAnchor="17.0">
                     <font>
-                        <Font name="Arial" size="12.0"/>
+                        <Font name="Arial" size="12.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0" promptText="Search Items"
-                           AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="17.0">
+                <TextField layoutX="217.0" layoutY="17.0" prefHeight="27.0" prefWidth="439.0" promptText="Search Items" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="17.0">
                     <effect>
                         <DropShadow blurType="ONE_PASS_BOX" height="6.96" radius="3.5650000000000004" width="9.3">
                             <color>
-                                <Color red="0.03391812741756439" green="0.5189473628997803" blue="0.9157894849777222"/>
+                                <Color red="0.03391812741756439" green="0.5189473628997803" blue="0.9157894849777222" />
                             </color>
                         </DropShadow>
                     </effect>
                 </TextField>
-                <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0"
-                        style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
+                <Button layoutX="1088.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/userIcon.png"/>
+                                <Image url="@../../../images/userIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeButtonPressed"
-                        prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
+                <Button layoutX="1146.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeButtonPressed" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: b4e7ce; -fx-cursor: hand;">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/HomePageIcon.png"/>
+                                <Image url="@../../../images/HomePageIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <ComboBox layoutX="72.0" layoutY="17.0" prefHeight="27.0" prefWidth="128.0" promptText="Select"
-                          AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="1080.0" AnchorPane.topAnchor="17.0"/>
+                <ComboBox layoutX="72.0" layoutY="17.0" prefHeight="27.0" prefWidth="128.0" promptText="Select" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="1080.0" AnchorPane.topAnchor="17.0" />
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="145.0" layoutY="323.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0"
-                    prefWidth="466.0" style="-fx-border-color: black;">
-            <children>
-                <PieChart fx:id="pieChart" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0"
-                          prefWidth="466.0"/>
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="731.0" layoutY="323.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0"
-                    prefWidth="336.0" style="-fx-border-color: black;">
-            <children>
-                <BarChart fx:id="barChart" horizontalGridLinesVisible="false" legendVisible="false"
-                          minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="336.0"
-                          title="Ratings">
+      <AnchorPane layoutX="674.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="452.0">
+         <children>
+                <BarChart fx:id="barChart" horizontalGridLinesVisible="false" legendVisible="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="452.0" title="Ratings">
                     <xAxis>
-                        <CategoryAxis label="Stars" side="BOTTOM"/>
+                        <CategoryAxis label="Stars" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="Units" side="LEFT"/>
+                        <NumberAxis label="Units" side="LEFT" />
                     </yAxis>
                 </BarChart>
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="145.0" layoutY="213.0" prefHeight="43.0" prefWidth="191.0">
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="127.0" layoutY="256.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="593.0">
+         <children>
+                <PieChart fx:id="pieChart" layoutX="-7.0" layoutY="-8.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="602.0" />
+         </children>
+      </AnchorPane>
+        <AnchorPane layoutX="75.0" layoutY="206.0" prefHeight="43.0" prefWidth="191.0">
             <children>
-                <Label text="Customer Review">
+                <Label layoutY="8.0" text="Customer Review">
                     <font>
-                        <Font name="Arial" size="22.0"/>
+                        <Font name="Arial" size="22.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <Label fx:id="percentageLabel" layoutX="22.0" layoutY="204.0"/>
+        <Label fx:id="percentageLabel" layoutX="22.0" layoutY="204.0" />
+      <AnchorPane layoutY="565.0" prefHeight="234.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="254.0" fitWidth="269.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/customerReviewDeco2.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="215.0" fitWidth="420.0" layoutX="-17.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/customerReviewDeco.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="280.0" layoutY="113.0" text="&quot;Your most unhappy customers are your most important source of learning&quot;">
+               <font>
+                  <Font name="Webdings" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="1105.0" layoutY="140.0" text="Bill Gates">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <Line endX="787.0001220703125" layoutX="330.0" layoutY="89.0" startX="-76.39996337890625" stroke="#51acb1" strokeWidth="5.0" />
+            <Line endX="812.2000732421875" layoutX="356.0" layoutY="167.0" startX="-82.39996337890625" stroke="#51acb1" strokeWidth="5.0" />
+            <ImageView fitHeight="155.0" fitWidth="425.0" layoutX="922.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/rate.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
