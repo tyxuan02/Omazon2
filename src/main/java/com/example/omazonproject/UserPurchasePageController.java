@@ -204,7 +204,7 @@ public class UserPurchasePageController {
     }
 
     /**
-     * This method is used to add the cart item of the user into the vbox
+     * This method is used to display the user's cart item
      *
      * @author XiangLun
      */

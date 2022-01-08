@@ -22,7 +22,7 @@ public class JsonFileUtil {
      * @author XiangLun
      */
     @SuppressWarnings("unchecked")
-    public void writeCartFile(Product product, int quantity) throws IOException {
+    public void writeCartFile(Product product, int quantity) {
         File cartFile = new File("JsonFiles\\cart.json");
         if (cartFile.exists()) {
             // if the cart file exists,
@@ -45,7 +45,8 @@ public class JsonFileUtil {
                 file.flush();
                 file.close();
 
-            } catch (FileNotFoundException | ParseException e) {
+
+            } catch (ParseException | IOException e) {
                 e.printStackTrace();
             }
 
@@ -61,13 +62,80 @@ public class JsonFileUtil {
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(cartItem);
 
-            FileWriter file = new FileWriter("JsonFiles\\cart.json");
-            file.write(jsonArray.toJSONString());
-            file.flush();
-            file.close();
+            FileWriter file = null;
+            try {
+                file = new FileWriter("JsonFiles\\cart.json");
+                file.write(jsonArray.toJSONString());
+                file.flush();
+                file.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    /**
+     * This method is used to write favorite.json file, which stores the information of the favorite items.
+     *
+     * @author XiangLun
+     */
+    @SuppressWarnings("unchecked")
+    public void writeFavoriteFile(Product product) {
+        File favoriteFile = new File("JsonFiles\\favorite.json");
+        if (favoriteFile.exists()) {
+            // if the favorite.json file exists,
+            // append the newly added favorite item at the end of the .json file
+            JSONParser jsonParser = new JSONParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader(favoriteFile));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                JSONObject favoriteItem = new JSONObject();
+                favoriteItem.put("productName", product.getProductName());
+                favoriteItem.put("pricePerUnit", product.getProductPrice());
+                favoriteItem.put("favoriteImagePath", product.getProductImagePath());
+
+                jsonArray.add(favoriteItem);
+
+                FileWriter file = new FileWriter("JsonFiles\\favorite.json");
+                file.write(jsonArray.toJSONString());
+                file.flush();
+                file.close();
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // if favorite.json file is not found,
+            // write the information of the favorite item into a new favorite.json file
+            JSONObject favoriteItem = new JSONObject();
+            favoriteItem.put("productName", product.getProductName());
+            favoriteItem.put("pricePerUnit", product.getProductPrice());
+            favoriteItem.put("favoriteImagePath", product.getProductImagePath());
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(favoriteItem);
+
+            try {
+                FileWriter file = new FileWriter("JsonFiles\\favorite.json");
+                file.write(jsonArray.toJSONString());
+                file.flush();
+                file.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    /**
+     * This method is used to read the cart.json file
+     *
+     * @return a list of CartItem object
+     * @author XiangLun
+     */
     public List<CartItem> readCartFile() {
         List<CartItem> cartItemList = new ArrayList<>();
         if (new File("JsonFiles\\cart.json").exists()) {
@@ -94,5 +162,38 @@ public class JsonFileUtil {
         }
 
         return cartItemList;
+    }
+
+    /**
+     * This method is used to read the favorite.json file
+     *
+     * @return a list of FavoriteItem object
+     * @author XiangLun
+     */
+    public List<FavoriteItem> readFavoriteFile() {
+        List<FavoriteItem> favoriteItemList = new ArrayList<>();
+        if (new File("JsonFiles\\favorite.json").exists()) {
+            JSONParser jsonParser = new JSONParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader("JsonFiles\\favorite.json"));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                // Iterate over jsonArray to load all the favorite item in it
+                for (Object object : jsonArray) {
+                    if (object instanceof JSONObject) {
+                        FavoriteItem favoriteItem = new FavoriteItem();
+                        favoriteItem.setProductName((String) ((JSONObject) object).get("productName"));
+                        favoriteItem.setPricePerUnit((Double) ((JSONObject) object).get("pricePerUnit"));
+                        favoriteItem.setFavoriteImagePath("src/main/resources/images/" + ((JSONObject) object).get("favoriteImagePath") + ".png");
+                        favoriteItemList.add(favoriteItem);
+                    }
+                }
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return favoriteItemList;
     }
 }

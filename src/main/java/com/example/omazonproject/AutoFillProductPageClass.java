@@ -144,20 +144,16 @@ public class AutoFillProductPageClass {
     @FXML
     void addToCartButtonPressed(ActionEvent event) {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
-        try {
-            // use button to choose quantity
-            jsonFileUtil.writeCartFile(currentProduct, Integer.parseInt(quantity.getText()));
+        // use button to choose quantity
+        jsonFileUtil.writeCartFile(currentProduct, Integer.parseInt(quantity.getText()));
 
-            // inform the user that the item is added to cart successfully
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Successful");
-            alert.setHeaderText(null);
-            alert.setContentText("Item added to cart successfully.");
-            alert.showAndWait();
+        // inform the user that the item is added to cart successfully
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Successful");
+        alert.setHeaderText(null);
+        alert.setContentText("Item added to cart successfully.");
+        alert.showAndWait();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -176,6 +172,9 @@ public class AutoFillProductPageClass {
     
     @FXML
     void favoriteButtonPressed(ActionEvent event){
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        // use button to choose quantity
+        jsonFileUtil.writeFavoriteFile(currentProduct);
         URL icon = this.getClass().getResource("/images/favoriteButtonPressed.png");
         Image image = new Image(String.valueOf(icon));
         favorite.setImage(image);

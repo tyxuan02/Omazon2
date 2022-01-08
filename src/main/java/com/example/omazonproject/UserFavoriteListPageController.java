@@ -1,6 +1,8 @@
 package com.example.omazonproject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.application.Platform;
@@ -14,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -34,6 +38,9 @@ public class UserFavoriteListPageController {
 
     @FXML
     private Button homeIcon;
+
+    @FXML
+    private VBox vBox;
     
     @FXML
     public void initialize() {
@@ -58,6 +65,8 @@ public class UserFavoriteListPageController {
             homeIcon.getTooltip().setX(bHome.getMaxX() - 60);
             homeIcon.getTooltip().setY(bHome.getMinY() + 35);
         });
+
+        displayFavoriteItem();
     }
     
     @FXML
@@ -83,5 +92,29 @@ public class UserFavoriteListPageController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * This method is used to display the user's favorite item
+     *
+     * @author XiangLun
+     */
+    private void displayFavoriteItem() {
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        // create an array list and call the get cart item list method
+        List<FavoriteItem> favoriteItemList = new ArrayList<>(jsonFileUtil.readFavoriteFile());
+
+        // loop through the cartItemList, fills in the cart item information and add it to the vbox
+        for (FavoriteItem favoriteItem : favoriteItemList) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("favorite-list-template.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                FavoriteItemController favoriteItemController = fxmlLoader.getController();
+                favoriteItemController.setData(favoriteItem);
+                vBox.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
