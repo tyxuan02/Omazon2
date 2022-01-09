@@ -40,3 +40,12 @@
     -fx-border-color: #457b9d;
     -fx-border-weight:3;
 }
+
+/*adding effect to seller product page*/
+.transparent{
+    -fx-background-color: rgb(0,0,0,0);
+}
+
+.product{
+    -fx-background-radius: 30;
+}
