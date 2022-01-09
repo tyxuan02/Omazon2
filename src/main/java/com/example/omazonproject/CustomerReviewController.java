@@ -113,7 +113,7 @@ public class CustomerReviewController {
         }
 
         // display the pie chart in a fade-in and slide-up animation
-        pieChart.setTitle("Sales");
+        pieChart.setTitle("Number of Sales");
         pieChart.setData(pieChartData);
         TranslateTransition translate = new TranslateTransition(Duration.seconds(.8), pieChart);
         translate.setFromY(pieChart.getLayoutY() + 10);
@@ -126,7 +126,7 @@ public class CustomerReviewController {
 
         // set up the property for the label
         percentageLabel.setTextFill(Color.BLACK);
-        percentageLabel.setStyle("-fx-font: 10 arial;");
+        percentageLabel.setStyle("-fx-font: 15 arial;");
 
         // set event handler for every segment of the pie chart
         for (final PieChart.Data data : pieChart.getData()) {

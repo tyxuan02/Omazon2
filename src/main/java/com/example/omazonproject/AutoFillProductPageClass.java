@@ -220,9 +220,10 @@ public class AutoFillProductPageClass {
                 double balance = User.getBalance() - totalPrice;
                 User.setBalance(balance);
 
-                // connect to the database and update the new balance
+                // connect to the database and update the new balance and increment the product's number of sales
                 Connection connection = null;
                 PreparedStatement psUpdate = null;
+                PreparedStatement psIncrementSales = null;
 
                 try {
                     DatabaseConnection db = new DatabaseConnection();
@@ -233,6 +234,12 @@ public class AutoFillProductPageClass {
                     psUpdate.setString(2, User.getEmail());
                     psUpdate.executeUpdate();
 
+                    psIncrementSales = connection.prepareStatement("UPDATE product_info SET numberOfSales = ? WHERE sellerEmail = ? AND name = ?");
+                    psIncrementSales.setString(1, Integer.toString(currentProduct.getNumberOfSales() + (Integer.parseInt(quantity.getText()))));
+                    psIncrementSales.setString(2, currentProduct.getSellerEmail());
+                    psIncrementSales.setString(3, currentProduct.getProductName());
+                    psIncrementSales.executeUpdate();
+
                 } catch (SQLException e) {
                     e.printStackTrace();
 
@@ -240,6 +247,13 @@ public class AutoFillProductPageClass {
                     if (psUpdate != null) {
                         try {
                             psUpdate.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (psIncrementSales != null) {
+                        try {
+                            psIncrementSales.close();
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
