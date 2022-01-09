@@ -6,23 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e2ece9;"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane onMouseClicked="#click" prefHeight="225.0" prefWidth="227.0" style="-fx-background-color: e2ece9;" styleClass="product" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.ProductController">
     <children>
-        <ImageView fx:id="productImagePath" fitHeight="145.0" fitWidth="188.0" layoutX="6.0" layoutY="31.0"
-                   pickOnBounds="true">
+        <ImageView fx:id="productImagePath" fitHeight="165.0" fitWidth="197.0" layoutX="17.0" layoutY="30.0" pickOnBounds="true">
             <image>
-                <Image url="@../../../images/PS5.jpg"/>
+                <Image url="@../../../images/PS5.jpg" />
             </image>
         </ImageView>
-        <Label fx:id="productName" layoutX="14.0" layoutY="8.0" prefHeight="15.0" prefWidth="171.0" text="PS5">
+        <Label fx:id="productName" alignment="CENTER" layoutX="23.0" layoutY="2.0" prefHeight="24.0" prefWidth="190.0" text="PS5">
             <font>
-                <Font name="Impact" size="18.0"/>
+                <Font name="Impact" size="20.0" />
             </font>
         </Label>
-        <Label fx:id="productPrice" layoutX="80.0" layoutY="178.0" text="RM 2000">
+        <Label fx:id="productPrice" alignment="CENTER" layoutX="18.0" layoutY="194.0" prefHeight="31.0" prefWidth="198.0" text="RM 2000">
             <font>
-                <Font size="10.0"/>
+                <Font size="15.0" />
             </font>
         </Label>
     </children>

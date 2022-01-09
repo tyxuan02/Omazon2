@@ -75,154 +75,154 @@ public class HomepageController {
     @FXML
     public void initialize() throws Exception {
 
-            productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-            productCategory_home.setPromptText("select");
+        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
+        productCategory_home.setPromptText("select");
 
-            //Autocomplete search
-            //If the product category is not selected, view all the product in database
-            getProductNameFromDatabase("select");
-            AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
+        //Autocomplete search
+        //If the product category is not selected, view all the product in database
+        getProductNameFromDatabase("select");
+        AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
 
-            //Select product category
-            productCategory_home.setOnAction(event -> {
-                try {
-                    String get = productCategory_home.getSelectionModel().getSelectedItem();
-                    if (get != null) {
-                        acb.get().dispose();
-                        productName.clear();
-                        getProductNameFromDatabase(get);
-                        acb.set(TextFields.bindAutoCompletion(searchItems, productName));
-                    }
-                } catch (EventException e) {
-
-                }
-            });
-
-            // Show tooltip message when user point at the icon
-            final Tooltip tooltipProfile = new Tooltip();
-            tooltipProfile.setText("My Profile");
-            profileIcon.setTooltip(tooltipProfile);
-            profileIcon.getTooltip().setOnShowing(p -> {
-                Bounds bProfile = profileIcon.localToScreen(profileIcon.getBoundsInLocal());
-                profileIcon.getTooltip().setX(bProfile.getMaxX() - 70);
-                profileIcon.getTooltip().setY(bProfile.getMinY() + 35);
-            });
-
-            final Tooltip tooltipHome = new Tooltip();
-            tooltipHome.setText("Homepage");
-            homeIcon.setTooltip(tooltipHome);
-            homeIcon.getTooltip().setOnShowing(h -> {
-                Bounds bHome = homeIcon.localToScreen(homeIcon.getBoundsInLocal());
-                homeIcon.getTooltip().setX(bHome.getMaxX() - 60);
-                homeIcon.getTooltip().setY(bHome.getMinY() + 35);
-            });
-
-            final Tooltip tooltipLogOut = new Tooltip();
-            tooltipLogOut.setText("Log Out");
-            logOutIcon.setTooltip(tooltipLogOut);
-            logOutIcon.getTooltip().setOnShowing(l -> {
-                Bounds bLog = logOutIcon.localToScreen(logOutIcon.getBoundsInLocal());
-                logOutIcon.getTooltip().setX(bLog.getMaxX() - 40);
-                logOutIcon.getTooltip().setY(bLog.getMinY() + 35);
-            });
-
-
-            //Create a list to store all product objects
-
-            Connection connectDB = null;
-            Statement statement = null;
-            ResultSet bestSellingProductResult = null;
-
-            int count = 0;
-
+        //Select product category
+        productCategory_home.setOnAction(event -> {
             try {
-
-                DatabaseConnection connectNow = new DatabaseConnection();
-                connectDB = connectNow.getConnection();
-                statement = connectDB.createStatement();
-                bestSellingProductResult = statement.executeQuery("SELECT * FROM product_info");
-
-                while (bestSellingProductResult.next()) {
-                    objects.add(count, new Product());
-                    objects.get(count).setSellerEmail(bestSellingProductResult.getString("sellerEmail"));
-                    objects.get(count).setProductName(bestSellingProductResult.getString("name"));
-                    objects.get(count).setProductPrice(bestSellingProductResult.getDouble("price"));
-                    objects.get(count).setCategory(bestSellingProductResult.getString("category"));
-                    objects.get(count).setDescription(bestSellingProductResult.getString("description"));
-                    objects.get(count).setNumOfOneStars(bestSellingProductResult.getInt("numOfOneStars"));
-                    objects.get(count).setNumOfTwoStars(bestSellingProductResult.getInt("numOfTwoStars"));
-                    objects.get(count).setNumOfThreeStars(bestSellingProductResult.getInt("numOfThreeStars"));
-                    objects.get(count).setNumOfFourStars(bestSellingProductResult.getInt("numOfFourStars"));
-                    objects.get(count).setNumOfFiveStars(bestSellingProductResult.getInt("numOfFiveStars"));
-                    objects.get(count).setNumberOfSales((bestSellingProductResult.getInt("numberOfSales")));
-                    objects.get(count).setProductImagePath(bestSellingProductResult.getString("imageName"));
-                    objects.get(count).setProductStock(bestSellingProductResult.getInt("numOfStock"));
-                    objects.get(count).setAddress(bestSellingProductResult.getString("sellerAddress"));
-                    count = count + 1;
+                String get = productCategory_home.getSelectionModel().getSelectedItem();
+                if (get != null) {
+                    acb.get().dispose();
+                    productName.clear();
+                    getProductNameFromDatabase(get);
+                    acb.set(TextFields.bindAutoCompletion(searchItems, productName));
                 }
+            } catch (EventException e) {
+
+            }
+        });
+
+        // Show tooltip message when user point at the icon
+        final Tooltip tooltipProfile = new Tooltip();
+        tooltipProfile.setText("My Profile");
+        profileIcon.setTooltip(tooltipProfile);
+        profileIcon.getTooltip().setOnShowing(p -> {
+            Bounds bProfile = profileIcon.localToScreen(profileIcon.getBoundsInLocal());
+            profileIcon.getTooltip().setX(bProfile.getMaxX() - 70);
+            profileIcon.getTooltip().setY(bProfile.getMinY() + 35);
+        });
+
+        final Tooltip tooltipHome = new Tooltip();
+        tooltipHome.setText("Homepage");
+        homeIcon.setTooltip(tooltipHome);
+        homeIcon.getTooltip().setOnShowing(h -> {
+            Bounds bHome = homeIcon.localToScreen(homeIcon.getBoundsInLocal());
+            homeIcon.getTooltip().setX(bHome.getMaxX() - 60);
+            homeIcon.getTooltip().setY(bHome.getMinY() + 35);
+        });
+
+        final Tooltip tooltipLogOut = new Tooltip();
+        tooltipLogOut.setText("Log Out");
+        logOutIcon.setTooltip(tooltipLogOut);
+        logOutIcon.getTooltip().setOnShowing(l -> {
+            Bounds bLog = logOutIcon.localToScreen(logOutIcon.getBoundsInLocal());
+            logOutIcon.getTooltip().setX(bLog.getMaxX() - 40);
+            logOutIcon.getTooltip().setY(bLog.getMinY() + 35);
+        });
 
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                if (bestSellingProductResult != null) {
-                    try {
-                        bestSellingProductResult.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+        //Create a list to store all product objects
+
+        Connection connectDB = null;
+        Statement statement = null;
+        ResultSet bestSellingProductResult = null;
+
+        int count = 0;
+
+        try {
+
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            statement = connectDB.createStatement();
+            bestSellingProductResult = statement.executeQuery("SELECT * FROM product_info ");
+
+            while (bestSellingProductResult.next()) {
+                objects.add(count, new Product());
+                objects.get(count).setSellerEmail(bestSellingProductResult.getString("sellerEmail"));
+                objects.get(count).setProductName(bestSellingProductResult.getString("name"));
+                objects.get(count).setProductPrice(bestSellingProductResult.getDouble("price"));
+                objects.get(count).setCategory(bestSellingProductResult.getString("category"));
+                objects.get(count).setDescription(bestSellingProductResult.getString("description"));
+                objects.get(count).setNumOfOneStars(bestSellingProductResult.getInt("numOfOneStars"));
+                objects.get(count).setNumOfTwoStars(bestSellingProductResult.getInt("numOfTwoStars"));
+                objects.get(count).setNumOfThreeStars(bestSellingProductResult.getInt("numOfThreeStars"));
+                objects.get(count).setNumOfFourStars(bestSellingProductResult.getInt("numOfFourStars"));
+                objects.get(count).setNumOfFiveStars(bestSellingProductResult.getInt("numOfFiveStars"));
+                objects.get(count).setNumberOfSales((bestSellingProductResult.getInt("numberOfSales")));
+                objects.get(count).setProductImagePath(bestSellingProductResult.getString("imageName"));
+                objects.get(count).setProductStock(bestSellingProductResult.getInt("numOfStock"));
+                objects.get(count).setAddress(bestSellingProductResult.getString("sellerAddress"));
+                count = count + 1;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (bestSellingProductResult != null) {
+                try {
+                    bestSellingProductResult.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-                if (statement != null) {
-                    try {
-                        statement.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-                if (connectDB != null) {
-                    try {
-                        connectDB.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        //Get top 3 best-selling products by checking the number of sales for each product
+        ArrayList<Integer> index = new ArrayList<>();
+
+        int max;
+        int maxIndex = 0;
+
+        for (int i = 0; i < 3; i++) {
+            max = 0;
+            for (int j = 0; j < count; j++) {
+                if (!index.contains(j)) {
+                    if (objects.get(j).getNumberOfSales() >= max) {
+                        maxIndex = j;
+                        max = objects.get(j).getNumberOfSales();
                     }
                 }
             }
+            index.add(maxIndex);
+            getMaxIndex[i] = maxIndex;
+        }
 
-            //Get top 3 best-selling products by checking the number of sales for each product
-            ArrayList<Integer> index = new ArrayList<>();
+        //Get the top 3 best-selling product images from images folder
+        String Top1 = objects.get(getMaxIndex[0]).getProductImagePath();
+        String Top2 = objects.get(getMaxIndex[1]).getProductImagePath();
+        String Top3 = objects.get(getMaxIndex[2]).getProductImagePath();
 
-            int max;
-            int maxIndex = 0;
-
-            for (int i = 0; i < 3; i++) {
-                max = 0;
-                for (int j = 0; j < count; j++) {
-                    if (!index.contains(j)) {
-                        if (objects.get(j).getNumberOfSales() >= max) {
-                            maxIndex = j;
-                            max = objects.get(j).getNumberOfSales();
-                        }
-                    }
-                }
-                index.add(maxIndex);
-                getMaxIndex[i] = maxIndex;
-            }
-
-            //Get the top 3 best-selling product images from images folder
-            String Top1 = objects.get(getMaxIndex[0]).getProductImagePath();
-            String Top2 = objects.get(getMaxIndex[1]).getProductImagePath();
-            String Top3 = objects.get(getMaxIndex[2]).getProductImagePath();
-
-            //Display the top 3 best-selling product images at home page
-            URL u1 = this.getClass().getResource("/images/" + Top1 + ".png");
-            URL u2 = this.getClass().getResource("/images/" + Top2 + ".png");
-            URL u3 = this.getClass().getResource("/images/" + Top3 + ".png");
-            Image image1 = new Image(String.valueOf(u1));
-            Image image2 = new Image(String.valueOf(u2));
-            Image image3 = new Image(String.valueOf(u3));
-            top1.setImage(image1);
-            top2.setImage(image2);
-            top3.setImage(image3);
+        //Display the top 3 best-selling product images at home page
+        URL u1 = this.getClass().getResource("/images/" + Top1 + ".png");
+        URL u2 = this.getClass().getResource("/images/" + Top2 + ".png");
+        URL u3 = this.getClass().getResource("/images/" + Top3 + ".png");
+        Image image1 = new Image(String.valueOf(u1));
+        Image image2 = new Image(String.valueOf(u2));
+        Image image3 = new Image(String.valueOf(u3));
+        top1.setImage(image1);
+        top2.setImage(image2);
+        top3.setImage(image3);
 
     }
 
@@ -297,6 +297,7 @@ public class HomepageController {
         Connection connectDB = null;
         Statement statement = null;
         ResultSet Result = null;
+        ResultSet sellerResult = null;
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
@@ -314,12 +315,28 @@ public class HomepageController {
                 productName.add(PRODUCTNAME);
             }
 
+            if (PRODUCTCATEGORY.equals("select")) {
+                sellerResult = statement.executeQuery("SELECT * FROM seller_account");
+            }
+
+            while (sellerResult.next()) {
+                String SELLERNAME = sellerResult.getString("sellerName");
+                productName.add(SELLERNAME);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             if (Result != null) {
                 try {
                     Result.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (sellerResult != null) {
+                try {
+                    sellerResult.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
