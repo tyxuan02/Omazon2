@@ -19,10 +19,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javafx.animation.FadeTransition;
 
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 
 /**
  * This class is responsible to control the events happening in the user purchase page
@@ -67,6 +69,9 @@ public class UserPurchasePageController {
 
     @FXML
     private VBox vBox;
+    
+    @FXML
+    private Button checkOutBtn;
 
     @FXML
     public void initialize() {
@@ -94,6 +99,17 @@ public class UserPurchasePageController {
         });
 
         displayCartItem();
+        
+        // Fade in check out button
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(.8), checkOutBtn);
+        translate.setFromY(checkOutBtn.getLayoutY()+10 );
+        translate.setToY(checkOutBtn.getLayoutY());
+        translate.play();
+        FadeTransition fadeInCheckOutBtn = new FadeTransition(Duration.seconds(.8), checkOutBtn);
+        fadeInCheckOutBtn.setFromValue(0);
+        fadeInCheckOutBtn.setToValue(1);
+        fadeInCheckOutBtn.play();
+        
     }
 
     @FXML
@@ -126,7 +142,7 @@ public class UserPurchasePageController {
         unitPriceLabel.setVisible(false);
         totalPriceLabel.setVisible(false);
         deliveredLabel.setVisible(true);
-
+       
         // get the x-position of the cancel payment button and store the value in the currentPos variable
         Bounds boundsInScene = orders.localToScene(orders.getBoundsInLocal());
         double currentPos = boundsInScene.getCenterX();
@@ -139,6 +155,16 @@ public class UserPurchasePageController {
 
         // display orders
         displayOrderedItem();
+        
+        // Fade out check out button
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(.8), checkOutBtn);
+        translate.setFromY(checkOutBtn.getLayoutY() );
+        translate.setToY(checkOutBtn.getLayoutY()+10);
+        translate.play();
+        FadeTransition fadeOutCheckOutBtn = new FadeTransition(Duration.seconds(.8), checkOutBtn);
+        fadeOutCheckOutBtn.setFromValue(1);
+        fadeOutCheckOutBtn.setToValue(0);
+        fadeOutCheckOutBtn.play();
     }
 
     @FXML
@@ -146,7 +172,7 @@ public class UserPurchasePageController {
         unitPriceLabel.setVisible(true);
         totalPriceLabel.setVisible(true);
         deliveredLabel.setVisible(false);
-
+        
         // get the x-position of the order history button and store the value in the currentPos variable
         Bounds boundsInScene = orderHistory.localToScene(orderHistory.getBoundsInLocal());
         double currentPos = boundsInScene.getCenterX();
@@ -158,6 +184,16 @@ public class UserPurchasePageController {
         vBox.getChildren().clear();
 
         // display order history
+        
+        // Fade out check out button
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(.8), checkOutBtn);
+        translate.setFromY(checkOutBtn.getLayoutY() );
+        translate.setToY(checkOutBtn.getLayoutY()+10);
+        translate.play();
+        FadeTransition fadeOutCheckOutBtn = new FadeTransition(Duration.seconds(.8), checkOutBtn);
+        fadeOutCheckOutBtn.setFromValue(1);
+        fadeOutCheckOutBtn.setToValue(0);
+        fadeOutCheckOutBtn.play();
     }
 
     @FXML
@@ -165,7 +201,7 @@ public class UserPurchasePageController {
         unitPriceLabel.setVisible(true);
         totalPriceLabel.setVisible(true);
         deliveredLabel.setVisible(false);
-
+     
         // get the x-position of the to pay button and store the value in the currentPos variable
         Bounds boundsInScene = toPay.localToScene(toPay.getBoundsInLocal());
         double currentPos = boundsInScene.getCenterX();
@@ -178,6 +214,16 @@ public class UserPurchasePageController {
 
         // display the cart contents
         displayCartItem();
+        
+        // Fade in check out button 
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(.8), checkOutBtn);
+        translate.setFromY(checkOutBtn.getLayoutY() +10);
+        translate.setToY(checkOutBtn.getLayoutY());
+        translate.play();
+        FadeTransition fadeInCheckOutBtn = new FadeTransition(Duration.seconds(.8), checkOutBtn);
+        fadeInCheckOutBtn.setFromValue(0);
+        fadeInCheckOutBtn.setToValue(1);
+        fadeInCheckOutBtn.play();
     }
 
     /**

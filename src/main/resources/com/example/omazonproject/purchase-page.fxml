@@ -13,7 +13,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.UserPurchasePageController">
     <children>
         <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
@@ -98,6 +97,10 @@
                 <VBox fx:id="vBox" prefHeight="0.0" prefWidth="0.0" />
             </content>
         </ScrollPane>
-      <Button fx:id="checkOutBtn" layoutX="1136.0" layoutY="835.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Check Out" />
+      <AnchorPane layoutX="1130.0" layoutY="755.0">
+         <children>
+            <Button fx:id="checkOutBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Check Out" />
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
