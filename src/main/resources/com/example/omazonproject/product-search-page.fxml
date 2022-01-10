@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" vmax="2.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.ProductSearchController">
+    <AnchorPane prefHeight="800.0" prefWidth="1280.0">
+        <ImageView fitHeight="150.0" fitWidth="1280.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/bannerHomepage.gif" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/malaysiaFlag.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text="Deliver to Malaysia" />
+        <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/logoMarkOmazon.png" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="-2.0" layoutY="120.0" prefHeight="62.0" prefWidth="1280.0" style="-fx-background-color: b4e7ce;">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="1152.0" layoutY="14.0" onMouseClicked="#HomeButtonPressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/HomePageIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="1100.0" layoutY="14.0" onMouseClicked="#UserProfileButtonPressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/userIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+        </AnchorPane>
+        <HBox alignment="CENTER" layoutX="1.0" layoutY="268.0" prefHeight="532.0" prefWidth="1280.0">
+            <children>
+                <ScrollPane prefHeight="501.0" prefWidth="1176.0" styleClass="transparent" stylesheets="@styling.css">
+                    <content>
+                        <GridPane fx:id="grid" prefHeight="10.0" prefWidth="1.0">
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                            </rowConstraints>
+                        </GridPane>
+                    </content>
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </ScrollPane>
+            </children>
+        </HBox>
+      <Label layoutX="71.0" layoutY="227.0" text="Search for ">
+         <font>
+            <Font name="Times New Roman" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="productToSearch" layoutX="237.0" layoutY="227.0" prefHeight="40.0" prefWidth="647.0" textFill="#f20303">
+         <font>
+            <Font name="Times New Roman" size="36.0" />
+         </font>
+      </Label>
+    </AnchorPane>
+</ScrollPane>

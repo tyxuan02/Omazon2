@@ -119,7 +119,8 @@ public class AutoFillSellerProductPageClass {
             BufferedImage BI = SwingFXUtils.fromFXImage(productImage.getImage(), null);
             ImageIO.write(BI, "png", fileoutput);
 
-        } catch (NullPointerException | IOException e) {
+        } catch (NullPointerException ignored) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -135,9 +136,6 @@ public class AutoFillSellerProductPageClass {
             DatabaseConnection connectNow = new DatabaseConnection();
             connectDB = connectNow.getConnection();
 
-            String email = currentProduct.getSellerEmail();
-            System.out.println(currentProduct.getProductImagePath());
-            System.out.println(email);
             String deleteProduct = "DELETE FROM product_info WHERE imageName = '" + currentProduct.getProductImagePath() + "'";
 
             statement = connectDB.createStatement();

@@ -8,10 +8,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -75,28 +72,29 @@ public class HomepageController {
     @FXML
     public void initialize() throws Exception {
 
-        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productCategory_home.setPromptText("select");
+            productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
+            productCategory_home.setPromptText("select");
 
-        //Autocomplete search
-        //If the product category is not selected, view all the product in database
-        getProductNameFromDatabase("select");
-        AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
+            //Autocomplete search
+            //If the product category is not selected, view all the product in database
+            getProductNameFromDatabase("select");
+            getSellerNameFromDatabase();
+            AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
 
-        //Select product category
-        productCategory_home.setOnAction(event -> {
-            try {
-                String get = productCategory_home.getSelectionModel().getSelectedItem();
-                if (get != null) {
-                    acb.get().dispose();
-                    productName.clear();
-                    getProductNameFromDatabase(get);
-                    acb.set(TextFields.bindAutoCompletion(searchItems, productName));
+            //Select product category
+            productCategory_home.setOnAction(event -> {
+                try {
+                    String get = productCategory_home.getSelectionModel().getSelectedItem();
+                    if (get != null) {
+                        acb.get().dispose();
+                        productName.clear();
+                        getProductNameFromDatabase(get);
+                        acb.set(TextFields.bindAutoCompletion(searchItems, productName));
+                    }
+                } catch (EventException e) {
+
                 }
-            } catch (EventException e) {
-
-            }
-        });
+            });
 
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
@@ -246,7 +244,6 @@ public class HomepageController {
         AutoFillProductPageClass controller = loader.getController();
         stage.show();
         controller.autoFill(objects.get(getMaxIndex[1]));
-
     }
 
     @FXML
@@ -258,7 +255,6 @@ public class HomepageController {
         AutoFillProductPageClass controller = loader.getController();
         stage.show();
         controller.autoFill(objects.get(getMaxIndex[2]));
-
     }
 
     @FXML
@@ -287,17 +283,43 @@ public class HomepageController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void searchButtonPressed(ActionEvent event) throws IOException {
+
+        String productToSearchName = searchItems.getText();
+
+        if (!searchItems.getText().isBlank()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("product-search-page.fxml"));
+            root = loader.load();
+
+            ProductSearchController productSearchController = loader.getController();
+            productSearchController.initialize(productToSearchName);
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Enter something to search");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter something to search");
+            alert.showAndWait();
+        }
+
 
     }
 
-    // This method is used to get the product name from database and store it in an array list named productName
+    // This method is used to get product name from database and store it in an array list named productName
     // Therefore it can be used by the autocomplete search
     void getProductNameFromDatabase(String PRODUCTCATEGORY) {
 
         Connection connectDB = null;
         Statement statement = null;
         ResultSet Result = null;
-        ResultSet sellerResult = null;
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
@@ -315,15 +337,6 @@ public class HomepageController {
                 productName.add(PRODUCTNAME);
             }
 
-            if (PRODUCTCATEGORY.equals("select")) {
-                sellerResult = statement.executeQuery("SELECT * FROM seller_account");
-            }
-
-            while (sellerResult.next()) {
-                String SELLERNAME = sellerResult.getString("sellerName");
-                productName.add(SELLERNAME);
-            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -334,6 +347,46 @@ public class HomepageController {
                     e.printStackTrace();
                 }
             }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    // This method is used to get seller name from database and store it in an array list named productName
+    // Therefore it can be used by the autocomplete search
+    void getSellerNameFromDatabase() {
+
+        Connection connectDB = null;
+        Statement statement = null;
+        ResultSet sellerResult = null;
+
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            statement = connectDB.createStatement();
+
+            sellerResult = statement.executeQuery("SELECT * FROM seller_account");
+
+            while (sellerResult.next()) {
+                String SELLERNAME = sellerResult.getString("sellerName");
+                productName.add(SELLERNAME);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             if (sellerResult != null) {
                 try {
                     sellerResult.close();
@@ -357,4 +410,5 @@ public class HomepageController {
             }
         }
     }
+
 }
