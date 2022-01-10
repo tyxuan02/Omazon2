@@ -7,6 +7,7 @@ package com.example.omazonproject;
  */
 public class Product {
     private String productName;
+    private String sellerName;
     private String productImagePath;
     private String sellerEmail;
     private String description;
@@ -27,6 +28,14 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 
     public String getSellerEmail() {

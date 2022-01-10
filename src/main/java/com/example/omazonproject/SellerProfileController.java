@@ -93,7 +93,8 @@ public class SellerProfileController {
             BufferedImage BI = SwingFXUtils.fromFXImage(image, null);
             ImageIO.write(BI, "png", fileoutput);
 
-        } catch (NullPointerException | IOException e) {
+        } catch (NullPointerException ignored) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

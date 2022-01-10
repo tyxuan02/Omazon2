@@ -218,14 +218,15 @@ public class SellerAddProductController implements Initializable {
 
             // Store product information into database
             String sellerEmail = Seller.getEmail();
+            String sellerName = Seller.getSellerName();
             String price = productPrice.getText();
             String category = productCategory.getValue();
             String description = productDescription.getText();
             String imageName = productIMAGENAME;
             String stock = stockNumber.getText();
             String sellerAddress = Seller.getAddress();
-            String insertFields = "INSERT INTO product_info (sellerEmail, name, price, category, description, imageName, numOfStock, sellerAddress) VALUES ('";
-            String insertValues = sellerEmail + "','" + productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "','" + stock + "','" + sellerAddress + "')";
+            String insertFields = "INSERT INTO product_info (sellerEmail, sellerName, name, price, category, description, imageName, numOfStock, sellerAddress) VALUES ('";
+            String insertValues = sellerEmail + "','" + sellerName + "','" + productName.getText() + "','" + price + "','" + category + "','" + description + "','" + imageName + "','" + stock + "','" + sellerAddress + "')";
             String insertToRegister = insertFields + insertValues;
             statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);

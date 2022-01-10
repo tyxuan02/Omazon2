@@ -1,10 +1,10 @@
 package com.example.omazonproject;
 
-import com.mysql.cj.protocol.PacketReceivedTimeHolder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -22,10 +23,6 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.Optional;
-
-import javafx.geometry.Bounds;
-
-import javax.mail.MessagingException;
 
 /**
  * This class acts as a controller for the product page
