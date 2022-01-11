@@ -19,7 +19,13 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import javax.mail.MessagingException;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -253,57 +259,101 @@ public class UserPurchasePageController {
     void checkOutButtonPressed() {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
 
-        // request for payment password to proceed using a custom dialog box
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Checking Out Cart Items...");
-        dialog.setHeaderText(String.format("The total amount of payment is RM%.2f\nPlease key-in your " +
-                "payment password to proceed with the payment.", jsonFileUtil.getTotalAmountFromCart()));
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        if (!vBox.getChildren().isEmpty()) {
+            // if the vBox is not empty,
+            // request for payment password to proceed using a custom dialog box
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle("Checking Out Cart Items...");
+            dialog.setHeaderText(String.format("The total amount of payment is RM%.2f\nPlease key-in your " +
+                    "payment password to proceed with the payment.", jsonFileUtil.getTotalAmountFromCart()));
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        PasswordField passwordField = new PasswordField();
+            PasswordField passwordField = new PasswordField();
 
-        GridPane grid = new GridPane();
-        grid.setVgap(10);
-        grid.setHgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
-        grid.add(new Label("Enter payment password: "), 0, 0);
-        grid.add(passwordField, 1, 0);
-        dialog.getDialogPane().setContent(grid);
+            GridPane grid = new GridPane();
+            grid.setVgap(10);
+            grid.setHgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+            grid.add(new Label("Enter payment password: "), 0, 0);
+            grid.add(passwordField, 1, 0);
+            dialog.getDialogPane().setContent(grid);
 
-        Platform.runLater(passwordField::requestFocus);
+            Platform.runLater(passwordField::requestFocus);
 
-        Optional<String> result = dialog.showAndWait();
+            Optional<String> result = dialog.showAndWait();
 
-        if (result.isPresent() && passwordField.getText().equals(User.getPaymentPassword())) {
-            // if the password entered is correct
-            // transfer all the cart item to the orders tab
+            if (result.isPresent() && passwordField.getText().equals(User.getPaymentPassword())) {
+                // if the password entered is correct,
+                // read the cart file and write its contents to orders file
+                List<CartItem> cartItemList = new ArrayList<>();
+                if (new File("JsonFiles\\cart.json").exists()) {
+                    JSONParser jsonParser = new JSONParser();
+                    try {
+                        Object obj = jsonParser.parse(new FileReader("JsonFiles\\cart.json"));
+                        JSONArray jsonArray = (JSONArray) obj;
 
-            // send notification to the seller for all the cart items
+                        // Iterate over jsonArray to load all the cart item in it
+                        for (Object object : jsonArray) {
+                            if (object instanceof JSONObject) {
+                                CartItem cartItem = new CartItem();
+                                cartItem.setSellerEmail((String) ((JSONObject) object).get("sellerEmail"));
+                                cartItem.setProductName((String) ((JSONObject) object).get("productName"));
+                                cartItem.setQuantity(Math.toIntExact((Long) ((JSONObject) object).get("quantity")));
+                                cartItem.setPricePerUnit((Double) ((JSONObject) object).get("pricePerUnit"));
+                                cartItem.setCartImagePath((String) ((JSONObject) object).get("cartImagePath"));
+                                cartItemList.add(cartItem);
+                            }
+                        }
 
-            // remove all the record in the json file
-            JSONArray jsonArray = new JSONArray();
-            try {
-                FileWriter file = new FileWriter("JsonFiles\\cart.json");
-                file.write(jsonArray.toJSONString());
-                file.flush();
-                file.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                JsonFileUtil jsonUtil = new JsonFileUtil();
+                jsonUtil.writeOrdersFile(cartItemList);
+
+                // send notification to the seller for all the cart items
+                for (CartItem cartItem : cartItemList) {
+                    try {
+                        Email.sendNotification(cartItem.getSellerEmail(), cartItem.getProductName(), cartItem.getQuantity(), cartItem.getPricePerUnit());
+
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // remove all the record in the json file
+                JSONArray jsonArray = new JSONArray();
+                try {
+                    FileWriter file = new FileWriter("JsonFiles\\cart.json");
+                    file.write(jsonArray.toJSONString());
+                    file.flush();
+                    file.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // inform the user that the payment is successful
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Payment successful");
+                alert.setHeaderText(null);
+                alert.setContentText("The payment is successful. You can view your orders at Profile > My Purchase > Orders.");
+                alert.showAndWait();
+
+                // clear the vBox
+                vBox.getChildren().clear();
+
+            } else {
+                // if the password is incorrect, warn the user
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Incorrect Password");
+                alert.setHeaderText(null);
+                alert.setContentText("The password entered is incorrect. Please try again.");
+                alert.showAndWait();
+
             }
 
-            // clear the vBox
-            vBox.getChildren().clear();
-
-        } else {
-            // if the password is incorrect, warn the user
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Incorrect Password");
-            alert.setHeaderText(null);
-            alert.setContentText("The password entered is incorrect. Please try again.");
-            alert.showAndWait();
-
         }
-
 
     }
 
@@ -365,7 +415,7 @@ public class UserPurchasePageController {
      *
      * @author XiangLun
      */
-    private void displayOrderedItem() {
+    public void displayOrderedItem() {
         // clear the previous contents in the vbox
         vBox.getChildren().clear();
 
@@ -414,10 +464,5 @@ public class UserPurchasePageController {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void refreshOrderedItem() {
-        vBox.getChildren().clear();
-        System.out.println("cleared");
     }
 }

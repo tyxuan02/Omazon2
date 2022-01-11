@@ -10,6 +10,15 @@ public class CartItem {
     private String cartImagePath;
     private int quantity;
     private double pricePerUnit;
+    private String sellerEmail;
+
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
 
     public String getProductName() {
         return productName;

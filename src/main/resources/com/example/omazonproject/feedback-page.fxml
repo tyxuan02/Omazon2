@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17"
+            fx:controller="com.example.omazonproject.FeedbackController">
+    <children>
+        <Rating fx:id="rating" layoutX="70.0" layoutY="95.0" rating="3.0"/>
+        <Label layoutX="72.0" layoutY="63.0" prefHeight="32.0" prefWidth="85.0" text="Rating">
+            <font>
+                <Font name="System Bold Italic" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="72.0" layoutY="159.0" prefHeight="32.0" prefWidth="85.0" text="Comment">
+            <font>
+                <Font name="System Bold Italic" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="253.0" layoutY="14.0" prefHeight="32.0" prefWidth="123.0" text="FeedBack">
+            <font>
+                <Font name="System Bold Italic" size="22.0"/>
+            </font>
+        </Label>
+        <TextArea fx:id="textArea" layoutX="73.0" layoutY="191.0" prefHeight="137.0" prefWidth="454.0"
+                  promptText="Enter your comment..."/>
+        <Button layoutX="513.0" layoutY="354.0" mnemonicParsing="false" onAction="#OKBtnPressed" prefHeight="32.0"
+                prefWidth="65.0"
+                style="-fx-background-color: #25D366; -fx-border-color: #ece5dd; -fx-border-radius: 7; -fx-background-radius: 7;"
+                text="OK" textFill="#dcf8c6">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

@@ -3,9 +3,14 @@ package com.example.omazonproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,13 +42,16 @@ public class OrderedItemController {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.deleteOrderRecord(currentOrderedItem);
 
-        // reload the contents in the vBox
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("purchase-page.fxml"));
-        loader.load();
-        UserPurchasePageController userPurchasePageController = loader.getController();
-        userPurchasePageController.refreshOrderedItem();
-        // TODO: 1/11/2022 find a way to refresh the vbox after pressing the delivered button
-        // TODO: 1/11/2022 pop up a feedback window 
+        // pop up the feedback page
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("feedback-page.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Leave a Review!");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     /**

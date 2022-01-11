@@ -17,11 +17,70 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This method is used to write and read .json file for different purposes
+ * This class is used to deal with .json file for different purposes
  *
  * @author XiangLun
  */
 public class JsonFileUtil {
+
+    /**
+     * This method is used to write ordered items into orders file from a list of cart Items
+     *
+     * @param list a list of cart item
+     * @author XiangLun
+     */
+    @SuppressWarnings("unchecked")
+    public void writeOrdersFile(List<CartItem> list) {
+        File orderFile = new File("JsonFiles\\orders.json");
+        if (orderFile.exists()) {
+            // if the orders file exists,
+            // add the newly added ordered item at the end of the .json file
+            JSONParser parser = new JSONParser();
+            try {
+                Object obj = parser.parse(new FileReader("JsonFiles\\orders.json"));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                for (CartItem cartItem : list) {
+                    JSONObject orderedItem = new JSONObject();
+                    orderedItem.put("productName", cartItem.getProductName());
+                    orderedItem.put("quantity", cartItem.getQuantity());
+                    orderedItem.put("ordersImagePath", cartItem.getCartImagePath());
+                    jsonArray.add(orderedItem);
+                }
+
+                FileWriter writer = new FileWriter("JsonFiles\\orders.json");
+                writer.write(jsonArray.toJSONString());
+                writer.flush();
+                writer.close();
+
+            } catch (ParseException | IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            // if it doesn't exist,
+            // write a new orders file
+            JSONArray jsonArray = new JSONArray();
+
+            for (CartItem cartItem : list) {
+                JSONObject orderedItem = new JSONObject();
+                orderedItem.put("productName", cartItem.getProductName());
+                orderedItem.put("quantity", cartItem.getQuantity());
+                orderedItem.put("ordersImagePath", cartItem.getCartImagePath());
+                jsonArray.add(orderedItem);
+            }
+
+            try {
+                FileWriter writer = new FileWriter("JsonFiles\\orders.json");
+                writer.write(jsonArray.toJSONString());
+                writer.flush();
+                writer.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     /**
      * This method is used to write cart.json file, which stores the information of the cart items.
@@ -44,6 +103,7 @@ public class JsonFileUtil {
                 cartItem.put("pricePerUnit", product.getProductPrice());
                 cartItem.put("quantity", quantity);
                 cartItem.put("cartImagePath", product.getProductImagePath());
+                cartItem.put("sellerEmail", product.getSellerEmail());
 
                 jsonArray.add(cartItem);
 
@@ -65,6 +125,7 @@ public class JsonFileUtil {
             cartItem.put("pricePerUnit", product.getProductPrice());
             cartItem.put("quantity", quantity);
             cartItem.put("cartImagePath", product.getProductImagePath());
+            cartItem.put("sellerEmail", product.getSellerEmail());
 
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(cartItem);
@@ -82,7 +143,7 @@ public class JsonFileUtil {
     }
 
     /**
-     * This method is used to write orders.json file, which stores the information of the ordered items.
+     * This method is used to write an order into the orders.json file, which stores the information of the ordered items.
      *
      * @author XiangLun
      */
@@ -277,6 +338,7 @@ public class JsonFileUtil {
                 for (Object object : jsonArray) {
                     if (object instanceof JSONObject) {
                         CartItem cartItem = new CartItem();
+                        cartItem.setSellerEmail((String) ((JSONObject) object).get("sellerEmail"));
                         cartItem.setProductName((String) ((JSONObject) object).get("productName"));
                         cartItem.setQuantity(Math.toIntExact((Long) ((JSONObject) object).get("quantity")));
                         cartItem.setPricePerUnit((Double) ((JSONObject) object).get("pricePerUnit"));
