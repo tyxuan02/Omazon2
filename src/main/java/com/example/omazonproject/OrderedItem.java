@@ -1,7 +1,7 @@
 package com.example.omazonproject;
 
 /**
- * This class is a blueprint for all cart item, which will be used in the purchase page
+ * This class is a blueprint for all ordered item, which will be used in the purchase page
  *
  * @author XiangLun
  */

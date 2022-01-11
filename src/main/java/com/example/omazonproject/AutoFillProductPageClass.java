@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import javax.mail.MessagingException;
@@ -205,13 +207,28 @@ public class AutoFillProductPageClass {
         } else {
             // if the user do have enough balance
             // request payment password
-            TextInputDialog textInputDialog = new TextInputDialog();
-            textInputDialog.setTitle("Processing Payment");
-            textInputDialog.setHeaderText("Please enter your payment password.");
-            textInputDialog.setContentText("Payment password");
+            // request for payment password to proceed using a custom dialog box
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle("Processing Payment...");
+            dialog.setHeaderText(String.format("The total amount of payment is RM%.2f\nPlease key-in your " +
+                    "payment password to proceed with the payment.", Integer.parseInt(quantity.getText()) * Double.parseDouble(priceLabel.getText())));
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-            Optional<String> result = textInputDialog.showAndWait();
-            if (result.isPresent() && result.get().equals(User.getPaymentPassword())) {
+            PasswordField passwordField = new PasswordField();
+
+            GridPane grid = new GridPane();
+            grid.setVgap(10);
+            grid.setHgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+            grid.add(new Label("Enter payment password: "), 0, 0);
+            grid.add(passwordField, 1, 0);
+            dialog.getDialogPane().setContent(grid);
+
+            Platform.runLater(passwordField::requestFocus);
+
+            Optional<String> result = dialog.showAndWait();
+
+            if (result.isPresent() && passwordField.getText().equals(User.getPaymentPassword())) {
                 // if payment password entered is correct
                 // subtract the amount from the user's balance in the User class
                 double balance = User.getBalance() - totalPrice;
