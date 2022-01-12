@@ -92,7 +92,7 @@ public class HomepageController {
                         acb.set(TextFields.bindAutoCompletion(searchItems, productName));
                     }
                 } catch (EventException e) {
-
+                    e.printStackTrace();
                 }
             });
 
@@ -142,6 +142,7 @@ public class HomepageController {
 
             while (bestSellingProductResult.next()) {
                 objects.add(count, new Product());
+                objects.get(count).setSellerName(bestSellingProductResult.getString("sellerName"));
                 objects.get(count).setSellerEmail(bestSellingProductResult.getString("sellerEmail"));
                 objects.get(count).setProductName(bestSellingProductResult.getString("name"));
                 objects.get(count).setProductPrice(bestSellingProductResult.getDouble("price"));

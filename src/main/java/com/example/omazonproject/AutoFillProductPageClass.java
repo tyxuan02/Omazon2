@@ -14,7 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 import javax.mail.MessagingException;
 import java.io.File;
@@ -38,6 +40,12 @@ public class AutoFillProductPageClass {
 
     private Product currentProduct;
     DecimalFormat df = new DecimalFormat("0.00");
+
+    @FXML
+    private Rating rating;
+
+    @FXML
+    private Label sellerName;
 
     @FXML
     private ImageView productImage;
@@ -76,12 +84,16 @@ public class AutoFillProductPageClass {
     private ImageView favorite;
 
     @FXML
+    private VBox vBox;
+
+    @FXML
     public void autoFill(Product product) {
 
         //Save the object of the current product
         this.currentProduct = product;
 
         //Autofill the product information into product page
+        sellerName.setText(product.getSellerName());
         priceLabel.setText(String.valueOf(df.format(product.getProductPrice())));
         category.setText(product.getCategory());
         name.setText(product.getProductName());
@@ -89,6 +101,8 @@ public class AutoFillProductPageClass {
         stock.setText(String.valueOf(product.getNumOfStock()));
         shipFrom.setText(product.getAddress());
         productDescription.setText(product.getDescription());
+        rating.setRating(1.0 * ((product.getNumOfFiveStars() * 5) + (product.getNumOfFourStars() * 4) + (product.getNumOfThreeStars() * 3) + (product.getNumOfTwoStars() * 2) + (product.getNumOfOneStars()))
+                / (product.getNumOfOneStars() + product.getNumOfTwoStars() + product.getNumOfThreeStars() + product.getNumOfFourStars() + product.getNumOfFiveStars()));
 
         Image image = new Image(new File("src/main/resources/images/" + product.getProductImagePath() + ".png").toURI().toString());
         productImage.setImage(image);
@@ -96,6 +110,10 @@ public class AutoFillProductPageClass {
 
     @FXML
     public void initialize() {
+        // prevent mouse clicking on the rating node
+        rating.setMouseTransparent(true);
+        rating.setFocusTraversable(false);
+
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
         tooltipProfile.setText("My Profile");
@@ -118,7 +136,6 @@ public class AutoFillProductPageClass {
 
     @FXML
     void homeButtonPressed(MouseEvent event) throws IOException {
-
         // Forward user to home page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

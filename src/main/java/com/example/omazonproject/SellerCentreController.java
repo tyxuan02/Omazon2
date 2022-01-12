@@ -72,6 +72,7 @@ public class SellerCentreController {
             while (Result.next()) {
                 //First, add all product information into a list named objects
                 objects.add(count, new Product());
+                objects.get(count).setSellerName(Result.getString("sellerName"));
                 objects.get(count).setSellerEmail(Result.getString("sellerEmail"));
                 objects.get(count).setProductName(Result.getString("name"));
                 objects.get(count).setProductPrice(Result.getDouble("price"));
