@@ -1,74 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="650.0" fitWidth="606.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/sellerPerformanceTemplate.png" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="71.0" layoutY="435.0" prefHeight="94.0" prefWidth="499.0">
-         <children>
-            <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/sale.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="91.0" layoutY="4.0" text="Number of sales">
-               <font>
-                  <Font name="Calibri" size="32.0" />
-               </font>
-            </Label>
-            <Label layoutX="91.0" layoutY="43.0" prefHeight="40.0" prefWidth="350.0" textFill="#cc364c">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="71.0" layoutY="335.0" prefHeight="80.0" prefWidth="507.0">
-         <children>
-            <ImageView fitHeight="67.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/ProfitIcon.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="91.0" layoutY="25.0" text="Profit : ">
-               <font>
-                  <Font name="Calibri" size="32.0" />
-               </font>
-            </Label>
-            <Label layoutX="204.0" layoutY="25.0" prefHeight="40.0" prefWidth="230.0" textFill="#cc364c">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="71.0" layoutY="544.0" prefHeight="94.0" prefWidth="442.0">
-         <children>
-            <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/bestSellingIcon.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="91.0" text="Best selling product">
-               <font>
-                  <Font name="Calibri" size="32.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="40.0" prefHeight="40.0" prefWidth="349.0" textFill="#cc364c">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.omazonproject.SellerPerformanceController">
+    <children>
+        <ImageView fitHeight="650.0" fitWidth="606.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/sellerPerformanceTemplate.png"/>
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="71.0" layoutY="435.0" prefHeight="94.0" prefWidth="499.0">
+            <children>
+                <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/sale.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="91.0" layoutY="4.0" text="Number of sales">
+                    <font>
+                        <Font name="Calibri" size="32.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="numberOfSales" layoutX="91.0" layoutY="43.0" prefHeight="40.0" prefWidth="350.0"
+                       textFill="#cc364c">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="71.0" layoutY="335.0" prefHeight="80.0" prefWidth="507.0">
+            <children>
+                <ImageView fitHeight="67.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/ProfitIcon.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="91.0" layoutY="25.0" text="Profit : ">
+                    <font>
+                        <Font name="Calibri" size="32.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="profitLabel" layoutX="204.0" layoutY="25.0" prefHeight="40.0" prefWidth="230.0"
+                       textFill="#cc364c">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="71.0" layoutY="544.0" prefHeight="94.0" prefWidth="442.0">
+            <children>
+                <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/bestSellingIcon.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="91.0" text="Best selling product">
+                    <font>
+                        <Font name="Calibri" size="32.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="bestSellingProduct" layoutX="92.0" layoutY="40.0" prefHeight="40.0" prefWidth="349.0"
+                       textFill="#cc364c">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

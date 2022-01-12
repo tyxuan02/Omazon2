@@ -220,10 +220,6 @@ public class SellerCentreController {
         resetScene();
     }
 
-    @FXML
-    // Remove product button at seller centre
-    public void removeProductButtonPressed(ActionEvent event) {
-    }
 
     @FXML
     // Customer review selection at menuButton at seller centre
@@ -236,8 +232,18 @@ public class SellerCentreController {
     }
 
     @FXML
-    // Orders selection at menuButton at seller centre
-    public void ordersPressed(ActionEvent event) {
+    // your performance selection at menuButton at seller centre
+    public void yourPerformancePressed(ActionEvent event) throws IOException {
+        // show the seller's performance
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-performance-template.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Your Performance");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     private void changeScene(Product product) throws IOException {
