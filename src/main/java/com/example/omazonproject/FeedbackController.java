@@ -18,18 +18,25 @@ public class FeedbackController {
     @FXML
     private TextArea textArea;
 
+    private String imageName;
+
     @FXML
     void OKBtnPressed(ActionEvent event) {
         // update the rating in the database (ie. numberOfFiveStars++) and the json file
         int numberOfStars = (int) rating.getRating();
 
-        // TODO store the comment in the json file (YuXuan)
-        // TODO store the username of the user in the json file (YuXuan)
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        jsonFileUtil.writeProductReview(imageName,numberOfStars,textArea.getText(),User.getUsername(),"");
 
         // close the pop-up window
         Node n = (Node) event.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
+    }
+
+    // This method is used to get product image name that user wants to review
+    void getProductName (String imageName) {
+        this.imageName = imageName;
     }
 
 }

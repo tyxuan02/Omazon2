@@ -9,6 +9,7 @@ public class OrderedItem {
     private String productName;
     private String orderedImagePath;
     private int quantity;
+    private String orderedImageName;
 
     public String getProductName() {
         return productName;
@@ -32,5 +33,13 @@ public class OrderedItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getOrderedImageName() {
+        return orderedImageName;
+    }
+
+    public void setOrderedImageName(String orderedImageName) {
+        this.orderedImageName = orderedImageName;
     }
 }
