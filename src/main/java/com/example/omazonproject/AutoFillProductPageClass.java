@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import javax.mail.MessagingException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -89,8 +90,7 @@ public class AutoFillProductPageClass {
         shipFrom.setText(product.getAddress());
         productDescription.setText(product.getDescription());
 
-        URL u = this.getClass().getResource("/images/" + product.getProductImagePath() + ".png");
-        Image image = new Image(String.valueOf(u));
+        Image image = new Image(new File("src/main/resources/images/" + product.getProductImagePath() + ".png").toURI().toString());
         productImage.setImage(image);
     }
 

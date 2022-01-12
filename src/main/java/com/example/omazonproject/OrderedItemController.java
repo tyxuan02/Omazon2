@@ -36,6 +36,8 @@ public class OrderedItemController {
     @FXML
     private Label quantity;
 
+    private String imageName;
+
     @FXML
     void deliveredButtonPressed(ActionEvent event) throws IOException {
         // remove the particular record and add the removed record into order history
@@ -51,6 +53,11 @@ public class OrderedItemController {
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
+
+        // pass product image name as a parameter to FeedbackController
+        FeedbackController controller = fxmlLoader.getController();
+        controller.getProductName(imageName);
+
         stage.showAndWait();
     }
 
@@ -65,6 +72,7 @@ public class OrderedItemController {
         productName.setText(orderedItem.getProductName());
         quantity.setText(Integer.toString(orderedItem.getQuantity()));
         Image image = new Image(new File(orderedItem.getOrderedImagePath()).toURI().toString());
+        this.imageName = orderedItem.getOrderedImageName();
         productImage.setImage(image);
     }
 }

@@ -254,6 +254,70 @@ public class JsonFileUtil {
     }
 
     /**
+     * This method is used to write (product image name).json file, which stores number of star, user review, reviewer username and seller reply for a product.
+     * Each product will have its own json file to store number of star, user review, username and seller reply
+     *
+     * @author YuXuan
+     */
+    @SuppressWarnings("unchecked")
+    public void writeProductReview(String imageName, int numOfStars, String review, String username, String reply) {
+        File reviewFile = new File( "JsonFiles\\" + imageName + ".json");
+
+        if (reviewFile.exists()) {
+
+            JSONParser jsonParser = new JSONParser();
+
+            // if the (product image name).json file exists,
+            // append the newly added number of stars, user review, username and seller reply at the end of the (product image name).json file
+            try {
+
+                Object obj = jsonParser.parse(new FileReader(reviewFile));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                JSONObject productReview = new JSONObject();
+                productReview.put("numOfStars", numOfStars);
+                productReview.put("userReview", review);
+                productReview.put("username", username);
+                productReview.put("sellerReply", reply);
+
+                jsonArray.add(productReview);
+
+                FileWriter file = new FileWriter("JsonFiles\\" + imageName + ".json");
+                file.write(jsonArray.toString());
+                file.flush();
+                file.close();
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            // if (product image name).json file is not found,
+            // write the number of stars, user review, username and seller reply into a new (product image name).json file
+            JSONObject productReview = new JSONObject();
+            productReview.put("numOfStars", numOfStars);
+            productReview.put("username", review);
+            productReview.put("reviewerUsername", username);
+            productReview.put("sellerReply", reply);
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(productReview);
+
+            try {
+
+                FileWriter file = new FileWriter( "JsonFiles\\" + imageName + ".json");
+                file.write(jsonArray.toJSONString());
+                file.flush();
+                file.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    /**
      * This method is used to read the orders.json file
      *
      * @return a list of OrderedItem object which presence in the file
@@ -274,6 +338,7 @@ public class JsonFileUtil {
                         orderedItem.setProductName((String) ((JSONObject) object).get("productName"));
                         orderedItem.setQuantity(Math.toIntExact((Long) ((JSONObject) object).get("quantity")));
                         orderedItem.setOrderedImagePath("src/main/resources/images/" + ((JSONObject) object).get("ordersImagePath") + ".png");
+                        orderedItem.setOrderedImageName(String.valueOf(((JSONObject) object).get("ordersImagePath")));
                         orderedItemsList.add(orderedItem);
                     }
                 }
