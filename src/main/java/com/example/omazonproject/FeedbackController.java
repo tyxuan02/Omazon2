@@ -38,7 +38,6 @@ public class FeedbackController {
 
             String updateNumOfStars;
 
-            // insert number of stars into database
             if (numberOfStars == 1) {
                 updateNumOfStars = "UPDATE product_info set numOfOneStars = IFNULL(numOfOneStars, 0) + 1 WHERE imageName = '" + imageName + "'";
             } else if  (numberOfStars == 2) {
