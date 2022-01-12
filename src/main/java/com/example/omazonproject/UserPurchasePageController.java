@@ -28,6 +28,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -311,6 +315,69 @@ public class UserPurchasePageController {
                 }
                 JsonFileUtil jsonUtil = new JsonFileUtil();
                 jsonUtil.writeOrdersFile(cartItemList);
+
+                for (CartItem cartItem : cartItemList) {
+                    // for each cart item, connect to database to increase the product's sales and decrease the stock
+                    Connection connection = null;
+                    PreparedStatement psUpdate = null;
+                    PreparedStatement psGetData = null;
+                    ResultSet resultSet = null;
+                    int numberOfStocks = 0, numberOfSales = 0;
+
+                    try {
+                        DatabaseConnection db = new DatabaseConnection();
+                        connection = db.getConnection();
+
+                        psGetData = connection.prepareStatement("SELECT * FROM product_info WHERE imageName = ?");
+                        psGetData.setString(1, cartItem.getCartImagePath());
+                        resultSet = psGetData.executeQuery();
+
+                        if (resultSet.next()) {
+                            numberOfStocks = Integer.parseInt(resultSet.getString("numOfStock"));
+                            numberOfSales = Integer.parseInt(resultSet.getString("numberOfSales"));
+                        }
+
+                        psUpdate = connection.prepareStatement("UPDATE product_info SET numberOfSales = ?, numOfStock = ? WHERE sellerEmail = ? AND name = ?");
+                        psUpdate.setString(1, String.valueOf(numberOfSales + cartItem.getQuantity()));
+                        psUpdate.setString(2, String.valueOf(numberOfStocks - cartItem.getQuantity()));
+                        psUpdate.setString(3, cartItem.getSellerEmail());
+                        psUpdate.setString(4, cartItem.getProductName());
+                        psUpdate.executeUpdate();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (resultSet != null) {
+                            try {
+                                resultSet.close();
+                            }catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (psGetData != null) {
+                            try {
+                                psGetData.close();
+                            }catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (psUpdate != null) {
+                            try {
+                                psUpdate.close();
+                            }catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (connection != null) {
+                            try {
+                                connection.close();
+                            }catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+
 
                 // send notification to the seller for all the cart items
                 for (CartItem cartItem : cartItemList) {

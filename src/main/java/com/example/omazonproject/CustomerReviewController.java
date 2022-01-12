@@ -115,14 +115,24 @@ public class CustomerReviewController {
         // display the pie chart in a fade-in and slide-up animation
         pieChart.setTitle("Number of Sales");
         pieChart.setData(pieChartData);
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(.8), pieChart);
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(1), pieChart);
         translate.setFromY(pieChart.getLayoutY() + 10);
         translate.setToY(pieChart.getLayoutY());
         translate.play();
-        FadeTransition fadeInPieChart = new FadeTransition(Duration.seconds(.8), pieChart);
+        FadeTransition fadeInPieChart = new FadeTransition(Duration.seconds(1), pieChart);
         fadeInPieChart.setFromValue(0);
         fadeInPieChart.setToValue(1);
         fadeInPieChart.play();
+
+        // display the bar chart in a fade-in and slide-up animation
+        TranslateTransition translateBar = new TranslateTransition(Duration.seconds(1.5), barChart);
+        translateBar.setFromY(barChart.getLayoutY() + 10);
+        translateBar.setToY(barChart.getLayoutY());
+        translateBar.play();
+        FadeTransition fadeInBarChart = new FadeTransition(Duration.seconds(1.5), barChart);
+        fadeInBarChart.setFromValue(0);
+        fadeInBarChart.setToValue(1);
+        fadeInBarChart.play();
 
         // set up the property for the label
         percentageLabel.setTextFill(Color.BLACK);
@@ -162,11 +172,31 @@ public class CustomerReviewController {
 
                     if (resultSet.next()) {
                         // store the product's ratings in the ratings array
-                        ratings[0] = Integer.parseInt(resultSet.getString("numOfOneStars"));
-                        ratings[1] = Integer.parseInt(resultSet.getString("numOfTwoStars"));
-                        ratings[2] = Integer.parseInt(resultSet.getString("numOfThreeStars"));
-                        ratings[3] = Integer.parseInt(resultSet.getString("numOfFourStars"));
-                        ratings[4] = Integer.parseInt(resultSet.getString("numOfFiveStars"));
+                        if (resultSet.getString("numOfOneStars") == null) {
+                            ratings[0] = 0;
+                        } else {
+                            ratings[0] = Integer.parseInt(resultSet.getString("numOfOneStars"));
+                        }
+                        if (resultSet.getString("numOfTwoStars") == null) {
+                            ratings[1] = 0;
+                        } else {
+                            ratings[1] = Integer.parseInt(resultSet.getString("numOfTwoStars"));
+                        }
+                        if (resultSet.getString("numOfThreeStars") == null) {
+                            ratings[2] = 0;
+                        } else {
+                            ratings[2] = Integer.parseInt(resultSet.getString("numOfThreeStars"));
+                        }
+                        if (resultSet.getString("numOfFourStars") == null) {
+                            ratings[3] = 0;
+                        } else {
+                            ratings[3] = Integer.parseInt(resultSet.getString("numOfFourStars"));
+                        }
+                        if (resultSet.getString("numOfFiveStars") == null) {
+                            ratings[4] = 0;
+                        } else {
+                            ratings[4] = Integer.parseInt(resultSet.getString("numOfFiveStars"));
+                        }
                     }
 
                 } catch (SQLException e) {
