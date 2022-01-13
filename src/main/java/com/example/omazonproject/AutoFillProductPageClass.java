@@ -1,5 +1,7 @@
 package com.example.omazonproject;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +15,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.Rating;
 
 import javax.mail.MessagingException;
@@ -26,6 +30,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -86,6 +92,8 @@ public class AutoFillProductPageClass {
     @FXML
     private VBox vBox;
 
+    private String imageName;
+
     @FXML
     public void autoFill(Product product) {
 
@@ -103,9 +111,9 @@ public class AutoFillProductPageClass {
         productDescription.setText(product.getDescription());
         rating.setRating(1.0 * ((product.getNumOfFiveStars() * 5) + (product.getNumOfFourStars() * 4) + (product.getNumOfThreeStars() * 3) + (product.getNumOfTwoStars() * 2) + (product.getNumOfOneStars()))
                 / (product.getNumOfOneStars() + product.getNumOfTwoStars() + product.getNumOfThreeStars() + product.getNumOfFourStars() + product.getNumOfFiveStars()));
-
         Image image = new Image(new File("src/main/resources/images/" + product.getProductImagePath() + ".png").toURI().toString());
         productImage.setImage(image);
+        displayProductReview(product.getProductImagePath());
     }
 
     @FXML
@@ -338,6 +346,32 @@ public class AutoFillProductPageClass {
                 alert.setContentText("The payment password entered is incorrect.");
                 alert.showAndWait();
 
+            }
+        }
+    }
+
+    /**
+     * This method is used to display the product review
+     *
+     * @author YuXuan
+     */
+    public void displayProductReview(String imageName) {
+        // clear the previous contents in the vbox
+        vBox.getChildren().clear();
+
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        // create an array list and call the product review list method
+        List<ProductReview> productReviewList = new ArrayList<>(jsonFileUtil.readProductReviewFile(imageName));
+        // loop through the productReviewList, fills in the product review, username, seller reply and add it to the vbox
+        for (ProductReview productReview : productReviewList) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("review-template.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ReviewController reviewController = fxmlLoader.getController();
+                reviewController.setData(productReview);
+                vBox.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
