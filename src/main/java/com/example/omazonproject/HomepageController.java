@@ -5,18 +5,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.w3c.dom.events.EventException;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -66,6 +70,10 @@ public class HomepageController {
 
     @FXML
     private ImageView top3;
+
+    public List<Product> products = new ArrayList<>();
+
+    private ProductListener productListener;
 
     int[] getMaxIndex = new int[3];
 
@@ -129,7 +137,6 @@ public class HomepageController {
 
 
         //Create a list to store all product objects
-
         Connection connectDB = null;
         Statement statement = null;
         ResultSet bestSellingProductResult = null;
@@ -216,16 +223,126 @@ public class HomepageController {
         String Top3 = objects.get(getMaxIndex[2]).getProductImagePath();
 
         //Display the top 3 best-selling product images at home page
-        URL u1 = this.getClass().getResource("/images/" + Top1 + ".png");
-        URL u2 = this.getClass().getResource("/images/" + Top2 + ".png");
-        URL u3 = this.getClass().getResource("/images/" + Top3 + ".png");
-        Image image1 = new Image(String.valueOf(u1));
-        Image image2 = new Image(String.valueOf(u2));
-        Image image3 = new Image(String.valueOf(u3));
+        Image image1 = new Image(new File("src/main/resources/images/" + Top1 + ".png").toURI().toString());
+        Image image2 = new Image(new File("src/main/resources/images/" + Top2 + ".png").toURI().toString());
+        Image image3 = new Image(new File("src/main/resources/images/" + Top3 + ".png").toURI().toString());
         top1.setImage(image1);
         top2.setImage(image2);
         top3.setImage(image3);
 
+
+        // display all the products at user homepage
+        // add all products in products list
+        getProduct();
+
+        productListener = new ProductListener() {
+            @Override
+            public void onClickListener(Product product) throws IOException {
+                changeScene(product);
+            }
+        };
+
+        int column = 0;
+        int row = 1;
+
+        try {
+
+            for (int i = 0; i < products.size(); i++) {
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("product-template.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                ProductController productController = loader.getController();
+                // set product name, product price and product image
+                // display it at seller product page
+                productController.setData(products.get(i), productListener);
+
+
+                if (column == 4) {
+                    column = 0;
+                    row++;
+                }
+
+                gridPane.add(anchorPane, column++, row);
+
+                //set grid width
+                gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
+                //set grid height
+                gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                gridPane.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(28));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void getProduct() {
+
+        Connection connectDB = null;
+        Statement statement = null;
+        ResultSet Result = null;
+
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            statement = connectDB.createStatement();
+
+            Result = statement.executeQuery("SELECT * FROM product_info");
+
+            int count = 0;
+            while (Result.next()) {
+                // add all product information into products list
+                products.add(count, new Product());
+                products.get(count).setSellerName(Result.getString("sellerName"));
+                products.get(count).setSellerEmail(Result.getString("sellerEmail"));
+                products.get(count).setProductName(Result.getString("name"));
+                products.get(count).setProductPrice(Result.getDouble("price"));
+                products.get(count).setCategory(Result.getString("category"));
+                products.get(count).setDescription(Result.getString("description"));
+                products.get(count).setNumOfOneStars(Result.getInt("numOfOneStars"));
+                products.get(count).setNumOfTwoStars(Result.getInt("numOfTwoStars"));
+                products.get(count).setNumOfThreeStars(Result.getInt("numOfThreeStars"));
+                products.get(count).setNumOfFourStars(Result.getInt("numOfFourStars"));
+                products.get(count).setNumOfFiveStars(Result.getInt("numOfFiveStars"));
+                products.get(count).setNumberOfSales((Result.getInt("numberOfSales")));
+                products.get(count).setProductImagePath(Result.getString("imageName"));
+                products.get(count).setProductStock(Result.getInt("numOfStock"));
+                products.get(count).setAddress(Result.getString("sellerAddress"));
+                count++;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (Result != null) {
+                try {
+                    Result.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connectDB != null) {
+                try {
+                    connectDB.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @FXML
@@ -413,6 +530,17 @@ public class HomepageController {
                 }
             }
         }
+    }
+
+    private void changeScene(Product product) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
+        ProductController productController = new ProductController();
+
+        stage = (Stage) ((Node) productController.event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(loader.load()));
+        AutoFillProductPageClass controller = loader.getController();
+        stage.show();
+        controller.autoFill(product);
     }
 
 }

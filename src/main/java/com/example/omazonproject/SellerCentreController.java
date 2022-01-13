@@ -51,11 +51,9 @@ public class SellerCentreController {
 
     public List<Product> products = new ArrayList<>();
 
-    private List<Product> objects = new ArrayList<>();
-
     private ProductListener productListener;
 
-    private List<Product> getProduct() {
+    private void getProduct() {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -70,23 +68,23 @@ public class SellerCentreController {
 
             int count = 0;
             while (Result.next()) {
-                //First, add all product information into a list named objects
-                objects.add(count, new Product());
-                objects.get(count).setSellerName(Result.getString("sellerName"));
-                objects.get(count).setSellerEmail(Result.getString("sellerEmail"));
-                objects.get(count).setProductName(Result.getString("name"));
-                objects.get(count).setProductPrice(Result.getDouble("price"));
-                objects.get(count).setCategory(Result.getString("category"));
-                objects.get(count).setDescription(Result.getString("description"));
-                objects.get(count).setNumOfOneStars(Result.getInt("numOfOneStars"));
-                objects.get(count).setNumOfTwoStars(Result.getInt("numOfTwoStars"));
-                objects.get(count).setNumOfThreeStars(Result.getInt("numOfThreeStars"));
-                objects.get(count).setNumOfFourStars(Result.getInt("numOfFourStars"));
-                objects.get(count).setNumOfFiveStars(Result.getInt("numOfFiveStars"));
-                objects.get(count).setNumberOfSales((Result.getInt("numberOfSales")));
-                objects.get(count).setProductImagePath(Result.getString("imageName"));
-                objects.get(count).setProductStock(Result.getInt("numOfStock"));
-                objects.get(count).setAddress(Result.getString("sellerAddress"));
+                // add all product information that belongs to the seller into a products list
+                products.add(count, new Product());
+                products.get(count).setSellerName(Result.getString("sellerName"));
+                products.get(count).setSellerEmail(Result.getString("sellerEmail"));
+                products.get(count).setProductName(Result.getString("name"));
+                products.get(count).setProductPrice(Result.getDouble("price"));
+                products.get(count).setCategory(Result.getString("category"));
+                products.get(count).setDescription(Result.getString("description"));
+                products.get(count).setNumOfOneStars(Result.getInt("numOfOneStars"));
+                products.get(count).setNumOfTwoStars(Result.getInt("numOfTwoStars"));
+                products.get(count).setNumOfThreeStars(Result.getInt("numOfThreeStars"));
+                products.get(count).setNumOfFourStars(Result.getInt("numOfFourStars"));
+                products.get(count).setNumOfFiveStars(Result.getInt("numOfFiveStars"));
+                products.get(count).setNumberOfSales((Result.getInt("numberOfSales")));
+                products.get(count).setProductImagePath(Result.getString("imageName"));
+                products.get(count).setProductStock(Result.getInt("numOfStock"));
+                products.get(count).setAddress(Result.getString("sellerAddress"));
                 count++;
             }
 
@@ -115,8 +113,6 @@ public class SellerCentreController {
                 }
             }
         }
-
-        return objects;
     }
 
     @FXML
@@ -125,8 +121,8 @@ public class SellerCentreController {
         // fill-in seller name in the menu button
         sellerNameMenuButton.setText("  " + Seller.getSellerName());
 
-        // add all objects in objects list to a products list
-        products.addAll(getProduct());
+        // call the method to add all product information that belongs to the seller into a products list
+        getProduct();
 
         productListener = new ProductListener() {
             @Override
@@ -261,10 +257,9 @@ public class SellerCentreController {
     public void resetScene() {
         // clear the contents in the grid
         grid.getChildren().clear();
-        objects.clear();
         products.clear();
 
-        products.addAll(getProduct());
+        getProduct();
         productListener = new ProductListener() {
             @Override
             public void onClickListener(Product product) throws IOException {
