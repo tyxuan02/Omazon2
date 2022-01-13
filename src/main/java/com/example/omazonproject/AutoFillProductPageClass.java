@@ -222,13 +222,21 @@ public class AutoFillProductPageClass {
         // calculate the total price in 2 decimal places
         double totalPrice = (int) (Integer.parseInt(quantity.getText()) * Double.parseDouble(priceLabel.getText()) * 100 + 0.5) / 100.0;
 
-        // check whether the user have enough balance
+        // check whether the user have set their payment password before
         if (User.getPaymentPassword() == null) {
             // if the user haven't set the payment password before, ask them to set it first
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("A Payment Password is Required");
             alert.setHeaderText(null);
             alert.setContentText("Please set your payment password at the profile page.");
+            alert.showAndWait();
+
+        } else if (Integer.parseInt(quantity.getText()) > currentProduct.getNumOfStock()) {
+            // if the stock is not enough
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Insufficient stock");
+            alert.setHeaderText(null);
+            alert.setContentText("The number of stocks for this product is insufficient. Please wait until the seller increases their stock.");
             alert.showAndWait();
 
         } else if (User.getBalance() < totalPrice) {

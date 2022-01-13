@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -54,7 +55,8 @@ public class HomepageController {
     @FXML
     private TextField searchItems;
 
-    ArrayList<String> productName = new ArrayList<>();
+    @FXML
+    private GridPane gridPane;
 
     @FXML
     private ImageView top1;
@@ -67,34 +69,35 @@ public class HomepageController {
 
     int[] getMaxIndex = new int[3];
 
+    ArrayList<String> productName = new ArrayList<>();
     List<Product> objects = new ArrayList<>();
 
     @FXML
     public void initialize() throws Exception {
 
-            productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-            productCategory_home.setPromptText("select");
+        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
+        productCategory_home.setPromptText("select");
 
-            //Autocomplete search
-            //If the product category is not selected, view all the product in database
-            getProductNameFromDatabase("select");
-            getSellerNameFromDatabase();
-            AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
+        //Autocomplete search
+        //If the product category is not selected, view all the product in database
+        getProductNameFromDatabase("select");
+        getSellerNameFromDatabase();
+        AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
 
-            //Select product category
-            productCategory_home.setOnAction(event -> {
-                try {
-                    String get = productCategory_home.getSelectionModel().getSelectedItem();
-                    if (get != null) {
-                        acb.get().dispose();
-                        productName.clear();
-                        getProductNameFromDatabase(get);
-                        acb.set(TextFields.bindAutoCompletion(searchItems, productName));
-                    }
-                } catch (EventException e) {
-                    e.printStackTrace();
+        //Select product category
+        productCategory_home.setOnAction(event -> {
+            try {
+                String get = productCategory_home.getSelectionModel().getSelectedItem();
+                if (get != null) {
+                    acb.get().dispose();
+                    productName.clear();
+                    getProductNameFromDatabase(get);
+                    acb.set(TextFields.bindAutoCompletion(searchItems, productName));
                 }
-            });
+            } catch (EventException e) {
+                e.printStackTrace();
+            }
+        });
 
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();

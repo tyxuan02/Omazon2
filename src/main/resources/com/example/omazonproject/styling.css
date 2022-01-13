@@ -48,4 +48,6 @@
 
 .product{
     -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: #c4c4c4;
 }
