@@ -68,9 +68,6 @@ public class UserPurchasePageController {
     private Line underLine;
 
     @FXML
-    private ComboBox<String> productCategory_home;
-
-    @FXML
     private Label unitPriceLabel;
 
     @FXML
@@ -85,14 +82,8 @@ public class UserPurchasePageController {
     @FXML
     private Button checkOutBtn;
 
-
     @FXML
     public void initialize() {
-
-        // Set-up category in the combo box
-        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productCategory_home.setPromptText("Select");
-
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
         tooltipProfile.setText("My Profile");
@@ -350,28 +341,28 @@ public class UserPurchasePageController {
                         if (resultSet != null) {
                             try {
                                 resultSet.close();
-                            }catch (SQLException e) {
+                            } catch (SQLException e) {
                                 e.printStackTrace();
                             }
                         }
                         if (psGetData != null) {
                             try {
                                 psGetData.close();
-                            }catch (SQLException e) {
+                            } catch (SQLException e) {
                                 e.printStackTrace();
                             }
                         }
                         if (psUpdate != null) {
                             try {
                                 psUpdate.close();
-                            }catch (SQLException e) {
+                            } catch (SQLException e) {
                                 e.printStackTrace();
                             }
                         }
                         if (connection != null) {
                             try {
                                 connection.close();
-                            }catch (SQLException e) {
+                            } catch (SQLException e) {
                                 e.printStackTrace();
                             }
                         }

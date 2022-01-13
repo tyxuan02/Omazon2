@@ -5,6 +5,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -30,7 +31,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Optional;
-import javafx.geometry.Bounds;
 
 /**
  * This class is responsible to control the events happening in the user profile page
@@ -59,9 +59,6 @@ public class UserProfileController {
     private Button setPaymentPasswordButton;
 
     @FXML
-    private ComboBox<String> productCategory_home;
-    
-    @FXML
     private Button profileIcon;
 
     @FXML
@@ -72,11 +69,6 @@ public class UserProfileController {
 
     @FXML
     public void initialize() {
-
-        // instantiate combo box
-        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productCategory_home.setPromptText("Select");
-        
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
         tooltipProfile.setText("My Profile");
@@ -94,7 +86,7 @@ public class UserProfileController {
             Bounds bHome = homeIcon.localToScreen(homeIcon.getBoundsInLocal());
             homeIcon.getTooltip().setX(bHome.getMaxX() - 60);
             homeIcon.getTooltip().setY(bHome.getMinY() + 35);
-        }); 
+        });
 
         // fill user's information
         emailAddress.setText(User.getEmail());

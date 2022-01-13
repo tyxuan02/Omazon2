@@ -37,7 +37,6 @@ public class UserAccountBalancePageController {
 
     @FXML
     public void initialize() {
-
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
         tooltipProfile.setText("My Profile");
@@ -57,6 +56,7 @@ public class UserAccountBalancePageController {
             homeIcon.getTooltip().setY(bHome.getMinY() + 35);
         });
 
+        // set the user's balance into the label
         accountBalanceLabel.setText(String.format("%.2f", User.getBalance()));
 
     }

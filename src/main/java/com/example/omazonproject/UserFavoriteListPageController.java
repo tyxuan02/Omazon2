@@ -1,10 +1,5 @@
 package com.example.omazonproject;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,25 +9,26 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is responsible to control the events happening in the user favorite list page
  */
 
 public class UserFavoriteListPageController {
-    
+
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
-    @FXML
-    private ComboBox<String> productCategory_home;
-    
+
     @FXML
     private Button profileIcon;
 
@@ -41,12 +37,9 @@ public class UserFavoriteListPageController {
 
     @FXML
     private VBox vBox;
-    
+
     @FXML
     public void initialize() {
-        productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productCategory_home.setPromptText("Select");
-        
         // Show tooltip message when user point at the icon
         final Tooltip tooltipProfile = new Tooltip();
         tooltipProfile.setText("My Profile");
@@ -68,7 +61,7 @@ public class UserFavoriteListPageController {
 
         displayFavoriteItem();
     }
-    
+
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));

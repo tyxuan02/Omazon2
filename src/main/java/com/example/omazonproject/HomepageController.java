@@ -22,7 +22,6 @@ import org.w3c.dom.events.EventException;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -84,11 +83,11 @@ public class HomepageController {
     public void initialize() throws Exception {
 
         productCategory_home.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
-        productCategory_home.setPromptText("select");
+        productCategory_home.setPromptText("Select");
 
         //Autocomplete search
         //If the product category is not selected, view all the product in database
-        getProductNameFromDatabase("select");
+        getProductNameFromDatabase("Select");
         getSellerNameFromDatabase();
         AtomicReference<AutoCompletionBinding> acb = new AtomicReference<>(TextFields.bindAutoCompletion(searchItems, productName));
 
@@ -447,7 +446,7 @@ public class HomepageController {
             connectDB = connectNow.getConnection();
             statement = connectDB.createStatement();
 
-            if (PRODUCTCATEGORY.equals("select")) {
+            if (PRODUCTCATEGORY.equals("Select")) {
                 Result = statement.executeQuery("SELECT * FROM product_info");
             } else {
                 Result = statement.executeQuery("SELECT * FROM product_info where category = '" + PRODUCTCATEGORY + "'");
