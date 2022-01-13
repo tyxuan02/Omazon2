@@ -75,7 +75,7 @@ public class Email {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(sellerEmail));
-            message.setSubject("[Omazon] You received a new order");
+            message.setSubject("[Omazon] Queries form the user");
             message.setText("*** This is an automatically generated email. Please do not reply***\n\n" +
                     "You have received a new order on Omazon for " + quantity + String.format(" item(s) totalling RM%.2f\n", pricePerUnit * quantity) +
                     "ORDER DETAILS:\n" +
@@ -84,6 +84,79 @@ public class Email {
                     "Product ordered: " + productName + "\n" +
                     "Quantity: " + quantity + "\n" +
                     "Grand Total: " + String.format("RM%.2f", pricePerUnit * quantity));
+            return message;
+
+        } catch (Exception ex) {
+            Logger.getLogger(VerificationEmail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * This method is used to send user's chat message to the seller
+     *
+     * @param sellerEmail email address of the seller
+     * @param productName the name of the current product
+     * @param chatMessage the chat message from the user
+     * @author XiangLun
+     */
+    public static void sendChatMessage(String sellerEmail, String productName, String chatMessage) throws MessagingException {
+
+        // Set properties
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        // Read the credentials from .json file and store in the variables
+        String myAccountEmail = new JsonFileReader().getEmailAddress();
+        String password = new JsonFileReader().getPassword();
+
+        // Create a session
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccountEmail, password);
+            }
+        });
+
+        // create a new message
+        Message message = prepareChatMessage(session, myAccountEmail, sellerEmail, productName, chatMessage);
+
+        // Send message
+        assert message != null;
+        Transport.send(message);
+    }
+
+    /**
+     * This method is used to prepare seller notification message to inform them about any new orders
+     *
+     * @param session        session created in the sendChatMessage method
+     * @param myAccountEmail email address of our Omazon account
+     * @param sellerEmail    email address of the recipient
+     * @param productName    the name of the current product
+     * @param chatMessage    the chat message written by the user
+     * @return a message containing the customer details and the customer's message
+     * @author XiangLun
+     */
+    private static Message prepareChatMessage(Session session, String myAccountEmail, String sellerEmail, String productName, String chatMessage) {
+        try {
+            // retrieve the information of the product
+            String customerName = User.getUsername();
+            String customerEmail = User.getEmail();
+
+            // Prepare a new message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(sellerEmail));
+            message.setSubject("[Omazon] You received a chat message from a customer");
+            message.setText("*** This is an automatically generated email. Please do not reply***\n\n" +
+                    "You have received a chat message from " + customerName + " regarding the product \"" + productName + "\"\n\n" +
+                    "Customer: " + customerName + "\n" +
+                    "Customer's email address: " + customerEmail + "\n" +
+                    "Chat Message: " + chatMessage);
+
             return message;
 
         } catch (Exception ex) {

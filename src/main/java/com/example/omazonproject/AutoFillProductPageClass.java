@@ -1,7 +1,6 @@
 package com.example.omazonproject;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +17,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Rating;
 
@@ -92,6 +93,9 @@ public class AutoFillProductPageClass {
     @FXML
     private VBox vBox;
 
+    @FXML
+    private Button chatWithSellerBtn;
+
     private String imageName;
 
     @FXML
@@ -140,6 +144,12 @@ public class AutoFillProductPageClass {
             homeIcon.getTooltip().setX(bHome.getMaxX() - 60);
             homeIcon.getTooltip().setY(bHome.getMinY() + 35);
         });
+
+        // Fade in chat with seller button
+        FadeTransition fadeInChatWithSellerBtn = new FadeTransition(Duration.seconds(1.3), chatWithSellerBtn);
+        fadeInChatWithSellerBtn.setFromValue(0);
+        fadeInChatWithSellerBtn.setToValue(1);
+        fadeInChatWithSellerBtn.play();
     }
 
     @FXML
@@ -348,6 +358,23 @@ public class AutoFillProductPageClass {
 
             }
         }
+    }
+
+
+    @FXML
+    void chatWithSellerBtnPressed(ActionEvent event) throws IOException {
+        // pop up the chat with seller page
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chat-with-seller-page.fxml"));
+        Parent root = fxmlLoader.load();
+        ChatWithSellerController chatWithSellerController = fxmlLoader.getController();
+        chatWithSellerController.setInfo(currentProduct.getSellerName(), currentProduct.getSellerEmail(), currentProduct.getProductName());
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Chat With Seller");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     /**
