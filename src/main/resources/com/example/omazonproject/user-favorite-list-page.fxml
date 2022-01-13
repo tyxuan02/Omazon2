@@ -70,26 +70,30 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="55.0" layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1165.0" style="-fx-background-color: white;">
+                <AnchorPane layoutX="55.0" layoutY="194.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1165.0" style="-fx-background-color: white;">
                     <children>
-                        <AnchorPane layoutY="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1165.0" style="-fx-background-color: F2F7F4;">
+                        <AnchorPane layoutX="5.0" layoutY="56.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="1166.0" style="-fx-background-color: F2F7F4; -fx-border-color: #c4c4c4; -fx-background-radius: 3; -fx-border-radius: 3;">
                             <children>
                                 <Label layoutX="21.0" layoutY="9.0" text="Product">
                                     <font>
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="1035.0" layoutY="9.0" text="Unit Price" />
+                                <Label layoutX="1035.0" layoutY="10.0" text="Unit Price">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
                             </children>
                         </AnchorPane>
-                        <Label layoutX="18.0" layoutY="7.0" prefHeight="27.0" prefWidth="157.0" text="My Favourite" textAlignment="CENTER" textFill="#6b6464">
+                        <Label layoutX="526.0" layoutY="7.0" prefHeight="27.0" prefWidth="208.0" text="My Favourite" textAlignment="CENTER" textFill="#6b6464">
                             <font>
-                                <Font size="18.0" />
+                                <Font name="Gill Sans MT" size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </AnchorPane>
-                <ScrollPane layoutX="55.0" layoutY="295.0" prefHeight="490.0" prefWidth="1165.0">
+                <ScrollPane layoutX="60.0" layoutY="295.0" prefHeight="490.0" prefWidth="1165.0">
                     <content>
                         <VBox fx:id="vBox" prefHeight="0.0" prefWidth="0.0" />
                     </content>
