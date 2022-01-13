@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
             prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.omazonproject.HelloController">
@@ -58,10 +48,10 @@
                                        minWidth="-Infinity" prefHeight="40.0" prefWidth="272.0"
                                        promptText="Enter password" AnchorPane.leftAnchor="112.0"
                                        AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="209.0"/>
-                        <Button fx:id="btn1" layoutX="112.0" layoutY="292.0" minHeight="-Infinity" minWidth="-Infinity"
+                        <Button fx:id="btn1" layoutX="112.0" layoutY="294.0" minHeight="-Infinity" minWidth="-Infinity"
                                 mnemonicParsing="false" onMouseClicked="#loginButtonPressed" prefHeight="40.0"
                                 prefWidth="272.0" text="LOGIN" AnchorPane.leftAnchor="112.0"
-                                AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="292.0"/>
+                                AnchorPane.rightAnchor="112.0"/>
                         <Text fill="#1d3557" layoutX="181.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0"
                               text="Create a new account" AnchorPane.leftAnchor="181.0"
                               AnchorPane.rightAnchor="176.299609375"/>
@@ -69,6 +59,10 @@
                                 onMouseClicked="#signUpPromptButtonPressed" text="Sign Up"/>
                         <Label fx:id="loginMessageLabel" layoutX="113.0" layoutY="252.0" prefHeight="17.0"
                                prefWidth="245.0" text="Please enter email and password" textFill="RED" visible="false"/>
+                        <Button layoutX="257.0" layoutY="341.0" mnemonicParsing="false"
+                                onAction="#forgotPasswordBtnPressed" prefHeight="14.0" prefWidth="110.0"
+                                style="-fx-background-color: #a8dadc;" text="Forgot password?" textFill="#1d3557"
+                                underline="true"/>
                     </children>
                 </AnchorPane>
             </center>

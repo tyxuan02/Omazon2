@@ -32,11 +32,11 @@ public class VerificationEmail {
     /**
      * This method will send a verification email to the recipient
      *
-     * @author XiangLun
      * @param recipient email address of the recipient
      * @param type      type of email to be sent, "user" for user verification email, "seller" for seller verification email,
      *                  and "forgetPassword" for forget password email;
      * @throws MessagingException if errors occur while sending email
+     * @author XiangLun
      */
     public void sendVerificationEmail(String recipient, String type) throws MessagingException {
 
@@ -74,6 +74,7 @@ public class VerificationEmail {
 
     /**
      * Generate random 6-digits code and store it in the verificationCode field
+     *
      * @author XiangLun
      */
     private void codeGenerator() {
@@ -87,11 +88,11 @@ public class VerificationEmail {
     /**
      * Prepare the message to be sent to the user
      *
-     * @author XiangLun
      * @param session        session created in the sendVerificationEmail method
      * @param myAccountEmail email address of our Omazon account
      * @param recipient      email address of the recipient
      * @return a multipart message containing an HTML header and an image
+     * @author XiangLun
      */
     private Message prepareMessageForUser(Session session, String myAccountEmail, String recipient) {
         try {
@@ -141,11 +142,11 @@ public class VerificationEmail {
     /**
      * Prepare the message to be sent to the seller
      *
-     * @author XiangLun
      * @param session        session created in the sendVerificationEmail method
      * @param myAccountEmail email address of our Omazon account
      * @param recipient      email address of the recipient (seller)
      * @return a multipart message containing an HTML header and an image
+     * @author XiangLun
      */
     private Message prepareMessageForSeller(Session session, String myAccountEmail, String recipient) {
         try {
@@ -195,11 +196,11 @@ public class VerificationEmail {
     /**
      * Prepare the message to be sent to the user who forgets his/her password
      *
-     * @author XiangLun
      * @param session        session created in the sendVerificationEmail method
      * @param myAccountEmail email address of our Omazon account
      * @param recipient      email address of the recipient
      * @return a multipart message containing an HTML header and an image
+     * @author XiangLun
      */
     private Message prepareMessageForForgetPassword(Session session, String myAccountEmail, String recipient) {
         try {
@@ -224,7 +225,7 @@ public class VerificationEmail {
 
             // html body part
             BodyPart messageBodyPart = new MimeBodyPart();
-            String htmlText = "<H1>Hi " + User.getUsername() + "!</H1><img src=\"cid:image\">";
+            String htmlText = "<H1>Hi there!</H1><img src=\"cid:image\">";
             messageBodyPart.setContent(htmlText, "text/html");
             multipart.addBodyPart(messageBodyPart);
 

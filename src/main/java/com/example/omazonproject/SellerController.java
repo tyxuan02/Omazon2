@@ -1,21 +1,25 @@
 package com.example.omazonproject;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -65,6 +69,168 @@ public class SellerController {
     @FXML
     // The "Please enter email address and password." label
     private Label sellerLoginMessageLabel;
+
+    @FXML
+    void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
+        // if forget button is pressed,
+        // inform the seller that they will receive an email
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Reset Password");
+        alert.setHeaderText(null);
+        alert.setContentText("An email containing a confirmation code will be sent to the email address entered at the email text field.");
+        alert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+
+        Optional<ButtonType> btn = alert.showAndWait();
+        if (sellerEmail_Login.getText().isEmpty() || !valEmail(sellerEmail_Login.getText())) {
+            // inform the seller to enter their email at the email text field
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Failed To Send Conformation Email");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Please key-in your valid email address at the email text field in order to receive a conformation email");
+            alert1.showAndWait();
+
+        } else if (btn.isPresent() && btn.get() == ButtonType.OK) {
+            // send conformation email to the seller
+            VerificationEmail verificationEmail = new VerificationEmail();
+            verificationEmail.sendVerificationEmail(sellerEmail_Login.getText(), "forgetPassword");
+
+            // request the confirmation code from the seller
+            TextInputDialog textInputDialog = new TextInputDialog();
+            textInputDialog.setTitle("Confirmation Email Sent Successfully");
+            textInputDialog.setHeaderText("Please enter the confirmation code.");
+            textInputDialog.setContentText("Confirmation code:");
+            Optional<String> code = textInputDialog.showAndWait();
+
+            if (code.isPresent() && code.get().equals(Integer.toString(verificationEmail.verificationCode))) {
+                // if the code entered is correct,
+                // let the seller change the password
+
+                // create a new custom dialog box with two inputs
+                Dialog<Pair<String, String>> dialog = new Dialog<>();
+                dialog.setTitle("Change Login Password");
+                dialog.setHeaderText("Please enter your new password.");
+
+                // Set up the button.
+                ButtonType changeButtonType = new ButtonType("Change", ButtonBar.ButtonData.OK_DONE);
+                dialog.getDialogPane().getButtonTypes().addAll(changeButtonType, ButtonType.CANCEL);
+
+                // Create a grid pane
+                GridPane grid = new GridPane();
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(20, 150, 10, 10));
+
+                // Create the required labels and password fields.
+                PasswordField newPass1 = new PasswordField();
+                newPass1.setPromptText("Enter new password");
+                PasswordField newPass2 = new PasswordField();
+                newPass2.setPromptText("Re-enter new password");
+                Text warningText = new Text("The password does not match");
+                warningText.setFill(Color.RED);
+
+                // Place the labels and password fields into the grid pane
+                grid.add(new Label("New password:"), 0, 0);
+                grid.add(newPass1, 1, 0);
+                grid.add(new Label("Confirm new password:"), 0, 1);
+                grid.add(newPass2, 1, 1);
+                grid.add(warningText, 0, 2);
+                dialog.getDialogPane().setContent(grid);
+
+                // Enable/Disable change button depending on whether the passwords match.
+                // Show/Hide warning text depending on whether the passwords match.
+                Node changeButton = dialog.getDialogPane().lookupButton(changeButtonType);
+                changeButton.setDisable(true);
+                warningText.setVisible(false);
+                newPass2.textProperty().addListener((observable, oldValue, newValue) -> {
+                    warningText.setVisible(!newValue.isEmpty());
+                    changeButton.setDisable(true);
+                    if (newValue.equals(newPass1.getText()) && !newPass1.getText().isEmpty()) {
+                        warningText.setVisible(false);
+                        changeButton.setDisable(false);
+                    }
+                });
+                newPass1.textProperty().addListener((observable, oldValue, newValue) -> {
+                    if (!newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
+                        warningText.setVisible(true);
+                        changeButton.setDisable(true);
+                    } else if (newValue.equals(newPass2.getText()) && !newPass2.getText().isEmpty()) {
+                        warningText.setVisible(false);
+                        changeButton.setDisable(false);
+                    }
+                });
+
+                // Request focus on the first password field by default
+                Platform.runLater(newPass1::requestFocus);
+
+                // Convert the result to a password-confirmation password pari when the button is clicked.
+                dialog.setResultConverter(dialogButton -> {
+                    if (dialogButton == changeButtonType) {
+                        return new Pair<>(newPass1.getText(), newPass2.getText());
+                    }
+                    return null;
+                });
+
+                // Show the dialog
+                Optional<Pair<String, String>> result = dialog.showAndWait();
+
+                // If the confirmation password matches
+                result.ifPresent(newPassword -> {
+
+                    // Connect to the database and change the seller's password
+                    Connection connection = null;
+                    PreparedStatement psUpdatePass = null;
+
+                    try {
+                        // Change the seller's password in the database
+                        DatabaseConnection db = new DatabaseConnection();
+                        connection = db.getConnection();
+                        psUpdatePass = connection.prepareStatement("UPDATE seller_account SET password = ? WHERE email = ?");
+                        psUpdatePass.setString(1, newPassword.getKey());
+                        psUpdatePass.setString(2, sellerEmail_Login.getText());
+                        psUpdatePass.executeUpdate();
+
+                        // Display successful pop-up message
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Successful");
+                        alert1.setHeaderText(null);
+                        alert1.setContentText("Password changed successfully.");
+                        alert1.showAndWait();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+
+                    } finally {
+                        if (psUpdatePass != null) {
+                            try {
+                                psUpdatePass.close();
+
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (connection != null) {
+                            try {
+                                connection.close();
+
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+
+            } else {
+                // If the code entered does not match,
+                // Display error pop-up message
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setTitle("Error");
+                alert1.setHeaderText("The confirmation code entered is empty or does not match.");
+                alert1.setContentText("Please try again.");
+                alert1.showAndWait();
+            }
+        }
+
+    }
 
     @FXML
     // Sign-up button pressed at the seller sign-up page

@@ -683,7 +683,6 @@ public class UserProfileController {
      * @author XiangLun
      */
     public void changePassword() {
-        // if the password entered matches with the current password
         // generate a dialog box to let the user enter their desired password to change to
 
         // create a new custom dialog box with two inputs
@@ -780,7 +779,7 @@ public class UserProfileController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Successful");
                     alert.setHeaderText(null);
-                    alert.setContentText("Password change successfully.");
+                    alert.setContentText("Password changed successfully.");
                     alert.showAndWait();
 
                 } catch (SQLException e) {
