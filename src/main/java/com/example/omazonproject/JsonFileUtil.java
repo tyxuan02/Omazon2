@@ -261,10 +261,9 @@ public class JsonFileUtil {
      */
     @SuppressWarnings("unchecked")
     public void writeProductReview(String imageName, int numOfStars, String review, String username, String reply) {
-        File reviewFile = new File( "JsonFiles\\" + imageName + ".json");
+        File reviewFile = new File("JsonFiles\\" + imageName + ".json");
 
         if (reviewFile.exists()) {
-
             JSONParser jsonParser = new JSONParser();
 
             // if the (product image name).json file exists,
@@ -275,10 +274,15 @@ public class JsonFileUtil {
                 JSONArray jsonArray = (JSONArray) obj;
 
                 JSONObject productReview = new JSONObject();
+                productReview.put("imageName", imageName);
                 productReview.put("numOfStars", numOfStars);
                 productReview.put("userReview", review);
                 productReview.put("username", username);
-                productReview.put("reply","The seller haven't left any comments yet");
+                if (reply.equals("")) {
+                    productReview.put("reply", "The seller haven't left any comments yet");
+                } else {
+                    productReview.put("reply", reply);
+                }
                 jsonArray.add(productReview);
 
                 FileWriter file = new FileWriter("JsonFiles\\" + imageName + ".json");
@@ -294,88 +298,55 @@ public class JsonFileUtil {
             // if (product image name).json file is not found,
             // write the number of stars, user review, username and seller reply into a new (product image name).json file
             JSONObject productReview = new JSONObject();
+            productReview.put("imageName", imageName);
             productReview.put("numOfStars", numOfStars);
             productReview.put("userReview", review);
             productReview.put("username", username);
-            productReview.put("reply","The seller haven't left any comments yet");
+            productReview.put("reply", "The seller haven't left any comments yet");
 
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(productReview);
 
             try {
-
-                FileWriter file = new FileWriter( "JsonFiles\\" + imageName + ".json");
-                file.write(jsonArray.toJSONString());
-                file.flush();
-                file.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    /*
-    @SuppressWarnings("unchecked")
-    public void writeSellerReply(String imageName, int numOfStars, String review, String username, String reply) {
-        File reviewFile = new File( "JsonFiles\\" + imageName + ".json");
-
-        if (reviewFile.exists()) {
-
-            JSONParser jsonParser = new JSONParser();
-
-            // if the (product image name).json file exists,
-            // append the newly added number of stars, user review, username and seller reply at the end of the (product image name).json file
-            try {
-
-                Object obj = jsonParser.parse(new FileReader(reviewFile));
-                JSONArray jsonArray = (JSONArray) obj;
-
-                JSONObject productReview = new JSONObject();
-                if (productReview.get("numOfStars").equals(numOfStars) && productReview.get("userReview").equals(review) && productReview.get("username").equals(username)) {
-                    productReview.put("numOfStars", numOfStars);
-                    productReview.put("userReview", review);
-                    productReview.put("username", username);
-                    jsonArray.add(productReview);
-                    //////////
-                }
-
                 FileWriter file = new FileWriter("JsonFiles\\" + imageName + ".json");
-                file.write(jsonArray.toString());
-                file.flush();
-                file.close();
-
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            // if (product image name).json file is not found,
-            // write the number of stars, user review, username and seller reply into a new (product image name).json file
-            JSONObject productReview = new JSONObject();
-            productReview.put("numOfStars", numOfStars);
-            productReview.put("userReview", review);
-            productReview.put("username", username);
-
-            JSONArray jsonArray = new JSONArray();
-            jsonArray.add(productReview);
-
-            try {
-
-                FileWriter file = new FileWriter( "JsonFiles\\" + imageName + ".json");
                 file.write(jsonArray.toJSONString());
                 file.flush();
                 file.close();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
+    /**
+     * This method is used to write seller reply to (product image name).json file
+     *
+     * @author YuXuan
      */
+    @SuppressWarnings("unchecked")
+    public void writeSellerReply(ProductReview productReview) {
+        File reviewFile = new File("JsonFiles\\" + productReview.getImageName() + ".json");
+        JSONParser jsonParser = new JSONParser();
+        try {
+            Object obj = jsonParser.parse(new FileReader(reviewFile));
+            JSONArray jsonArray = (JSONArray) obj;
+
+            for (Object object : jsonArray) {
+                if (object instanceof JSONObject) {
+                    if (((JSONObject) object).get("userReview").equals(productReview.getUserReview()) && ((JSONObject) object).get("username").equals(productReview.getUsername())) {
+                        ((JSONObject) object).put("reply", productReview.getSellerReply());
+
+                    }
+                }
+            }
+            FileWriter file = new FileWriter("JsonFiles\\" + productReview.getImageName() + ".json");
+            file.write(jsonArray.toString());
+            file.flush();
+            file.close();
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is used to read the orders.json file
@@ -510,6 +481,41 @@ public class JsonFileUtil {
             }
         }
         return favoriteItemList;
+    }
+
+    /**
+     * This method is used to read (product image name).json file
+     *
+     * @return a list of ProductReview object which presence in the file
+     * @author YuXuan
+     */
+    public List<ProductReview> readProductReviewFile(String imageName) {
+        List<ProductReview> productReviewList = new ArrayList<>();
+        if (new File("JsonFiles\\" + imageName + ".json").exists()) {
+            JSONParser jsonParser = new JSONParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader("JsonFiles\\" + imageName + ".json"));
+                JSONArray jsonArray = (JSONArray) obj;
+
+                // Iterate over jsonArray to load all the product review in it
+                for (Object object : jsonArray) {
+                    if (object instanceof JSONObject) {
+                        ProductReview productReview = new ProductReview();
+                        productReview.setImageName((String) ((JSONObject) object).get("imageName"));
+                        productReview.setUserReview((String) ((JSONObject) object).get("userReview"));
+                        productReview.setUsername((String) ((JSONObject) object).get("username"));
+                        productReview.setSellerReply((String) ((JSONObject) object).get("reply"));
+                        productReview.setNumOfStars(Math.toIntExact((Long) ((JSONObject) object).get("numOfStars")));
+                        productReviewList.add(productReview);
+                    }
+                }
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return productReviewList;
     }
 
     /**
@@ -693,31 +699,4 @@ public class JsonFileUtil {
         return sum;
     }
 
-
-    public List<ProductReview> readProductReviewFile (String imageName) {
-        List<ProductReview> productReviewList = new ArrayList<>();
-        if (new File("JsonFiles\\" + imageName +".json").exists()) {
-            JSONParser jsonParser = new JSONParser();
-            try {
-                Object obj = jsonParser.parse(new FileReader("JsonFiles\\" + imageName +".json"));
-                JSONArray jsonArray = (JSONArray) obj;
-
-                // Iterate over jsonArray to load all the product review in it
-                for (Object object : jsonArray) {
-                    if (object instanceof JSONObject) {
-                        ProductReview productReview = new ProductReview();
-                        productReview.setUserReview((String) ((JSONObject) object).get("userReview"));
-                        productReview.setUsername((String) ((JSONObject) object).get("username"));
-                        productReview.setSellerReply((String) ((JSONObject) object).get("reply"));
-                        productReviewList.add(productReview);
-                    }
-                }
-
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return productReviewList;
-    }
 }

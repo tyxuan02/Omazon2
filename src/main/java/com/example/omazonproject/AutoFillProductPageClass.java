@@ -96,8 +96,6 @@ public class AutoFillProductPageClass {
     @FXML
     private Button chatWithSellerBtn;
 
-    private String imageName;
-
     @FXML
     public void autoFill(Product product) {
 

@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,6 +23,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class AutoFillSellerProductPageClass {
@@ -64,6 +68,9 @@ public class AutoFillSellerProductPageClass {
     private Label shipFrom;
 
     @FXML
+    private VBox vBox;
+
+    @FXML
     public void autoFill(Product product) {
 
         //Save the object of the current product
@@ -80,6 +87,8 @@ public class AutoFillSellerProductPageClass {
 
         Image image = new Image(new File("src/main/resources/images/" + product.getProductImagePath() + ".png").toURI().toString());
         productImage.setImage(image);
+        displayProductReview(product.getProductImagePath());
+
     }
 
     @FXML
@@ -229,6 +238,32 @@ public class AutoFillSellerProductPageClass {
         alert.setContentText("Product information has been changed");
         alert.showAndWait();
 
+    }
+
+    /**
+     * This method is used to display the product review
+     *
+     * @author YuXuan
+     */
+    public void displayProductReview (String imageName) {
+        // clear the previous contents in the vbox
+        vBox.getChildren().clear();
+
+        JsonFileUtil jsonFileUtil = new JsonFileUtil();
+        // create an array list and call the product review list method
+        List<ProductReview> productReviewList = new ArrayList<>(jsonFileUtil.readProductReviewFile(imageName));
+        // loop through the productReviewList, fills in the product review, username, seller reply and add it to the vbox
+        for (ProductReview productReview : productReviewList) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller's-reply-template.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                SellerReplyController sellerReplyController = fxmlLoader.getController();
+                sellerReplyController.setData(productReview);
+                vBox.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

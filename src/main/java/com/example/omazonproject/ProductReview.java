@@ -5,6 +5,8 @@ public class ProductReview {
     private String userReview;
     private String username;
     private String sellerReply;
+    private String imageName;
+    private int numOfStars;
 
     public String getUserReview() {
         return userReview;
@@ -28,5 +30,21 @@ public class ProductReview {
 
     public void setSellerReply(String sellerReply) {
         this.sellerReply = sellerReply;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public int getNumOfStars() {
+        return numOfStars;
+    }
+
+    public void setNumOfStars(int numOfStars) {
+        this.numOfStars = numOfStars;
     }
 }
