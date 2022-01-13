@@ -100,11 +100,6 @@ public class SellerProfileController {
     }
 
     @FXML
-    public void accountBalanceButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
     public void changePasswordButtonPressed(ActionEvent event) throws MessagingException {
         // create a new custom dialog box with password field
         Dialog<ButtonType> preDialog = new Dialog<>();
@@ -291,11 +286,6 @@ public class SellerProfileController {
     }
 
     @FXML
-    public void favouriteListButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
     public void homepageButtonPressed(ActionEvent event) throws IOException {
         // forward the user to the seller centre
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller's-product-page.fxml")));
@@ -303,11 +293,6 @@ public class SellerProfileController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    @FXML
-    public void myPurchaseButtonPressed(ActionEvent event) {
-
     }
 
     @FXML
@@ -391,11 +376,6 @@ public class SellerProfileController {
                 }
             }
         }
-
-    }
-
-    @FXML
-    public void startSellingButtonPressed(ActionEvent event) {
 
     }
 
