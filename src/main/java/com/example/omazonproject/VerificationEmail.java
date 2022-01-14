@@ -77,7 +77,7 @@ public class VerificationEmail {
      *
      * @author XiangLun
      */
-    private void codeGenerator() {
+    public void codeGenerator() {
         // Generate random code with 6 digits
         final int MAX = 999999;
         final int MIN = 100000;
@@ -94,7 +94,7 @@ public class VerificationEmail {
      * @return a multipart message containing an HTML header and an image
      * @author XiangLun
      */
-    private Message prepareMessageForUser(Session session, String myAccountEmail, String recipient) {
+    public Message prepareMessageForUser(Session session, String myAccountEmail, String recipient) {
         try {
             // Write down the code on the template and save the copy of it in Verification Email.png
             final BufferedImage image = ImageIO.read(new File("assets\\Verification Email Template.png"));
@@ -148,7 +148,7 @@ public class VerificationEmail {
      * @return a multipart message containing an HTML header and an image
      * @author XiangLun
      */
-    private Message prepareMessageForSeller(Session session, String myAccountEmail, String recipient) {
+    public Message prepareMessageForSeller(Session session, String myAccountEmail, String recipient) {
         try {
             // Write down the code on the template and save the copy of it in Verification Email.png
             final BufferedImage image = ImageIO.read(new File("assets\\Seller Verification Email Template.png"));
@@ -202,7 +202,7 @@ public class VerificationEmail {
      * @return a multipart message containing an HTML header and an image
      * @author XiangLun
      */
-    private Message prepareMessageForForgetPassword(Session session, String myAccountEmail, String recipient) {
+    public Message prepareMessageForForgetPassword(Session session, String myAccountEmail, String recipient) {
         try {
             // Write down the code on the template and save the copy of it in Verification Email.png
             final BufferedImage image = ImageIO.read(new File("assets\\Forget Password Template.png"));

@@ -41,61 +41,131 @@ import java.util.Optional;
  */
 public class AutoFillProductPageClass {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
-    private Product currentProduct;
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
+
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * Object of Product class
+     */
+    public Product currentProduct;
+
+    /**
+     * DecimalFormat is used to format numbers using a formatting pattern you specify yourself
+     */
     DecimalFormat df = new DecimalFormat("0.00");
 
+    /**
+     * A rating that used to display rating (star)
+     */
     @FXML
-    private Rating rating;
+    public Rating rating;
 
+    /**
+     * A label that used to display seller name
+     */
     @FXML
-    private Label sellerName;
+    public Label sellerName;
 
+    /**
+     * An image that used to display product image
+     */
     @FXML
-    private ImageView productImage;
+    public ImageView productImage;
 
+    /**
+     * A label that used to display product name
+     */
     @FXML
-    private Label name;
+    public Label name;
 
+    /**
+     * A label that used to display product category
+     */
     @FXML
-    private Label category;
+    public Label category;
 
+    /**
+     * A label that used to display country
+     */
     @FXML
-    private Label country;
+    public Label country;
 
+    /**
+     * A label that used to display product price
+     */
     @FXML
-    private Label priceLabel;
+    public Label priceLabel;
 
+    /**
+     * A label that used to display product description
+     */
     @FXML
-    private Label productDescription;
+    public Label productDescription;
 
+    /**
+     * A label that used to display product quantity
+     */
     @FXML
-    private Label quantity;
+    public Label quantity;
 
+    /**
+     * A label that used to display where product will be shipped
+     */
     @FXML
-    private Label shipFrom;
+    public Label shipFrom;
 
+    /**
+     * A label that used to display product stock
+     */
     @FXML
-    private Label stock;
+    public Label stock;
 
+    /**
+     * To display profile icon
+     */
     @FXML
-    private Button profileIcon;
+    public Button profileIcon;
 
+    /**
+     * To display home icon
+     */
     @FXML
-    private Button homeIcon;
+    public Button homeIcon;
 
+    /**
+     * An image view that used to display favorite icon
+     */
     @FXML
-    private ImageView favorite;
+    public ImageView favorite;
 
+    /**
+     *  A layout component which positions all its child nodes (components) in a vertical column
+     */
     @FXML
-    private VBox vBox;
+    public VBox vBox;
 
+    /**
+     * To display chat with seller button
+     */
     @FXML
-    private Button chatWithSellerBtn;
+    public Button chatWithSellerBtn;
 
+    /**
+     * This method is used to fill product information automatically into product-page.fxml
+     * @param product
+     */
     @FXML
     public void autoFill(Product product) {
 
@@ -150,8 +220,11 @@ public class AutoFillProductPageClass {
         fadeInChatWithSellerBtn.play();
     }
 
+    /**
+     * This method will direct user to user homepage after clicking it
+     */
     @FXML
-    void homeButtonPressed(MouseEvent event) throws IOException {
+    public void homeButtonPressed(MouseEvent event) throws IOException {
         // Forward user to home page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -161,9 +234,13 @@ public class AutoFillProductPageClass {
         stage.show();
     }
 
-
+    /**
+     * This method will direct user to user profile page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void userProfileButtonPressed(MouseEvent event) throws IOException {
+    public void userProfileButtonPressed(MouseEvent event) throws IOException {
 
         // prevent autofocus to the text field
         Platform.runLater(() -> root.requestFocus());
@@ -178,7 +255,7 @@ public class AutoFillProductPageClass {
     }
 
     @FXML
-    void addToCartButtonPressed(ActionEvent event) {
+    public void addToCartButtonPressed(ActionEvent event) {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         // use button to choose quantity
         jsonFileUtil.writeCartFile(currentProduct, Integer.parseInt(quantity.getText()));
@@ -193,7 +270,7 @@ public class AutoFillProductPageClass {
     }
 
     @FXML
-    void decreaseQuantityButtonPressed(ActionEvent event) {
+    public void decreaseQuantityButtonPressed(ActionEvent event) {
         int currentQuantity = Integer.parseInt(quantity.getText());
         if (currentQuantity > 1) {
             quantity.setText(Integer.toString(currentQuantity - 1));
@@ -201,13 +278,13 @@ public class AutoFillProductPageClass {
     }
 
     @FXML
-    void increaseQuantityButtonPressed(ActionEvent event) {
+    public void increaseQuantityButtonPressed(ActionEvent event) {
         int currentQuantity = Integer.parseInt(quantity.getText());
         quantity.setText(Integer.toString(currentQuantity + 1));
     }
 
     @FXML
-    void favoriteButtonPressed(ActionEvent event) {
+    public void favoriteButtonPressed(ActionEvent event) {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.writeFavoriteFile(currentProduct);
         URL icon = this.getClass().getResource("/images/favoriteButtonPressed.png");
@@ -216,7 +293,7 @@ public class AutoFillProductPageClass {
     }
 
     @FXML
-    void BuyNowButtonPressed(ActionEvent event) {
+    public void BuyNowButtonPressed(ActionEvent event) {
         // calculate the total price in 2 decimal places
         double totalPrice = (int) (Integer.parseInt(quantity.getText()) * Double.parseDouble(priceLabel.getText()) * 100 + 0.5) / 100.0;
 
@@ -366,9 +443,8 @@ public class AutoFillProductPageClass {
         }
     }
 
-
     @FXML
-    void chatWithSellerBtnPressed(ActionEvent event) throws IOException {
+    public void chatWithSellerBtnPressed(ActionEvent event) throws IOException {
         // pop up the chat with seller page
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chat-with-seller-page.fxml"));
         Parent root = fxmlLoader.load();
@@ -384,9 +460,8 @@ public class AutoFillProductPageClass {
     }
 
     /**
-     * This method is used to display the product review
+     * This method is used to display product review
      *
-     * @author YuXuan
      */
     public void displayProductReview(String imageName) {
         // clear the previous contents in the vbox

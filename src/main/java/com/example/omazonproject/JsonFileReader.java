@@ -13,8 +13,16 @@ import java.io.IOException;
  * @author XiangLun
  */
 public class JsonFileReader {
-    private String emailAddress;
-    private String password;
+
+    /**
+     * An instance variable named emailAddress with string datatype
+     */
+    public String emailAddress;
+
+    /**
+     * An instance variable named password with string datatype
+     */
+    public String password;
 
     public JsonFileReader() {
         JSONParser jsonParser = new JSONParser();
@@ -28,10 +36,16 @@ public class JsonFileReader {
         }
     }
 
+    /**
+     * A method to return emailAddress in String
+     */
     public String getEmailAddress() {
         return emailAddress;
     }
 
+    /**
+     * A method to return password in String
+     */
     public String getPassword() {
         return password;
     }

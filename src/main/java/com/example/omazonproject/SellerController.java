@@ -26,52 +26,84 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-//This part is responsible to control the events happening at the seller-login-page and seller-register-page
+/**
+ * This part is responsible to control the events happening at the seller-login-page and seller-register-page
+ */
+
 
 public class SellerController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
+
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
+
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * A text field to fill seller name at seller sign-up page
+     */
+    @FXML
+    public TextField sellerName_Signup;
+
+    /**
+     * A text field to fill seller email address at seller sign-up page
+     */
+    @FXML
+    public TextField sellerEmail_SignUp;
+
+    /**
+     * A text field to fill seller shop address at seller sign-up page
+     */
+    @FXML
+    public TextField shopAddress_SignUp;
+
+    /**
+     * A password field to fill seller account password at seller sign-up page
+     */
+    @FXML
+    public PasswordField sellerPassword_SignUp;
+
+    /**
+     * A password field to fill seller account confirm password at seller sign-up page
+     */
+    @FXML
+    public PasswordField sellerConfirmPassword_SignUp;
+
+    /**
+     * A label to display seller account password and seller account confirm password do not match at seller sign-up page
+     */
+    @FXML
+    public Label sellerSignUpPageNotMatchLabel;
+
+    /**
+     * A text field to fill seller email address at seller login page
+     */
+    @FXML
+    public TextField sellerEmail_Login;
+
+    /**
+     * A text field to fill seller account password at seller login page
+     */
+    @FXML
+    public TextField sellerPassword_Login;
+
+    /**
+     * A label to display login message label("Please enter email address and password") at seller login page
+     */
+    @FXML
+    public Label sellerLoginMessageLabel;
 
     @FXML
-    // Seller username entered by user at the seller sing-up page
-    private TextField sellerName_Signup;
-
-    @FXML
-    // Seller email address entered by user at the seller sign-up page
-    private TextField sellerEmail_SignUp;
-
-    @FXML
-    // Shop address entered by user at the seller sign-up page
-    private TextField shopAddress_SignUp;
-
-    @FXML
-    // Seller password entered by user at the seller sign-up page
-    private PasswordField sellerPassword_SignUp;
-
-    @FXML
-    // Seller confirm password entered by user at the seller sing-up page
-    private PasswordField sellerConfirmPassword_SignUp;
-
-    @FXML
-    // The "Password does not match or is empty" label
-    private Label sellerSignUpPageNotMatchLabel;
-
-    @FXML
-    // Seller email address entered by user at the seller login page
-    private TextField sellerEmail_Login;
-
-    @FXML
-    // Seller password entered by user at the seller login page
-    private TextField sellerPassword_Login;
-
-    @FXML
-    // The "Please enter email address and password." label
-    private Label sellerLoginMessageLabel;
-
-    @FXML
-    void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
+    public void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
         // if forget button is pressed,
         // inform the seller that they will receive an email
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -232,9 +264,11 @@ public class SellerController {
 
     }
 
+    /**
+     * Sign up button pressed at seller sign-up page
+     * This method will check all the information entered by the user while the user is signing up at seller sign-up page
+     */
     @FXML
-    // Sign-up button pressed at the seller sign-up page
-    // This method will check all the information entered by the user while the user is signing up at the seller sign-up page
     public void sellerSignUpButtonPressed(MouseEvent event) throws MessagingException {
 
         // hide the "Password does not match or is empty" label
@@ -397,7 +431,9 @@ public class SellerController {
     }
 
 
-    // Register sellers and store their credentials into our database.
+    /**
+     * This method is used to register seller and store seller credentials in database
+     */
     public void registerSeller() {
         Connection connectDB = null;
         Statement statement = null;
@@ -436,8 +472,13 @@ public class SellerController {
         }
     }
 
+    /**
+     * A button at seller login up
+     * This method will direct user to seller sign-up page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    // Prompt sign-up button pressed at the seller login page
     public void sellerSignUpPromptButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the seller sign-up page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-register-page.fxml")));
@@ -448,9 +489,13 @@ public class SellerController {
         stage.show();
     }
 
-
+    /**
+     * A quit button at seller sign-up page
+     * This method will direct user to seller login page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    // Quit button at the seller sign-up page pressed
     public void sellerRegistrationPageQuitButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the seller login page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
@@ -461,10 +506,15 @@ public class SellerController {
         stage.show();
     }
 
+    /**
+     * A quit button at seller login up
+     * This method will direct user to user homepage
+     * @param event
+     * @throws IOException
+     */
     @FXML
-        // Quit button pressed at seller login page
-    void sellerLoginPageQuitButtonPressed(MouseEvent event) throws IOException {
-        // Forward user to product page
+    public void sellerLoginPageQuitButtonPressed(MouseEvent event) throws IOException {
+        // Forward user to user homepage
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -472,8 +522,13 @@ public class SellerController {
         stage.show();
     }
 
+    /**
+     * A login button at seller login page
+     * This method will direct seller to seller homepage if the credentials entered are true
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    // Login button pressed at seller login page
     public void sellerLoginButtonPressed(MouseEvent event) throws IOException {
         // Hide the "Please enter email and password" label
         sellerLoginMessageLabel.setVisible(false);

@@ -10,15 +10,23 @@ import java.io.File;
 
 public class FavoriteItemController {
 
+    /**
+     * A label to display price label
+     */
     @FXML
-    private Label priceLabel;
+    public Label priceLabel;
 
+    /**
+     * An image view to display product image
+     */
     @FXML
-    private ImageView productImage;
+    public ImageView productImage;
 
+    /**
+     * A label to display product name
+     */
     @FXML
-    private Label productName;
-
+    public Label productName;
 
     /**
      * This method fills in the information of the favorite item into the template

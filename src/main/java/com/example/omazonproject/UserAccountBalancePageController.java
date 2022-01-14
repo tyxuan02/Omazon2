@@ -22,18 +22,39 @@ import java.util.Objects;
  * This class is responsible to control the events happening in the user account balance page
  */
 public class UserAccountBalancePageController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
-    @FXML
-    private Button profileIcon;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
-    @FXML
-    private Button homeIcon;
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
 
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * A button to display profile icon
+     */
     @FXML
-    private Label accountBalanceLabel;
+    public Button profileIcon;
+
+    /**
+     * A method to display home icon
+     */
+    @FXML
+    public Button homeIcon;
+
+    /**
+     * A label to display account balance
+     */
+    @FXML
+    public Label accountBalanceLabel;
 
     @FXML
     public void initialize() {
@@ -61,8 +82,13 @@ public class UserAccountBalancePageController {
 
     }
 
+    /**
+     * This method will direct user to user home page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void homeButtonPressed(ActionEvent event) throws IOException {
+    public void homeButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -70,8 +96,13 @@ public class UserAccountBalancePageController {
 
     }
 
+    /**
+     * This method will direct user to user profile page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void profileButtonPressed(ActionEvent event) throws IOException {
+    public void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -86,9 +117,13 @@ public class UserAccountBalancePageController {
         stage.show();
     }
 
+    /**
+     * A window will pop up after clicking it and this window is used to let user top up
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void topUpButtonPressed(ActionEvent event) throws IOException {
-        // Forward user to seller add product page
+    public void topUpButtonPressed(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("top-up-page.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();

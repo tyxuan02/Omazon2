@@ -32,18 +32,33 @@ import java.util.Objects;
  * @author XiangLun
  */
 public class CustomerReviewController {
-    @FXML
-    private Label percentageLabel;
 
+    /**
+     * A label to display number of sales
+     */
     @FXML
-    private PieChart pieChart;
+    public Label percentageLabel;
 
+    /**
+     * A pie chart to display numbers of sales
+     */
     @FXML
-    private BarChart<String, Number> barChart;
+    public PieChart pieChart;
 
+    /**
+     * A bar chart to display product rating for each product
+     */
+    @FXML
+    public BarChart<String, Number> barChart;
+
+    /**
+     * This method will direct seller to seller home page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
-        // forward the user back to the seller centre
+        // forward the user back to the seller home page
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller's-product-page.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -242,7 +257,7 @@ public class CustomerReviewController {
      *
      * @author XiangLun
      */
-    private void updateBarChart(int[] ratings){
+    public void updateBarChart(int[] ratings){
         // clear the data displayed before
         barChart.getData().clear();
         barChart.layout();

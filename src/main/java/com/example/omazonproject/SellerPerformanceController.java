@@ -16,14 +16,24 @@ import java.util.List;
  * @author XiangLun
  */
 public class SellerPerformanceController {
-    @FXML
-    private Label bestSellingProduct;
 
+    /**
+     * A label to display seller best-selling product
+     */
     @FXML
-    private Label numberOfSales;
+    public Label bestSellingProduct;
 
+    /**
+     * A label to display number of sales
+     */
     @FXML
-    private Label profitLabel;
+    public Label numberOfSales;
+
+    /**
+     * A label to display profit
+     */
+    @FXML
+    public Label profitLabel;
 
     public void initialize() {
         // a list of the product of the seller

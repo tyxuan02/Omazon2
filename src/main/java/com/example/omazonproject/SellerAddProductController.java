@@ -23,35 +23,64 @@ import java.sql.Statement;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * This controller is responsible to control the events happening in the Seller Add Product Page
+ */
 public class SellerAddProductController implements Initializable {
 
+    /**
+     * A combo box to display all product categories (Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances)
+     */
     @FXML
-    private ComboBox<String> productCategory;
+    public ComboBox<String> productCategory;
 
+    /**
+     * A text area to fill product description
+     */
     @FXML
-    private TextArea productDescription;
+    public TextArea productDescription;
 
+    /**
+     * A text field to fill product name
+     */
     @FXML
-    private TextField productName;
+    public TextField productName;
 
+    /**
+     * A text field to field product price
+     */
     @FXML
-    private TextField productPrice;
+    public TextField productPrice;
 
+    /**
+     * An image view to display product image
+     */
     @FXML
-    private ImageView productImage;
+    public ImageView productImage;
 
+    /**
+     * A text field to fill product stock quantity
+     */
     @FXML
-    private TextField stockNumber;
+    public TextField stockNumber;
 
+    /**
+     * This method is used to set the items viewing in product category
+     * @param location
+     * @param resources
+     */
     @Override
-    // Set the items viewing in product category
     public void initialize(URL location, ResourceBundle resources) {
         productCategory.getItems().addAll("Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances");
         productCategory.setPromptText("Please select");
     }
 
+    /**
+     * An upload image button at seller add product page
+     * This method is used to let seller upload product image
+     * @param event
+     */
     @FXML
-    // UPLOAD button at seller add product page
     public void uploadImageButtonPressed(MouseEvent event) {
 
         // Seller need to enter product name before uploading product image
@@ -69,8 +98,9 @@ public class SellerAddProductController implements Initializable {
         }
     }
 
-
-    // Method that used to view image at productImage image view
+    /**
+     * This method is used to view product image at seller add product page by using productImage image view
+     */
     public void viewImage() {
         try {
             Stage stage = new Stage();
@@ -91,6 +121,12 @@ public class SellerAddProductController implements Initializable {
     }
 
 
+    /**
+     * A save button at seller add product page
+     * This method will check product information entered by seller
+     * If all product information entered by seller is valid, this method will call addProduct method to save product information entered by the seller in database
+     * @param event
+     */
     @FXML
     // SAVE button at seller add product page
     public void saveButtonPressed(MouseEvent event) {
@@ -188,8 +224,10 @@ public class SellerAddProductController implements Initializable {
 
     }
 
-    // Let seller add product and store product information into database
-    // Save product image into "image" folder
+    /**
+     * This method will save product information entered by the seller in database
+     * This method will save product image uploaded by seller in images folder
+     */
     public void addProduct() {
         Random r = new Random();
         Connection connectDB = null;

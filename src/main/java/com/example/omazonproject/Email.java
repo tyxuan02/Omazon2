@@ -64,7 +64,7 @@ public class Email {
      * @return a message containing the customer details and order details
      * @author XiangLun
      */
-    private static Message prepareNotificationForSeller(Session session, String myAccountEmail, String sellerEmail, String productName, int quantity, double pricePerUnit) {
+    public static Message prepareNotificationForSeller(Session session, String myAccountEmail, String sellerEmail, String productName, int quantity, double pricePerUnit) {
 
         try {
             // retrieve the information of the product
@@ -140,7 +140,7 @@ public class Email {
      * @return a message containing the customer details and the customer's message
      * @author XiangLun
      */
-    private static Message prepareChatMessage(Session session, String myAccountEmail, String sellerEmail, String productName, String chatMessage) {
+    public static Message prepareChatMessage(Session session, String myAccountEmail, String sellerEmail, String productName, String chatMessage) {
         try {
             // retrieve the information of the product
             String customerName = User.getUsername();

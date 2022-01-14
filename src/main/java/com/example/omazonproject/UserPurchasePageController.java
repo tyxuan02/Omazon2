@@ -44,43 +44,91 @@ import java.util.Optional;
  */
 public class UserPurchasePageController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    private boolean showingCheckOutButton;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
-    @FXML
-    private Button orders;
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
 
-    @FXML
-    private Button orderHistory;
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
 
-    @FXML
-    private Button toPay;
+    /**
+     * An instance variable named showingCheckOutButton with boolean data type
+     */
+    public boolean showingCheckOutButton;
 
+    /**
+     * A button named orders
+     */
     @FXML
-    private Label deliveredLabel;
+    public Button orders;
 
+    /**
+     * A button named orderHistory
+     */
     @FXML
-    private Label totalPriceLabel;
+    public Button orderHistory;
 
+    /**
+     * A button named toPay
+     */
     @FXML
-    private Line underLine;
+    public Button toPay;
 
+    /**
+     * A label to display product is delivered
+     */
     @FXML
-    private Label unitPriceLabel;
+    public Label deliveredLabel;
 
+    /**
+     * A label to display total price for all product that bought by user
+     */
     @FXML
-    private Button profileIcon;
+    public Label totalPriceLabel;
 
+    /**
+     * Line represents a line segment in (x,y) coordinate space
+     */
     @FXML
-    private Button homeIcon;
+    public Line underLine;
 
+    /**
+     * A label to display unit price of a product
+     */
     @FXML
-    private VBox vBox;
+    public Label unitPriceLabel;
 
+    /**
+     * A button to display profile icon
+     */
     @FXML
-    private Button checkOutBtn;
+    public Button profileIcon;
+
+    /**
+     * A button to display home icon
+     */
+    @FXML
+    public Button homeIcon;
+
+    /**
+     * VBox component is a layout component which positions all its child nodes (components) in a vertical column
+     */
+    @FXML
+    public VBox vBox;
+
+    /**
+     * A button named checkOutBtn
+     */
+    @FXML
+    public Button checkOutBtn;
 
     @FXML
     public void initialize() {
@@ -120,8 +168,13 @@ public class UserPurchasePageController {
         showingCheckOutButton = true;
     }
 
+    /**
+     * This method is used to direct user to user home page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void homeButtonPressed(ActionEvent event) throws IOException {
+    public void homeButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -129,8 +182,13 @@ public class UserPurchasePageController {
         stage.show();
     }
 
+    /**
+     * This method is used to direct user to user profile page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void profileButtonPressed(ActionEvent event) throws IOException {
+    public void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -146,7 +204,7 @@ public class UserPurchasePageController {
     }
 
     @FXML
-    void ordersButtonPressed(ActionEvent event) {
+    public void ordersButtonPressed(ActionEvent event) {
         unitPriceLabel.setVisible(false);
         totalPriceLabel.setVisible(false);
         deliveredLabel.setVisible(true);
@@ -181,7 +239,7 @@ public class UserPurchasePageController {
     }
 
     @FXML
-    void orderHistoryButtonPressed(ActionEvent event) {
+    public void orderHistoryButtonPressed(ActionEvent event) {
         unitPriceLabel.setVisible(true);
         totalPriceLabel.setVisible(true);
         deliveredLabel.setVisible(false);
@@ -216,7 +274,7 @@ public class UserPurchasePageController {
     }
 
     @FXML
-    void toPayButtonPressed(ActionEvent event) {
+    public void toPayButtonPressed(ActionEvent event) {
         unitPriceLabel.setVisible(true);
         totalPriceLabel.setVisible(true);
         deliveredLabel.setVisible(false);
@@ -251,7 +309,7 @@ public class UserPurchasePageController {
     }
 
     @FXML
-    void checkOutButtonPressed() {
+    public void checkOutButtonPressed() {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
 
         if (!vBox.getChildren().isEmpty()) {
@@ -445,7 +503,7 @@ public class UserPurchasePageController {
      *
      * @author XiangLun
      */
-    private void displayCartItem() {
+    public void displayCartItem() {
         // clear the previous contents in the vbox
         vBox.getChildren().clear();
 
@@ -501,7 +559,7 @@ public class UserPurchasePageController {
      *
      * @author XiangLun
      */
-    private void displayOrderHistory() {
+    public void displayOrderHistory() {
         // clear the previous contents in the vbox
         vBox.getChildren().clear();
 
