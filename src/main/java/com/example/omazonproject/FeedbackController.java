@@ -3,6 +3,7 @@ package com.example.omazonproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
@@ -91,6 +92,13 @@ public class FeedbackController {
 
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.writeProductReview(imageName, numberOfStars, textArea.getText(), User.getUsername(), "");
+
+        // inform the user that the review has been recorded
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Review recorded");
+        alert.setHeaderText(null);
+        alert.setContentText("Your review and rating has been recorded successfully.");
+        alert.showAndWait();
 
         // close the pop-up window
         Node n = (Node) event.getSource();

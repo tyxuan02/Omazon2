@@ -76,7 +76,7 @@ public class Email {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(sellerEmail));
-            message.setSubject("[Omazon] Queries form the user");
+            message.setSubject("[Omazon] You received a new order");
             message.setText("*** This is an automatically generated email. Please do not reply***\n\n" +
                     "You have received a new order on Omazon for " + quantity + String.format(" item(s) totalling RM%.2f\n", pricePerUnit * quantity) +
                     "ORDER DETAILS:\n" +

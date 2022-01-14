@@ -1,6 +1,7 @@
 package com.example.omazonproject;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -38,6 +39,13 @@ public class SellerReplyController {
         productReview.setSellerReply(reply.getText());
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.writeSellerReply(productReview);
+
+        // inform the seller that the reply has been saved
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Reply saved");
+        alert.setHeaderText(null);
+        alert.setContentText("Your reply has been saved successfully.");
+        alert.showAndWait();
     }
 
     /**
