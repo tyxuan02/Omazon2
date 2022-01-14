@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * This class is used to connect our project to database
+ * This class is used to connect to the database
  */
 public class DatabaseConnection {
 
@@ -14,8 +14,9 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     /**
-     * This method is used to get connection from database
-     * @return
+     * This method is used to get connection from the database
+     *
+     * @return A database link
      */
     public Connection getConnection() {
         String databaseUser = "sql6455521";

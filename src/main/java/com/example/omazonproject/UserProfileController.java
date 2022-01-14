@@ -33,7 +33,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * This class is responsible to control the events happening in the user profile page
+ * This class acts as the controller for the user profile page
  *
  * @author XiangLun
  */
@@ -102,6 +102,10 @@ public class UserProfileController {
     @FXML
     private Circle userProfileImage;
 
+    /**
+     * This initialize method set up tooltip message for the icons, fills the user's information, and
+     * determine whether it is needed to hide the set payment password option
+     */
     @FXML
     public void initialize() {
         // Show tooltip message when user point at the icon
@@ -150,10 +154,9 @@ public class UserProfileController {
     /**
      * This method is used to let user change profile image
      * The image will be saved in a folder named assets by using user email address and username to name the image
-     * @param event
      */
     @FXML
-    public void editUserImagePressed(ActionEvent event) {
+    public void editUserImagePressed() {
         try {
             //Upload user profile image
             Stage stage = new Stage();
@@ -178,8 +181,9 @@ public class UserProfileController {
 
     /**
      * This method will direct user to user account balance page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void accountBalanceButtonPressed(ActionEvent event) throws IOException {
@@ -190,6 +194,11 @@ public class UserProfileController {
         stage.show();
     }
 
+    /**
+     * This method remove the user's from the database after getting the user's permission
+     *
+     * @param event An instance of the ActionEvent class
+     */
     @FXML
     void deleteAccountButtonPressed(ActionEvent event) {
         // create a pop-up message to alert the user
@@ -288,6 +297,12 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * This method will direct user to the favorite list page after clicking it
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
+     */
     @FXML
     void favouriteListButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-favorite-list-page.fxml")));
@@ -299,8 +314,9 @@ public class UserProfileController {
 
     /**
      * This method will direct user to user home page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void homepageButtonPressed(ActionEvent event) throws IOException {
@@ -313,8 +329,9 @@ public class UserProfileController {
 
     /**
      * This method will direct user to user purchase page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void myPurchaseButtonPressed(ActionEvent event) throws IOException {
@@ -325,8 +342,11 @@ public class UserProfileController {
         stage.show();
     }
 
+    /**
+     * This method will save the user's information to the database if there is any changes
+     */
     @FXML
-    void saveButtonPressed(ActionEvent event) {
+    void saveButtonPressed() {
         // when the save button is pressed
 
         if (!username.getText().isEmpty() && !username.getText().equals(User.getUsername())) {
@@ -455,8 +475,9 @@ public class UserProfileController {
 
     /**
      * This method will direct user to seller login page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void startSellingButtonPressed(ActionEvent event) throws IOException {
@@ -469,7 +490,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void changeLoginPasswordButtonPressed(ActionEvent event) throws MessagingException {
+    void changeLoginPasswordButtonPressed() throws MessagingException {
         // create a new custom dialog box with password field
         Dialog<ButtonType> preDialog = new Dialog<>();
         preDialog.setTitle("Change Login Password");
@@ -558,7 +579,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void setPaymentPasswordButtonPressed(ActionEvent event) {
+    void setPaymentPasswordButtonPressed() {
         // create a dialog box to request the current password from the user
         Dialog<String> getCurrentPasswordDialog = new Dialog<>();
         getCurrentPasswordDialog.setTitle("Set Payment Password");

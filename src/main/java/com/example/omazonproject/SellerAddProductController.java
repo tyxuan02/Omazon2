@@ -24,7 +24,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
- * This controller is responsible to control the events happening in the Seller Add Product Page
+ * This class acts as the controller for the Seller Add Product Page
  */
 public class SellerAddProductController implements Initializable {
 
@@ -35,39 +35,40 @@ public class SellerAddProductController implements Initializable {
     private ComboBox<String> productCategory;
 
     /**
-     * A text area to fill product description
+     * A text area used to fill the product's description
      */
     @FXML
     private TextArea productDescription;
 
     /**
-     * A text field to fill product name
+     * A text field used to fill the product's name
      */
     @FXML
     private TextField productName;
 
     /**
-     * A text field to field product price
+     * A text field used to field the product's price
      */
     @FXML
     private TextField productPrice;
 
     /**
-     * An image view to display product image
+     * An image view used to display the product's image
      */
     @FXML
     private ImageView productImage;
 
     /**
-     * A text field to fill product stock quantity
+     * A text field used to fill in the product's stock number
      */
     @FXML
     private TextField stockNumber;
 
     /**
      * This method is used to set the items viewing in product category
-     * @param location
-     * @param resources
+     *
+     * @param location  An instance of the URL class
+     * @param resources An instance of the ResourceBundle class
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -78,10 +79,9 @@ public class SellerAddProductController implements Initializable {
     /**
      * An upload image button at seller add product page
      * This method is used to let seller upload product image
-     * @param event
      */
     @FXML
-    public void uploadImageButtonPressed(MouseEvent event) {
+    public void uploadImageButtonPressed() {
 
         // Seller need to enter product name before uploading product image
 
@@ -125,7 +125,8 @@ public class SellerAddProductController implements Initializable {
      * A save button at seller add product page
      * This method will check product information entered by seller
      * If all product information entered by seller is valid, this method will call addProduct method to save product information entered by the seller in database
-     * @param event
+     *
+     * @param event An instance of the MouseEvent class
      */
     @FXML
     // SAVE button at seller add product page

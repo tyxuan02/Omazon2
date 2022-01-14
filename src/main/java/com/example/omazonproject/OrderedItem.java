@@ -8,24 +8,24 @@ package com.example.omazonproject;
 public class OrderedItem {
 
     /**
-     * An instance variable named productName with String data type
+     * A field named productName with String data type
      */
-    public String productName;
+    private String productName;
 
     /**
-     * An instance variable named orderedImagePath with String data type
+     * A field named orderedImagePath with String data type
      */
-    public String orderedImagePath;
+    private String orderedImagePath;
 
     /**
-     * An instance variable named quantity with int data type
+     * A field named quantity with int data type
      */
-    public int quantity;
+    private int quantity;
 
     /**
-     * An instance variable named orderedImageName with String data type
+     * A field named orderedImageName with String data type
      */
-    public String orderedImageName;
+    private String orderedImageName;
 
     /**
      * A method to return productName in String

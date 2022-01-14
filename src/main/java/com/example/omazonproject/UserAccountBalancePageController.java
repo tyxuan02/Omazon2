@@ -56,6 +56,9 @@ public class UserAccountBalancePageController {
     @FXML
     private Label accountBalanceLabel;
 
+    /**
+     * This initialize method set up tooltip message for the icons and set the user's account balance into the label
+     */
     @FXML
     public void initialize() {
         // Show tooltip message when user point at the icon
@@ -84,8 +87,9 @@ public class UserAccountBalancePageController {
 
     /**
      * This method will direct user to user home page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
@@ -98,8 +102,9 @@ public class UserAccountBalancePageController {
 
     /**
      * This method will direct user to user profile page
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void profileButtonPressed(ActionEvent event) throws IOException {
@@ -119,11 +124,11 @@ public class UserAccountBalancePageController {
 
     /**
      * A window will pop up after clicking it and this window is used to let user top up
-     * @param event
-     * @throws IOException
+     *
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    void topUpButtonPressed(ActionEvent event) throws IOException {
+    void topUpButtonPressed() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("top-up-page.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();

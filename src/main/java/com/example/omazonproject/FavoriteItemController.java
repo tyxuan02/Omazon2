@@ -1,6 +1,5 @@
 package com.example.omazonproject;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -11,22 +10,22 @@ import java.io.File;
 public class FavoriteItemController {
 
     /**
-     * A label to display price label
+     * A label used to display the item's price
      */
     @FXML
-    public Label priceLabel;
+    private Label priceLabel;
 
     /**
-     * An image view to display product image
+     * An image view used to display the product's image
      */
     @FXML
-    public ImageView productImage;
+    private ImageView productImage;
 
     /**
-     * A label to display product name
+     * A label used to display the product's name
      */
     @FXML
-    public Label productName;
+    private Label productName;
 
     /**
      * This method fills in the information of the favorite item into the template

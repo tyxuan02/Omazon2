@@ -1,7 +1,6 @@
 package com.example.omazonproject;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -26,81 +25,81 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class is responsible to control the events happening in the login and sign-up page
+ * This class acts as the controller for the user's login and user's sign-up page
  */
 public class HelloController {
 
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
-     * A text field to fill user email
-     * To log in
+     * A text field at the login page for the user to fill in their email
      */
     @FXML
-    public TextField emailEntered_Login;
+    private TextField emailEntered_Login;
 
     /**
-     * A password field to fill password
-     * To log in
+     * A password field at the login page for the user to enter their password
      */
     @FXML
-    public PasswordField passwordEntered_Login;
+    private PasswordField passwordEntered_Login;
 
     /**
-     * A password field to fill confirm password
-     * To log in
+     * A password field at the sign-up page for the user to confirm their password
      */
     @FXML
-    public PasswordField confirmPassword_SignUp;
+    private PasswordField confirmPassword_SignUp;
 
     /**
-     * A text field to fill email
-     * To sign up
+     * A text field at the sign-up page for the user to fill in their email
      */
     @FXML
-    public TextField emailEntered_SignUp;
+    private TextField emailEntered_SignUp;
 
     /**
-     * A password field to fill password
-     * To sign up
+     * A password field at the sign-up for the user to enter their password
      */
     @FXML
-    public PasswordField passwordEntered_SignUp;
+    private PasswordField passwordEntered_SignUp;
 
     /**
-     * A text field to fill email
-     * To sign up
+     * A text field at the sign-up page for the user to enter their username
      */
     @FXML
-    public TextField username_SignUp;
+    private TextField username_SignUp;
 
     /**
-     * A label to display login message label (login successful & login unsuccessful)
+     * A label used to display the login message label (login successful & login unsuccessful)
      */
     @FXML
-    public Label loginMessageLabel;
+    private Label loginMessageLabel;
 
     /**
-     * A label to display password does not match
+     * The label password does not match label
      */
     @FXML
-    public Label notMatchLabel;
+    private Label notMatchLabel;
 
+    /**
+     * Send a conformation email to the user and ask for the conformation code,
+     * allow the user to change their password when the conformation code matches
+     *
+     * @throws MessagingException when the program fails to send email
+     */
     @FXML
-    public void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
+    void forgotPasswordBtnPressed() throws MessagingException {
         // if forget button is pressed,
         // inform the user that they will receive an email
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -262,15 +261,14 @@ public class HelloController {
     }
 
     /**
-     * Sign-up button pressed at the sign-up page
-     * This method is used to let user sign up an account
-     * This method will check all the information entered by the user while the user is signing up
-     * After signing up, all user information will be saved in database
-     * @param event
-     * @throws MessagingException
+     * This method will check all the information entered by the user while the user is signing up,
+     * send a verification email to the user and request for verification code. An account will be created
+     * if the verification code matches and the program will save the user's information to the database
+     *
+     * @throws MessagingException when the program fails to send an email
      */
     @FXML
-    public void signUpButtonPressed(MouseEvent event) throws MessagingException {
+    void signUpButtonPressed() throws MessagingException {
 
         // hide the "Password does not match or is empty" label
         notMatchLabel.setVisible(false);
@@ -405,13 +403,13 @@ public class HelloController {
     }
 
     /**
-     * A button at user login page
      * This method will direct user to user sign up page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    public void signUpPromptButtonPressed(MouseEvent event) throws IOException {
+    void signUpPromptButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the sign-up page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-register-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -422,13 +420,13 @@ public class HelloController {
     }
 
     /**
-     * A quit button at user sign up page
-     * This method will direct user to user login page after clicking it
-     * @param event
-     * @throws IOException
+     * This method will direct user to the user login page after clicking it
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    public void registrationPageQuitButtonPressed(MouseEvent event) throws IOException {
+    void registrationPageQuitButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the login page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -439,13 +437,13 @@ public class HelloController {
     }
 
     /**
-     * A button at user login page
-     * This method will direct user to user homepage after clicking it
-     * @param event
-     * @throws IOException
+     * This method will direct user to the user homepage after validating the credentials entered by the user
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    public void loginButtonPressed(MouseEvent event) throws IOException {
+    void loginButtonPressed(MouseEvent event) throws IOException {
         // hide the "Please enter email and password" label
         loginMessageLabel.setVisible(false);
 

@@ -1,7 +1,6 @@
 package com.example.omazonproject;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -9,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -53,22 +51,10 @@ public class SellerCentreController {
     private MenuButton sellerNameMenuButton;
 
     /**
-     * A menu button(customer review, delivery status and orders)
-     */
-    @FXML
-    private MenuButton menuButton;
-
-    /**
      * GridPane is a layout component which lays out its child components in a grid
      */
     @FXML
     private GridPane grid;
-
-    /**
-     * ScrollPane control is a container that has two scrollbars around the component it contains if the component is larger than the visible area of the ScrollPane
-     */
-    @FXML
-    private ScrollPane scroll;
 
     /**
      * An array list to store product objects
@@ -172,7 +158,7 @@ public class SellerCentreController {
 
         try {
 
-            for (int i = 0; i < products.size(); i++) {
+            for (Product product : products) {
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("product-template.fxml"));
@@ -181,7 +167,7 @@ public class SellerCentreController {
                 ProductController productController = loader.getController();
                 // set product name, product price and product image
                 // display it at seller product page
-                productController.setData(products.get(i), productListener);
+                productController.setData(product, productListener);
 
 
                 if (column == 4) {
@@ -211,11 +197,11 @@ public class SellerCentreController {
     /**
      * Manage profile button at seller homepage
      * This method will direct seller to seller profile page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    public void manageProfilePressed(ActionEvent event) throws IOException {
+    public void manageProfilePressed() throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -233,11 +219,11 @@ public class SellerCentreController {
     /**
      * Logout button at seller homepage
      * This method will direct seller to seller login page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    public void logoutPressed(ActionEvent event) throws IOException {
+    public void logoutPressed() throws IOException {
         // Forward user to seller login page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
         stage = (Stage) sellerNameMenuButton.getScene().getWindow();
@@ -251,11 +237,11 @@ public class SellerCentreController {
      * Add product button at seller homepage
      * A window will pop up after seller clicking it
      * This window is used to let user add product
-     * @param event
-     * @throws IOException
+     *
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    public void addProductButtonPressed(ActionEvent event) throws IOException {
+    public void addProductButtonPressed() throws IOException {
         // Forward user to seller add product page
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-add-product-page.fxml"));
         Parent root = fxmlLoader.load();
@@ -269,9 +255,13 @@ public class SellerCentreController {
         resetScene();
     }
 
+    /**
+     * This method will forward the user to the customer review page
+     *
+     * @throws IOException when the resource file is not found
+     */
     @FXML
-    // Customer review selection at menuButton at seller centre
-    public void customerReviewPressed(ActionEvent event) throws IOException {
+    public void customerReviewPressed() throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("customer-review-page.fxml")));
         stage = (Stage) sellerNameMenuButton.getScene().getWindow();
         scene = new Scene(root);
@@ -279,9 +269,13 @@ public class SellerCentreController {
         stage.show();
     }
 
+    /**
+     * This method will show a pop-up window which presents the seller's overall performance
+     *
+     * @throws IOException when the resource file is not found
+     */
     @FXML
-    // your performance selection at menuButton at seller centre
-    public void yourPerformancePressed(ActionEvent event) throws IOException {
+    public void yourPerformancePressed() throws IOException {
         // show the seller's performance
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("seller-performance-template.fxml"));
         Parent root = fxmlLoader.load();
@@ -297,8 +291,9 @@ public class SellerCentreController {
     /**
      * This method will direct seller to seller edit page
      * Seller can edit product information at seller edit page
-     * @param product   products of a seller
-     * @throws IOException
+     *
+     * @param product products of a seller
+     * @throws IOException when the resource file is not found
      */
     private void changeScene(Product product) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("seller-edit-page.fxml"));

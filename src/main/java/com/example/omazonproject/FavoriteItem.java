@@ -8,19 +8,19 @@ package com.example.omazonproject;
 public class FavoriteItem {
 
     /**
-     * An instance variable named productName with String data type
+     * A field named productName with String data type
      */
-    public String productName;
+    private String productName;
 
     /**
-     * An instance variable named favoriteImagePath with String data type
+     * A field named favoriteImagePath with String data type
      */
-    public String favoriteImagePath;
+    private String favoriteImagePath;
 
     /**
-     * An instance variable named pricePerUnit with double data type
+     * A field named pricePerUnit with double data type
      */
-    public double pricePerUnit;
+    private double pricePerUnit;
 
     /**
      * A method to return productName in String

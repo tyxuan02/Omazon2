@@ -7,27 +7,27 @@ package com.example.omazonproject;
 public class ProductReview {
 
     /**
-     * An instance variable named userReview with String data type
+     * A field named userReview with String data type
      */
     private String userReview;
 
     /**
-     * An instance variable named username with String data type
+     * A field named username with String data type
      */
     private String username;
 
     /**
-     * An instance variable named sellerReply with String data type
+     * A field named sellerReply with String data type
      */
     private String sellerReply;
 
     /**
-     * An instance variable named imageName with String data type
+     * A field named imageName with String data type
      */
     private String imageName;
 
     /**
-     * An instance variable named numOfStars with int data type
+     * A field named numOfStars with int data type
      */
     private int numOfStars;
 

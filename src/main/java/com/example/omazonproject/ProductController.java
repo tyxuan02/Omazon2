@@ -17,46 +17,47 @@ import java.net.MalformedURLException;
 public class ProductController {
 
     /**
-     * An image view to display product image
+     * An image view used to display the product's image
      */
     @FXML
-    public ImageView productImagePath;
+    private ImageView productImagePath;
 
     /**
-     * A label to display prodcut name
+     * A label used to display the product's name
      */
     @FXML
-    public Label productName;
+    private Label productName;
 
     /**
-     * A label to display product price
+     * A label used to display the product's price
      */
     @FXML
-    public Label productPrice;
+    private Label productPrice;
 
     /**
-     * An object of ProductListener
+     * An object of the ProductListener
      */
-    public ProductListener productListener;
+    private ProductListener productListener;
 
     /**
-     * An object of Product
+     * An object of the Product class
      */
-    public Product product;
+    private Product product;
 
     /**
      * This is an input event that occurs when a mouse is clicked
      */
-    public static MouseEvent event;
+    static MouseEvent event;
 
     /**
      * A click button at product template
      * This method will direct user to product page and direct seller to seller edit product page
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException input-output exception
      */
     @FXML
-    public void click(MouseEvent event) throws IOException {
+    void click(MouseEvent event) throws IOException {
         ProductController.event = event;
         productListener.onClickListener(product);
     }

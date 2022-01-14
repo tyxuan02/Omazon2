@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class acts as a controller for the user top up page
+ */
 public class UserTopUpController {
 
     /**
@@ -36,7 +39,8 @@ public class UserTopUpController {
 
     /**
      * This method is used to let user top up and user account balance will increase after clicking it
-     * @param event
+     *
+     * @param event An instance of the ActionEvent class
      */
     @FXML
     void confirmButtonPressed(ActionEvent event) {
@@ -83,7 +87,8 @@ public class UserTopUpController {
 
     /**
      * This method will update user account balance in database after user top up
-     * @param balance
+     *
+     * @param balance balance value in double datatype
      */
     void resetAccountBalance(Double balance) {
         Connection connectDB = null;

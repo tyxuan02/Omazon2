@@ -1,86 +1,86 @@
 package com.example.omazonproject;
 
 /**
- * This class is a blueprint for all productS, which will be used in the search page and the seller's product page
+ * This class is a blueprint for all products, which will be used in the search page and the seller's product page
  *
  * @author XiangLun
  */
 public class Product {
 
     /**
-     * An instance variable named productName with String data type
+     * A field named productName with String data type
      */
-    public String productName;
+    private String productName;
 
     /**
-     * An instance variable named sellerName with String data type
+     * A field named sellerName with String data type
      */
-    public String sellerName;
+    private String sellerName;
 
     /**
-     * An instance variable named productImagePath with String data type
+     * A field named productImagePath with String data type
      */
-    public String productImagePath;
+    private String productImagePath;
 
     /**
-     * An instance variable named sellerEmail with String data type
+     * A field named sellerEmail with String data type
      */
-    public String sellerEmail;
+    private String sellerEmail;
 
     /**
-     * An instance variable named description with String data type
+     * A field named description with String data type
      */
-    public String description;
+    private String description;
 
     /**
-     * An instance variable named category with String data type
+     * A field named category with String data type
      */
-    public String category;
+    private String category;
 
     /**
-     * An instance variable named productPrice with double data type
+     * A field named productPrice with double data type
      */
-    public double productPrice;
+    private double productPrice;
 
     /**
-     * An instance variable named numOfOneStars with int data type
+     * A field named numOfOneStars with int data type
      */
-    public int numOfOneStars;
+    private int numOfOneStars;
 
     /**
-     * An instance variable named numOfTwoStars with int data type
+     * A field named numOfTwoStars with int data type
      */
-    public int numOfTwoStars;
+    private int numOfTwoStars;
 
     /**
-     * An instance variable named numOfThreeStars with int data type
+     * A field named numOfThreeStars with int data type
      */
-    public int numOfThreeStars;
+    private int numOfThreeStars;
 
     /**
-     * An instance variable named numOfFourStars with int data type
+     * A field named numOfFourStars with int data type
      */
-    public int numOfFourStars;
+    private int numOfFourStars;
 
     /**
-     * An instance variable named numOfFiveStars with int data type
+     * A field named numOfFiveStars with int data type
      */
-    public int numOfFiveStars;
+    private int numOfFiveStars;
 
     /**
-     * An instance variable named numberOfSales with int data type
+     * A field named numberOfSales with int data type
      */
-    public int numberOfSales;
+    private int numberOfSales;
 
     /**
-     * An instance variable named numOfStock with int data type
+     * A field named numOfStock with int data type
      */
-    public int numOfStock;
+    private int numOfStock;
 
     /**
-     * An instance variable named address with String data type
+     * A field named address with String data type
      */
-    public String address;
+    private String address;
 
     /**
      * A method to return productName in String

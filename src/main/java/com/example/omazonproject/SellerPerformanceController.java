@@ -35,6 +35,9 @@ public class SellerPerformanceController {
     @FXML
     private Label profitLabel;
 
+    /**
+     * This initialize method connect to database and compute the required information to be shown to the seller
+     */
     public void initialize() {
         // a list of the product of the seller
         List<Product> productList = new ArrayList<>();

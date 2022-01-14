@@ -8,7 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class contains method which is responsible to notify the seller when they receive new orders
+ * This class contains method which is responsible to notify the seller when they receive new orders, and
+ * send the user's chat message to the seller via email
  *
  * @author Xianglun
  */
@@ -64,7 +65,7 @@ public class Email {
      * @return a message containing the customer details and order details
      * @author XiangLun
      */
-    public static Message prepareNotificationForSeller(Session session, String myAccountEmail, String sellerEmail, String productName, int quantity, double pricePerUnit) {
+    private static Message prepareNotificationForSeller(Session session, String myAccountEmail, String sellerEmail, String productName, int quantity, double pricePerUnit) {
 
         try {
             // retrieve the information of the product
@@ -140,7 +141,7 @@ public class Email {
      * @return a message containing the customer details and the customer's message
      * @author XiangLun
      */
-    public static Message prepareChatMessage(Session session, String myAccountEmail, String sellerEmail, String productName, String chatMessage) {
+    private static Message prepareChatMessage(Session session, String myAccountEmail, String sellerEmail, String productName, String chatMessage) {
         try {
             // retrieve the information of the product
             String customerName = User.getUsername();

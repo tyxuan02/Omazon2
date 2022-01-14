@@ -15,15 +15,19 @@ import java.io.IOException;
 public class JsonFileReader {
 
     /**
-     * An instance variable named emailAddress with string datatype
+     * A field named emailAddress with string datatype
      */
-    public String emailAddress;
+    private String emailAddress;
 
     /**
-     * An instance variable named password with string datatype
+     * A field named password with string datatype
      */
-    public String password;
+    private String password;
 
+    /**
+     * This constructor will read our account's credentials from a .json file and initialize
+     * the password and the email address field in this class
+     */
     public JsonFileReader() {
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader("JsonFiles/credentials.json")) {

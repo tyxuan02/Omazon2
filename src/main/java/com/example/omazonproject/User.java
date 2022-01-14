@@ -117,6 +117,8 @@ public class User {
     /**
      * A static void method to receive a double parameter and set it as balance
      */
-    public static void setBalance(double balance) {User.balance = balance;}
+    public static void setBalance(double balance) {
+        User.balance = balance;
+    }
 
 }

@@ -12,32 +12,32 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * This class is used as a controller for the feedback-page.fxml
+ * This class acts as a controller for the feedback-page.fxml
  */
 public class FeedbackController {
 
     /**
-     * A rating to display product rating
+     * A rating for the user to rate the product
      */
     @FXML
-    public Rating rating;
+    private Rating rating;
 
     /**
-     * A text area to fill user review
+     * A text area for the user to leave their comments
      */
     @FXML
-    public TextArea textArea;
+    private TextArea textArea;
 
     /**
-     * An instance variable named imageName with String data type
+     * A field named imageName with String data type
      */
-    public String imageName;
+    private String imageName;
 
     /**
-     * This method is used to update rating in database
-     * This method is used to write image name, number of stars, user review and username in (product image name)json.file
-     * Each product will have its own json file
-     * @param event
+     * This method is used to update rating in database, write image name, number of stars,
+     * user review and username in (product image name)json.file where each product will have its own json file
+     *
+     * @param event An instance of the ActionEvent class
      */
     @FXML
     void OKBtnPressed(ActionEvent event) {
@@ -56,11 +56,11 @@ public class FeedbackController {
 
             if (numberOfStars == 1) {
                 updateNumOfStars = "UPDATE product_info set numOfOneStars = IFNULL(numOfOneStars, 0) + 1 WHERE imageName = '" + imageName + "'";
-            } else if  (numberOfStars == 2) {
+            } else if (numberOfStars == 2) {
                 updateNumOfStars = "UPDATE product_info set numOfTwoStars = IFNULL(numOfTwoStars, 0) + 1 WHERE imageName = '" + imageName + "'";
-            } else if  (numberOfStars == 3) {
+            } else if (numberOfStars == 3) {
                 updateNumOfStars = "UPDATE product_info set numOfThreeStars = IFNULL(numOfThreeStars, 0) + 1 WHERE imageName = '" + imageName + "'";
-            } else if  (numberOfStars == 4) {
+            } else if (numberOfStars == 4) {
                 updateNumOfStars = "UPDATE product_info set numOfFourStars = IFNULL(numOfFourStars, 0) + 1 WHERE imageName = '" + imageName + "'";
             } else {
                 updateNumOfStars = "UPDATE product_info set numOfFiveStars = IFNULL(numOfFiveStars, 0) + 1 WHERE imageName = '" + imageName + "'";
@@ -90,7 +90,7 @@ public class FeedbackController {
         }
 
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
-        jsonFileUtil.writeProductReview(imageName,numberOfStars,textArea.getText(),User.getUsername(),"");
+        jsonFileUtil.writeProductReview(imageName, numberOfStars, textArea.getText(), User.getUsername(), "");
 
         // close the pop-up window
         Node n = (Node) event.getSource();
@@ -99,10 +99,11 @@ public class FeedbackController {
     }
 
     /**
-     * A method to return imageName in String
-     * @param imageName     product image name
+     * A method to return the imageName in String
+     *
+     * @param imageName product image name
      */
-    public void getProductName (String imageName) {
+    void getProductName(String imageName) {
         this.imageName = imageName;
     }
 

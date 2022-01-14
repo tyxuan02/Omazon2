@@ -1,6 +1,5 @@
 package com.example.omazonproject;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,35 +22,41 @@ import java.io.IOException;
 public class OrderedItemController {
 
     /**
-     * An object of OrderedItem named currentOrderedItem
+     * This field is used to store the current OrderedItem object
      */
-    public OrderedItem currentOrderedItem;
+    private OrderedItem currentOrderedItem;
 
     /**
-     * An image view to display product image
+     * An image view used to display the product's image
      */
     @FXML
-    public ImageView productImage;
+    private ImageView productImage;
 
     /**
-     * A label to display product name
+     * A label used to display the product's name
      */
     @FXML
-    public Label productName;
+    private Label productName;
 
     /**
-     * A label to display quantity
+     * A label used to display the quantity
      */
     @FXML
-    public Label quantity;
+    private Label quantity;
 
     /**
-     * An instance variable named imageName with String data type
+     * A field named imageName with String data type
      */
-    public String imageName;
+    private String imageName;
 
+    /**
+     * This method will remove the particular record and add the removed record into order history, and
+     * pop-up the feedback page
+     *
+     * @throws IOException when the resource file is not found
+     */
     @FXML
-    public void deliveredButtonPressed(ActionEvent event) throws IOException {
+    void deliveredButtonPressed() throws IOException {
         // remove the particular record and add the removed record into order history
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.deleteOrderRecord(currentOrderedItem);

@@ -12,8 +12,8 @@ public interface ProductListener {
     /**
      * An abstract method named onClickListener
      * @param product   object of Product
-     * @throws IOException
+     * @throws IOException input-output exception
      */
-    public void onClickListener (Product product) throws IOException;
+    void onClickListener (Product product) throws IOException;
 
 }

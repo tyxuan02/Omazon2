@@ -1,17 +1,8 @@
 package com.example.omazonproject;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.IOException;
 
 public class SellerReplyController {
 
@@ -38,8 +29,11 @@ public class SellerReplyController {
     @FXML
     private Label username;
 
+    /**
+     * This method is used to store seller's reply in a .json file
+     */
     @FXML
-    void replyButtonPressed(ActionEvent event) {
+    void replyButtonPressed() {
         // store seller reply in (product image name).json file
         productReview.setSellerReply(reply.getText());
         JsonFileUtil jsonFileUtil = new JsonFileUtil();

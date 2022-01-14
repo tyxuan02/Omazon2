@@ -27,34 +27,35 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- * This class is responsible to control the events happening in the customer review page
+ * This class acts as a controller for the customer review page
  *
  * @author XiangLun
  */
 public class CustomerReviewController {
 
     /**
-     * A label to display number of sales
+     * A label used to display the percentage of the particular product when the pie chart is clicked
      */
     @FXML
-    public Label percentageLabel;
+    private Label percentageLabel;
 
     /**
-     * A pie chart to display numbers of sales
+     * A pie chart to display the numbers of sales for all products
      */
     @FXML
-    public PieChart pieChart;
+    private PieChart pieChart;
 
     /**
-     * A bar chart to display product rating for each product
+     * A bar chart to display the product's rating for each product
      */
     @FXML
-    public BarChart<String, Number> barChart;
+    private BarChart<String, Number> barChart;
 
     /**
-     * This method will direct seller to seller home page after clicking it
-     * @param event
-     * @throws IOException
+     * This method will direct the seller to the seller home page after it is clicked
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
@@ -66,6 +67,11 @@ public class CustomerReviewController {
         stage.show();
     }
 
+    /**
+     * This initialize method initializes the pie chart after retrieving all the seller's products from the database,
+     * play the fade in, slide up animation for both the pie chart and the bar chart, and
+     * set up event handler for each segment of the pie chart
+     */
     @FXML
     public void initialize() {
         // create a list to store sales data for the pie chart
@@ -217,7 +223,7 @@ public class CustomerReviewController {
                 } catch (SQLException e) {
                     e.printStackTrace();
 
-                } finally{
+                } finally {
                     if (resultSet != null) {
                         try {
                             resultSet.close();
@@ -248,16 +254,16 @@ public class CustomerReviewController {
 
     /**
      * This method is used to update the bar chart whenever it is called
+     *
      * @param ratings an array which stores the number of ratings for each category
      *                index 0 -> one-star rating
      *                index 1 -> two-star rating
      *                index 2 -> three-star rating
      *                index 3 -> four-star rating
      *                index 4 -> five-star rating
-     *
      * @author XiangLun
      */
-    public void updateBarChart(int[] ratings){
+    private void updateBarChart(int[] ratings) {
         // clear the data displayed before
         barChart.getData().clear();
         barChart.layout();

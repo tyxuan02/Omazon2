@@ -8,29 +8,29 @@ package com.example.omazonproject;
 public class CartItem {
 
     /**
-     * An instance variable named productName with String data type
+     * A field named productName with String data type
      */
-    public String productName;
+    private String productName;
 
     /**
-     * An instance variable named cartItemPath with String data type
+     * A field named cartItemPath with String data type
      */
-    public String cartImagePath;
+    private String cartImagePath;
 
     /**
-     * An instance variable named quantity with int data type
+     * A field named quantity with int data type
      */
-    public int quantity;
+    private int quantity;
 
     /**
-     * An instance variable named pricePerUnit with double data type
+     * A field named pricePerUnit with double data type
      */
-    public double pricePerUnit;
+    private double pricePerUnit;
 
     /**
-     * An instance variable named sellerEmail with String data type
+     * A field named sellerEmail with String data type
      */
-    public String sellerEmail;
+    private String sellerEmail;
 
     /**
      * A method to return sellerEmail in String
@@ -82,7 +82,7 @@ public class CartItem {
     }
 
     /**
-     * A method to receive a int parameter and set it as quantity
+     * A method to receive an int parameter and set it as quantity
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;

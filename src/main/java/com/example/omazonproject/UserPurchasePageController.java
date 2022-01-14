@@ -130,6 +130,9 @@ public class UserPurchasePageController {
     @FXML
     private Button checkOutBtn;
 
+    /**
+     * This initialize method set up tooltip message for the icons and display the cart item
+     */
     @FXML
     public void initialize() {
         // Show tooltip message when user point at the icon
@@ -170,8 +173,9 @@ public class UserPurchasePageController {
 
     /**
      * This method is used to direct user to user home page
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
@@ -184,8 +188,9 @@ public class UserPurchasePageController {
 
     /**
      * This method is used to direct user to user profile page
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void profileButtonPressed(ActionEvent event) throws IOException {
@@ -203,8 +208,11 @@ public class UserPurchasePageController {
         stage.show();
     }
 
+    /**
+     * This method will display the ordered items when the orders button is clicked
+     */
     @FXML
-    void ordersButtonPressed(ActionEvent event) {
+    void ordersButtonPressed() {
         unitPriceLabel.setVisible(false);
         totalPriceLabel.setVisible(false);
         deliveredLabel.setVisible(true);
@@ -238,8 +246,11 @@ public class UserPurchasePageController {
         }
     }
 
+    /**
+     * This method will display the order history when the order history button is pressed
+     */
     @FXML
-    void orderHistoryButtonPressed(ActionEvent event) {
+    void orderHistoryButtonPressed() {
         unitPriceLabel.setVisible(true);
         totalPriceLabel.setVisible(true);
         deliveredLabel.setVisible(false);
@@ -273,8 +284,11 @@ public class UserPurchasePageController {
         }
     }
 
+    /**
+     * This method will display the cart item when the to pay button is pressed
+     */
     @FXML
-    void toPayButtonPressed(ActionEvent event) {
+    void toPayButtonPressed() {
         unitPriceLabel.setVisible(true);
         totalPriceLabel.setVisible(true);
         deliveredLabel.setVisible(false);
@@ -308,6 +322,10 @@ public class UserPurchasePageController {
         }
     }
 
+    /**
+     * This method will check out all the cart item after requesting the user's payment password,
+     * send notification email to all the sellers involve, subtract the user's balance and increase the number of sales of the products in the database
+     */
     @FXML
     void checkOutButtonPressed() {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();

@@ -78,8 +78,8 @@ public class SellerProfileController {
     private Circle sellerProfileImage;
 
     /**
-     * This method will fill seller information (email address, username and shop address) after switching scene
-     * This method will load seller's profile image after switching scene
+     * This method will fill seller information (email address, username and shop address) after switching scene, and
+     * load seller's profile image after switching scene
      */
     @FXML
     public void initialize() {
@@ -104,11 +104,9 @@ public class SellerProfileController {
     /**
      * This method is used to let seller change profile image
      * The image will be saved in a folder named assets by using seller name and seller email address to name the image
-     *
-     * @param event
      */
     @FXML
-    public void editSellerImagePressed(ActionEvent event) {
+    public void editSellerImagePressed() {
         Image image;
         try {
             //Upload seller profile image
@@ -132,8 +130,14 @@ public class SellerProfileController {
         }
     }
 
+    /**
+     * This method will request the current password form the user and let them change their password if it matches.
+     * User can choose to change the password through the forgot password feature.
+     *
+     * @throws MessagingException when the program fails to send email
+     */
     @FXML
-    public void changePasswordButtonPressed(ActionEvent event) throws MessagingException {
+    public void changePasswordButtonPressed() throws MessagingException {
         // create a new custom dialog box with password field
         Dialog<ButtonType> preDialog = new Dialog<>();
         preDialog.setTitle("Change Seller Centre Login Password");
@@ -222,6 +226,11 @@ public class SellerProfileController {
 
     }
 
+    /**
+     * This method is used to remove the seller's account after requesting their conformation
+     *
+     * @param event An instance of the ActionEvent class
+     */
     @FXML
     public void deleteAccountButtonPressed(ActionEvent event) {
         // create a pop-up message to alert the seller
@@ -319,10 +328,10 @@ public class SellerProfileController {
     }
 
     /**
-     * This method will direct seller to seller home page
+     * This method will direct seller to the seller home page
      *
-     * @param event
-     * @throws IOException
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     public void homepageButtonPressed(ActionEvent event) throws IOException {
@@ -334,8 +343,11 @@ public class SellerProfileController {
         stage.show();
     }
 
+    /**
+     * This method will save the seller's changes in the database if they had made any changes
+     */
     @FXML
-    public void saveButtonPressed(ActionEvent event) {
+    public void saveButtonPressed() {
         // when the save button is pressed
         if (!sellerUsername.getText().isEmpty() && !sellerUsername.getText().equals(Seller.getSellerName())) {
             //if the username in the text field is not empty and is not the same as the username stored in the Seller class,

@@ -1,7 +1,6 @@
 package com.example.omazonproject;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -102,8 +101,14 @@ public class SellerController {
     @FXML
     private Label sellerLoginMessageLabel;
 
+    /**
+     * Send a conformation email to the user and ask for the conformation code,
+     * allow the user to change their password when the conformation code matches
+     *
+     * @throws MessagingException when the program fails to send email
+     */
     @FXML
-    void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
+    void forgotPasswordBtnPressed() throws MessagingException {
         // if forget button is pressed,
         // inform the seller that they will receive an email
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -269,7 +274,7 @@ public class SellerController {
      * This method will check all the information entered by the user while the user is signing up at seller sign-up page
      */
     @FXML
-    public void sellerSignUpButtonPressed(MouseEvent event) throws MessagingException {
+    public void sellerSignUpButtonPressed() throws MessagingException {
 
         // hide the "Password does not match or is empty" label
         sellerSignUpPageNotMatchLabel.setVisible(false);
@@ -475,8 +480,9 @@ public class SellerController {
     /**
      * A button at seller login up
      * This method will direct user to seller sign-up page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     public void sellerSignUpPromptButtonPressed(MouseEvent event) throws IOException {
@@ -492,8 +498,9 @@ public class SellerController {
     /**
      * A quit button at seller sign-up page
      * This method will direct user to seller login page
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     public void sellerRegistrationPageQuitButtonPressed(MouseEvent event) throws IOException {
@@ -509,8 +516,9 @@ public class SellerController {
     /**
      * A quit button at seller login up
      * This method will direct user to user homepage
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void sellerLoginPageQuitButtonPressed(MouseEvent event) throws IOException {
@@ -525,8 +533,9 @@ public class SellerController {
     /**
      * A login button at seller login page
      * This method will direct seller to seller homepage if the credentials entered are true
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the MouseEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     public void sellerLoginButtonPressed(MouseEvent event) throws IOException {

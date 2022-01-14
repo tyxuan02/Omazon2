@@ -13,29 +13,36 @@ import javax.mail.MessagingException;
 public class ChatWithSellerController {
 
     /**
-     * An instance variable named sellerEmail with String data type
+     * A field named sellerEmail with String data type
      */
-    public String sellerEmail;
+    private String sellerEmail;
 
     /**
-     * An instance variable named productName with String data type
+     * A field named productName with String data type
      */
-    public String productName;
+    private String productName;
 
     /**
-     * A label to display seller name
+     * A label used to display the seller's name
      */
     @FXML
-    public Label sellerNameLabel;
+    private Label sellerNameLabel;
 
     /**
-     * A text area to fill user message
+     * A text area for the user to enter their chat message
      */
     @FXML
-    public TextArea textArea;
+    private TextArea textArea;
 
+    /**
+     * This method is used to send the chat message in the form of an email to the seller when it is pressed,
+     * inform the user when the message had sent successfully and close the chat with seller pop-up window.
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws MessagingException when the program fails to send emails
+     */
     @FXML
-    public void sendButtonPressed(ActionEvent event) throws MessagingException {
+    void sendButtonPressed(ActionEvent event) throws MessagingException {
         // send the chat message to the seller
         Email.sendChatMessage(sellerEmail, productName, textArea.getText());
 
@@ -52,6 +59,14 @@ public class ChatWithSellerController {
         stage.close();
     }
 
+    /**
+     * This method sets the seller's name into the chat with seller pop-up window, and
+     * update the sellerEmail and productName field
+     *
+     * @param sellerName  the seller's name
+     * @param sellerEmail the seller's email
+     * @param productName the current product's name
+     */
     public void setInfo(String sellerName, String sellerEmail, String productName) {
         sellerNameLabel.setText(sellerName);
         this.sellerEmail = sellerEmail;

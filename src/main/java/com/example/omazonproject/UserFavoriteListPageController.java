@@ -58,6 +58,9 @@ public class UserFavoriteListPageController {
     @FXML
     private VBox vBox;
 
+    /**
+     * This initialize method set up tooltip message for the icons and display the favorite items
+     */
     @FXML
     public void initialize() {
         // Show tooltip message when user point at the icon
@@ -84,8 +87,9 @@ public class UserFavoriteListPageController {
 
     /**
      * This method will direct user to user home page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void homeButtonPressed(ActionEvent event) throws IOException {
@@ -98,8 +102,9 @@ public class UserFavoriteListPageController {
 
     /**
      * This method will direct user to user profile page after clicking it
-     * @param event
-     * @throws IOException
+     *
+     * @param event An instance of the ActionEvent class
+     * @throws IOException when the resource file is not found
      */
     @FXML
     void profileButtonPressed(ActionEvent event) throws IOException {

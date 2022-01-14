@@ -254,8 +254,8 @@ public class JsonFileUtil {
     }
 
     /**
-     * This method is used to write (product image name).json file, which stores number of star, customer review, customer username and seller reply for a product.
-     * Each product will have its own json file to store number of star, user review, username and seller reply
+     * This method is used to write (product image name).json file, which stores number of star, customer review, customer username and seller reply for a product,
+     * where each product will have its own json file to store number of star, user review, username and seller reply
      *
      * @author YuXuan
      */
