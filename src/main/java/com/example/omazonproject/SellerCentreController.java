@@ -34,57 +34,57 @@ public class SellerCentreController {
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * A menu button(manage profile and logout)
      */
     @FXML
-    public MenuButton sellerNameMenuButton;
+    private MenuButton sellerNameMenuButton;
 
     /**
      * A menu button(customer review, delivery status and orders)
      */
     @FXML
-    public MenuButton menuButton;
+    private MenuButton menuButton;
 
     /**
      * GridPane is a layout component which lays out its child components in a grid
      */
     @FXML
-    public GridPane grid;
+    private GridPane grid;
 
     /**
      * ScrollPane control is a container that has two scrollbars around the component it contains if the component is larger than the visible area of the ScrollPane
      */
     @FXML
-    public ScrollPane scroll;
+    private ScrollPane scroll;
 
     /**
      * An array list to store product objects
      * This array list is used to store all products of a seller
      */
-    public List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     /**
      * A child class of ProductListener class
      */
-    public ProductListener productListener;
+    private ProductListener productListener;
 
     /**
      * This method is used to get all products of a seller and store all the product objects in products array list
      */
-    public void getProduct() {
+    private void getProduct() {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -152,7 +152,7 @@ public class SellerCentreController {
      * This method will direct seller to seller edit product page if seller click the product
      */
     @FXML
-    public void initialize() {
+    void initialize() {
 
         // fill-in seller name in the menu button
         sellerNameMenuButton.setText("  " + Seller.getSellerName());
@@ -300,7 +300,7 @@ public class SellerCentreController {
      * @param product   products of a seller
      * @throws IOException
      */
-    public void changeScene(Product product) throws IOException {
+    private void changeScene(Product product) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("seller-edit-page.fxml"));
         ProductController productController = new ProductController();
 
@@ -315,7 +315,7 @@ public class SellerCentreController {
      * This method will refresh seller homepage after seller add a new product
      * A new product will be displayed at seller homepage
      */
-    public void resetScene() {
+    private void resetScene() {
         // clear the contents in the grid
         grid.getChildren().clear();
         products.clear();

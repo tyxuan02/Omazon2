@@ -24,7 +24,7 @@ public class UserTopUpController {
      * A text field to fill price entered by user
      */
     @FXML
-    public TextField priceEntered;
+    private TextField priceEntered;
 
     /**
      * This method is used to set and display user account balance after switching the scene
@@ -39,7 +39,7 @@ public class UserTopUpController {
      * @param event
      */
     @FXML
-    public void confirmButtonPressed(ActionEvent event) {
+    void confirmButtonPressed(ActionEvent event) {
 
         try {
             if ((!priceEntered.getText().isBlank()) && (Double.parseDouble(priceEntered.getText()) <= Double.MAX_VALUE && Double.parseDouble(priceEntered.getText()) > 0)) {
@@ -85,7 +85,7 @@ public class UserTopUpController {
      * This method will update user account balance in database after user top up
      * @param balance
      */
-    public void resetAccountBalance(Double balance) {
+    void resetAccountBalance(Double balance) {
         Connection connectDB = null;
         Statement statement = null;
 

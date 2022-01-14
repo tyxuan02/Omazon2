@@ -36,74 +36,74 @@ public class SellerController {
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * A text field to fill seller name at seller sign-up page
      */
     @FXML
-    public TextField sellerName_Signup;
+    private TextField sellerName_Signup;
 
     /**
      * A text field to fill seller email address at seller sign-up page
      */
     @FXML
-    public TextField sellerEmail_SignUp;
+    private TextField sellerEmail_SignUp;
 
     /**
      * A text field to fill seller shop address at seller sign-up page
      */
     @FXML
-    public TextField shopAddress_SignUp;
+    private TextField shopAddress_SignUp;
 
     /**
      * A password field to fill seller account password at seller sign-up page
      */
     @FXML
-    public PasswordField sellerPassword_SignUp;
+    private PasswordField sellerPassword_SignUp;
 
     /**
      * A password field to fill seller account confirm password at seller sign-up page
      */
     @FXML
-    public PasswordField sellerConfirmPassword_SignUp;
+    private PasswordField sellerConfirmPassword_SignUp;
 
     /**
      * A label to display seller account password and seller account confirm password do not match at seller sign-up page
      */
     @FXML
-    public Label sellerSignUpPageNotMatchLabel;
+    private Label sellerSignUpPageNotMatchLabel;
 
     /**
      * A text field to fill seller email address at seller login page
      */
     @FXML
-    public TextField sellerEmail_Login;
+    private TextField sellerEmail_Login;
 
     /**
      * A text field to fill seller account password at seller login page
      */
     @FXML
-    public TextField sellerPassword_Login;
+    private TextField sellerPassword_Login;
 
     /**
      * A label to display login message label("Please enter email address and password") at seller login page
      */
     @FXML
-    public Label sellerLoginMessageLabel;
+    private Label sellerLoginMessageLabel;
 
     @FXML
-    public void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
+    void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
         // if forget button is pressed,
         // inform the seller that they will receive an email
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -513,7 +513,7 @@ public class SellerController {
      * @throws IOException
      */
     @FXML
-    public void sellerLoginPageQuitButtonPressed(MouseEvent event) throws IOException {
+    void sellerLoginPageQuitButtonPressed(MouseEvent event) throws IOException {
         // Forward user to user homepage
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

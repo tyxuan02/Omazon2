@@ -28,35 +28,35 @@ public class UserFavoriteListPageController {
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * A button to display profile icon
      */
     @FXML
-    public Button profileIcon;
+    private Button profileIcon;
 
     /**
      * A button to display home icon
      */
     @FXML
-    public Button homeIcon;
+    private Button homeIcon;
 
     /**
      * VBox component is a layout component which positions all its child nodes (components) in a vertical column
      */
     @FXML
-    public VBox vBox;
+    private VBox vBox;
 
     @FXML
     public void initialize() {
@@ -88,7 +88,7 @@ public class UserFavoriteListPageController {
      * @throws IOException
      */
     @FXML
-    public void homeButtonPressed(ActionEvent event) throws IOException {
+    void homeButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -102,7 +102,7 @@ public class UserFavoriteListPageController {
      * @throws IOException
      */
     @FXML
-    public void profileButtonPressed(ActionEvent event) throws IOException {
+    void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -122,7 +122,7 @@ public class UserFavoriteListPageController {
      *
      * @author XiangLun
      */
-    public void displayFavoriteItem() {
+    void displayFavoriteItem() {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         // create an array list and call the get cart item list method
         List<FavoriteItem> favoriteItemList = new ArrayList<>(jsonFileUtil.readFavoriteFile());

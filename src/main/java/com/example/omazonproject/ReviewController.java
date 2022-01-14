@@ -13,19 +13,19 @@ public class ReviewController {
      * A label to display seller reply
      */
     @FXML
-    public Label reply;
+    private Label reply;
 
     /**
      * A label to display customer review
      */
     @FXML
-    public Label review;
+    private Label review;
 
     /**
      * A label to display customer username
      */
     @FXML
-    public Label username;
+    private Label username;
 
 
     /**

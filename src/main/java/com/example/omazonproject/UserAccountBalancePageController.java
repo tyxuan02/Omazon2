@@ -26,35 +26,35 @@ public class UserAccountBalancePageController {
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * A button to display profile icon
      */
     @FXML
-    public Button profileIcon;
+    private Button profileIcon;
 
     /**
      * A method to display home icon
      */
     @FXML
-    public Button homeIcon;
+    private Button homeIcon;
 
     /**
      * A label to display account balance
      */
     @FXML
-    public Label accountBalanceLabel;
+    private Label accountBalanceLabel;
 
     @FXML
     public void initialize() {
@@ -88,7 +88,7 @@ public class UserAccountBalancePageController {
      * @throws IOException
      */
     @FXML
-    public void homeButtonPressed(ActionEvent event) throws IOException {
+    void homeButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -102,7 +102,7 @@ public class UserAccountBalancePageController {
      * @throws IOException
      */
     @FXML
-    public void profileButtonPressed(ActionEvent event) throws IOException {
+    void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -123,7 +123,7 @@ public class UserAccountBalancePageController {
      * @throws IOException
      */
     @FXML
-    public void topUpButtonPressed(ActionEvent event) throws IOException {
+    void topUpButtonPressed(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("top-up-page.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
