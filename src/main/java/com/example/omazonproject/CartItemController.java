@@ -13,20 +13,35 @@ import java.io.File;
  */
 public class CartItemController {
 
+    /**
+     * A label to display price per unit
+     */
     @FXML
-    private Label pricePerUnit;
+    public Label pricePerUnit;
 
+    /**
+     * An image view to display product image
+     */
     @FXML
-    private ImageView productImage;
+    public ImageView productImage;
 
+    /**
+     * A label to display product quantity
+     */
     @FXML
-    private Label quantity;
+    public Label quantity;
 
+    /**
+     * A label to display product name
+     */
     @FXML
-    private Label productName;
+    public Label productName;
 
+    /**
+     * A label to display total price
+     */
     @FXML
-    private Label totalPrice;
+    public Label totalPrice;
 
     /**
      * This method fills in the information of the cart item into the template

@@ -38,22 +38,49 @@ import java.util.Optional;
  */
 public class SellerProfileController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
+
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * A label to display seller email
+     */
     @FXML
-    private Label sellerEmail;
+    public Label sellerEmail;
 
+    /**
+     * A text field to fill seller username
+     */
     @FXML
-    private TextField sellerUsername;
+    public TextField sellerUsername;
 
+    /**
+     * A text area to fill seller shop address
+     */
     @FXML
-    private TextArea shopAddress;
+    public TextArea shopAddress;
 
+    /**
+     * A circle to display seller profile image
+     */
     @FXML
-    private Circle sellerProfileImage;
+    public Circle sellerProfileImage;
 
+    /**
+     * This method will fill seller information (email address, username and shop address) after switching scene
+     * This method will load seller's profile image after switching scene
+     */
     @FXML
     public void initialize() {
         // fill seller's information
@@ -74,6 +101,12 @@ public class SellerProfileController {
         }
     }
 
+    /**
+     * This method is used to let seller change profile image
+     * The image will be saved in a folder named assets by using seller name and seller email address to name the image
+     *
+     * @param event
+     */
     @FXML
     public void editSellerImagePressed(ActionEvent event) {
         Image image;
@@ -285,6 +318,12 @@ public class SellerProfileController {
         }
     }
 
+    /**
+     * This method will direct seller to seller home page
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void homepageButtonPressed(ActionEvent event) throws IOException {
         // forward the user to the seller centre

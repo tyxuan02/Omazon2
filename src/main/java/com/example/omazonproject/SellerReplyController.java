@@ -15,19 +15,31 @@ import java.io.IOException;
 
 public class SellerReplyController {
 
-    private ProductReview productReview;
+    /**
+     * An object of ProductReview class
+     */
+    public ProductReview productReview;
+
+    /**
+     * A text field to fill seller reply
+     */
+    @FXML
+    public TextField reply;
+
+    /**
+     * A label to display user comment
+     */
+    @FXML
+    public Label review;
+
+    /**
+     * A label to display username
+     */
+    @FXML
+    public Label username;
 
     @FXML
-    private TextField reply;
-
-    @FXML
-    private Label review;
-
-    @FXML
-    private Label username;
-
-    @FXML
-    void replyButtonPressed(ActionEvent event) {
+    public void replyButtonPressed(ActionEvent event) {
         // store seller reply in (product image name).json file
         productReview.setSellerReply(reply.getText());
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
@@ -35,7 +47,7 @@ public class SellerReplyController {
     }
 
     /**
-     * This method fills in the information of the review product into the template and let the seller reply to user reviews
+     * This method will fill in the information of the review product into the template and let the seller reply to user reviews
      *
      * @param productReview an instance of the Product Review class
      * @author YuXuan

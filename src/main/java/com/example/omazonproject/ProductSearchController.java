@@ -23,30 +23,70 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This controller is responsible to control the events happening in the Product Search Page
+ */
 public class ProductSearchController{
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
+
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * GridPane is a layout component which lays out its child components in a grid
+     */
     @FXML
-    private GridPane grid;
+    public GridPane grid;
 
+    /**
+     * A label to display product name that user searches
+     */
     @FXML
-    private Label productToSearch;
+    public Label productToSearch;
 
-    private java.util.List<Product> products = new ArrayList<>();
+    /**
+     * An array list to store all product names that user searches and display it at product search page
+     */
+    public java.util.List<Product> products = new ArrayList<>();
 
-    private java.util.List<Product> objectsForProduct = new ArrayList<>();
+    /**
+     * An array list to store all product information that got from database
+     */
+    public java.util.List<Product> objectsForProduct = new ArrayList<>();
 
-    private java.util.List<Product> sellerProducts = new ArrayList<>();
+    /**
+     * An array list to store all product names of a seller that user searches and display it at product search page
+     */
+    public java.util.List<Product> sellerProducts = new ArrayList<>();
 
-    private java.util.List<Product> objectsForSellerProduct = new ArrayList<>();
+    /**
+     * An array list to store all product information of a seller that got from database
+     */
+    public java.util.List<Product> objectsForSellerProduct = new ArrayList<>();
 
-    private ProductListener productListener;
+    /**
+     * An object of ProductListener
+     */
+    public ProductListener productListener;
 
+    /**
+     * This method is used to display product name and products that user searches after switching scene
+     * This method will direct user to product page if seller click the product
+     * @param productToSearchName   product name that user searches
+     */
     @FXML
-    void initialize(String productToSearchName) {
+    public void initialize(String productToSearchName) {
 
         productToSearch.setText(productToSearchName);
 
@@ -145,8 +185,14 @@ public class ProductSearchController{
         }
     }
 
+    /**
+     * A home button at product search page
+     * This method will direct user to user homepage after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void HomeButtonPressed(MouseEvent event) throws IOException {
+    public void HomeButtonPressed(MouseEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -154,8 +200,14 @@ public class ProductSearchController{
         stage.show();
     }
 
+    /**
+     * A user profile button
+     * This method will direct user to user profile page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void UserProfileButtonPressed(MouseEvent event) throws IOException {
+    public void UserProfileButtonPressed(MouseEvent event) throws IOException {
         // Create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -171,7 +223,13 @@ public class ProductSearchController{
         stage.show();
     }
 
-    private void changeScene(Product product) throws IOException {
+    /**
+     * This method is used to change product search page to product page
+     * This method will be called if user click the product at product search page
+     * @param product   product at product search page
+     * @throws IOException
+     */
+    public void changeScene(Product product) throws IOException {
         // Forward user to product page based on product information
         FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
 
@@ -184,8 +242,11 @@ public class ProductSearchController{
         controller.autoFill(product);
     }
 
-    // This method is used to retrieve product information from database
-    private List<Product> getProduct () {
+    /**
+     * This method is used to retrieve product information from database based on product name entered by user
+     * @return an objects of Product
+     */
+    public List<Product> getProduct () {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -249,8 +310,11 @@ public class ProductSearchController{
         return objectsForProduct;
     }
 
-    // This method is used to search product from database based on seller name
-    private List <Product> getSellerProduct () {
+    /**
+     * This method is used to retrieve product information from database based on seller name entered by user
+     * @return an object of Product
+     */
+    public List <Product> getSellerProduct () {
 
         Connection connectDB = null;
         Statement statement = null;

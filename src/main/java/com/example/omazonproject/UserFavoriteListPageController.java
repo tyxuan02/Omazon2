@@ -25,18 +25,38 @@ import java.util.Objects;
 
 public class UserFavoriteListPageController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
-    @FXML
-    private Button profileIcon;
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
 
-    @FXML
-    private Button homeIcon;
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
 
+    /**
+     * A button to display profile icon
+     */
     @FXML
-    private VBox vBox;
+    public Button profileIcon;
+
+    /**
+     * A button to display home icon
+     */
+    @FXML
+    public Button homeIcon;
+
+    /**
+     * VBox component is a layout component which positions all its child nodes (components) in a vertical column
+     */
+    @FXML
+    public VBox vBox;
 
     @FXML
     public void initialize() {
@@ -62,8 +82,13 @@ public class UserFavoriteListPageController {
         displayFavoriteItem();
     }
 
+    /**
+     * This method will direct user to user home page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void homeButtonPressed(ActionEvent event) throws IOException {
+    public void homeButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -71,8 +96,13 @@ public class UserFavoriteListPageController {
         stage.show();
     }
 
+    /**
+     * This method will direct user to user profile page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void profileButtonPressed(ActionEvent event) throws IOException {
+    public void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -92,7 +122,7 @@ public class UserFavoriteListPageController {
      *
      * @author XiangLun
      */
-    private void displayFavoriteItem() {
+    public void displayFavoriteItem() {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         // create an array list and call the get cart item list method
         List<FavoriteItem> favoriteItemList = new ArrayList<>(jsonFileUtil.readFavoriteFile());

@@ -39,45 +39,99 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class HomepageController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
+
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * To display profile icon
+     */
     @FXML
-    private Button profileIcon;
+    public Button profileIcon;
 
+    /**
+     * To display home icon
+     */
     @FXML
-    private Button homeIcon;
+    public Button homeIcon;
 
+    /**
+     * To display log out icon
+     */
     @FXML
-    private Button logOutIcon;
+    public Button logOutIcon;
 
+    /**
+     * A combo box to store product category
+     */
     @FXML
-    private ComboBox<String> productCategory_home;
+    public ComboBox<String> productCategory_home;
 
+    /**
+     * A text field to fill product that user wants to search
+     */
     @FXML
-    private TextField searchItems;
+    public TextField searchItems;
 
+    /**
+     * A layout component which lays out its child components in a grid
+     */
     @FXML
-    private GridPane gridPane;
+    public GridPane gridPane;
 
+    /**
+     * An image view to display top 1 best-selling product
+     */
     @FXML
-    private ImageView top1;
+    public ImageView top1;
 
+    /**
+     * An image view to display top 2 best-selling product
+     */
     @FXML
-    private ImageView top2;
+    public ImageView top2;
 
+    /**
+     * An image view to display top 3 best-selling product
+     */
     @FXML
-    private ImageView top3;
+    public ImageView top3;
 
+    /**
+     * An array list to store product objects (to get all products from database and display at user homepage)
+     */
     public List<Product> products = new ArrayList<>();
 
-    private ProductListener productListener;
+    /**
+     * An object of ProductListener
+     */
+    public ProductListener productListener;
 
-    int[] getMaxIndex = new int[3];
+    /**
+     * An array to get three best-selling product indexes
+     */
+    public int[] getMaxIndex = new int[3];
 
-    ArrayList<String> productName = new ArrayList<>();
-    List<Product> objects = new ArrayList<>();
+    /**
+     * An array list to store product name and seller name so that it can be used for autocomplete search
+     */
+    public ArrayList<String> productName = new ArrayList<>();
+
+    /**
+     * An array list to store product objects (to get top3 best-selling product)
+     */
+    public List<Product> objects = new ArrayList<>();
 
     @FXML
     public void initialize() throws Exception {
@@ -282,7 +336,10 @@ public class HomepageController {
 
     }
 
-    private void getProduct() {
+    /**
+     * This method is used to get all products from database and display it at user homepage
+     */
+    public void getProduct() {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -344,8 +401,13 @@ public class HomepageController {
         }
     }
 
+    /**
+     * This method will direct user to top 1 best-selling product page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void top1Pressed(ActionEvent event) throws IOException {
+    public void top1Pressed(ActionEvent event) throws IOException {
         //Forward user to product page based on product information
         FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -355,8 +417,13 @@ public class HomepageController {
         controller.autoFill(objects.get(getMaxIndex[0]));
     }
 
+    /**
+     * This method will direct user to top 2 best-selling product page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void top2Pressed(ActionEvent event) throws IOException {
+    public void top2Pressed(ActionEvent event) throws IOException {
         //Forward user to product page based on product information
         FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -366,8 +433,13 @@ public class HomepageController {
         controller.autoFill(objects.get(getMaxIndex[1]));
     }
 
+    /**
+     * This method will direct user to top 3 best-selling product page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void top3Pressed(ActionEvent event) throws IOException {
+    public void top3Pressed(ActionEvent event) throws IOException {
         //Forward user to product page based on product information
         FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -377,8 +449,14 @@ public class HomepageController {
         controller.autoFill(objects.get(getMaxIndex[2]));
     }
 
+    /**
+     * This method is used to log out
+     * This method will direct user to user login page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void logOutButtonPressed(ActionEvent event) throws IOException {
+    public void logOutButtonPressed(ActionEvent event) throws IOException {
         // forward user to the login page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -388,8 +466,13 @@ public class HomepageController {
         stage.show();
     }
 
+    /**
+     * This method will direct user to profile page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void profileButtonPressed(ActionEvent event) throws IOException {
+    public void profileButtonPressed(ActionEvent event) throws IOException {
         // create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -405,6 +488,11 @@ public class HomepageController {
         stage.show();
     }
 
+    /**
+     * This method will direct user to product search page based on the product name entered by the user at search bar
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void searchButtonPressed(ActionEvent event) throws IOException {
 
@@ -433,8 +521,10 @@ public class HomepageController {
 
     }
 
-    // This method is used to get product name from database and store it in an array list named productName
-    // Therefore it can be used by the autocomplete search
+    /**
+     * This method is used to get product names from database and store it in an array list named productName
+     * Therefore it can be used by autocomplete search
+     */
     void getProductNameFromDatabase(String PRODUCTCATEGORY) {
 
         Connection connectDB = null;
@@ -484,8 +574,10 @@ public class HomepageController {
         }
     }
 
-    // This method is used to get seller name from database and store it in an array list named productName
-    // Therefore it can be used by the autocomplete search
+    /**
+     * This method is used get seller names from database and store it in an array list named productName
+     * Therefore it can be used by autocomplete search
+     */
     void getSellerNameFromDatabase() {
 
         Connection connectDB = null;
@@ -531,6 +623,12 @@ public class HomepageController {
         }
     }
 
+    /**
+     * This method will direct user to product page and automatically fill product information into product page
+     * This method will be called when user click the product at user home page
+     * @param product
+     * @throws IOException
+     */
     private void changeScene(Product product) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
         ProductController productController = new ProductController();

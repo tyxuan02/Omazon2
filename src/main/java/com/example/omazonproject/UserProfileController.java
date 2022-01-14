@@ -39,33 +39,68 @@ import java.util.Optional;
  */
 public class UserProfileController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
-    @FXML
-    private Label emailAddress;
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
 
-    @FXML
-    private Label paymentPassword;
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
 
+    /**
+     * A label to display user email address
+     */
     @FXML
-    private TextArea pickupAddress;
+    public Label emailAddress;
 
+    /**
+     * A label to display payment password
+     */
     @FXML
-    private TextField username;
+    public Label paymentPassword;
 
+    /**
+     * A text field to fill pick-up address
+     */
     @FXML
-    private Button setPaymentPasswordButton;
+    public TextArea pickupAddress;
 
+    /**
+     * A method to display username
+     */
     @FXML
-    private Button profileIcon;
+    public TextField username;
 
+    /**
+     * A button named setPaymentPasswordButton
+     */
     @FXML
-    private Button homeIcon;
+    public Button setPaymentPasswordButton;
 
+    /**
+     * A button to display profile icon
+     */
     @FXML
-    private Circle userProfileImage;
+    public Button profileIcon;
+
+    /**
+     * A button to display home icon
+     */
+    @FXML
+    public Button homeIcon;
+
+    /**
+     * A circle to display user profile image
+     */
+    @FXML
+    public Circle userProfileImage;
 
     @FXML
     public void initialize() {
@@ -112,6 +147,11 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * This method is used to let user change profile image
+     * The image will be saved in a folder named assets by using user email address and username to name the image
+     * @param event
+     */
     @FXML
     public void editUserImagePressed(ActionEvent event) {
         try {
@@ -136,8 +176,13 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * This method will direct user to user account balance page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void accountBalanceButtonPressed(ActionEvent event) throws IOException {
+    public void accountBalanceButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-account-balance-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -146,7 +191,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void deleteAccountButtonPressed(ActionEvent event) {
+    public void deleteAccountButtonPressed(ActionEvent event) {
         // create a pop-up message to alert the user
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Delete Account");
@@ -244,7 +289,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void favouriteListButtonPressed(ActionEvent event) throws IOException {
+    public void favouriteListButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-favorite-list-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -252,8 +297,13 @@ public class UserProfileController {
         stage.show();
     }
 
+    /**
+     * This method will direct user to user home page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void homepageButtonPressed(ActionEvent event) throws IOException {
+    public void homepageButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -261,8 +311,13 @@ public class UserProfileController {
         stage.show();
     }
 
+    /**
+     * This method will direct user to user purchase page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void myPurchaseButtonPressed(ActionEvent event) throws IOException {
+    public void myPurchaseButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("purchase-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -271,7 +326,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void saveButtonPressed(ActionEvent event) {
+    public void saveButtonPressed(ActionEvent event) {
         // when the save button is pressed
 
         if (!username.getText().isEmpty() && !username.getText().equals(User.getUsername())) {
@@ -398,8 +453,13 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * This method will direct user to seller login page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void startSellingButtonPressed(ActionEvent event) throws IOException {
+    public void startSellingButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -409,7 +469,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void changeLoginPasswordButtonPressed(ActionEvent event) throws MessagingException {
+    public void changeLoginPasswordButtonPressed(ActionEvent event) throws MessagingException {
         // create a new custom dialog box with password field
         Dialog<ButtonType> preDialog = new Dialog<>();
         preDialog.setTitle("Change Login Password");
@@ -498,7 +558,7 @@ public class UserProfileController {
     }
 
     @FXML
-    void setPaymentPasswordButtonPressed(ActionEvent event) {
+    public void setPaymentPasswordButtonPressed(ActionEvent event) {
         // create a dialog box to request the current password from the user
         Dialog<String> getCurrentPasswordDialog = new Dialog<>();
         getCurrentPasswordDialog.setTitle("Set Payment Password");

@@ -14,19 +14,32 @@ import java.sql.Statement;
 
 public class UserTopUpController {
 
+    /**
+     * A label to display balance
+     */
     @FXML
     public Label balanceLabel;
 
+    /**
+     * A text field to fill price entered by user
+     */
     @FXML
-    private TextField priceEntered;
+    public TextField priceEntered;
 
+    /**
+     * This method is used to set and display user account balance after switching the scene
+     */
     @FXML
     public void initialize() {
         balanceLabel.setText(String.format("%.2f", User.getBalance()));
     }
 
+    /**
+     * This method is used to let user top up and user account balance will increase after clicking it
+     * @param event
+     */
     @FXML
-    void confirmButtonPressed(ActionEvent event) {
+    public void confirmButtonPressed(ActionEvent event) {
 
         try {
             if ((!priceEntered.getText().isBlank()) && (Double.parseDouble(priceEntered.getText()) <= Double.MAX_VALUE && Double.parseDouble(priceEntered.getText()) > 0)) {
@@ -68,8 +81,11 @@ public class UserTopUpController {
 
     }
 
-    // update user account in database
-    void resetAccountBalance(Double balance) {
+    /**
+     * This method will update user account balance in database after user top up
+     * @param balance
+     */
+    public void resetAccountBalance(Double balance) {
         Connection connectDB = null;
         Statement statement = null;
 
@@ -101,6 +117,4 @@ public class UserTopUpController {
             }
         }
     }
-
-
 }

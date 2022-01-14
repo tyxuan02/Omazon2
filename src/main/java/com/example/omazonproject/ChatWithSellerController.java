@@ -12,17 +12,30 @@ import javax.mail.MessagingException;
 
 public class ChatWithSellerController {
 
-    private String sellerEmail;
-    private String productName;
+    /**
+     * An instance variable named sellerEmail with String data type
+     */
+    public String sellerEmail;
+
+    /**
+     * An instance variable named productName with String data type
+     */
+    public String productName;
+
+    /**
+     * A label to display seller name
+     */
+    @FXML
+    public Label sellerNameLabel;
+
+    /**
+     * A text area to fill user message
+     */
+    @FXML
+    public TextArea textArea;
 
     @FXML
-    private Label sellerNameLabel;
-
-    @FXML
-    private TextArea textArea;
-
-    @FXML
-    void sendButtonPressed(ActionEvent event) throws MessagingException {
+    public void sendButtonPressed(ActionEvent event) throws MessagingException {
         // send the chat message to the seller
         Email.sendChatMessage(sellerEmail, productName, textArea.getText());
 

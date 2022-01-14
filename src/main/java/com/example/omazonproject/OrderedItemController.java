@@ -23,23 +23,35 @@ import java.io.IOException;
 public class OrderedItemController {
 
     /**
-     * This field is used to store the current OrderedItem object.
+     * An object of OrderedItem named currentOrderedItem
      */
-    private OrderedItem currentOrderedItem;
+    public OrderedItem currentOrderedItem;
+
+    /**
+     * An image view to display product image
+     */
+    @FXML
+    public ImageView productImage;
+
+    /**
+     * A label to display product name
+     */
+    @FXML
+    public Label productName;
+
+    /**
+     * A label to display quantity
+     */
+    @FXML
+    public Label quantity;
+
+    /**
+     * An instance variable named imageName with String data type
+     */
+    public String imageName;
 
     @FXML
-    private ImageView productImage;
-
-    @FXML
-    private Label productName;
-
-    @FXML
-    private Label quantity;
-
-    private String imageName;
-
-    @FXML
-    void deliveredButtonPressed(ActionEvent event) throws IOException {
+    public void deliveredButtonPressed(ActionEvent event) throws IOException {
         // remove the particular record and add the removed record into order history
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.deleteOrderRecord(currentOrderedItem);
@@ -62,7 +74,7 @@ public class OrderedItemController {
     }
 
     /**
-     * This method fills in the information of the ordered item into the template
+     * This method will fill in the information of the ordered item into the template
      *
      * @param orderedItem an instance of the Ordered Item class
      * @author XiangLun

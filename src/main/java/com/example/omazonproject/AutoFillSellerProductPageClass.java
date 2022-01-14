@@ -27,49 +27,106 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class acts as a controller for the seller product page
+ */
 public class AutoFillSellerProductPageClass {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
 
-    private Product currentProduct;
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
 
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * Object of Product class
+     */
+    public Product currentProduct;
+
+    /**
+     * DecimalFormat is used to format numbers using a formatting pattern you specify yourself
+     */
     DecimalFormat df = new DecimalFormat("0.00");
 
+    /**
+     * A label to display product category
+     */
     @FXML
-    private Label category;
+    public Label category;
 
+    /**
+     * A label to display country
+     */
     @FXML
-    private Label country;
+    public Label country;
 
+    /**
+     * A text area to fill product description in it
+     */
     @FXML
-    private TextArea productDescription;
+    public TextArea productDescription;
 
+    /**
+     * A text field to fill product price in it
+     */
     @FXML
-    private TextField productPrice;
+    public TextField productPrice;
 
+    /**
+     * A text field to fill product stock in it
+     */
     @FXML
-    private TextField stock;
+    public TextField stock;
 
+    /**
+     * To display home icon
+     */
     @FXML
-    private Button homeIcon;
+    public Button homeIcon;
 
+    /**
+     * To display product name
+     */
     @FXML
-    private Label name;
+    public Label name;
 
+    /**
+     * An image view to display product image
+     */
     @FXML
-    private ImageView productImage;
+    public ImageView productImage;
 
+    /**
+     * To display profile icon
+     */
     @FXML
-    private Button profileIcon;
+    public Button profileIcon;
 
+    /**
+     * A label to display where product will be shipped
+     */
     @FXML
-    private Label shipFrom;
+    public Label shipFrom;
 
+    /**
+     * A layout component which positions all its child nodes (components) in a vertical column
+     */
     @FXML
-    private VBox vBox;
+    public VBox vBox;
 
+    /**
+     * This method is used to fill product information automatically into seller's-product-page.fxml
+     * @param product
+     */
     @FXML
     public void autoFill(Product product) {
 
@@ -91,6 +148,11 @@ public class AutoFillSellerProductPageClass {
 
     }
 
+    /**
+     * Direct seller to seller homepage
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void sellerHomeButtonPressed(ActionEvent event) throws IOException {
         // forward the user to seller centre
@@ -101,8 +163,13 @@ public class AutoFillSellerProductPageClass {
         stage.show();
     }
 
+    /**
+     * Direct seller to seller profile page
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void sellerProfileButtonPressed(ActionEvent event) throws IOException {
+    public void sellerProfileButtonPressed(ActionEvent event) throws IOException {
         // forward the user to the seller profile page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-profile-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -111,8 +178,12 @@ public class AutoFillSellerProductPageClass {
         stage.show();
     }
 
+    /**
+     * This method is used to let user upload a new product image after clicking it
+     * @param event
+     */
     @FXML
-    void EditImage(ActionEvent event) {
+    public void EditImage(ActionEvent event) {
         try {
             //Update product image
             Stage stage = new Stage();
@@ -134,8 +205,14 @@ public class AutoFillSellerProductPageClass {
         }
     }
 
+    /**
+     * This method is used to delete seller product after clicking it
+     * Product information for this product will be removed in database
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void deleteProduct(ActionEvent event) throws IOException {
+    public void deleteProduct(ActionEvent event) throws IOException {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -189,8 +266,13 @@ public class AutoFillSellerProductPageClass {
 
     }
 
+    /**
+     * This method will save changes after clicking it
+     * Product information for this product will change or update in database
+     * @param event
+     */
     @FXML
-    void saveButtonPressed(ActionEvent event) {
+    public void saveButtonPressed(ActionEvent event) {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -241,9 +323,8 @@ public class AutoFillSellerProductPageClass {
     }
 
     /**
-     * This method is used to display the product review
-     *
-     * @author YuXuan
+     * This method is used to display product review
+     * @param imageName     product image name
      */
     public void displayProductReview (String imageName) {
         // clear the previous contents in the vbox

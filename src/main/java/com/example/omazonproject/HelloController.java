@@ -30,44 +30,77 @@ import java.util.regex.Pattern;
  */
 public class HelloController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    /**
+     * Stage is used to represent a window in a JavaFX desktop application
+     */
+    public Stage stage;
+
+    /**
+     * Scene is the container for all content in a scene graph
+     */
+    public Scene scene;
+
+    /**
+     * Root provides a solution to the issue of defining a reusable component with FXML
+     */
+    public Parent root;
+
+    /**
+     * A text field to fill user email
+     * To log in
+     */
+    @FXML
+    public TextField emailEntered_Login;
+
+    /**
+     * A password field to fill password
+     * To log in
+     */
+    @FXML
+    public PasswordField passwordEntered_Login;
+
+    /**
+     * A password field to fill confirm password
+     * To log in
+     */
+    @FXML
+    public PasswordField confirmPassword_SignUp;
+
+    /**
+     * A text field to fill email
+     * To sign up
+     */
+    @FXML
+    public TextField emailEntered_SignUp;
+
+    /**
+     * A password field to fill password
+     * To sign up
+     */
+    @FXML
+    public PasswordField passwordEntered_SignUp;
+
+    /**
+     * A text field to fill email
+     * To sign up
+     */
+    @FXML
+    public TextField username_SignUp;
+
+    /**
+     * A label to display login message label (login successful & login unsuccessful)
+     */
+    @FXML
+    public Label loginMessageLabel;
+
+    /**
+     * A label to display password does not match
+     */
+    @FXML
+    public Label notMatchLabel;
 
     @FXML
-    // Email entered by user at the login page
-    private TextField emailEntered_Login;
-
-    @FXML
-    // Password entered by user at the login page
-    private PasswordField passwordEntered_Login;
-
-    @FXML
-    // Confirm password entered by user at the sign-up page
-    private PasswordField confirmPassword_SignUp;
-
-    @FXML
-    // Email entered by user at the sign-up page
-    private TextField emailEntered_SignUp;
-
-    @FXML
-    // Password entered by user at the sign-up page
-    private PasswordField passwordEntered_SignUp;
-
-    @FXML
-    // Username entered by user at the sign-up page
-    private TextField username_SignUp;
-
-    @FXML
-    // The "Please enter email and password" label
-    private Label loginMessageLabel;
-
-    @FXML
-    // The "Password does not match or is empty" label
-    private Label notMatchLabel;
-
-    @FXML
-    void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
+    public void forgotPasswordBtnPressed(ActionEvent event) throws MessagingException {
         // if forget button is pressed,
         // inform the user that they will receive an email
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -228,9 +261,15 @@ public class HelloController {
         }
     }
 
+    /**
+     * Sign-up button pressed at the sign-up page
+     * This method is used to let user sign up an account
+     * This method will check all the information entered by the user while the user is signing up
+     * After signing up, all user information will be saved in database
+     * @param event
+     * @throws MessagingException
+     */
     @FXML
-    // Sign-up button pressed at the sign-up page
-    // This method will check all the information entered by the user while the user is signing up
     public void signUpButtonPressed(MouseEvent event) throws MessagingException {
 
         // hide the "Password does not match or is empty" label
@@ -365,8 +404,13 @@ public class HelloController {
         }
     }
 
+    /**
+     * A button at user login page
+     * This method will direct user to user sign up page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    // Prompt sign-up button pressed in the login page
     public void signUpPromptButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the sign-up page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-register-page.fxml")));
@@ -377,8 +421,13 @@ public class HelloController {
         stage.show();
     }
 
+    /**
+     * A quit button at user sign up page
+     * This method will direct user to user login page after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    // Quit button in the sign-up page pressed
     public void registrationPageQuitButtonPressed(MouseEvent event) throws IOException {
         // Forward user to the login page
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-login-page.fxml")));
@@ -389,8 +438,13 @@ public class HelloController {
         stage.show();
     }
 
+    /**
+     * A button at user login page
+     * This method will direct user to user homepage after clicking it
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    // Login button pressed in the login page
     public void loginButtonPressed(MouseEvent event) throws IOException {
         // hide the "Please enter email and password" label
         loginMessageLabel.setVisible(false);
@@ -426,7 +480,7 @@ public class HelloController {
     }
 
     /**
-     * Register users and store their credentials into our database.
+     * This method is used to register users and store their credentials into our database.
      */
     public void registerUser() {
 

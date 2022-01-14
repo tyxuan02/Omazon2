@@ -16,14 +16,29 @@ import java.sql.Statement;
  */
 public class FeedbackController {
 
+    /**
+     * A rating to display product rating
+     */
     @FXML
-    private Rating rating;
+    public Rating rating;
 
+    /**
+     * A text area to fill user review
+     */
     @FXML
-    private TextArea textArea;
+    public TextArea textArea;
 
-    private String imageName;
+    /**
+     * An instance variable named imageName with String data type
+     */
+    public String imageName;
 
+    /**
+     * This method is used to update rating in database
+     * This method is used to write image name, number of stars, user review and username in (product image name)json.file
+     * Each product will have its own json file
+     * @param event
+     */
     @FXML
     void OKBtnPressed(ActionEvent event) {
         // update the rating in the database (ie. numberOfFiveStars++) and the json file
@@ -83,8 +98,11 @@ public class FeedbackController {
         stage.close();
     }
 
-    // This method is used to get product image name that user wants to review
-    void getProductName (String imageName) {
+    /**
+     * A method to return imageName in String
+     * @param imageName     product image name
+     */
+    public void getProductName (String imageName) {
         this.imageName = imageName;
     }
 
