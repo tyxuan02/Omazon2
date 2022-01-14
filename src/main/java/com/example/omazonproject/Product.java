@@ -230,7 +230,7 @@ public class Product {
     }
 
     /**
-     * A method to receive a int parameter and set it as numberOfSales
+     * A method to receive an int parameter and set it as numberOfSales
      */
     public void setNumberOfSales(int numberOfSales) {
         this.numberOfSales = numberOfSales;
@@ -291,4 +291,6 @@ public class Product {
     public String getAddress() {
         return address;
     }
+
+
 }

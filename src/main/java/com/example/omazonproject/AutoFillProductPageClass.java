@@ -162,6 +162,12 @@ public class AutoFillProductPageClass {
     private Button chatWithSellerBtn;
 
     /**
+     * A label to display number of sales
+     */
+    @FXML
+    private Label numOfSales;
+
+    /**
      * This method is used to fill product information automatically into product-page.fxml
      *
      * @param product An instance of the Product class
@@ -185,6 +191,8 @@ public class AutoFillProductPageClass {
                 / (product.getNumOfOneStars() + product.getNumOfTwoStars() + product.getNumOfThreeStars() + product.getNumOfFourStars() + product.getNumOfFiveStars()));
         Image image = new Image(new File("src/main/resources/images/" + product.getProductImagePath() + ".png").toURI().toString());
         productImage.setImage(image);
+        numOfSales.setText(String.valueOf(product.getNumberOfSales()));
+
         displayProductReview(product.getProductImagePath());
     }
 

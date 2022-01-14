@@ -68,7 +68,23 @@ public class CustomerReviewController {
     }
 
     /**
-     * This initialize method initializes the pie chart after retrieving all the seller's products from the database,
+     * A profile button at customer review page
+     * This method will direct seller to seller homepage
+     * @param event An instance of the ActionEvent class
+     * @throws IOException
+     */
+    @FXML
+    void profileButtonPressed (ActionEvent event) throws IOException {
+        // forward the user back to the seller profile page
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-profile-page.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * This initializes method initializes the pie chart after retrieving all the seller's products from the database,
      * play the fade in, slide up animation for both the pie chart and the bar chart, and
      * set up event handler for each segment of the pie chart
      */
