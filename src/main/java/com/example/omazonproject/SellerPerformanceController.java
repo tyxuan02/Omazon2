@@ -21,19 +21,19 @@ public class SellerPerformanceController {
      * A label to display seller best-selling product
      */
     @FXML
-    public Label bestSellingProduct;
+    private Label bestSellingProduct;
 
     /**
      * A label to display number of sales
      */
     @FXML
-    public Label numberOfSales;
+    private Label numberOfSales;
 
     /**
      * A label to display profit
      */
     @FXML
-    public Label profitLabel;
+    private Label profitLabel;
 
     public void initialize() {
         // a list of the product of the seller

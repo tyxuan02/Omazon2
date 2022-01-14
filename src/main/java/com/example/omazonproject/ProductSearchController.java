@@ -31,54 +31,54 @@ public class ProductSearchController{
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * GridPane is a layout component which lays out its child components in a grid
      */
     @FXML
-    public GridPane grid;
+    private GridPane grid;
 
     /**
      * A label to display product name that user searches
      */
     @FXML
-    public Label productToSearch;
+    private Label productToSearch;
 
     /**
      * An array list to store all product names that user searches and display it at product search page
      */
-    public java.util.List<Product> products = new ArrayList<>();
+    private java.util.List<Product> products = new ArrayList<>();
 
     /**
      * An array list to store all product information that got from database
      */
-    public java.util.List<Product> objectsForProduct = new ArrayList<>();
+    private java.util.List<Product> objectsForProduct = new ArrayList<>();
 
     /**
      * An array list to store all product names of a seller that user searches and display it at product search page
      */
-    public java.util.List<Product> sellerProducts = new ArrayList<>();
+    private java.util.List<Product> sellerProducts = new ArrayList<>();
 
     /**
      * An array list to store all product information of a seller that got from database
      */
-    public java.util.List<Product> objectsForSellerProduct = new ArrayList<>();
+    private java.util.List<Product> objectsForSellerProduct = new ArrayList<>();
 
     /**
      * An object of ProductListener
      */
-    public ProductListener productListener;
+    private ProductListener productListener;
 
     /**
      * This method is used to display product name and products that user searches after switching scene
@@ -86,7 +86,7 @@ public class ProductSearchController{
      * @param productToSearchName   product name that user searches
      */
     @FXML
-    public void initialize(String productToSearchName) {
+    void initialize(String productToSearchName) {
 
         productToSearch.setText(productToSearchName);
 
@@ -192,7 +192,7 @@ public class ProductSearchController{
      * @throws IOException
      */
     @FXML
-    public void HomeButtonPressed(MouseEvent event) throws IOException {
+    void HomeButtonPressed(MouseEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -207,7 +207,7 @@ public class ProductSearchController{
      * @throws IOException
      */
     @FXML
-    public void UserProfileButtonPressed(MouseEvent event) throws IOException {
+    void UserProfileButtonPressed(MouseEvent event) throws IOException {
         // Create an instance of the FXMLLoader class
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-profile-page.fxml"));
         root = fxmlLoader.load();
@@ -229,7 +229,7 @@ public class ProductSearchController{
      * @param product   product at product search page
      * @throws IOException
      */
-    public void changeScene(Product product) throws IOException {
+    private void changeScene(Product product) throws IOException {
         // Forward user to product page based on product information
         FXMLLoader loader = new FXMLLoader(getClass().getResource("product-page.fxml"));
 
@@ -246,7 +246,7 @@ public class ProductSearchController{
      * This method is used to retrieve product information from database based on product name entered by user
      * @return an objects of Product
      */
-    public List<Product> getProduct () {
+    private List<Product> getProduct () {
 
         Connection connectDB = null;
         Statement statement = null;
@@ -314,7 +314,7 @@ public class ProductSearchController{
      * This method is used to retrieve product information from database based on seller name entered by user
      * @return an object of Product
      */
-    public List <Product> getSellerProduct () {
+    private List <Product> getSellerProduct () {
 
         Connection connectDB = null;
         Statement statement = null;

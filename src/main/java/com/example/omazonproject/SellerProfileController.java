@@ -41,41 +41,41 @@ public class SellerProfileController {
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * A label to display seller email
      */
     @FXML
-    public Label sellerEmail;
+    private Label sellerEmail;
 
     /**
      * A text field to fill seller username
      */
     @FXML
-    public TextField sellerUsername;
+    private TextField sellerUsername;
 
     /**
      * A text area to fill seller shop address
      */
     @FXML
-    public TextArea shopAddress;
+    private TextArea shopAddress;
 
     /**
      * A circle to display seller profile image
      */
     @FXML
-    public Circle sellerProfileImage;
+    private Circle sellerProfileImage;
 
     /**
      * This method will fill seller information (email address, username and shop address) after switching scene

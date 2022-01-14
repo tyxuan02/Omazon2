@@ -18,28 +18,28 @@ public class SellerReplyController {
     /**
      * An object of ProductReview class
      */
-    public ProductReview productReview;
+    private ProductReview productReview;
 
     /**
      * A text field to fill seller reply
      */
     @FXML
-    public TextField reply;
+    private TextField reply;
 
     /**
      * A label to display user comment
      */
     @FXML
-    public Label review;
+    private Label review;
 
     /**
      * A label to display username
      */
     @FXML
-    public Label username;
+    private Label username;
 
     @FXML
-    public void replyButtonPressed(ActionEvent event) {
+    void replyButtonPressed(ActionEvent event) {
         // store seller reply in (product image name).json file
         productReview.setSellerReply(reply.getText());
         JsonFileUtil jsonFileUtil = new JsonFileUtil();

@@ -10,32 +10,32 @@ public class User {
     /**
      * A static variable named username with String data type
      */
-    public static String username;
+    private static String username;
 
     /**
      * A static variable named email with String data type
      */
-    public static String email;
+    private static String email;
 
     /**
      * A static variable named password with String data type
      */
-    public static String password;
+    private static String password;
 
     /**
      * A static variable named address with String data type
      */
-    public static String address;
+    private static String address;
 
     /**
      * A static variable named paymentPassword with String data type
      */
-    public static String paymentPassword;
+    private static String paymentPassword;
 
     /**
      * A static variable named balance with double data type
      */
-    public static double balance;
+    private static double balance;
 
     /**
      * A static method to return username in String

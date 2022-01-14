@@ -42,65 +42,65 @@ public class UserProfileController {
     /**
      * Stage is used to represent a window in a JavaFX desktop application
      */
-    public Stage stage;
+    private Stage stage;
 
     /**
      * Scene is the container for all content in a scene graph
      */
-    public Scene scene;
+    private Scene scene;
 
     /**
      * Root provides a solution to the issue of defining a reusable component with FXML
      */
-    public Parent root;
+    private Parent root;
 
     /**
      * A label to display user email address
      */
     @FXML
-    public Label emailAddress;
+    private Label emailAddress;
 
     /**
      * A label to display payment password
      */
     @FXML
-    public Label paymentPassword;
+    private Label paymentPassword;
 
     /**
      * A text field to fill pick-up address
      */
     @FXML
-    public TextArea pickupAddress;
+    private TextArea pickupAddress;
 
     /**
      * A method to display username
      */
     @FXML
-    public TextField username;
+    private TextField username;
 
     /**
      * A button named setPaymentPasswordButton
      */
     @FXML
-    public Button setPaymentPasswordButton;
+    private Button setPaymentPasswordButton;
 
     /**
      * A button to display profile icon
      */
     @FXML
-    public Button profileIcon;
+    private Button profileIcon;
 
     /**
      * A button to display home icon
      */
     @FXML
-    public Button homeIcon;
+    private Button homeIcon;
 
     /**
      * A circle to display user profile image
      */
     @FXML
-    public Circle userProfileImage;
+    private Circle userProfileImage;
 
     @FXML
     public void initialize() {
@@ -182,7 +182,7 @@ public class UserProfileController {
      * @throws IOException
      */
     @FXML
-    public void accountBalanceButtonPressed(ActionEvent event) throws IOException {
+    void accountBalanceButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-account-balance-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -191,7 +191,7 @@ public class UserProfileController {
     }
 
     @FXML
-    public void deleteAccountButtonPressed(ActionEvent event) {
+    void deleteAccountButtonPressed(ActionEvent event) {
         // create a pop-up message to alert the user
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Delete Account");
@@ -289,7 +289,7 @@ public class UserProfileController {
     }
 
     @FXML
-    public void favouriteListButtonPressed(ActionEvent event) throws IOException {
+    void favouriteListButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-favorite-list-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -303,7 +303,7 @@ public class UserProfileController {
      * @throws IOException
      */
     @FXML
-    public void homepageButtonPressed(ActionEvent event) throws IOException {
+    void homepageButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -317,7 +317,7 @@ public class UserProfileController {
      * @throws IOException
      */
     @FXML
-    public void myPurchaseButtonPressed(ActionEvent event) throws IOException {
+    void myPurchaseButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("purchase-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -326,7 +326,7 @@ public class UserProfileController {
     }
 
     @FXML
-    public void saveButtonPressed(ActionEvent event) {
+    void saveButtonPressed(ActionEvent event) {
         // when the save button is pressed
 
         if (!username.getText().isEmpty() && !username.getText().equals(User.getUsername())) {
@@ -459,7 +459,7 @@ public class UserProfileController {
      * @throws IOException
      */
     @FXML
-    public void startSellingButtonPressed(ActionEvent event) throws IOException {
+    void startSellingButtonPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-login-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -469,7 +469,7 @@ public class UserProfileController {
     }
 
     @FXML
-    public void changeLoginPasswordButtonPressed(ActionEvent event) throws MessagingException {
+    void changeLoginPasswordButtonPressed(ActionEvent event) throws MessagingException {
         // create a new custom dialog box with password field
         Dialog<ButtonType> preDialog = new Dialog<>();
         preDialog.setTitle("Change Login Password");
@@ -558,7 +558,7 @@ public class UserProfileController {
     }
 
     @FXML
-    public void setPaymentPasswordButtonPressed(ActionEvent event) {
+    void setPaymentPasswordButtonPressed(ActionEvent event) {
         // create a dialog box to request the current password from the user
         Dialog<String> getCurrentPasswordDialog = new Dialog<>();
         getCurrentPasswordDialog.setTitle("Set Payment Password");

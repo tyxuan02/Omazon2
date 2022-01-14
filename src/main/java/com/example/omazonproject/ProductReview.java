@@ -9,27 +9,27 @@ public class ProductReview {
     /**
      * An instance variable named userReview with String data type
      */
-    public String userReview;
+    private String userReview;
 
     /**
      * An instance variable named username with String data type
      */
-    public String username;
+    private String username;
 
     /**
      * An instance variable named sellerReply with String data type
      */
-    public String sellerReply;
+    private String sellerReply;
 
     /**
      * An instance variable named imageName with String data type
      */
-    public String imageName;
+    private String imageName;
 
     /**
      * An instance variable named numOfStars with int data type
      */
-    public int numOfStars;
+    private int numOfStars;
 
     /**
      * A method to return userReview in String

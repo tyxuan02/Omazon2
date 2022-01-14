@@ -32,37 +32,37 @@ public class SellerAddProductController implements Initializable {
      * A combo box to display all product categories (Electronic Devices", "Fashion", "Food", "Health & Beauty", "Sports", "TV & Home Appliances)
      */
     @FXML
-    public ComboBox<String> productCategory;
+    private ComboBox<String> productCategory;
 
     /**
      * A text area to fill product description
      */
     @FXML
-    public TextArea productDescription;
+    private TextArea productDescription;
 
     /**
      * A text field to fill product name
      */
     @FXML
-    public TextField productName;
+    private TextField productName;
 
     /**
      * A text field to field product price
      */
     @FXML
-    public TextField productPrice;
+    private TextField productPrice;
 
     /**
      * An image view to display product image
      */
     @FXML
-    public ImageView productImage;
+    private ImageView productImage;
 
     /**
      * A text field to fill product stock quantity
      */
     @FXML
-    public TextField stockNumber;
+    private TextField stockNumber;
 
     /**
      * This method is used to set the items viewing in product category
