@@ -12,16 +12,16 @@
     -fx-background-radius:30;
     -fx-text-fill: #457b9d;
     -fx-border-color: #457b9d;
-    -fx-border-radius:28;
-    -fx-border-weight:3;
+    -fx-border-radius:30;
+    -fx-border-width:2;
 }
 #btn1:pressed{
-   -fx-font-weight:bold;
-    -fx-background-color:white;
+    -fx-font-weight:bold;
+    -fx-background-color:#f1faee;
     -fx-background-radius:30;
     -fx-text-fill: #457b9d;
     -fx-border-color: #457b9d;
-    -fx-border-radius:28;
+    -fx-border-radius:30;
     -fx-border-width:3;
     
 }
@@ -38,7 +38,6 @@
     -fx-background-color:white;
     -fx-text-fill: #457b9d;
     -fx-border-color: #457b9d;
-    -fx-border-weight:3;
 }
 
 /*adding effect to seller product page*/
