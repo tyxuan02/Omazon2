@@ -543,13 +543,6 @@ public class HelloController {
                 String retrievedPassword = queryResult.getString("password");
                 if (retrievedEmail.equals(email) && retrievedPassword.equals(password)) {
                     // if the credentials matches
-                    // display login successful pop-up message
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Login Successful");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Welcome to Omazon!");
-                    alert.showAndWait();
-
                     //store current user's info in the User class
                     User.setUsername(queryResult.getString("username"));
                     User.setEmail(retrievedEmail);

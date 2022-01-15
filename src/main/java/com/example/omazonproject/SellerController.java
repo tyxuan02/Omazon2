@@ -584,13 +584,6 @@ public class SellerController {
                 String retrievedSellerPassword = queryResult.getString("password");
                 if (retrievedSellerEmail.equals(sellerEmail) && retrievedSellerPassword.equals(sellerPassword)) {
                     // if the credentials matches
-                    // display login successful pop-up message
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Login Successful");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Welcome to Seller Centre!");
-                    alert.showAndWait();
-
                     //store current seller's info in the Seller class
                     Seller.setSellerName(queryResult.getString("sellerName"));
                     Seller.setEmail(retrievedSellerEmail);
