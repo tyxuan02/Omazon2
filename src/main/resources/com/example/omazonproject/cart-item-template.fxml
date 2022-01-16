@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -13,9 +12,7 @@
             fx:controller="com.example.omazonproject.CartItemController">
     <Line endX="1089.0" endY="1.1444091796875E-5" layoutX="101.0" layoutY="44.0" startX="-100.0" stroke="#c4c4c4"/>
     <ImageView fx:id="productImage" fitHeight="89.0" fitWidth="158.0" layoutX="14.0" layoutY="61.0" pickOnBounds="true"
-               preserveRatio="true">
-        <Image url="@../../../images/clothes.jpg"/>
-    </ImageView>
+               preserveRatio="true"/>
     <Label fx:id="productName" layoutX="23.0" layoutY="14.0" text="Boutique Shop">
         <font>
             <Font name="System Bold" size="16.0"/>

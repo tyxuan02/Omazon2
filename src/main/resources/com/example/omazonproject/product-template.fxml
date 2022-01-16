@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane onMouseClicked="#click" prefHeight="225.0" prefWidth="227.0" style="-fx-background-color: e2ece9;" styleClass="product" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.ProductController">
+<AnchorPane onMouseClicked="#click" prefHeight="225.0" prefWidth="227.0" style="-fx-background-color: e2ece9;"
+            styleClass="product" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.ProductController">
     <children>
-        <ImageView fx:id="productImagePath" fitHeight="165.0" fitWidth="197.0" layoutX="17.0" layoutY="30.0" pickOnBounds="true">
-            <image>
-                <Image url="@../../../images/PS5.jpg" />
-            </image>
-        </ImageView>
-        <Label fx:id="productName" alignment="CENTER" layoutX="23.0" layoutY="2.0" prefHeight="24.0" prefWidth="190.0" text="PS5">
+        <ImageView fx:id="productImagePath" fitHeight="165.0" fitWidth="197.0" layoutX="17.0" layoutY="30.0"
+                   pickOnBounds="true"/>
+        <Label fx:id="productName" alignment="CENTER" layoutX="23.0" layoutY="2.0" prefHeight="24.0" prefWidth="190.0"
+               text="PS5">
             <font>
-                <Font name="Impact" size="20.0" />
+                <Font name="Impact" size="20.0"/>
             </font>
         </Label>
-        <Label fx:id="productPrice" alignment="CENTER" layoutX="18.0" layoutY="194.0" prefHeight="31.0" prefWidth="198.0" text="RM 2000">
+        <Label fx:id="productPrice" alignment="CENTER" layoutX="18.0" layoutY="194.0" prefHeight="31.0"
+               prefWidth="198.0" text="RM 2000">
             <font>
-                <Font size="15.0" />
+                <Font size="15.0"/>
             </font>
         </Label>
     </children>

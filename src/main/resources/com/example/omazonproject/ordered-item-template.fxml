@@ -2,20 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="172.0" prefWidth="1190.0"
-            style="-fx-background-color: F2F7F4; -fx-border-color: c4c4c4;" xmlns="http://javafx.com/javafx/17"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0"
+            prefWidth="1190.0" style="-fx-background-color: F2F7F4; -fx-border-color: c4c4c4;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.omazonproject.OrderedItemController">
     <Line endX="1089.0" endY="1.1444091796875E-5" layoutX="101.0" layoutY="44.0" startX="-100.0" stroke="#c4c4c4"/>
     <ImageView fx:id="productImage" fitHeight="89.0" fitWidth="158.0" layoutX="14.0" layoutY="61.0" pickOnBounds="true"
-               preserveRatio="true">
-        <Image url="@../../../images/clothes.jpg"/>
-    </ImageView>
+               preserveRatio="true"/>
     <Label fx:id="productName" layoutX="22.0" layoutY="14.0" text="Boutique Shop">
         <font>
             <Font size="15.0"/>
