@@ -408,6 +408,7 @@ public class SellerProfileController {
         if (!shopAddress.getText().isEmpty() && !Seller.getAddress().equals(shopAddress.getText())) {
             Connection connection = null;
             PreparedStatement psUpdateAddress = null;
+            PreparedStatement psUpdateProductInfo = null;
 
             try {
                 // change the seller's address in the database
@@ -418,6 +419,12 @@ public class SellerProfileController {
                 psUpdateAddress.setString(2, Seller.getEmail());
                 psUpdateAddress.executeUpdate();
 
+                // update the seller address column for all the seller's product
+                psUpdateProductInfo = connection.prepareStatement("UPDATE product_info SET sellerAddress = ? WHERE sellerEmail = ?");
+                psUpdateProductInfo.setString(1, shopAddress.getText());
+                psUpdateProductInfo.setString(2, Seller.getEmail());
+                psUpdateProductInfo.executeUpdate();
+
                 // change the seller's address in the Seller class
                 Seller.setAddress(shopAddress.getText());
 
@@ -425,6 +432,14 @@ public class SellerProfileController {
                 e.printStackTrace();
 
             } finally {
+                if (psUpdateProductInfo != null) {
+                    try {
+                        psUpdateProductInfo.close();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
                 if (psUpdateAddress != null) {
                     try {
                         psUpdateAddress.close();
