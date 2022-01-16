@@ -350,12 +350,13 @@ public class SellerProfileController {
     public void saveButtonPressed() {
         // when the save button is pressed
         if (!sellerUsername.getText().isEmpty() && !sellerUsername.getText().equals(Seller.getSellerName())) {
-            //if the username in the text field is not empty and is not the same as the username stored in the Seller class,
+            // if the username in the text field is not empty and is not the same as the username stored in the Seller class,
             Connection connection = null;
             PreparedStatement psUpdateUsername = null;
+            PreparedStatement psUpdateName = null;
 
             try {
-                //change the seller's username in the database
+                // change the seller's username in the database
                 DatabaseConnection databaseConnection = new DatabaseConnection();
                 connection = databaseConnection.getConnection();
                 psUpdateUsername = connection.prepareStatement("UPDATE seller_account SET sellerName = ? WHERE email = ?");
@@ -363,12 +364,27 @@ public class SellerProfileController {
                 psUpdateUsername.setString(2, Seller.getEmail());
                 psUpdateUsername.executeUpdate();
 
+                // update the seller name column for all the seller's product
+                psUpdateName = connection.prepareStatement("UPDATE product_info SET sellerName = ? WHERE sellerEmail = ?");
+                psUpdateName.setString(1, sellerUsername.getText());
+                psUpdateName.setString(2, Seller.getEmail());
+                psUpdateName.executeUpdate();
+
                 // change the seller's username in the Seller class
                 Seller.setSellerName(sellerUsername.getText());
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
+                if (psUpdateName != null) {
+                    try {
+                        psUpdateName.close();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
                 if (psUpdateUsername != null) {
                     try {
                         psUpdateUsername.close();
