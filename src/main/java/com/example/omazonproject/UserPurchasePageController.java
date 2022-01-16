@@ -401,7 +401,9 @@ public class UserPurchasePageController {
 
                         if (resultSet.next()) {
                             numberOfStocks = Integer.parseInt(resultSet.getString("numOfStock"));
-                            numberOfSales = Integer.parseInt(resultSet.getString("numberOfSales"));
+                            if (resultSet.getString("numberOfSales") != null) {
+                                numberOfSales = Integer.parseInt(resultSet.getString("numberOfSales"));
+                            }
                         }
 
                         psUpdate = connection.prepareStatement("UPDATE product_info SET numberOfSales = ?, numOfStock = ? WHERE sellerEmail = ? AND name = ?");

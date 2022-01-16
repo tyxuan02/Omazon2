@@ -314,7 +314,7 @@ public class AutoFillProductPageClass {
     void favoriteButtonPressed() {
         JsonFileUtil jsonFileUtil = new JsonFileUtil();
         jsonFileUtil.writeFavoriteFile(currentProduct);
-        URL icon = this.getClass().getResource("/images/favoriteButtonPressed.png");
+        URL icon = this.getClass().getResource("/AssetFiles/favoriteButtonPressed.png");
         Image image = new Image(String.valueOf(icon));
         favorite.setImage(image);
     }

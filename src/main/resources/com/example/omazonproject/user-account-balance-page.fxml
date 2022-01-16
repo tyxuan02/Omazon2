@@ -20,23 +20,23 @@
                 <ImageView fitHeight="378.0" fitWidth="606.0" layoutX="700.0" layoutY="395.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/decoAccBalancePage_2.png"/>
+                        <Image url="@../../../AssetFiles/decoAccBalancePage_2.png"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="150.0" fitWidth="1280.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/bannerHomepage.gif"/>
+                        <Image url="@../../../AssetFiles/bannerHomepage.gif"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="172.0" fitWidth="302.0" layoutX="-24.0" layoutY="-50.0">
                     <image>
-                        <Image url="@../../../images/logoMarkOmazon.png"/>
+                        <Image url="@../../../AssetFiles/logoMarkOmazon.png"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="1221.0" layoutY="69.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/malaysiaFlag.png"/>
+                        <Image url="@../../../AssetFiles/malaysiaFlag.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="1163.0" layoutY="94.0" prefHeight="27.0" prefWidth="117.0" text=" Deliver to Malaysia"
@@ -63,7 +63,7 @@
                             <graphic>
                                 <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/topUpIcon.png"/>
+                                        <Image url="@../../../AssetFiles/topUpIcon.png"/>
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -92,13 +92,13 @@
                 <ImageView fitHeight="424.0" fitWidth="400.0" layoutX="878.0" layoutY="421.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/decoAccBalancePage_3.png"/>
+                        <Image url="@../../../AssetFiles/decoAccBalancePage_3.png"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="249.0" fitWidth="390.0" layoutX="1035.0" layoutY="604.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/moneyBag.png"/>
+                        <Image url="@../../../AssetFiles/moneyBag.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="76.0" layoutY="199.0" text="My Account" textFill="#6b6464">
@@ -111,7 +111,7 @@
                 <ImageView fitHeight="210.0" fitWidth="343.0" layoutX="857.0" layoutY="222.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/decoAccBalancePage_4.png"/>
+                        <Image url="@../../../AssetFiles/decoAccBalancePage_4.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="918.0" layoutY="273.0" prefHeight="78.0" prefWidth="238.0" text="Always be careful">
@@ -127,7 +127,7 @@
                 <ImageView fitHeight="291.0" fitWidth="238.0" layoutX="947.0" layoutY="520.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/decoAccBalancePage_1.png"/>
+                        <Image url="@../../../AssetFiles/decoAccBalancePage_1.png"/>
                     </image>
                 </ImageView>
             </children>
@@ -140,7 +140,7 @@
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/userIcon.png"/>
+                                <Image url="@../../../AssetFiles/userIcon.png"/>
                             </image>
                         </ImageView>
                     </graphic>
@@ -154,7 +154,7 @@
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/HomePageIcon.png"/>
+                                <Image url="@../../../AssetFiles/HomePageIcon.png"/>
                             </image>
                         </ImageView>
                     </graphic>

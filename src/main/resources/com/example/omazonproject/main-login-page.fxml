@@ -13,7 +13,7 @@
                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                    AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../../images/backgroundLoginRegister.jpg"/>
+                <Image url="@../../../AssetFiles/backgroundLoginRegister.jpg"/>
             </image>
         </ImageView>
         <BorderPane layoutX="178.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
@@ -74,7 +74,7 @@
                         <ImageView fitHeight="362.0" fitWidth="437.0" layoutX="-8.0" layoutY="-14.0"
                                    nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/item1.png"/>
+                                <Image url="@../../../AssetFiles/item1.png"/>
                             </image>
                         </ImageView>
                         <Text fill="#45b0a0" layoutX="111.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0"
@@ -117,7 +117,7 @@
         <ImageView fitHeight="211.0" fitWidth="346.0" layoutX="-74.0" layoutY="-35.0" nodeOrientation="INHERIT"
                    pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../images/logoMarkOmazon.png"/>
+                <Image url="@../../../AssetFiles/logoMarkOmazon.png"/>
             </image>
         </ImageView>
     </children>

@@ -10,14 +10,14 @@
     <children>
         <ImageView fitHeight="650.0" fitWidth="606.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../images/sellerPerformanceTemplate.png"/>
+                <Image url="@../../../AssetFiles/sellerPerformanceTemplate.png"/>
             </image>
         </ImageView>
         <AnchorPane layoutX="71.0" layoutY="435.0" prefHeight="94.0" prefWidth="499.0">
             <children>
                 <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/sale.png"/>
+                        <Image url="@../../../AssetFiles/sale.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="91.0" layoutY="4.0" text="Number of sales">
@@ -37,7 +37,7 @@
             <children>
                 <ImageView fitHeight="67.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/ProfitIcon.png"/>
+                        <Image url="@../../../AssetFiles/ProfitIcon.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="91.0" layoutY="25.0" text="Profit : ">
@@ -57,7 +57,7 @@
             <children>
                 <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/bestSellingIcon.png"/>
+                        <Image url="@../../../AssetFiles/bestSellingIcon.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="91.0" text="Best selling product">
