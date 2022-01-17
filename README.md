@@ -8,15 +8,22 @@ Group members:
 - HAM ZHI YING
 - ENG JUN CHENG
 
-We faced several issues along the way:
-1. Hard-coding our gmail account credentials into the source code makes our account vulnerable
-   -> prevented by using json file to store our gmail account credentials and avoid pushing the json file to GitHub
+Before running our project, you need to do these few steps.
 
-2. Difficult to work together using traditional approach 
-   -> solved by using GitHub to share our code.
-   
-3. Local database only accessible for one team member 
-   -> We use an online free database server.
-   
-4. Track who is using the app.
-   -> We store the user's information just when they login to our app using a class.
+Copy "--add-exports javafx.base/com.sun.javafx.event=org.controlsfx.controls"
+and "--add-exports javafx.base/com.sun.javafx.event=ALL-UNNAMED" 
+
+For Intellij user,
+
+Click "Run" at the top of Intellij > Click "Edit configurations" > Choose HelloApplication > 
+Click "modify options" > Click "Add VM options" > Paste it in the "VM options" field >
+Click OK
+
+For Netbeans user,
+Click "Run" at the top of Netbeans > Click "Set Project Configuration" > Click "Customize" >
+Choose "com.example.omazonproject.HelloApplication as your main class" >
+Paste it in the "VM options" field >
+Click OK
+
+
+
