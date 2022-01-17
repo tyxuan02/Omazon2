@@ -3,20 +3,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="113.0" prefWidth="833.0" style="-fx-border-color: #c4c4c4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.ReviewController">
+<AnchorPane prefHeight="113.0" prefWidth="833.0" style="-fx-border-color: #c4c4c4;" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.ReviewController">
     <children>
-        <Label fx:id="username" layoutX="14.0" layoutY="13.0" prefHeight="20.0" prefWidth="118.0" text="Username">
+        <Label fx:id="username" layoutX="14.0" layoutY="13.0" prefHeight="20.0" prefWidth="266.0" text="Username">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="review" layoutX="15.0" layoutY="33.0" prefHeight="20.0" prefWidth="806.0" text="Good product with fast delivery." />
+        <Label fx:id="review" layoutX="15.0" layoutY="33.0" prefHeight="20.0" prefWidth="806.0"
+               text="Good product with fast delivery."/>
         <Label layoutX="29.0" layoutY="59.0" text="Seller's reply:">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="reply" layoutX="29.0" layoutY="79.0" prefHeight="20.0" prefWidth="806.0" />
+        <Label fx:id="reply" layoutX="29.0" layoutY="79.0" prefHeight="20.0" prefWidth="806.0"/>
     </children>
 </AnchorPane>
