@@ -70,11 +70,12 @@ public class CustomerReviewController {
     /**
      * A profile button at customer review page
      * This method will direct seller to seller homepage
+     *
      * @param event An instance of the ActionEvent class
-     * @throws IOException
+     * @throws IOException when the resource file is not found
      */
     @FXML
-    void profileButtonPressed (ActionEvent event) throws IOException {
+    void profileButtonPressed(ActionEvent event) throws IOException {
         // forward the user back to the seller profile page
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("seller-profile-page.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -118,8 +119,6 @@ public class CustomerReviewController {
                     pieChartData.add(new PieChart.Data(resultset.getString("name"), resultset.getInt("numberOfSales")));
                     totalNumOfSales += resultset.getInt("numberOfSales");
                 }
-            } else {
-                System.out.println("No products");
             }
 
         } catch (SQLException e) {
