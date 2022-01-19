@@ -6,8 +6,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" hbarPolicy="NEVER" vbarPolicy="NEVER" vmax="2.0"
-            xmlns="http://javafx.com/javafx/17" fx:controller="com.example.omazonproject.SellerCentreController">
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" vmax="2.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.omazonproject.SellerCentreController">
     <AnchorPane prefHeight="800.0" prefWidth="1280.0">
         <VBox layoutX="14.0" layoutY="199.0" prefHeight="98.0" prefWidth="100.0">
             <children>
@@ -30,8 +30,14 @@
                 <Font name="Times New Roman" size="24.0"/>
             </font>
         </Label>
-        <Button layoutX="1148.0" layoutY="199.0" mnemonicParsing="false" onAction="#addProductButtonPressed"
-                prefHeight="30.0" prefWidth="119.2" style="-fx-background-color: green;" text="Add Products"/>
+        <Button layoutX="1139.0" layoutY="210.0" mnemonicParsing="false" onAction="#addProductButtonPressed"
+                prefHeight="30.0" prefWidth="119.2"
+                style="-fx-background-color: #32cd32; -fx-border-color: #c0c0c0; -fx-border-radius: 5; -fx-background-radius: 5;"
+                text="Add Products" textFill="#fcfafa">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
         <CheckBox layoutX="165.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
         <CheckBox layoutX="443.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
         <CheckBox layoutX="711.0" layoutY="266.0" mnemonicParsing="false" text="Remove" visible="false"/>
@@ -60,10 +66,10 @@
                 <Label alignment="CENTER" layoutX="448.0" layoutY="-12.0" prefHeight="86.0" prefWidth="416.0"
                        style="-fx-font-family: Impact; -fx-font-size: 48;" text="Seller Centre">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="17.0"/>
                     </font>
                 </Label>
-                <MenuButton fx:id="sellerNameMenuButton" layoutX="1140.0" layoutY="24.0" mnemonicParsing="false"
+                <MenuButton fx:id="sellerNameMenuButton" layoutX="1121.0" layoutY="24.0" mnemonicParsing="false"
                             prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: e2ece9;"
                             textAlignment="CENTER">
                     <items>

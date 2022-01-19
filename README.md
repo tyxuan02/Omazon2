@@ -8,22 +8,12 @@ Group members:
 - HAM ZHI YING
 - ENG JUN CHENG
 
-Before running our project, you need to do these few steps.
+This program is written entirely in IntelliJ Idea. Use this IDE, if possible, to ensure that the code run successfully.
 
-Copy "--add-exports javafx.base/com.sun.javafx.event=org.controlsfx.controls"
-and "--add-exports javafx.base/com.sun.javafx.event=ALL-UNNAMED" 
-
-For Intellij user,
-
-Click "Run" at the top of Intellij > Click "Edit configurations" > Choose HelloApplication > 
-Click "modify options" > Click "Add VM options" > Paste it in the "VM options" field >
-Click OK
-
-For Netbeans user,
-Click "Run" at the top of Netbeans > Click "Set Project Configuration" > Click "Customize" >
-Choose "com.example.omazonproject.HelloApplication as your main class" >
-Paste it in the "VM options" field >
-Click OK
-
-
+Before running our project, you need to do these few steps:
+1. Open your IntelliJ Idea IDE
+2. Copy "--add-exports javafx.base/com.sun.javafx.event=org.controlsfx.controls" and "--add-exports javafx.base/com.sun.javafx.event=ALL-UNNAMED"
+3. Click "Run" at the top of Intellij > Click "Edit configurations" > Choose HelloApplication >
+4. Click "modify options" > Click "Add VM options" > Paste it in the "VM options" field >
+5. Click OK
 
